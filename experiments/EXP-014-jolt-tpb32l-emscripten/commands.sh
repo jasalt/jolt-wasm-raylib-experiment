@@ -144,7 +144,7 @@ jolt-mint)
     bash -c "cd '$jolt' && '$work/tpb32l/bin/tpb32l/scheme' --script test/chez/tpb32l-hash-test.ss"
   log_run "$log_dir/jolt-tpb32l-patched-mint.log" \
     nix shell "$root#i686-cc" -c bash -c \
-    'export JOLT_CHEZ="$1/tpb64l/bin/tpb64l/scheme" JOLT_CHEZ_CSV="$1/tpb64l/boot/tpb64l" JOLT_TARGET_CC=gcc; "$2/bin/jolt" build -m app.witness -o "$3" --target tpb32l --target-pack "$4"' \
+    'export JOLT_CHEZ="$1/tpb64l/bin/tpb64l/scheme" JOLT_CHEZ_CSV="$1/tpb64l/boot/tpb64l" JOLT_TARGET_CC=gcc; "$2/bin/jolt" build -m app.exp014 -o "$3" --target tpb32l --target-pack "$4"' \
     _ "$work" "$jolt" "$out" "$pack"
   sha256sum "$out.build"/{flat.ss,flat.so,jolt.boot} "$patch_file" \
     >"$log_dir/jolt-tpb32l-patched-hashes.txt"
