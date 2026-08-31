@@ -1,18 +1,29 @@
 <!doctype html>
-<html><head><meta charset="utf-8"><title>Chez pb browser witness</title></head>
-<body><h1>Chez portable bytecode browser witness</h1><p id="status" data-chez-state="loading">loading</p><pre id="output"></pre>
-<script>
-var Module = {
-  print: function (text) {
-    var out = document.querySelector('#output');
-    out.textContent += text + '\n';
-    if (String(text).indexOf('EXP-002-PB-BROWSER-OK') !== -1) {
-      var status = document.querySelector('#status');
-      status.dataset.chezState = 'ready';
-      status.textContent = 'ready';
-    }
-  },
-  printErr: function (text) { console.error(text); }
-};
-</script>
-<script src="scheme.js"></script></body></html>
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <title>Chez pb browser witness</title>
+  </head>
+  <body>
+    <h1>Chez portable bytecode browser witness</h1>
+    <p id="status" data-chez-state="loading">loading</p>
+    <pre id="output"></pre>
+    <script>
+      var Module = {
+        print: function (text) {
+          var out = document.querySelector("#output");
+          out.textContent += text + "\n";
+          if (String(text).indexOf("EXP-002-PB-BROWSER-OK") !== -1) {
+            var status = document.querySelector("#status");
+            status.dataset.chezState = "ready";
+            status.textContent = "ready";
+          }
+        },
+        printErr: function (text) {
+          console.error(text);
+        },
+      };
+    </script>
+    <script src="scheme.js"></script>
+  </body>
+</html>

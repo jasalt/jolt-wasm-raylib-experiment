@@ -6,9 +6,12 @@ src="$root/build/EXP-006-chez-static-ffi/source"
 flat="$root/build/EXP-004-jolt-node/app.build/flat.ss"
 out="$root/build/EXP-008-jolt-browser"
 [[ -x "$src/pb/bin/pb/scheme" && -f "$flat" ]] || {
-  echo 'run EXP-004 and EXP-006 first' >&2; exit 2;
+  echo 'run EXP-004 and EXP-006 first' >&2
+  exit 2
 }
-rm -rf "$out"; mkdir -p "$out"; cp "$flat" "$out/flat.ss"
+rm -rf "$out"
+mkdir -p "$out"
+cp "$flat" "$out/flat.ss"
 (
   cd "$src"
   pb/bin/pb/scheme --script /dev/stdin <<SCHEME
