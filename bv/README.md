@@ -2,26 +2,19 @@
 
 ## 📊 Executive Summary
 
-**16** total issues | **50%** complete | **3** ready to work | **0** blocked
+**16** total issues | **62%** complete | **2** ready to work | **0** blocked
 
 ## 🎯 Top Priorities
 
 The graph analysis identified these as the highest-impact items to work on:
 
-### 1. EXP-007 render one Chez-driven Raylib browser frame
-**ID:** `jwr-c52.8` | **Impact Score:** 0.30
+### 1. EXP-009 implement and verify the minimal Jolt Raylib facade
+**ID:** `jwr-c52.10` | **Impact Score:** 0.32 | **Unblocks:** 1 issues
 
 **Why this matters:**
-- 🔀 Critical path bottleneck (betweenness: 56%)
+- 🔓 Unblocks 1 item(s): jwr-c52.11
+- 🔀 Critical path bottleneck (betweenness: 51%)
 - ⚡ Low effort, high impact - good starting point
-- ✅ Currently unclaimed - available for work
-- 🚨 High priority (P1) - prioritize this work
-
-### 2. EXP-008 run the pure Jolt payload in an automated browser
-**ID:** `jwr-c52.9` | **Impact Score:** 0.29 | **Unblocks:** 1 issues
-
-**Why this matters:**
-- 🔓 Unblocks 1 item(s): jwr-c52.10
 - ✅ Currently unclaimed - available for work
 - 🚨 High priority (P1) - prioritize this work
 
@@ -32,8 +25,8 @@ These issues are blocking the most downstream work. Clearing them has outsized i
 | Issue | Title | Unblocks | Status |
 |-------|-------|----------|--------|
 | `jwr-c52.12` | EXP-011/012 implement persistent brow... | **2** issues | Blocked by 1 |
-| `jwr-c52.11` | EXP-010 render and inspect the first ... | **1** issues | Blocked by 2 |
-| `jwr-c52.9` | EXP-008 run the pure Jolt payload in ... | **1** issues | Ready |
+| `jwr-c52.10` | EXP-009 implement and verify the mini... | **1** issues | Ready |
+| `jwr-c52.11` | EXP-010 render and inspect the first ... | **1** issues | Blocked by 1 |
 
 ## 📈 Graph Analysis
 
@@ -47,9 +40,9 @@ Low-effort items that clear the path forward:
 
 - **jwr-c52.12**: EXP-011/012 implement persistent browser-owned frames and input (unblocks 2)
   - *Unblocks 2 items, high priority*
-- **jwr-c52.11**: EXP-010 render and inspect the first Jolt-driven Raylib frame (unblocks 1)
+- **jwr-c52.10**: EXP-009 implement and verify the minimal Jolt Raylib facade (unblocks 1)
   - *Unblocks 1 items, high priority*
-- **jwr-c52.9**: EXP-008 run the pure Jolt payload in an automated browser (unblocks 1)
+- **jwr-c52.11**: EXP-010 render and inspect the first Jolt-driven Raylib frame (unblocks 1)
   - *Unblocks 1 items, high priority*
 - **jwr-c52**: Prove Jolt + Chez Wasm + Raylib browser feasibility
   - *Low complexity, high priority*
@@ -64,5 +57,5 @@ Low-effort items that clear the path forward:
 
 ---
 
-*Generated Aug 31, 2026 at 9:48 AM UTC by [bv](https://github.com/Dicklesworthstone/beads_viewer)*
+*Generated Aug 31, 2026 at 9:49 AM UTC by [bv](https://github.com/Dicklesworthstone/beads_viewer)*
 

@@ -1,7 +1,7 @@
 {
   "meta": {
     "version": "1.0.0",
-    "generated_at": "2026-08-31T09:48:29.368513433Z",
+    "generated_at": "2026-08-31T09:49:20.067908753Z",
     "phase2_ready": true,
     "issue_count": 16,
     "compute_time_ms": 0
@@ -9,66 +9,56 @@
   "status": {
     "PageRank": {
       "state": "computed",
-      "ms": 0.052908
+      "ms": 0.058809
     },
     "Betweenness": {
       "state": "computed",
-      "ms": 0.058156
+      "ms": 0.062825
     },
     "Eigenvector": {
       "state": "computed",
-      "ms": 0.007852
+      "ms": 0.010897
     },
     "HITS": {
       "state": "computed",
-      "ms": 0.016625
+      "ms": 0.023876
     },
     "Critical": {
       "state": "computed",
-      "ms": 0.010405
+      "ms": 0.016144
     },
     "Cycles": {
       "state": "computed",
-      "ms": 0.023545
+      "ms": 0.010466
     },
     "KCore": {
       "state": "computed",
-      "ms": 0.012739
+      "ms": 0.012609
     },
     "Articulation": {
       "state": "computed"
     },
     "Slack": {
       "state": "computed",
-      "ms": 0.004617
+      "ms": 0.004707
     }
   },
   "quick_ref": {
-    "open_count": 8,
-    "actionable_count": 3,
+    "open_count": 6,
+    "actionable_count": 2,
     "blocked_count": 0,
     "in_progress_count": 0,
-    "not_closed_count": 8,
-    "not_actionable_count": 5,
+    "not_closed_count": 6,
+    "not_actionable_count": 4,
     "top_picks": [
       {
-        "id": "jwr-c52.8",
-        "title": "EXP-007 render one Chez-driven Raylib browser frame",
-        "score": 0.2979409127438494,
+        "id": "jwr-c52.10",
+        "title": "EXP-009 implement and verify the minimal Jolt Raylib facade",
+        "score": 0.32103308405198494,
         "reasons": [
-          "🔀 Critical path bottleneck (betweenness: 56%)",
+          "🔓 Unblocks 1 item(s): jwr-c52.11",
+          "🔀 Critical path bottleneck (betweenness: 51%)",
           "⚡ Low effort, high impact - good starting point",
-          "✅ Currently unclaimed - available for work",
-          "🚨 High priority (P1) - prioritize this work"
-        ],
-        "unblocks": 0
-      },
-      {
-        "id": "jwr-c52.9",
-        "title": "EXP-008 run the pure Jolt payload in an automated browser",
-        "score": 0.29445893139359985,
-        "reasons": [
-          "🔓 Unblocks 1 item(s): jwr-c52.10",
           "✅ Currently unclaimed - available for work",
           "🚨 High priority (P1) - prioritize this work"
         ],
@@ -92,23 +82,23 @@
         "vision",
         "wasm"
       ],
-      "score": 0.3676587667757304,
+      "score": 0.39017340924344146,
       "breakdown": {
         "pagerank": 0.08120213536338683,
         "betweenness": 0.2,
         "blocker_ratio": 0.043333333333333335,
-        "staleness": 0.0002723836518794946,
+        "staleness": 0.000273361649474402,
         "priority_boost": 0.07500000000000001,
         "time_to_impact": 0.04725000000000001,
-        "urgency": 0.0011538366857074545,
+        "urgency": 0.0011579312081072268,
         "risk": 0.0020000000000000005,
         "pagerank_norm": 0.36910061528812194,
         "betweenness_norm": 1,
         "blocker_ratio_norm": 0.3333333333333333,
-        "staleness_norm": 0.005447673037589892,
+        "staleness_norm": 0.00546723298948804,
         "priority_boost_norm": 0.75,
         "time_to_impact_norm": 0.47250000000000003,
-        "urgency_norm": 0.011538366857074545,
+        "urgency_norm": 0.011579312081072268,
         "risk_norm": 0.020000000000000004,
         "time_to_impact_explanation": "Deep in critical path (depth 3), median estimate 60m",
         "risk_explanation": "Low risk - stable dependency structure",
@@ -127,15 +117,14 @@
         "🔀 Critical path bottleneck (betweenness: 100%)",
         "📊 High centrality in dependency graph (PageRank: 37%)",
         "✅ Currently unclaimed - available for work",
-        "⏳ Blocked by 2 items - need to clear dependencies",
+        "⏳ Blocked by jwr-c52.10 - complete that first",
         "🚨 High priority (P1) - prioritize this work"
       ],
       "unblocks_ids": [
         "jwr-c52.12"
       ],
       "blocked_by": [
-        "jwr-c52.10",
-        "jwr-c52.8"
+        "jwr-c52.10"
       ]
     },
     {
@@ -153,23 +142,23 @@
         "research",
         "wasm"
       ],
-      "score": 0.35298385117873593,
+      "score": 0.3739150735202253,
       "breakdown": {
         "pagerank": 0.06653900526467717,
         "betweenness": 0.14666666666666667,
         "blocker_ratio": 0.08666666666666667,
-        "staleness": 0.00027234507163258106,
+        "staleness": 0.0002733230692274885,
         "priority_boost": 0.07500000000000001,
         "time_to_impact": 0.04025,
-        "urgency": 0.0011536751571225357,
+        "urgency": 0.001157769693062416,
         "risk": 0.0020000000000000005,
         "pagerank_norm": 0.30245002393035075,
         "betweenness_norm": 0.7333333333333333,
         "blocker_ratio_norm": 0.6666666666666666,
-        "staleness_norm": 0.005446901432651621,
+        "staleness_norm": 0.005466461384549769,
         "priority_boost_norm": 0.75,
         "time_to_impact_norm": 0.40249999999999997,
-        "urgency_norm": 0.011536751571225357,
+        "urgency_norm": 0.01157769693062416,
         "risk_norm": 0.020000000000000004,
         "time_to_impact_explanation": "On dependency chain (depth 2), median estimate 60m",
         "risk_explanation": "Low risk - stable dependency structure",
@@ -200,113 +189,6 @@
       ]
     },
     {
-      "id": "jwr-c52.8",
-      "title": "EXP-007 render one Chez-driven Raylib browser frame",
-      "type": "task",
-      "status": "open",
-      "priority": 1,
-      "labels": [
-        "browser",
-        "chez",
-        "experiment",
-        "jolt",
-        "raylib",
-        "research",
-        "vision",
-        "wasm"
-      ],
-      "score": 0.2979409127438494,
-      "breakdown": {
-        "pagerank": 0.05915481508267566,
-        "betweenness": 0.1111111111111111,
-        "blocker_ratio": 0.043333333333333335,
-        "staleness": 0.00027249939262023536,
-        "priority_boost": 0.07500000000000001,
-        "time_to_impact": 0.05425,
-        "urgency": 0.0011543212682572801,
-        "risk": 0.006242640687119286,
-        "pagerank_norm": 0.2688855231030712,
-        "betweenness_norm": 0.5555555555555555,
-        "blocker_ratio_norm": 0.3333333333333333,
-        "staleness_norm": 0.005449987852404707,
-        "priority_boost_norm": 0.75,
-        "time_to_impact_norm": 0.5425,
-        "urgency_norm": 0.011543212682572801,
-        "risk_norm": 0.06242640687119285,
-        "time_to_impact_explanation": "Deep in critical path (depth 4), median estimate 60m",
-        "risk_explanation": "Low risk - stable dependency structure",
-        "risk_signals": {
-          "fan_variance": 0.1414213562373095,
-          "activity_churn": 0,
-          "cross_repo_risk": 0,
-          "status_risk": 0.1,
-          "composite_risk": 0.06242640687119285,
-          "explanation": "Low risk - stable dependency structure"
-        }
-      },
-      "action": "Quick win - start here for fast progress",
-      "reasons": [
-        "🔀 Critical path bottleneck (betweenness: 56%)",
-        "⚡ Low effort, high impact - good starting point",
-        "✅ Currently unclaimed - available for work",
-        "🚨 High priority (P1) - prioritize this work"
-      ]
-    },
-    {
-      "id": "jwr-c52.9",
-      "title": "EXP-008 run the pure Jolt payload in an automated browser",
-      "type": "task",
-      "status": "open",
-      "priority": 1,
-      "labels": [
-        "automation",
-        "browser",
-        "experiment",
-        "jolt",
-        "raylib",
-        "research",
-        "wasm"
-      ],
-      "score": 0.29445893139359985,
-      "breakdown": {
-        "pagerank": 0.049784867360390866,
-        "betweenness": 0.07333333333333333,
-        "blocker_ratio": 0.043333333333333335,
-        "staleness": 0.00027246081237332175,
-        "priority_boost": 0.07500000000000001,
-        "time_to_impact": 0.061250000000000006,
-        "urgency": 0.001154159741274824,
-        "risk": 0.007000000000000001,
-        "pagerank_norm": 0.2262948516381403,
-        "betweenness_norm": 0.36666666666666664,
-        "blocker_ratio_norm": 0.3333333333333333,
-        "staleness_norm": 0.005449216247466434,
-        "priority_boost_norm": 0.75,
-        "time_to_impact_norm": 0.6125,
-        "urgency_norm": 0.011541597412748239,
-        "risk_norm": 0.07,
-        "time_to_impact_explanation": "Deep in critical path (depth 5), median estimate 60m",
-        "risk_explanation": "Low risk - stable dependency structure",
-        "risk_signals": {
-          "fan_variance": 0.16666666666666666,
-          "activity_churn": 0,
-          "cross_repo_risk": 0,
-          "status_risk": 0.1,
-          "composite_risk": 0.07,
-          "explanation": "Low risk - stable dependency structure"
-        }
-      },
-      "action": "Start work on this issue",
-      "reasons": [
-        "🔓 Unblocks 1 item(s): jwr-c52.10",
-        "✅ Currently unclaimed - available for work",
-        "🚨 High priority (P1) - prioritize this work"
-      ],
-      "unblocks_ids": [
-        "jwr-c52.10"
-      ]
-    },
-    {
       "id": "jwr-c52.10",
       "title": "EXP-009 implement and verify the minimal Jolt Raylib facade",
       "type": "feature",
@@ -320,23 +202,23 @@
         "research",
         "wasm"
       ],
-      "score": 0.2739094328672927,
+      "score": 0.32103308405198494,
       "breakdown": {
         "pagerank": 0.05915481508267566,
         "betweenness": 0.10222222222222221,
         "blocker_ratio": 0.043333333333333335,
-        "staleness": 0.0002724222321264082,
+        "staleness": 0.00027340022972131557,
         "priority_boost": 0.07500000000000001,
         "time_to_impact": 0.05425,
-        "urgency": 0.0011539982137582173,
+        "urgency": 0.0011580927226179205,
         "risk": 0.007000000000000001,
         "pagerank_norm": 0.2688855231030712,
         "betweenness_norm": 0.5111111111111111,
         "blocker_ratio_norm": 0.3333333333333333,
-        "staleness_norm": 0.005448444642528164,
+        "staleness_norm": 0.005468004594426311,
         "priority_boost_norm": 0.75,
         "time_to_impact_norm": 0.5425,
-        "urgency_norm": 0.011539982137582172,
+        "urgency_norm": 0.011580927226179205,
         "risk_norm": 0.07,
         "time_to_impact_explanation": "Deep in critical path (depth 4), median estimate 60m",
         "risk_explanation": "Low risk - stable dependency structure",
@@ -349,15 +231,16 @@
           "explanation": "Low risk - stable dependency structure"
         }
       },
-      "action": "Work on jwr-c52.9 first to unblock this",
+      "action": "Quick win - start here for fast progress",
       "reasons": [
+        "🔓 Unblocks 1 item(s): jwr-c52.11",
         "🔀 Critical path bottleneck (betweenness: 51%)",
+        "⚡ Low effort, high impact - good starting point",
         "✅ Currently unclaimed - available for work",
-        "⏳ Blocked by jwr-c52.9 - complete that first",
         "🚨 High priority (P1) - prioritize this work"
       ],
-      "blocked_by": [
-        "jwr-c52.9"
+      "unblocks_ids": [
+        "jwr-c52.11"
       ]
     },
     {
@@ -372,23 +255,23 @@
         "research",
         "wasm"
       ],
-      "score": 0.115873225725606,
+      "score": 0.11587753729854772,
       "breakdown": {
         "pagerank": 0.024644021050763968,
         "betweenness": 0,
         "blocker_ratio": 0,
-        "staleness": 0.0002726151333609761,
+        "staleness": 0.0002735931309558835,
         "priority_boost": 0.07500000000000001,
         "time_to_impact": 0.03325,
-        "urgency": 0.001154805845999768,
+        "urgency": 0.0011589002871598198,
         "risk": 0.0020000000000000005,
         "pagerank_norm": 0.11201827750347258,
         "betweenness_norm": 0,
         "blocker_ratio_norm": 0,
-        "staleness_norm": 0.005452302667219522,
+        "staleness_norm": 0.0054718626191176695,
         "priority_boost_norm": 0.75,
         "time_to_impact_norm": 0.3325,
-        "urgency_norm": 0.011548058459997679,
+        "urgency_norm": 0.011589002871598197,
         "risk_norm": 0.020000000000000004,
         "time_to_impact_explanation": "On dependency chain (depth 1), median estimate 60m",
         "risk_explanation": "Low risk - stable dependency structure",
@@ -423,23 +306,23 @@
         "vision",
         "wasm"
       ],
-      "score": 0.07792402889566336,
+      "score": 0.07792757966913771,
       "breakdown": {
         "pagerank": 0.024644021050763968,
         "betweenness": 0,
         "blocker_ratio": 0,
-        "staleness": 0.00027234507163258106,
+        "staleness": 0.0002733230692274885,
         "priority_boost": 0.05,
         "time_to_impact": 0.03325,
-        "urgency": 0.0011536751571225357,
+        "urgency": 0.001157769693062416,
         "risk": 0.0020000000000000005,
         "pagerank_norm": 0.11201827750347258,
         "betweenness_norm": 0,
         "blocker_ratio_norm": 0,
-        "staleness_norm": 0.005446901432651621,
+        "staleness_norm": 0.005466461384549769,
         "priority_boost_norm": 0.5,
         "time_to_impact_norm": 0.3325,
-        "urgency_norm": 0.011536751571225357,
+        "urgency_norm": 0.01157769693062416,
         "risk_norm": 0.020000000000000004,
         "time_to_impact_explanation": "On dependency chain (depth 1), median estimate 60m",
         "risk_explanation": "Low risk - stable dependency structure",
@@ -477,23 +360,23 @@
         "vision",
         "wasm"
       ],
-      "score": 0.077923958857432,
+      "score": 0.0779275096356454,
       "breakdown": {
         "pagerank": 0.024644021050763968,
         "betweenness": 0,
         "blocker_ratio": 0,
-        "staleness": 0.00027232578150912425,
+        "staleness": 0.00027330377910403164,
         "priority_boost": 0.05,
         "time_to_impact": 0.03325,
-        "urgency": 0.0011535943926297698,
+        "urgency": 0.0011576889353397235,
         "risk": 0.0020000000000000005,
         "pagerank_norm": 0.11201827750347258,
         "betweenness_norm": 0,
         "blocker_ratio_norm": 0,
-        "staleness_norm": 0.005446515630182485,
+        "staleness_norm": 0.005466075582080633,
         "priority_boost_norm": 0.5,
         "time_to_impact_norm": 0.3325,
-        "urgency_norm": 0.011535943926297698,
+        "urgency_norm": 0.011576889353397235,
         "risk_norm": 0.020000000000000004,
         "time_to_impact_explanation": "On dependency chain (depth 1), median estimate 60m",
         "risk_explanation": "Low risk - stable dependency structure",
@@ -528,21 +411,21 @@
       ]
     },
     {
+      "id": "jwr-c52.10",
+      "title": "EXP-009 implement and verify the minimal Jolt Raylib facade",
+      "score": 0.7000000000000001,
+      "reason": "Unblocks 1 items, high priority",
+      "unblocks_ids": [
+        "jwr-c52.11"
+      ]
+    },
+    {
       "id": "jwr-c52.11",
       "title": "EXP-010 render and inspect the first Jolt-driven Raylib frame",
       "score": 0.7000000000000001,
       "reason": "Unblocks 1 items, high priority",
       "unblocks_ids": [
         "jwr-c52.12"
-      ]
-    },
-    {
-      "id": "jwr-c52.9",
-      "title": "EXP-008 run the pure Jolt payload in an automated browser",
-      "score": 0.7000000000000001,
-      "reason": "Unblocks 1 items, high priority",
-      "unblocks_ids": [
-        "jwr-c52.10"
       ]
     },
     {
@@ -573,6 +456,15 @@
       ]
     },
     {
+      "id": "jwr-c52.10",
+      "title": "EXP-009 implement and verify the minimal Jolt Raylib facade",
+      "unblocks_count": 1,
+      "unblocks_ids": [
+        "jwr-c52.11"
+      ],
+      "actionable": true
+    },
+    {
       "id": "jwr-c52.11",
       "title": "EXP-010 render and inspect the first Jolt-driven Raylib frame",
       "unblocks_count": 1,
@@ -581,32 +473,22 @@
       ],
       "actionable": false,
       "blocked_by": [
-        "jwr-c52.10",
-        "jwr-c52.8"
-      ]
-    },
-    {
-      "id": "jwr-c52.9",
-      "title": "EXP-008 run the pure Jolt payload in an automated browser",
-      "unblocks_count": 1,
-      "unblocks_ids": [
         "jwr-c52.10"
-      ],
-      "actionable": true
+      ]
     }
   ],
   "project_health": {
     "counts": {
       "total": 16,
-      "open": 8,
-      "closed": 8,
+      "open": 6,
+      "closed": 10,
       "blocked": 0,
-      "actionable": 3,
-      "not_closed": 8,
-      "dependency_blocked": 5,
+      "actionable": 2,
+      "not_closed": 6,
+      "dependency_blocked": 4,
       "by_status": {
-        "closed": 8,
-        "open": 8
+        "closed": 10,
+        "open": 6
       },
       "by_type": {
         "epic": 1,
@@ -626,13 +508,13 @@
       "phase2_ready": true
     },
     "velocity": {
-      "closed_last_7_days": 8,
-      "closed_last_30_days": 8,
-      "avg_days_to_close": 0.10247106481481481,
+      "closed_last_7_days": 10,
+      "closed_last_30_days": 10,
+      "avg_days_to_close": 0.11470833333333334,
       "weekly": [
         {
           "week_start": "2026-08-31T00:00:00Z",
-          "closed": 8
+          "closed": 10
         },
         {
           "week_start": "2026-08-24T00:00:00Z",
@@ -666,8 +548,8 @@
     }
   },
   "commands": {
-    "claim_top": "CI=1 br update jwr-c52.8 --status in_progress --json",
-    "show_top": "CI=1 br show jwr-c52.8 --json",
+    "claim_top": "CI=1 br update jwr-c52.10 --status in_progress --json",
+    "show_top": "CI=1 br show jwr-c52.10 --json",
     "list_ready": "CI=1 br ready --json",
     "list_blocked": "CI=1 br blocked --json",
     "refresh_triage": "bv --robot-triage"
