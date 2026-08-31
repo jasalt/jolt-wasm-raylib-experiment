@@ -2,28 +2,13 @@
 
 ## 📊 Executive Summary
 
-**16** total issues | **25%** complete | **4** ready to work | **0** blocked
+**16** total issues | **31%** complete | **3** ready to work | **0** blocked
 
 ## 🎯 Top Priorities
 
 The graph analysis identified these as the highest-impact items to work on:
 
-### 1. EXP-006 prove a static registered Chez pb FFI facade
-**ID:** `jwr-c52.7` | **Impact Score:** 0.28
-
-**Why this matters:**
-- 📊 High centrality in dependency graph (PageRank: 30%)
-- ✅ Currently unclaimed - available for work
-- 🚨 High priority (P1) - prioritize this work
-
-### 2. EXP-002 prove stock Chez portable bytecode in an automated browser
-**ID:** `jwr-c52.3` | **Impact Score:** 0.27
-
-**Why this matters:**
-- ✅ Currently unclaimed - available for work
-- 🚨 High priority (P1) - prioritize this work
-
-### 3. EXP-003 audit Jolt on native tpb32l Chez
+### 1. EXP-003 audit Jolt on native tpb32l Chez
 **ID:** `jwr-c52.4` | **Impact Score:** 0.26 | **Unblocks:** 1 issues
 
 **Why this matters:**
@@ -40,6 +25,8 @@ These issues are blocking the most downstream work. Clearing them has outsized i
 | `jwr-c52.12` | EXP-011/012 implement persistent brow... | **2** issues | Blocked by 1 |
 | `jwr-c52.11` | EXP-010 render and inspect the first ... | **1** issues | Blocked by 2 |
 | `jwr-c52.4` | EXP-003 audit Jolt on native tpb32l Chez | **1** issues | Ready |
+| `jwr-c52.5` | EXP-004 run a pure Jolt boot payload ... | **1** issues | Blocked by 1 |
+| `jwr-c52.7` | EXP-006 prove a static registered Che... | **1** issues | Ready |
 
 ## 📈 Graph Analysis
 
@@ -57,10 +44,10 @@ Low-effort items that clear the path forward:
   - *Unblocks 1 items, high priority*
 - **jwr-c52.4**: EXP-003 audit Jolt on native tpb32l Chez (unblocks 1)
   - *Unblocks 1 items, high priority*
+- **jwr-c52.5**: EXP-004 run a pure Jolt boot payload under Node Wasm (unblocks 1)
+  - *Unblocks 1 items, high priority*
 - **jwr-c52**: Prove Jolt + Chez Wasm + Raylib browser feasibility
   - *Low complexity, high priority*
-- **jwr-c52.13**: EXP-013 prove debug-only live browser redefinition
-  - *Low complexity*
 
 ## 📋 Status Summary
 
@@ -70,5 +57,5 @@ Low-effort items that clear the path forward:
 
 ---
 
-*Generated Aug 31, 2026 at 8:43 AM UTC by [bv](https://github.com/Dicklesworthstone/beads_viewer)*
+*Generated Aug 31, 2026 at 9:33 AM UTC by [bv](https://github.com/Dicklesworthstone/beads_viewer)*
 
