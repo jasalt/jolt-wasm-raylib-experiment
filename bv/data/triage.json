@@ -1,417 +1,72 @@
 {
   "meta": {
     "version": "1.0.0",
-    "generated_at": "2026-08-31T12:32:29.36118588Z",
+    "generated_at": "2026-08-31T12:37:41.370981456Z",
     "phase2_ready": true,
     "issue_count": 22,
     "compute_time_ms": 0
   },
   "status": {
     "PageRank": {
-      "state": "computed",
-      "ms": 0.038101
+      "state": "skipped",
+      "reason": "all phase 2 disabled"
     },
     "Betweenness": {
-      "state": "computed",
-      "ms": 0.128651
+      "state": "skipped",
+      "reason": "all phase 2 disabled"
     },
     "Eigenvector": {
-      "state": "computed",
-      "ms": 0.014978
+      "state": "skipped",
+      "reason": "all phase 2 disabled"
     },
     "HITS": {
-      "state": "computed",
-      "ms": 0.046417
+      "state": "skipped",
+      "reason": "all phase 2 disabled"
     },
     "Critical": {
-      "state": "computed",
-      "ms": 0.051596
+      "state": "skipped",
+      "reason": "all phase 2 disabled"
     },
     "Cycles": {
-      "state": "computed",
-      "ms": 0.012874
+      "state": "skipped",
+      "reason": "all phase 2 disabled"
     },
     "KCore": {
-      "state": "computed",
-      "ms": 0.023163
+      "state": "skipped",
+      "reason": "all phase 2 disabled"
     },
     "Articulation": {
-      "state": "computed"
+      "state": "skipped",
+      "reason": "all phase 2 disabled"
     },
     "Slack": {
-      "state": "computed",
-      "ms": 0.004268
+      "state": "skipped",
+      "reason": "all phase 2 disabled"
     }
   },
   "quick_ref": {
-    "open_count": 5,
-    "actionable_count": 2,
+    "open_count": 0,
+    "actionable_count": 0,
     "blocked_count": 0,
     "in_progress_count": 0,
-    "not_closed_count": 5,
-    "not_actionable_count": 3,
-    "top_picks": [
-      {
-        "id": "jwr-c52.21",
-        "title": "Re-establish the EXP-010 Jolt-driven first-frame gate",
-        "score": 0.29638017553560625,
-        "reasons": [
-          "🔓 Unblocks 1 item(s): jwr-c52.12",
-          "✅ Currently unclaimed - available for work",
-          "🚨 High priority (P1) - prioritize this work"
-        ],
-        "unblocks": 1
-      }
-    ]
+    "not_closed_count": 0,
+    "not_actionable_count": 0,
+    "top_picks": []
   },
-  "recommendations": [
-    {
-      "id": "jwr-c52.12",
-      "title": "EXP-011/012 implement persistent browser-owned frames and input",
-      "type": "feature",
-      "status": "open",
-      "priority": 1,
-      "labels": [
-        "browser",
-        "input",
-        "jolt",
-        "lifecycle",
-        "raylib",
-        "research",
-        "wasm"
-      ],
-      "score": 0.44179101097573376,
-      "breakdown": {
-        "pagerank": 0.07120157425693317,
-        "betweenness": 0.2,
-        "blocker_ratio": 0.08666666666666667,
-        "staleness": 0.00017855635003626545,
-        "priority_boost": 0.07500000000000001,
-        "time_to_impact": 0.04025,
-        "urgency": 0.001941966446030996,
-        "risk": 0.0020000000000000005,
-        "pagerank_norm": 0.3236435193496962,
-        "betweenness_norm": 1,
-        "blocker_ratio_norm": 0.6666666666666666,
-        "staleness_norm": 0.0035711270007253086,
-        "priority_boost_norm": 0.75,
-        "time_to_impact_norm": 0.40249999999999997,
-        "urgency_norm": 0.01941966446030996,
-        "risk_norm": 0.020000000000000004,
-        "time_to_impact_explanation": "On dependency chain (depth 2), median estimate 60m",
-        "risk_explanation": "Low risk - stable dependency structure",
-        "risk_signals": {
-          "fan_variance": 0,
-          "activity_churn": 0,
-          "cross_repo_risk": 0,
-          "status_risk": 0.1,
-          "composite_risk": 0.020000000000000004,
-          "explanation": "Low risk - stable dependency structure"
-        }
-      },
-      "action": "Work on jwr-c52.21 first to unblock this",
-      "reasons": [
-        "🔓 Unblocks 2 item(s): jwr-c52.13, jwr-c52.14",
-        "🔀 Critical path bottleneck (betweenness: 100%)",
-        "📊 High centrality in dependency graph (PageRank: 32%)",
-        "✅ Currently unclaimed - available for work",
-        "⏳ Blocked by jwr-c52.21 - complete that first",
-        "🚨 High priority (P1) - prioritize this work"
-      ],
-      "unblocks_ids": [
-        "jwr-c52.13",
-        "jwr-c52.14"
-      ],
-      "blocked_by": [
-        "jwr-c52.21"
-      ]
-    },
-    {
-      "id": "jwr-c52.21",
-      "title": "Re-establish the EXP-010 Jolt-driven first-frame gate",
-      "type": "feature",
-      "status": "open",
-      "priority": 1,
-      "labels": [
-        "browser",
-        "jolt",
-        "milestone",
-        "raylib",
-        "remediation",
-        "research",
-        "vision",
-        "wasm"
-      ],
-      "score": 0.29638017553560625,
-      "breakdown": {
-        "pagerank": 0.05663164127756777,
-        "betweenness": 0.08823529411764706,
-        "blocker_ratio": 0.043333333333333335,
-        "staleness": 0.000178594930283179,
-        "priority_boost": 0.07500000000000001,
-        "time_to_impact": 0.04725000000000001,
-        "urgency": 0.0007595781477642172,
-        "risk": 0.0020000000000000005,
-        "pagerank_norm": 0.2574165512616717,
-        "betweenness_norm": 0.4411764705882353,
-        "blocker_ratio_norm": 0.3333333333333333,
-        "staleness_norm": 0.00357189860566358,
-        "priority_boost_norm": 0.75,
-        "time_to_impact_norm": 0.47250000000000003,
-        "urgency_norm": 0.007595781477642172,
-        "risk_norm": 0.020000000000000004,
-        "time_to_impact_explanation": "Deep in critical path (depth 3), median estimate 60m",
-        "risk_explanation": "Low risk - stable dependency structure",
-        "risk_signals": {
-          "fan_variance": 0,
-          "activity_churn": 0,
-          "cross_repo_risk": 0,
-          "status_risk": 0.1,
-          "composite_risk": 0.020000000000000004,
-          "explanation": "Low risk - stable dependency structure"
-        }
-      },
-      "action": "Start work on this issue",
-      "reasons": [
-        "🔓 Unblocks 1 item(s): jwr-c52.12",
-        "✅ Currently unclaimed - available for work",
-        "🚨 High priority (P1) - prioritize this work"
-      ],
-      "unblocks_ids": [
-        "jwr-c52.12"
-      ]
-    },
-    {
-      "id": "jwr-c52",
-      "title": "Prove Jolt + Chez Wasm + Raylib browser feasibility",
-      "type": "epic",
-      "status": "open",
-      "priority": 1,
-      "labels": [
-        "jolt",
-        "raylib",
-        "research",
-        "wasm"
-      ],
-      "score": 0.1181724719345219,
-      "breakdown": {
-        "pagerank": 0.026370928875563526,
-        "betweenness": 0,
-        "blocker_ratio": 0,
-        "staleness": 0.00046242980682638894,
-        "priority_boost": 0.07500000000000001,
-        "time_to_impact": 0.03325,
-        "urgency": 0.0019430788876358797,
-        "risk": 0.0020000000000000005,
-        "pagerank_norm": 0.11986785852528875,
-        "betweenness_norm": 0,
-        "blocker_ratio_norm": 0,
-        "staleness_norm": 0.009248596136527778,
-        "priority_boost_norm": 0.75,
-        "time_to_impact_norm": 0.3325,
-        "urgency_norm": 0.019430788876358795,
-        "risk_norm": 0.020000000000000004,
-        "time_to_impact_explanation": "On dependency chain (depth 1), median estimate 60m",
-        "risk_explanation": "Low risk - stable dependency structure",
-        "risk_signals": {
-          "fan_variance": 0,
-          "activity_churn": 0,
-          "cross_repo_risk": 0,
-          "status_risk": 0.1,
-          "composite_risk": 0.020000000000000004,
-          "explanation": "Low risk - stable dependency structure"
-        }
-      },
-      "action": "Start work on this issue",
-      "reasons": [
-        "✅ Currently unclaimed - available for work",
-        "🚨 High priority (P1) - prioritize this work"
-      ]
-    },
-    {
-      "id": "jwr-c52.13",
-      "title": "EXP-013 prove debug-only live browser redefinition",
-      "type": "feature",
-      "status": "open",
-      "priority": 2,
-      "labels": [
-        "browser",
-        "debug",
-        "jolt",
-        "raylib",
-        "repl",
-        "research",
-        "vision",
-        "wasm"
-      ],
-      "score": 0.08551879130001938,
-      "breakdown": {
-        "pagerank": 0.026370928875563526,
-        "betweenness": 0,
-        "blocker_ratio": 0,
-        "staleness": 0.00046215974509799385,
-        "priority_boost": 0.05,
-        "time_to_impact": 0.03325,
-        "urgency": 0.001941966446030996,
-        "risk": 0.0020000000000000005,
-        "pagerank_norm": 0.11986785852528875,
-        "betweenness_norm": 0,
-        "blocker_ratio_norm": 0,
-        "staleness_norm": 0.009243194901959876,
-        "priority_boost_norm": 0.5,
-        "time_to_impact_norm": 0.3325,
-        "urgency_norm": 0.01941966446030996,
-        "risk_norm": 0.020000000000000004,
-        "time_to_impact_explanation": "On dependency chain (depth 1), median estimate 60m",
-        "risk_explanation": "Low risk - stable dependency structure",
-        "risk_signals": {
-          "fan_variance": 0,
-          "activity_churn": 0,
-          "cross_repo_risk": 0,
-          "status_risk": 0.1,
-          "composite_risk": 0.020000000000000004,
-          "explanation": "Low risk - stable dependency structure"
-        }
-      },
-      "action": "Work on jwr-c52.12 first to unblock this",
-      "reasons": [
-        "✅ Currently unclaimed - available for work",
-        "⏳ Blocked by jwr-c52.12 - complete that first"
-      ],
-      "blocked_by": [
-        "jwr-c52.12"
-      ]
-    },
-    {
-      "id": "jwr-c52.14",
-      "title": "Run stress, size, clean-room verification, and final report",
-      "type": "task",
-      "status": "open",
-      "priority": 2,
-      "labels": [
-        "jolt",
-        "performance",
-        "raylib",
-        "report",
-        "research",
-        "verification",
-        "vision",
-        "wasm"
-      ],
-      "score": 0.0855187172366018,
-      "breakdown": {
-        "pagerank": 0.026370928875563526,
-        "betweenness": 0,
-        "blocker_ratio": 0,
-        "staleness": 0.000462140454974537,
-        "priority_boost": 0.05,
-        "time_to_impact": 0.03325,
-        "urgency": 0.0019418869849309852,
-        "risk": 0.0020000000000000005,
-        "pagerank_norm": 0.11986785852528875,
-        "betweenness_norm": 0,
-        "blocker_ratio_norm": 0,
-        "staleness_norm": 0.00924280909949074,
-        "priority_boost_norm": 0.5,
-        "time_to_impact_norm": 0.3325,
-        "urgency_norm": 0.01941886984930985,
-        "risk_norm": 0.020000000000000004,
-        "time_to_impact_explanation": "On dependency chain (depth 1), median estimate 60m",
-        "risk_explanation": "Low risk - stable dependency structure",
-        "risk_signals": {
-          "fan_variance": 0,
-          "activity_churn": 0,
-          "cross_repo_risk": 0,
-          "status_risk": 0.1,
-          "composite_risk": 0.020000000000000004,
-          "explanation": "Low risk - stable dependency structure"
-        }
-      },
-      "action": "Work on jwr-c52.12 first to unblock this",
-      "reasons": [
-        "✅ Currently unclaimed - available for work",
-        "⏳ Blocked by jwr-c52.12 - complete that first"
-      ],
-      "blocked_by": [
-        "jwr-c52.12"
-      ]
-    }
-  ],
-  "quick_wins": [
-    {
-      "id": "jwr-c52.12",
-      "title": "EXP-011/012 implement persistent browser-owned frames and input",
-      "score": 0.7339850002884626,
-      "reason": "Unblocks 2 items, high priority",
-      "unblocks_ids": [
-        "jwr-c52.13",
-        "jwr-c52.14"
-      ]
-    },
-    {
-      "id": "jwr-c52.21",
-      "title": "Re-establish the EXP-010 Jolt-driven first-frame gate",
-      "score": 0.7000000000000001,
-      "reason": "Unblocks 1 items, high priority",
-      "unblocks_ids": [
-        "jwr-c52.12"
-      ]
-    },
-    {
-      "id": "jwr-c52",
-      "title": "Prove Jolt + Chez Wasm + Raylib browser feasibility",
-      "score": 0.5,
-      "reason": "Low complexity, high priority"
-    },
-    {
-      "id": "jwr-c52.13",
-      "title": "EXP-013 prove debug-only live browser redefinition",
-      "score": 0.4,
-      "reason": "Low complexity"
-    },
-    {
-      "id": "jwr-c52.14",
-      "title": "Run stress, size, clean-room verification, and final report",
-      "score": 0.4,
-      "reason": "Low complexity"
-    }
-  ],
-  "blockers_to_clear": [
-    {
-      "id": "jwr-c52.12",
-      "title": "EXP-011/012 implement persistent browser-owned frames and input",
-      "unblocks_count": 2,
-      "unblocks_ids": [
-        "jwr-c52.13",
-        "jwr-c52.14"
-      ],
-      "actionable": false,
-      "blocked_by": [
-        "jwr-c52.21"
-      ]
-    },
-    {
-      "id": "jwr-c52.21",
-      "title": "Re-establish the EXP-010 Jolt-driven first-frame gate",
-      "unblocks_count": 1,
-      "unblocks_ids": [
-        "jwr-c52.12"
-      ],
-      "actionable": true
-    }
-  ],
+  "recommendations": [],
+  "quick_wins": [],
+  "blockers_to_clear": [],
   "project_health": {
     "counts": {
       "total": 22,
-      "open": 5,
-      "closed": 17,
+      "open": 0,
+      "closed": 22,
       "blocked": 0,
-      "actionable": 2,
-      "not_closed": 5,
-      "dependency_blocked": 3,
+      "actionable": 0,
+      "not_closed": 0,
+      "dependency_blocked": 0,
       "by_status": {
-        "closed": 17,
-        "open": 5
+        "closed": 22
       },
       "by_type": {
         "bug": 2,
@@ -432,13 +87,13 @@
       "phase2_ready": true
     },
     "velocity": {
-      "closed_last_7_days": 17,
-      "closed_last_30_days": 17,
-      "avg_days_to_close": 0.10769131263616558,
+      "closed_last_7_days": 22,
+      "closed_last_30_days": 22,
+      "avg_days_to_close": 0.13884680134680136,
       "weekly": [
         {
           "week_start": "2026-08-31T00:00:00Z",
-          "closed": 17
+          "closed": 22
         },
         {
           "week_start": "2026-08-24T00:00:00Z",
@@ -472,8 +127,8 @@
     }
   },
   "commands": {
-    "claim_top": "CI=1 br update jwr-c52.21 --status in_progress --json",
-    "show_top": "CI=1 br show jwr-c52.21 --json",
+    "claim_top": "CI=1 br ready --json  # No top pick available",
+    "show_top": "CI=1 br ready --json  # No top pick available",
     "list_ready": "CI=1 br ready --json",
     "list_blocked": "CI=1 br blocked --json",
     "refresh_triage": "bv --robot-triage"
