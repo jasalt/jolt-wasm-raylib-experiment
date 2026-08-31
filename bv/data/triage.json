@@ -1,74 +1,80 @@
 {
   "meta": {
     "version": "1.0.0",
-    "generated_at": "2026-08-31T09:58:57.181050356Z",
+    "generated_at": "2026-08-31T09:59:30.800771131Z",
     "phase2_ready": true,
-    "issue_count": 17,
+    "issue_count": 22,
     "compute_time_ms": 0
   },
   "status": {
     "PageRank": {
       "state": "computed",
-      "ms": 0.041026
+      "ms": 0.042194
     },
     "Betweenness": {
       "state": "computed",
-      "ms": 0.061379
+      "ms": 0.081994
     },
     "Eigenvector": {
       "state": "computed",
-      "ms": 0.008478
+      "ms": 0.011257
     },
     "HITS": {
       "state": "computed",
-      "ms": 0.030343
+      "ms": 0.03312
     },
     "Critical": {
       "state": "computed",
-      "ms": 0.014922
+      "ms": 0.015073
     },
     "Cycles": {
       "state": "computed",
-      "ms": 0.010793
+      "ms": 0.014722
     },
     "KCore": {
       "state": "computed",
-      "ms": 0.0096
+      "ms": 0.013971
     },
     "Articulation": {
       "state": "computed"
     },
     "Slack": {
       "state": "computed",
-      "ms": 0.003217
+      "ms": 0.003145
     }
   },
   "quick_ref": {
-    "open_count": 5,
-    "actionable_count": 3,
+    "open_count": 10,
+    "actionable_count": 4,
     "blocked_count": 0,
     "in_progress_count": 0,
-    "not_closed_count": 5,
-    "not_actionable_count": 2,
+    "not_closed_count": 10,
+    "not_actionable_count": 6,
     "top_picks": [
-      {
-        "id": "jwr-c52.12",
-        "title": "EXP-011/012 implement persistent browser-owned frames and input",
-        "score": 0.4158194503422317,
-        "reasons": [
-          "🔓 Unblocks 2 item(s): jwr-c52.13, jwr-c52.14",
-          "🔀 Critical path bottleneck (betweenness: 73%)",
-          "📊 High centrality in dependency graph (PageRank: 30%)",
-          "⚡ Low effort, high impact - good starting point",
-          "✅ Currently unclaimed - available for work",
-          "🚨 High priority (P1) - prioritize this work"
-        ],
-        "unblocks": 2
-      },
       {
         "id": "jwr-c52.16",
         "title": "Remediate EXP-002 browser witness token and complete browser evidence",
-        "score": 0.11466444839445303,
+        "score": 0.24397070184828823,
+        "reasons": [
+          "✅ Currently unclaimed - available for work",
+          "🚨 High priority (P1) - prioritize this work"
+        ],
+        "unblocks": 0
+      },
+      {
+        "id": "jwr-c52.18",
+        "title": "Implement EXP-006 CUSTOM_INIT static FFI control and ABI matrix",
+        "score": 0.24397044187436379,
+        "reasons": [
+          "✅ Currently unclaimed - available for work",
+          "🚨 High priority (P1) - prioritize this work"
+        ],
+        "unblocks": 0
+      },
+      {
+        "id": "jwr-c52.17",
+        "title": "Remediate EXP-004 with an exact revision-matched Jolt Chez host",
+        "score": 0.18891590925693608,
         "reasons": [
           "✅ Currently unclaimed - available for work",
           "🚨 High priority (P1) - prioritize this work"
@@ -93,23 +99,23 @@
         "research",
         "wasm"
       ],
-      "score": 0.4158194503422317,
+      "score": 0.3934287655043092,
       "breakdown": {
-        "pagerank": 0.06653897529508535,
-        "betweenness": 0.14666666666666667,
+        "pagerank": 0.07120157425693317,
+        "betweenness": 0.2,
         "blocker_ratio": 0.08666666666666667,
-        "staleness": 0.0002844556529775463,
+        "staleness": 0.0000015007864801504629,
         "priority_boost": 0.07500000000000001,
         "time_to_impact": 0.04025,
-        "urgency": 0.0012043537682881744,
+        "urgency": 0.001207066153218911,
         "risk": 0.0020000000000000005,
-        "pagerank_norm": 0.30244988770493336,
-        "betweenness_norm": 0.7333333333333333,
+        "pagerank_norm": 0.3236435193496962,
+        "betweenness_norm": 1,
         "blocker_ratio_norm": 0.6666666666666666,
-        "staleness_norm": 0.005689113059550926,
+        "staleness_norm": 0.000030015729603009258,
         "priority_boost_norm": 0.75,
         "time_to_impact_norm": 0.40249999999999997,
-        "urgency_norm": 0.012043537682881744,
+        "urgency_norm": 0.012070661532189109,
         "risk_norm": 0.020000000000000004,
         "time_to_impact_explanation": "On dependency chain (depth 2), median estimate 60m",
         "risk_explanation": "Low risk - stable dependency structure",
@@ -122,51 +128,58 @@
           "explanation": "Low risk - stable dependency structure"
         }
       },
-      "action": "Quick win - start here for fast progress",
+      "action": "Work on jwr-c52.21 first to unblock this",
       "reasons": [
         "🔓 Unblocks 2 item(s): jwr-c52.13, jwr-c52.14",
-        "🔀 Critical path bottleneck (betweenness: 73%)",
-        "📊 High centrality in dependency graph (PageRank: 30%)",
-        "⚡ Low effort, high impact - good starting point",
+        "🔀 Critical path bottleneck (betweenness: 100%)",
+        "📊 High centrality in dependency graph (PageRank: 32%)",
         "✅ Currently unclaimed - available for work",
+        "⏳ Blocked by jwr-c52.21 - complete that first",
         "🚨 High priority (P1) - prioritize this work"
       ],
       "unblocks_ids": [
         "jwr-c52.13",
         "jwr-c52.14"
+      ],
+      "blocked_by": [
+        "jwr-c52.21"
       ]
     },
     {
-      "id": "jwr-c52",
-      "title": "Prove Jolt + Chez Wasm + Raylib browser feasibility",
-      "type": "epic",
+      "id": "jwr-c52.21",
+      "title": "Re-establish the EXP-010 Jolt-driven first-frame gate",
+      "type": "feature",
       "status": "open",
       "priority": 1,
       "labels": [
+        "browser",
         "jolt",
+        "milestone",
         "raylib",
+        "remediation",
         "research",
+        "vision",
         "wasm"
       ],
-      "score": 0.11592660378636921,
+      "score": 0.26434380370951926,
       "breakdown": {
-        "pagerank": 0.024644030749900733,
-        "betweenness": 0,
-        "blocker_ratio": 0,
-        "staleness": 0.00028472571470594134,
+        "pagerank": 0.05663164127756777,
+        "betweenness": 0.08823529411764706,
+        "blocker_ratio": 0.043333333333333335,
+        "staleness": 0.0000015393667270640432,
         "priority_boost": 0.07500000000000001,
-        "time_to_impact": 0.03325,
-        "urgency": 0.0012054832840629804,
+        "time_to_impact": 0.04725000000000001,
+        "urgency": 0.000006596850750451023,
         "risk": 0.0020000000000000005,
-        "pagerank_norm": 0.11201832159045787,
-        "betweenness_norm": 0,
-        "blocker_ratio_norm": 0,
-        "staleness_norm": 0.005694514294118827,
+        "pagerank_norm": 0.2574165512616717,
+        "betweenness_norm": 0.4411764705882353,
+        "blocker_ratio_norm": 0.3333333333333333,
+        "staleness_norm": 0.00003078733454128086,
         "priority_boost_norm": 0.75,
-        "time_to_impact_norm": 0.3325,
-        "urgency_norm": 0.012054832840629803,
+        "time_to_impact_norm": 0.47250000000000003,
+        "urgency_norm": 0.00006596850750451022,
         "risk_norm": 0.020000000000000004,
-        "time_to_impact_explanation": "On dependency chain (depth 1), median estimate 60m",
+        "time_to_impact_explanation": "Deep in critical path (depth 3), median estimate 60m",
         "risk_explanation": "Low risk - stable dependency structure",
         "risk_signals": {
           "fan_variance": 0,
@@ -177,10 +190,19 @@
           "explanation": "Low risk - stable dependency structure"
         }
       },
-      "action": "Start work on this issue",
+      "action": "Work on jwr-c52.19 first to unblock this",
       "reasons": [
+        "🔓 Unblocks 1 item(s): jwr-c52.12",
         "✅ Currently unclaimed - available for work",
+        "⏳ Blocked by 2 items - need to clear dependencies",
         "🚨 High priority (P1) - prioritize this work"
+      ],
+      "unblocks_ids": [
+        "jwr-c52.12"
+      ],
+      "blocked_by": [
+        "jwr-c52.19",
+        "jwr-c52.20"
       ]
     },
     {
@@ -200,23 +222,288 @@
         "research",
         "wasm"
       ],
-      "score": 0.11466444839445303,
+      "score": 0.24397070184828823,
       "breakdown": {
-        "pagerank": 0.024644030749900733,
+        "pagerank": 0.062098940526907336,
+        "betweenness": 0,
+        "blocker_ratio": 0.08666666666666667,
+        "staleness": 0.000001655107467804784,
+        "priority_boost": 0.07500000000000001,
+        "time_to_impact": 0.061250000000000006,
+        "urgency": 0.000007092814591391772,
+        "risk": 0.0020000000000000005,
+        "pagerank_norm": 0.28226791148594244,
+        "betweenness_norm": 0,
+        "blocker_ratio_norm": 0.6666666666666666,
+        "staleness_norm": 0.00003310214935609568,
+        "priority_boost_norm": 0.75,
+        "time_to_impact_norm": 0.6125,
+        "urgency_norm": 0.00007092814591391772,
+        "risk_norm": 0.020000000000000004,
+        "time_to_impact_explanation": "Deep in critical path (depth 5), median estimate 60m",
+        "risk_explanation": "Low risk - stable dependency structure",
+        "risk_signals": {
+          "fan_variance": 0,
+          "activity_churn": 0,
+          "cross_repo_risk": 0,
+          "status_risk": 0.1,
+          "composite_risk": 0.020000000000000004,
+          "explanation": "Low risk - stable dependency structure"
+        }
+      },
+      "action": "Start work on this issue",
+      "reasons": [
+        "✅ Currently unclaimed - available for work",
+        "🚨 High priority (P1) - prioritize this work"
+      ]
+    },
+    {
+      "id": "jwr-c52.18",
+      "title": "Implement EXP-006 CUSTOM_INIT static FFI control and ABI matrix",
+      "type": "task",
+      "status": "open",
+      "priority": 1,
+      "labels": [
+        "abi",
+        "c",
+        "chez",
+        "emscripten",
+        "ffi",
+        "jolt",
+        "node",
+        "raylib",
+        "remediation",
+        "research",
+        "wasm"
+      ],
+      "score": 0.24397044187436379,
+      "breakdown": {
+        "pagerank": 0.062098940526907336,
+        "betweenness": 0,
+        "blocker_ratio": 0.08666666666666667,
+        "staleness": 0.000001597237097434414,
+        "priority_boost": 0.07500000000000001,
+        "time_to_impact": 0.061250000000000006,
+        "urgency": 0.000006844833285957198,
+        "risk": 0.0020000000000000005,
+        "pagerank_norm": 0.28226791148594244,
+        "betweenness_norm": 0,
+        "blocker_ratio_norm": 0.6666666666666666,
+        "staleness_norm": 0.000031944741948688276,
+        "priority_boost_norm": 0.75,
+        "time_to_impact_norm": 0.6125,
+        "urgency_norm": 0.00006844833285957197,
+        "risk_norm": 0.020000000000000004,
+        "time_to_impact_explanation": "Deep in critical path (depth 5), median estimate 60m",
+        "risk_explanation": "Low risk - stable dependency structure",
+        "risk_signals": {
+          "fan_variance": 0,
+          "activity_churn": 0,
+          "cross_repo_risk": 0,
+          "status_risk": 0.1,
+          "composite_risk": 0.020000000000000004,
+          "explanation": "Low risk - stable dependency structure"
+        }
+      },
+      "action": "Start work on this issue",
+      "reasons": [
+        "✅ Currently unclaimed - available for work",
+        "🚨 High priority (P1) - prioritize this work"
+      ]
+    },
+    {
+      "id": "jwr-c52.20",
+      "title": "Re-establish pure Jolt browser payload and minimal verified Raylib declarations",
+      "type": "task",
+      "status": "open",
+      "priority": 1,
+      "labels": [
+        "browser",
+        "ffi",
+        "jolt",
+        "raylib",
+        "remediation",
+        "research",
+        "wasm"
+      ],
+      "score": 0.22106585932783474,
+      "breakdown": {
+        "pagerank": 0.0504392884413462,
+        "betweenness": 0.047058823529411764,
+        "blocker_ratio": 0.043333333333333335,
+        "staleness": 0.0000015586568505208333,
+        "priority_boost": 0.07500000000000001,
+        "time_to_impact": 0.05425,
+        "urgency": 0.000006679511732293753,
+        "risk": 0.006242640687119286,
+        "pagerank_norm": 0.22926949291521,
+        "betweenness_norm": 0.23529411764705882,
+        "blocker_ratio_norm": 0.3333333333333333,
+        "staleness_norm": 0.000031173137010416665,
+        "priority_boost_norm": 0.75,
+        "time_to_impact_norm": 0.5425,
+        "urgency_norm": 0.00006679511732293753,
+        "risk_norm": 0.06242640687119285,
+        "time_to_impact_explanation": "Deep in critical path (depth 4), median estimate 60m",
+        "risk_explanation": "Low risk - stable dependency structure",
+        "risk_signals": {
+          "fan_variance": 0.1414213562373095,
+          "activity_churn": 0,
+          "cross_repo_risk": 0,
+          "status_risk": 0.1,
+          "composite_risk": 0.06242640687119285,
+          "explanation": "Low risk - stable dependency structure"
+        }
+      },
+      "action": "Work on jwr-c52.16 first to unblock this",
+      "reasons": [
+        "✅ Currently unclaimed - available for work",
+        "⏳ Blocked by 3 items - need to clear dependencies",
+        "🚨 High priority (P1) - prioritize this work"
+      ],
+      "blocked_by": [
+        "jwr-c52.16",
+        "jwr-c52.17",
+        "jwr-c52.18"
+      ]
+    },
+    {
+      "id": "jwr-c52.19",
+      "title": "Re-establish Chez-driven Raylib browser frame after remediations",
+      "type": "task",
+      "status": "open",
+      "priority": 1,
+      "labels": [
+        "browser",
+        "chez",
+        "ffi",
+        "jolt",
+        "raylib",
+        "remediation",
+        "research",
+        "vision",
+        "wasm"
+      ],
+      "score": 0.1988482989271495,
+      "breakdown": {
+        "pagerank": 0.0504392884413462,
+        "betweenness": 0.023529411764705882,
+        "blocker_ratio": 0.043333333333333335,
+        "staleness": 0.0000015779469739776234,
+        "priority_boost": 0.07500000000000001,
+        "time_to_impact": 0.05425,
+        "urgency": 0.000006762172577462478,
+        "risk": 0.0020000000000000005,
+        "pagerank_norm": 0.22926949291521,
+        "betweenness_norm": 0.11764705882352941,
+        "blocker_ratio_norm": 0.3333333333333333,
+        "staleness_norm": 0.00003155893947955247,
+        "priority_boost_norm": 0.75,
+        "time_to_impact_norm": 0.5425,
+        "urgency_norm": 0.00006762172577462477,
+        "risk_norm": 0.020000000000000004,
+        "time_to_impact_explanation": "Deep in critical path (depth 4), median estimate 60m",
+        "risk_explanation": "Low risk - stable dependency structure",
+        "risk_signals": {
+          "fan_variance": 0,
+          "activity_churn": 0,
+          "cross_repo_risk": 0,
+          "status_risk": 0.1,
+          "composite_risk": 0.020000000000000004,
+          "explanation": "Low risk - stable dependency structure"
+        }
+      },
+      "action": "Work on jwr-c52.16 first to unblock this",
+      "reasons": [
+        "✅ Currently unclaimed - available for work",
+        "⏳ Blocked by 2 items - need to clear dependencies",
+        "🚨 High priority (P1) - prioritize this work"
+      ],
+      "blocked_by": [
+        "jwr-c52.16",
+        "jwr-c52.18"
+      ]
+    },
+    {
+      "id": "jwr-c52.17",
+      "title": "Remediate EXP-004 with an exact revision-matched Jolt Chez host",
+      "type": "bug",
+      "status": "open",
+      "priority": 1,
+      "labels": [
+        "chez",
+        "cross-compile",
+        "jolt",
+        "node",
+        "raylib",
+        "remediation",
+        "research",
+        "wasm"
+      ],
+      "score": 0.18891590925693608,
+      "breakdown": {
+        "pagerank": 0.04066213353610105,
+        "betweenness": 0,
+        "blocker_ratio": 0.043333333333333335,
+        "staleness": 0.0000016165272208912038,
+        "priority_boost": 0.07500000000000001,
+        "time_to_impact": 0.061250000000000006,
+        "urgency": 0.000006927493857777911,
+        "risk": 0.0020000000000000005,
+        "pagerank_norm": 0.18482787970955022,
+        "betweenness_norm": 0,
+        "blocker_ratio_norm": 0.3333333333333333,
+        "staleness_norm": 0.00003233054441782407,
+        "priority_boost_norm": 0.75,
+        "time_to_impact_norm": 0.6125,
+        "urgency_norm": 0.00006927493857777911,
+        "risk_norm": 0.020000000000000004,
+        "time_to_impact_explanation": "Deep in critical path (depth 5), median estimate 60m",
+        "risk_explanation": "Low risk - stable dependency structure",
+        "risk_signals": {
+          "fan_variance": 0,
+          "activity_churn": 0,
+          "cross_repo_risk": 0,
+          "status_risk": 0.1,
+          "composite_risk": 0.020000000000000004,
+          "explanation": "Low risk - stable dependency structure"
+        }
+      },
+      "action": "Start work on this issue",
+      "reasons": [
+        "✅ Currently unclaimed - available for work",
+        "🚨 High priority (P1) - prioritize this work"
+      ]
+    },
+    {
+      "id": "jwr-c52",
+      "title": "Prove Jolt + Chez Wasm + Raylib browser feasibility",
+      "type": "epic",
+      "status": "open",
+      "priority": 1,
+      "labels": [
+        "jolt",
+        "raylib",
+        "research",
+        "wasm"
+      ],
+      "score": 0.11739732391628532,
+      "breakdown": {
+        "pagerank": 0.026370928875563526,
         "betweenness": 0,
         "blocker_ratio": 0,
-        "staleness": 0.0000010065789034722222,
+        "staleness": 0.0002853742432702739,
         "priority_boost": 0.07500000000000001,
         "time_to_impact": 0.03325,
-        "urgency": 0.000004313723493504229,
+        "urgency": 0.0012081956062077572,
         "risk": 0.0020000000000000005,
-        "pagerank_norm": 0.11201832159045787,
+        "pagerank_norm": 0.11986785852528875,
         "betweenness_norm": 0,
         "blocker_ratio_norm": 0,
-        "staleness_norm": 0.000020131578069444442,
+        "staleness_norm": 0.005707484865405478,
         "priority_boost_norm": 0.75,
         "time_to_impact_norm": 0.3325,
-        "urgency_norm": 0.00004313723493504229,
+        "urgency_norm": 0.01208195606207757,
         "risk_norm": 0.020000000000000004,
         "time_to_impact_explanation": "On dependency chain (depth 1), median estimate 60m",
         "risk_explanation": "Low risk - stable dependency structure",
@@ -251,23 +538,23 @@
         "vision",
         "wasm"
       ],
-      "score": 0.08910627213693315,
+      "score": 0.07917916944722703,
       "breakdown": {
-        "pagerank": 0.024644030749900733,
+        "pagerank": 0.026370928875563526,
         "betweenness": 0,
         "blocker_ratio": 0,
-        "staleness": 0.0002844556529775463,
+        "staleness": 0.00028510418154187886,
         "priority_boost": 0.05,
         "time_to_impact": 0.03325,
-        "urgency": 0.0012043537682881744,
+        "urgency": 0.001207066153218911,
         "risk": 0.0020000000000000005,
-        "pagerank_norm": 0.11201832159045787,
+        "pagerank_norm": 0.11986785852528875,
         "betweenness_norm": 0,
         "blocker_ratio_norm": 0,
-        "staleness_norm": 0.005689113059550926,
+        "staleness_norm": 0.005702083630837577,
         "priority_boost_norm": 0.5,
         "time_to_impact_norm": 0.3325,
-        "urgency_norm": 0.012043537682881744,
+        "urgency_norm": 0.012070661532189109,
         "risk_norm": 0.020000000000000004,
         "time_to_impact_explanation": "On dependency chain (depth 1), median estimate 60m",
         "risk_explanation": "Low risk - stable dependency structure",
@@ -305,23 +592,23 @@
         "vision",
         "wasm"
       ],
-      "score": 0.08910619216027545,
+      "score": 0.07917909947079085,
       "breakdown": {
-        "pagerank": 0.024644030749900733,
+        "pagerank": 0.026370928875563526,
         "betweenness": 0,
         "blocker_ratio": 0,
-        "staleness": 0.0002844363628540895,
+        "staleness": 0.00028508489141842205,
         "priority_boost": 0.05,
         "time_to_impact": 0.03325,
-        "urgency": 0.0012042730875894748,
+        "urgency": 0.0012069854770049848,
         "risk": 0.0020000000000000005,
-        "pagerank_norm": 0.11201832159045787,
+        "pagerank_norm": 0.11986785852528875,
         "betweenness_norm": 0,
         "blocker_ratio_norm": 0,
-        "staleness_norm": 0.00568872725708179,
+        "staleness_norm": 0.005701697828368441,
         "priority_boost_norm": 0.5,
         "time_to_impact_norm": 0.3325,
-        "urgency_norm": 0.012042730875894747,
+        "urgency_norm": 0.012069854770049848,
         "risk_norm": 0.020000000000000004,
         "time_to_impact_explanation": "On dependency chain (depth 1), median estimate 60m",
         "risk_explanation": "Low risk - stable dependency structure",
@@ -356,14 +643,17 @@
       ]
     },
     {
-      "id": "jwr-c52",
-      "title": "Prove Jolt + Chez Wasm + Raylib browser feasibility",
-      "score": 0.5,
-      "reason": "Low complexity, high priority"
+      "id": "jwr-c52.21",
+      "title": "Re-establish the EXP-010 Jolt-driven first-frame gate",
+      "score": 0.7000000000000001,
+      "reason": "Unblocks 1 items, high priority",
+      "unblocks_ids": [
+        "jwr-c52.12"
+      ]
     },
     {
-      "id": "jwr-c52.16",
-      "title": "Remediate EXP-002 browser witness token and complete browser evidence",
+      "id": "jwr-c52",
+      "title": "Prove Jolt + Chez Wasm + Raylib browser feasibility",
       "score": 0.5,
       "reason": "Low complexity, high priority"
     },
@@ -389,37 +679,53 @@
         "jwr-c52.13",
         "jwr-c52.14"
       ],
-      "actionable": true
+      "actionable": false,
+      "blocked_by": [
+        "jwr-c52.21"
+      ]
+    },
+    {
+      "id": "jwr-c52.21",
+      "title": "Re-establish the EXP-010 Jolt-driven first-frame gate",
+      "unblocks_count": 1,
+      "unblocks_ids": [
+        "jwr-c52.12"
+      ],
+      "actionable": false,
+      "blocked_by": [
+        "jwr-c52.19",
+        "jwr-c52.20"
+      ]
     }
   ],
   "project_health": {
     "counts": {
-      "total": 17,
-      "open": 5,
+      "total": 22,
+      "open": 10,
       "closed": 12,
       "blocked": 0,
-      "actionable": 3,
-      "not_closed": 5,
-      "dependency_blocked": 2,
+      "actionable": 4,
+      "not_closed": 10,
+      "dependency_blocked": 6,
       "by_status": {
         "closed": 12,
-        "open": 5
+        "open": 10
       },
       "by_type": {
-        "bug": 1,
+        "bug": 2,
         "epic": 1,
-        "feature": 4,
-        "task": 11
+        "feature": 5,
+        "task": 14
       },
       "by_priority": {
-        "1": 14,
+        "1": 19,
         "2": 3
       }
     },
     "graph": {
-      "node_count": 17,
-      "edge_count": 18,
-      "density": 0.0661764705882353,
+      "node_count": 22,
+      "edge_count": 26,
+      "density": 0.05627705627705628,
       "has_cycles": false,
       "phase2_ready": true
     },
@@ -464,8 +770,8 @@
     }
   },
   "commands": {
-    "claim_top": "CI=1 br update jwr-c52.12 --status in_progress --json",
-    "show_top": "CI=1 br show jwr-c52.12 --json",
+    "claim_top": "CI=1 br update jwr-c52.16 --status in_progress --json",
+    "show_top": "CI=1 br show jwr-c52.16 --json",
     "list_ready": "CI=1 br ready --json",
     "list_blocked": "CI=1 br blocked --json",
     "refresh_triage": "bv --robot-triage"
