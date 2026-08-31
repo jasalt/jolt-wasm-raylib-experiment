@@ -94,19 +94,37 @@ as an `ENVIRONMENT` issue and was not treated as a Chez result.
 
 ## Result
 
-**T0–T2 PASS / later target status not yet run.** The current workspace
-retains the known non-threaded Jolt boundary, stock pinned Chez generated
-`tpb32l` boot and cross-compilation material, an actual 32-bit native threaded
-target completed deterministic cross-thread communication, and the same witness
-completed through the Emscripten pthread module under Node. T3 through T6 are
-not established.
+**T0–T2 PASS / T3 reduced blocker.** The current workspace retains the known
+non-threaded Jolt boundary, stock pinned Chez generated `tpb32l` boot and
+cross-compilation material, an actual 32-bit native threaded target completed
+deterministic cross-thread communication, and the same witness completed
+through the Emscripten pthread module under Node.
+
+**Observed 2026-08-31 — Jolt boot minting:** the exact unchanged Jolt
+`app.witness` build was invoked with a pack assembled from the generated
+`tpb32l` target and the locked i686 compiler. It stopped before `flat.ss`,
+FASL, application boot, or Emscripten preload creation with:
+
+```text
+Exception in fx>=?: 2147483648 is not a fixnum
+exit_status=255
+```
+
+The target runtime independently reports `machine=tpb32l`, `threaded=#t`, and
+`most-positive-fixnum=536870911`; evaluating `(fx>=? 2147483648 0)` reproduces
+the same primitive error. This is a reduced **`JOLT_CHEZ_HOST`** 32-bit-fixnum
+compatibility blocker, not a pthread, linker, or browser result. The same
+Jolt fixture source is `flat.ss` SHA-256
+`a612c0677a16e318a7ec6f2fd6cff3a740c9dffaa5f8c8e2c407c2d199b4e9d4`
+from EXP-004, but no target `flat.ss` was emitted in this run. T3 through T6
+are not established.
 
 | Gate | Result | Evidence |
 | --- | --- | --- |
 | T0 generated `tpb32l` boots | PASS | bootquick log/files/hashes |
 | T1 native thread witness | PASS | native thread log |
 | T2 Emscripten Chez / Node | PASS | Node/build logs |
-| T3 Jolt / Node | not run | — |
+| T3 Jolt / Node | FAIL / reduced `JOLT_CHEZ_HOST` | Jolt compile/fixnum logs |
 | T4 Chez / Chromium | not run | — |
 | T5 Jolt / Chromium | not run | — |
 | T6 Petite Jolt / Chromium | not run | — |
@@ -118,8 +136,9 @@ the untested `tpb32l` route.
 
 ## Workaround or next experiment
 
-Proceed to T3 only: mint the unchanged genuine Jolt application boot for the
-generated `tpb32l` target. Do not patch Jolt, add `PROXY_TO_PTHREAD`,
+The first remaining blocker is Jolt's `fx>=?` use of `2147483648` on the
+actual 32-bit target. Reduce or fix that Jolt/Chez-host compatibility without
+weakening Jolt semantics before reopening T3. Do not add `PROXY_TO_PTHREAD`,
 substitute a host Scheme, or mix in Raylib/FFI work.
 
 ## Upstream suitability
@@ -148,6 +167,15 @@ Ignored reproducibility logs created by `control`:
   `61c24a66befa23177e37bdea90e95ffb72f566aa3194748eee6c80cc223212cd`,
   and `xpatch`
   `6e54168b8552aa7b31754678d565c40a5a72853e92660cd8f67d6d8898ae9d63`.
+- `artifacts/logs/EXP-014/jolt-tpb32l-pack.log` — generated pack assembly,
+  exit 0; its xpatch, Petite, and Scheme boot SHA-256 values are respectively
+  `b739d6d84ff9076e36819945d668f2c66ee23da8b50b915c41e8aef8607c8126`,
+  `1c24a015d26cc143caea9b05f334a9a9be5160d3670ac0536aab9a32a9e7e59c`,
+  and `7d6e47c2d91aad482b53ff7199a535eeb644834acc45ebd43b6a8b1f16024ac6`.
+- `artifacts/logs/EXP-014/jolt-tpb32l-compile.log` — exact no-patch Jolt
+  invocation and the `fx>=?` failure, exit 255.
+- `artifacts/logs/EXP-014/tpb32l-fixnum-boundary.log` — target machine,
+  threaded state, maximum fixnum, and minimal primitive reproduction.
 - `artifacts/logs/EXP-014/emscripten-thread-pool-1-build.log` — stock pinned
   Chez configured `--emscripten --threads --pbarch --emboot=witness-thread.boot`
   with named `-s PTHREAD_POOL_SIZE=1`; compile and final link both contain
