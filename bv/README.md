@@ -4,21 +4,6 @@
 
 **38** total issues | **89%** complete | **2** ready to work | **0** blocked
 
-## 🎯 Top Priorities
-
-The graph analysis identified these as the highest-impact items to work on:
-
-### 1. EXP-014 H run genuine Jolt tpb32l fixture under Chromium
-**ID:** `jwr-up7.8` | **Impact Score:** 0.32 | **Unblocks:** 1 issues
-
-**Why this matters:**
-- 🔓 Unblocks 1 item(s): jwr-up7.9
-- 🔀 Critical path bottleneck (betweenness: 53%)
-- 📊 High centrality in dependency graph (PageRank: 31%)
-- ⚡ Low effort, high impact - good starting point
-- ✅ Currently unclaimed - available for work
-- 🚨 High priority (P1) - prioritize this work
-
 ## 🚧 Critical Bottlenecks
 
 These issues are blocking the most downstream work. Clearing them has outsized impact:
@@ -55,5 +40,5 @@ Low-effort items that clear the path forward:
 
 ---
 
-*Generated Aug 31, 2026 at 7:55 PM UTC by [bv](https://github.com/Dicklesworthstone/beads_viewer)*
+*Generated Aug 31, 2026 at 7:57 PM UTC by [bv](https://github.com/Dicklesworthstone/beads_viewer)*
 
