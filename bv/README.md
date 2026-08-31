@@ -2,19 +2,19 @@
 
 ## 📊 Executive Summary
 
-**16** total issues | **69%** complete | **2** ready to work | **0** blocked
+**16** total issues | **75%** complete | **2** ready to work | **0** blocked
 
 ## 🎯 Top Priorities
 
 The graph analysis identified these as the highest-impact items to work on:
 
-### 1. EXP-010 render and inspect the first Jolt-driven Raylib frame
-**ID:** `jwr-c52.11` | **Impact Score:** 0.41 | **Unblocks:** 1 issues
+### 1. EXP-011/012 implement persistent browser-owned frames and input
+**ID:** `jwr-c52.12` | **Impact Score:** 0.42 | **Unblocks:** 2 issues
 
 **Why this matters:**
-- 🔓 Unblocks 1 item(s): jwr-c52.12
-- 🔀 Critical path bottleneck (betweenness: 100%)
-- 📊 High centrality in dependency graph (PageRank: 37%)
+- 🔓 Unblocks 2 item(s): jwr-c52.13, jwr-c52.14
+- 🔀 Critical path bottleneck (betweenness: 73%)
+- 📊 High centrality in dependency graph (PageRank: 30%)
 - ⚡ Low effort, high impact - good starting point
 - ✅ Currently unclaimed - available for work
 - 🚨 High priority (P1) - prioritize this work
@@ -25,8 +25,7 @@ These issues are blocking the most downstream work. Clearing them has outsized i
 
 | Issue | Title | Unblocks | Status |
 |-------|-------|----------|--------|
-| `jwr-c52.12` | EXP-011/012 implement persistent brow... | **2** issues | Blocked by 1 |
-| `jwr-c52.11` | EXP-010 render and inspect the first ... | **1** issues | Ready |
+| `jwr-c52.12` | EXP-011/012 implement persistent brow... | **2** issues | Ready |
 
 ## 📈 Graph Analysis
 
@@ -40,8 +39,6 @@ Low-effort items that clear the path forward:
 
 - **jwr-c52.12**: EXP-011/012 implement persistent browser-owned frames and input (unblocks 2)
   - *Unblocks 2 items, high priority*
-- **jwr-c52.11**: EXP-010 render and inspect the first Jolt-driven Raylib frame (unblocks 1)
-  - *Unblocks 1 items, high priority*
 - **jwr-c52**: Prove Jolt + Chez Wasm + Raylib browser feasibility
   - *Low complexity, high priority*
 - **jwr-c52.13**: EXP-013 prove debug-only live browser redefinition
@@ -57,5 +54,5 @@ Low-effort items that clear the path forward:
 
 ---
 
-*Generated Aug 31, 2026 at 9:49 AM UTC by [bv](https://github.com/Dicklesworthstone/beads_viewer)*
+*Generated Aug 31, 2026 at 9:50 AM UTC by [bv](https://github.com/Dicklesworthstone/beads_viewer)*
 
