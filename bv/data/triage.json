@@ -1,191 +1,72 @@
 {
   "meta": {
     "version": "1.0.0",
-    "generated_at": "2026-08-31T20:08:37.031769513Z",
+    "generated_at": "2026-08-31T20:09:23.533783136Z",
     "phase2_ready": true,
     "issue_count": 38,
     "compute_time_ms": 0
   },
   "status": {
     "PageRank": {
-      "state": "computed",
-      "ms": 0.04531
+      "state": "skipped",
+      "reason": "all phase 2 disabled"
     },
     "Betweenness": {
-      "state": "computed",
-      "ms": 0.099553
+      "state": "skipped",
+      "reason": "all phase 2 disabled"
     },
     "Eigenvector": {
-      "state": "computed",
-      "ms": 0.012356
+      "state": "skipped",
+      "reason": "all phase 2 disabled"
     },
     "HITS": {
-      "state": "computed",
-      "ms": 0.04536
+      "state": "skipped",
+      "reason": "all phase 2 disabled"
     },
     "Critical": {
-      "state": "computed",
-      "ms": 0.018685
+      "state": "skipped",
+      "reason": "all phase 2 disabled"
     },
     "Cycles": {
-      "state": "computed",
-      "ms": 0.01526
+      "state": "skipped",
+      "reason": "all phase 2 disabled"
     },
     "KCore": {
-      "state": "computed",
-      "ms": 0.029279
+      "state": "skipped",
+      "reason": "all phase 2 disabled"
     },
     "Articulation": {
-      "state": "computed"
+      "state": "skipped",
+      "reason": "all phase 2 disabled"
     },
     "Slack": {
-      "state": "computed",
-      "ms": 0.010303
+      "state": "skipped",
+      "reason": "all phase 2 disabled"
     }
   },
   "quick_ref": {
-    "open_count": 1,
-    "actionable_count": 2,
+    "open_count": 0,
+    "actionable_count": 0,
     "blocked_count": 0,
-    "in_progress_count": 1,
-    "not_closed_count": 2,
+    "in_progress_count": 0,
+    "not_closed_count": 0,
     "not_actionable_count": 0,
     "top_picks": []
   },
-  "recommendations": [
-    {
-      "id": "jwr-up7",
-      "title": "EXP-014 prove threaded Jolt on Chez tpb32l Emscripten",
-      "type": "epic",
-      "status": "open",
-      "priority": 1,
-      "labels": [
-        "chez",
-        "emscripten",
-        "exp-014",
-        "jolt",
-        "pthreads",
-        "research",
-        "wasm"
-      ],
-      "score": 0.11831989512111729,
-      "breakdown": {
-        "pagerank": 0.02637090337589066,
-        "betweenness": 0,
-        "blocker_ratio": 0,
-        "staleness": 0.0004963547795044947,
-        "priority_boost": 0.07500000000000001,
-        "time_to_impact": 0.03325,
-        "urgency": 0.0020826184576840157,
-        "risk": 0.0020000000000000005,
-        "pagerank_norm": 0.11986774261768482,
-        "betweenness_norm": 0,
-        "blocker_ratio_norm": 0,
-        "staleness_norm": 0.009927095590089892,
-        "priority_boost_norm": 0.75,
-        "time_to_impact_norm": 0.3325,
-        "urgency_norm": 0.020826184576840157,
-        "risk_norm": 0.020000000000000004,
-        "time_to_impact_explanation": "On dependency chain (depth 1), median estimate 60m",
-        "risk_explanation": "Low risk - stable dependency structure",
-        "risk_signals": {
-          "fan_variance": 0,
-          "activity_churn": 0,
-          "cross_repo_risk": 0,
-          "status_risk": 0.1,
-          "composite_risk": 0.020000000000000004,
-          "explanation": "Low risk - stable dependency structure"
-        }
-      },
-      "action": "Start work on this issue",
-      "reasons": [
-        "✅ Currently unclaimed - available for work",
-        "🚨 High priority (P1) - prioritize this work"
-      ]
-    },
-    {
-      "id": "jwr-up7.10",
-      "title": "EXP-014 J finalize evidence, classification, and architecture decision",
-      "type": "task",
-      "status": "in_progress",
-      "assignee": "norbot7865",
-      "priority": 2,
-      "labels": [
-        "artifacts",
-        "chez",
-        "decision",
-        "documentation",
-        "emscripten",
-        "evidence",
-        "exp-014",
-        "jolt",
-        "pthreads",
-        "research",
-        "wasm"
-      ],
-      "score": 0.07959208375151307,
-      "breakdown": {
-        "pagerank": 0.02637090337589066,
-        "betweenness": 0,
-        "blocker_ratio": 0,
-        "staleness": 4.0570543042052474e-7,
-        "priority_boost": 0.05,
-        "time_to_impact": 0.03325,
-        "urgency": 0.002081667706554724,
-        "risk": 0.0020000000000000005,
-        "pagerank_norm": 0.11986774261768482,
-        "betweenness_norm": 0,
-        "blocker_ratio_norm": 0,
-        "staleness_norm": 0.000008114108608410494,
-        "priority_boost_norm": 0.5,
-        "time_to_impact_norm": 0.3325,
-        "urgency_norm": 0.02081667706554724,
-        "risk_norm": 0.020000000000000004,
-        "time_to_impact_explanation": "On dependency chain (depth 1), median estimate 60m",
-        "risk_explanation": "Low risk - stable dependency structure",
-        "risk_signals": {
-          "fan_variance": 0,
-          "activity_churn": 0,
-          "cross_repo_risk": 0,
-          "status_risk": 0.1,
-          "composite_risk": 0.020000000000000004,
-          "explanation": "Low risk - stable dependency structure"
-        }
-      },
-      "action": "Contact norbot7865 if you want to help",
-      "reasons": [
-        "👤 Claimed by norbot7865"
-      ]
-    }
-  ],
-  "quick_wins": [
-    {
-      "id": "jwr-up7",
-      "title": "EXP-014 prove threaded Jolt on Chez tpb32l Emscripten",
-      "score": 0.5,
-      "reason": "Low complexity, high priority"
-    },
-    {
-      "id": "jwr-up7.10",
-      "title": "EXP-014 J finalize evidence, classification, and architecture decision",
-      "score": 0.4,
-      "reason": "Low complexity"
-    }
-  ],
+  "recommendations": [],
+  "quick_wins": [],
   "blockers_to_clear": [],
   "project_health": {
     "counts": {
       "total": 38,
-      "open": 1,
-      "closed": 36,
+      "open": 0,
+      "closed": 38,
       "blocked": 0,
-      "actionable": 2,
-      "not_closed": 2,
+      "actionable": 0,
+      "not_closed": 0,
       "dependency_blocked": 0,
       "by_status": {
-        "closed": 36,
-        "in_progress": 1,
-        "open": 1
+        "closed": 38
       },
       "by_type": {
         "bug": 4,
@@ -206,13 +87,13 @@
       "phase2_ready": true
     },
     "velocity": {
-      "closed_last_7_days": 36,
-      "closed_last_30_days": 36,
-      "avg_days_to_close": 0.12508101851851852,
+      "closed_last_7_days": 38,
+      "closed_last_30_days": 38,
+      "avg_days_to_close": 0.134156615497076,
       "weekly": [
         {
           "week_start": "2026-08-31T00:00:00Z",
-          "closed": 36
+          "closed": 38
         },
         {
           "week_start": "2026-08-24T00:00:00Z",
