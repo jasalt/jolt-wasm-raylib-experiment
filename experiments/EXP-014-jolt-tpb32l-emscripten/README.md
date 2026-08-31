@@ -27,10 +27,9 @@ The full proposed procedure and gate definitions are in
 
 Current boundary: `tpb32l` boots **yes**; threaded Chez/Node **yes**, fixed pool
 1; genuine patched Jolt boot minted **yes**; Jolt/Node **yes**, canonical
-output parity, exit 0; Chez/Chromium, Jolt/Chromium and Petite **not run**. Threaded Chez/Chromium now passes with
-cross-origin isolation; the first blocker is T5, genuine Jolt under browser
-pthreads, not the repaired 32-bit hash/HAMT assumptions or the libffi FFI
-capability.
+output parity, exit 0; Chez/Chromium, Petite is **not run**. Threaded Chez and genuine Jolt now pass under Chromium
+with cross-origin isolation and canonical output parity; the remaining gate is
+T6, the named Petite comparison.
 
 ## Minimal reproduction
 
@@ -146,21 +145,21 @@ Native expected output matches Node output exactly (4 lines, exit 0).
 | T2 Emscripten Chez / Node | PASS | Node/build logs |
 | T3 Jolt / Node | PASS | libffi-jolt-node.log, canonical parity |
 | T4 Chez / Chromium | PASS | `EXP-014-t4-browser.json`, headers, screenshot |
-| T5 Jolt / Chromium | not run | — |
+| T5 Jolt / Chromium | PASS | `EXP-014-t5-browser.json`, screenshot |
 | T6 Petite Jolt / Chromium | not run | — |
 
 ## Suspected layer
 
 The retained `pb` control remains `JOLT_THREADLESS_ADAPTER`. On `tpb32l`, the
-defects are repaired, Jolt runs under threaded Node Wasm, and the reduced
-Chez witness runs under Chromium pthread workers. The next boundary is genuine
-Jolt under browser pthread workers (T5).
+defects are repaired, Jolt runs under threaded Node Wasm, and genuine Jolt
+runs under Chromium pthread workers. The remaining EXP-014 gate is the named
+Petite comparison (T6).
 
 ## Workaround or next experiment
 
-The next experiment is T5: run the exact Jolt boot/fixture under the proven
-browser pthread configuration. Do not add `PROXY_TO_PTHREAD`, alter threads, or
-mix in Raylib work.
+The next experiment is T6: rebuild the exact Jolt fixture with `--empetite`
+and compare full/Petite output composition and sizes. Do not add
+`PROXY_TO_PTHREAD`, alter threads, or mix in Raylib work.
 
 ## Upstream suitability
 
@@ -243,6 +242,19 @@ Ignored reproducibility logs created by `control`:
   `2c5c7d8a9e991101cc0576656f5d6284e77b4e3a295e695ab98b94b7a95be540`;
   response headers
   `e62c1c28e22a0e075acbfd14a0950997218226be4629bff73ce0d0fc01950133`.
+- `artifacts/logs/EXP-014/t5-headers.txt`, `t5-server.log`, and
+  `t5-chromium.log` — T5 loopback headers and browser diagnostics.
+  `artifacts/reports/EXP-014-t5-browser.json` records Chromium,
+  `crossOriginIsolated: true`, SharedArrayBuffer availability, the exact four
+  canonical output lines, and no page errors. The only request failure is the
+  Emscripten clean-exit cancellation (`net::ERR_ABORTED`, `canceled: true`),
+  retained verbatim and excluded from actionable failures. The inspected page
+  screenshot `artifacts/screenshots/EXP-014/threaded-jolt/page.png` visibly
+  shows all four lines, including Unicode `λ-東京` and
+  `EXP-014-JOLT-COMPLETE`. SHA-256: report
+  `a6c86ce36390df43996dad95ee7332c738232cd4363856d1ea9ecb5f8729920b`;
+  screenshot
+  `ba33bfc886d4f5817081b7bf2b1299b406c088adf2091129f4423f9c375c47e4`.
 - `artifacts/logs/EXP-014/native-thread-witness.log` — an ELF 32-bit
   `tpb32l` build followed by `THREAD-WITNESS-OK`, exit 0.
 - `artifacts/logs/EXP-014/native-tpb32l-32bit-build.log` — full pinned i686
