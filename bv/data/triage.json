@@ -1,60 +1,60 @@
 {
   "meta": {
     "version": "1.0.0",
-    "generated_at": "2026-08-31T20:39:05.437365752Z",
+    "generated_at": "2026-08-31T20:56:49.264257604Z",
     "phase2_ready": true,
-    "issue_count": 42,
+    "issue_count": 43,
     "compute_time_ms": 0
   },
   "status": {
     "PageRank": {
       "state": "computed",
-      "ms": 0.058574
+      "ms": 0.036545
     },
     "Betweenness": {
       "state": "computed",
-      "ms": 0.120496
+      "ms": 0.140741
     },
     "Eigenvector": {
       "state": "computed",
-      "ms": 0.021149
+      "ms": 0.028332
     },
     "HITS": {
       "state": "computed",
-      "ms": 0.040859
+      "ms": 0.046019
     },
     "Critical": {
       "state": "computed",
-      "ms": 0.019251
+      "ms": 0.018578
     },
     "Cycles": {
       "state": "computed",
-      "ms": 0.012668
+      "ms": 0.009694
     },
     "KCore": {
       "state": "computed",
-      "ms": 0.014838
+      "ms": 0.017977
     },
     "Articulation": {
       "state": "computed"
     },
     "Slack": {
       "state": "computed",
-      "ms": 0.005116
+      "ms": 0.004738
     }
   },
   "quick_ref": {
     "open_count": 1,
-    "actionable_count": 2,
+    "actionable_count": 3,
     "blocked_count": 0,
-    "in_progress_count": 1,
-    "not_closed_count": 2,
+    "in_progress_count": 2,
+    "not_closed_count": 3,
     "not_actionable_count": 0,
     "top_picks": [
       {
         "id": "jwr-up7.15",
         "title": "Investigate docs-engine live Wasm demo embedding for raylib-jlt",
-        "score": 0.09503334357336904,
+        "score": 0.09512525428725188,
         "reasons": [
           "✅ Currently unclaimed - available for work"
         ],
@@ -79,23 +79,74 @@
         "research",
         "wasm"
       ],
-      "score": 0.09576155544265813,
+      "score": 0.09583724651739571,
       "breakdown": {
-        "pagerank": 0.02637098547211146,
+        "pagerank": 0.026370983641211408,
         "betweenness": 0,
         "blocker_ratio": 0,
-        "staleness": 0.00003285951708626543,
+        "staleness": 0.00005338086916674383,
         "priority_boost": 0.07500000000000001,
         "time_to_impact": 0.03325,
-        "urgency": 0.0001483770717424504,
+        "urgency": 0.0002359876573299946,
         "risk": 0.0020000000000000005,
-        "pagerank_norm": 0.11986811578232481,
+        "pagerank_norm": 0.11986810746005186,
         "betweenness_norm": 0,
         "blocker_ratio_norm": 0,
-        "staleness_norm": 0.0006571903417253086,
+        "staleness_norm": 0.0010676173833348765,
         "priority_boost_norm": 0.75,
         "time_to_impact_norm": 0.3325,
-        "urgency_norm": 0.001483770717424504,
+        "urgency_norm": 0.002359876573299946,
+        "risk_norm": 0.020000000000000004,
+        "time_to_impact_explanation": "On dependency chain (depth 1), median estimate 60m",
+        "risk_explanation": "Low risk - stable dependency structure",
+        "risk_signals": {
+          "fan_variance": 0,
+          "activity_churn": 0,
+          "cross_repo_risk": 0,
+          "status_risk": 0.1,
+          "composite_risk": 0.020000000000000004,
+          "explanation": "Low risk - stable dependency structure"
+        }
+      },
+      "action": "Contact norbot7865 if you want to help",
+      "reasons": [
+        "👤 Claimed by norbot7865",
+        "🚨 High priority (P1) - prioritize this work"
+      ]
+    },
+    {
+      "id": "jwr-up7.14.3",
+      "title": "EXP-015 C adapt three scalar raylib-jlt demos to browser command facade",
+      "type": "task",
+      "status": "in_progress",
+      "assignee": "norbot7865",
+      "priority": 1,
+      "labels": [
+        "chez",
+        "emscripten",
+        "exp-014",
+        "jolt",
+        "pthreads",
+        "research",
+        "wasm"
+      ],
+      "score": 0.09569658967504222,
+      "breakdown": {
+        "pagerank": 0.026370983641211408,
+        "betweenness": 0,
+        "blocker_ratio": 0,
+        "staleness": 2.7515929020061727e-7,
+        "priority_boost": 0.07500000000000001,
+        "time_to_impact": 0.03325,
+        "urgency": 0.00008815502098724615,
+        "risk": 0.0020000000000000005,
+        "pagerank_norm": 0.11986810746005186,
+        "betweenness_norm": 0,
+        "blocker_ratio_norm": 0,
+        "staleness_norm": 0.000005503185804012345,
+        "priority_boost_norm": 0.75,
+        "time_to_impact_norm": 0.3325,
+        "urgency_norm": 0.0008815502098724615,
         "risk_norm": 0.020000000000000004,
         "time_to_impact_explanation": "On dependency chain (depth 1), median estimate 60m",
         "risk_explanation": "Low risk - stable dependency structure",
@@ -129,23 +180,23 @@
         "research",
         "wasm"
       ],
-      "score": 0.09503334357336904,
+      "score": 0.09512525428725188,
       "breakdown": {
-        "pagerank": 0.02637098547211146,
+        "pagerank": 0.026370983641211408,
         "betweenness": 0,
         "blocker_ratio": 0,
-        "staleness": 0.00003465349856774692,
+        "staleness": 0.00005517485064822531,
         "priority_boost": 0.05,
         "time_to_impact": 0.03325,
-        "urgency": 0.0001482946450490963,
+        "urgency": 0.0002359053754955265,
         "risk": 0.0020000000000000005,
-        "pagerank_norm": 0.11986811578232481,
+        "pagerank_norm": 0.11986810746005186,
         "betweenness_norm": 0,
         "blocker_ratio_norm": 0,
-        "staleness_norm": 0.0006930699713549383,
+        "staleness_norm": 0.0011034970129645061,
         "priority_boost_norm": 0.5,
         "time_to_impact_norm": 0.3325,
-        "urgency_norm": 0.0014829464504909629,
+        "urgency_norm": 0.002359053754955265,
         "risk_norm": 0.020000000000000004,
         "time_to_impact_explanation": "On dependency chain (depth 1), median estimate 60m",
         "risk_explanation": "Low risk - stable dependency structure",
@@ -172,6 +223,12 @@
       "reason": "Low complexity, high priority"
     },
     {
+      "id": "jwr-up7.14.3",
+      "title": "EXP-015 C adapt three scalar raylib-jlt demos to browser command facade",
+      "score": 0.5,
+      "reason": "Low complexity, high priority"
+    },
+    {
       "id": "jwr-up7.15",
       "title": "Investigate docs-engine live Wasm demo embedding for raylib-jlt",
       "score": 0.4,
@@ -181,33 +238,33 @@
   "blockers_to_clear": [],
   "project_health": {
     "counts": {
-      "total": 42,
+      "total": 43,
       "open": 1,
       "closed": 40,
       "blocked": 0,
-      "actionable": 2,
-      "not_closed": 2,
+      "actionable": 3,
+      "not_closed": 3,
       "dependency_blocked": 0,
       "by_status": {
         "closed": 40,
-        "in_progress": 1,
+        "in_progress": 2,
         "open": 1
       },
       "by_type": {
         "bug": 4,
         "epic": 2,
         "feature": 6,
-        "task": 30
+        "task": 31
       },
       "by_priority": {
-        "1": 34,
+        "1": 35,
         "2": 8
       }
     },
     "graph": {
-      "node_count": 42,
+      "node_count": 43,
       "edge_count": 38,
-      "density": 0.022067363530778164,
+      "density": 0.021040974529346623,
       "has_cycles": false,
       "phase2_ready": true
     },

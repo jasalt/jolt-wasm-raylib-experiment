@@ -2,7 +2,7 @@
 
 ## 📊 Executive Summary
 
-**42** total issues | **95%** complete | **2** ready to work | **0** blocked
+**43** total issues | **93%** complete | **3** ready to work | **0** blocked
 
 ## 🎯 Top Priorities
 
@@ -16,8 +16,8 @@ The graph analysis identified these as the highest-impact items to work on:
 
 ## 📈 Graph Analysis
 
-- **Dependency Density:** 0.022 (🟢 Healthy) — Issues are well-isolated and can be parallelized
-- **Graph Size:** 42 issues with 38 dependencies
+- **Dependency Density:** 0.021 (🟢 Healthy) — Issues are well-isolated and can be parallelized
+- **Graph Size:** 43 issues with 38 dependencies
 - **Cycles:** None detected ✓
 
 ## 🏃 Quick Wins
@@ -26,16 +26,18 @@ Low-effort items that clear the path forward:
 
 - **jwr-up7.14**: EXP-015 prove Jolt threaded Wasm Raylib input facade
   - *Low complexity, high priority*
+- **jwr-up7.14.3**: EXP-015 C adapt three scalar raylib-jlt demos to browser command facade
+  - *Low complexity, high priority*
 - **jwr-up7.15**: Investigate docs-engine live Wasm demo embedding for raylib-jlt
   - *Low complexity*
 
 ## 📋 Status Summary
 
-**By Priority:** P1: 34 | P2: 8
+**By Priority:** P1: 35 | P2: 8
 
-**By Type:** bug: 4 | epic: 2 | feature: 6 | task: 30
+**By Type:** bug: 4 | epic: 2 | feature: 6 | task: 31
 
 ---
 
-*Generated Aug 31, 2026 at 8:39 PM UTC by [bv](https://github.com/Dicklesworthstone/beads_viewer)*
+*Generated Aug 31, 2026 at 8:56 PM UTC by [bv](https://github.com/Dicklesworthstone/beads_viewer)*
 
