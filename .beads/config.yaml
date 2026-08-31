@@ -65,4 +65,10 @@
 # - linear.api_key  → use LINEAR_API_KEY env var instead
 # - github.token    → use GITHUB_TOKEN env var instead
 
-sync.remote: "git+ssh://git@github.com/norbot7865/jolt-wasm-raylib.git"
+# sync.remote: "git+ssh://git@github.com/jasalt/jolt-wasm-raylib-experiment.git"
+export:
+    auto: true
+    path: issues.jsonl
+    git-add: false
+sync:
+    remote: "git+ssh://git@github.com/jasalt/jolt-wasm-raylib-experiment.git"
