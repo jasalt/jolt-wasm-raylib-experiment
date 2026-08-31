@@ -52,6 +52,13 @@ A normal native Jolt nREPL remains the primary fast loop for portable code.
 - [Raylib-Jolt](https://github.com/jlt-commons/raylib-jlt) — local sibling
   `../raylib-jlt`; binding and REPL-pattern reference, not WebAssembly proof
 - [Chez Scheme](https://github.com/cisco/ChezScheme)
+- [racket-wasm-backend](https://github.com/bradlord/racket-wasm-backend/tree/411393882a1e9d726edc5dbc230b24f96d335398) —
+  strong reference for threaded `tpb32l`: it cross-builds libffi 3.5.2, exposes
+  static symbols through Chez, and runs Racket CS in an isolated browser worker.
+  Its Chez patches apply cleanly to this project's pin and are a concrete lead
+  for the current no-libffi blocker, but it is not Jolt/Raylib proof: it uses
+  `PROXY_TO_PTHREAD` and disables Racket places after foreign calls in additional
+  workers trapped.
 - [Raylib](https://github.com/raysan5/raylib)
 - [`../jolt-android`](../jolt-android) — experiment documentation and evidence
   conventions followed by this project
