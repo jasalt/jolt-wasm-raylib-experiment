@@ -1,7 +1,7 @@
 {
   "meta": {
     "version": "1.0.0",
-    "generated_at": "2026-08-31T20:30:07.747825939Z",
+    "generated_at": "2026-08-31T20:30:37.479332805Z",
     "phase2_ready": true,
     "issue_count": 41,
     "compute_time_ms": 0
@@ -9,62 +9,52 @@
   "status": {
     "PageRank": {
       "state": "computed",
-      "ms": 0.06761
+      "ms": 0.069991
     },
     "Betweenness": {
       "state": "computed",
-      "ms": 0.139337
+      "ms": 0.22454
     },
     "Eigenvector": {
       "state": "computed",
-      "ms": 0.012389
+      "ms": 0.016301
     },
     "HITS": {
       "state": "computed",
-      "ms": 0.032388
+      "ms": 0.044594
     },
     "Critical": {
       "state": "computed",
-      "ms": 0.017206
+      "ms": 0.026419
     },
     "Cycles": {
       "state": "computed",
-      "ms": 0.017556
+      "ms": 0.013705
     },
     "KCore": {
       "state": "computed",
-      "ms": 0.021702
+      "ms": 0.026931
     },
     "Articulation": {
       "state": "computed"
     },
     "Slack": {
       "state": "computed",
-      "ms": 0.004967
+      "ms": 0.006702
     }
   },
   "quick_ref": {
-    "open_count": 2,
-    "actionable_count": 3,
+    "open_count": 1,
+    "actionable_count": 2,
     "blocked_count": 0,
     "in_progress_count": 1,
-    "not_closed_count": 3,
+    "not_closed_count": 2,
     "not_actionable_count": 0,
     "top_picks": [
       {
-        "id": "jwr-up7.14.1",
-        "title": "EXP-015 A prove Jolt static-symbol call reaches threaded Raylib facade",
-        "score": 0.1162099864009074,
-        "reasons": [
-          "✅ Currently unclaimed - available for work",
-          "🚨 High priority (P1) - prioritize this work"
-        ],
-        "unblocks": 0
-      },
-      {
         "id": "jwr-up7.15",
         "title": "Investigate docs-engine live Wasm demo embedding for raylib-jlt",
-        "score": 0.0949868403233624,
+        "score": 0.09498941269169113,
         "reasons": [
           "✅ Currently unclaimed - available for work"
         ],
@@ -73,56 +63,6 @@
     ]
   },
   "recommendations": [
-    {
-      "id": "jwr-up7.14.1",
-      "title": "EXP-015 A prove Jolt static-symbol call reaches threaded Raylib facade",
-      "type": "task",
-      "status": "open",
-      "priority": 1,
-      "labels": [
-        "chez",
-        "emscripten",
-        "exp-014",
-        "jolt",
-        "pthreads",
-        "research",
-        "wasm"
-      ],
-      "score": 0.1162099864009074,
-      "breakdown": {
-        "pagerank": 0.026370987578186154,
-        "betweenness": 0,
-        "blocker_ratio": 0,
-        "staleness": 3.6164787690972226e-7,
-        "priority_boost": 0.07500000000000001,
-        "time_to_impact": 0.03325,
-        "urgency": 0.00009628183382801025,
-        "risk": 0.0020000000000000005,
-        "pagerank_norm": 0.11986812535539161,
-        "betweenness_norm": 0,
-        "blocker_ratio_norm": 0,
-        "staleness_norm": 0.000007232957538194445,
-        "priority_boost_norm": 0.75,
-        "time_to_impact_norm": 0.3325,
-        "urgency_norm": 0.0009628183382801025,
-        "risk_norm": 0.020000000000000004,
-        "time_to_impact_explanation": "On dependency chain (depth 1), median estimate 60m",
-        "risk_explanation": "Low risk - stable dependency structure",
-        "risk_signals": {
-          "fan_variance": 0,
-          "activity_churn": 0,
-          "cross_repo_risk": 0,
-          "status_risk": 0.1,
-          "composite_risk": 0.020000000000000004,
-          "explanation": "Low risk - stable dependency structure"
-        }
-      },
-      "action": "Start work on this issue",
-      "reasons": [
-        "✅ Currently unclaimed - available for work",
-        "🚨 High priority (P1) - prioritize this work"
-      ]
-    },
     {
       "id": "jwr-up7.14",
       "title": "EXP-015 prove Jolt threaded Wasm Raylib input facade",
@@ -139,23 +79,23 @@
         "research",
         "wasm"
       ],
-      "score": 0.09572325869985407,
+      "score": 0.09572537711799178,
       "breakdown": {
         "pagerank": 0.026370987578186154,
         "betweenness": 0,
         "blocker_ratio": 0,
-        "staleness": 0.000022487419481847993,
+        "staleness": 0.00002306094391984954,
         "priority_boost": 0.07500000000000001,
         "time_to_impact": 0.03325,
-        "urgency": 0.00010403743069494765,
+        "urgency": 0.00010649021788226021,
         "risk": 0.0020000000000000005,
         "pagerank_norm": 0.11986812535539161,
         "betweenness_norm": 0,
         "blocker_ratio_norm": 0,
-        "staleness_norm": 0.0004497483896369598,
+        "staleness_norm": 0.0004612188783969908,
         "priority_boost_norm": 0.75,
         "time_to_impact_norm": 0.3325,
-        "urgency_norm": 0.0010403743069494764,
+        "urgency_norm": 0.001064902178822602,
         "risk_norm": 0.020000000000000004,
         "time_to_impact_explanation": "On dependency chain (depth 1), median estimate 60m",
         "risk_explanation": "Low risk - stable dependency structure",
@@ -189,23 +129,23 @@
         "research",
         "wasm"
       ],
-      "score": 0.0949868403233624,
+      "score": 0.09498941269169113,
       "breakdown": {
         "pagerank": 0.026370987578186154,
         "betweenness": 0,
         "blocker_ratio": 0,
-        "staleness": 0.000024281400963329478,
+        "staleness": 0.000024854925401331017,
         "priority_boost": 0.05,
         "time_to_impact": 0.03325,
-        "urgency": 0.00010395493068863227,
+        "urgency": 0.00010640772193148408,
         "risk": 0.0020000000000000005,
         "pagerank_norm": 0.11986812535539161,
         "betweenness_norm": 0,
         "blocker_ratio_norm": 0,
-        "staleness_norm": 0.0004856280192665895,
+        "staleness_norm": 0.0004970985080266203,
         "priority_boost_norm": 0.5,
         "time_to_impact_norm": 0.3325,
-        "urgency_norm": 0.0010395493068863226,
+        "urgency_norm": 0.0010640772193148407,
         "risk_norm": 0.020000000000000004,
         "time_to_impact_explanation": "On dependency chain (depth 1), median estimate 60m",
         "risk_explanation": "Low risk - stable dependency structure",
@@ -232,12 +172,6 @@
       "reason": "Low complexity, high priority"
     },
     {
-      "id": "jwr-up7.14.1",
-      "title": "EXP-015 A prove Jolt static-symbol call reaches threaded Raylib facade",
-      "score": 0.5,
-      "reason": "Low complexity, high priority"
-    },
-    {
       "id": "jwr-up7.15",
       "title": "Investigate docs-engine live Wasm demo embedding for raylib-jlt",
       "score": 0.4,
@@ -248,16 +182,16 @@
   "project_health": {
     "counts": {
       "total": 41,
-      "open": 2,
-      "closed": 38,
+      "open": 1,
+      "closed": 39,
       "blocked": 0,
-      "actionable": 3,
-      "not_closed": 3,
+      "actionable": 2,
+      "not_closed": 2,
       "dependency_blocked": 0,
       "by_status": {
-        "closed": 38,
+        "closed": 39,
         "in_progress": 1,
-        "open": 2
+        "open": 1
       },
       "by_type": {
         "bug": 4,
@@ -278,13 +212,13 @@
       "phase2_ready": true
     },
     "velocity": {
-      "closed_last_7_days": 38,
-      "closed_last_30_days": 38,
-      "avg_days_to_close": 0.134156615497076,
+      "closed_last_7_days": 39,
+      "closed_last_30_days": 39,
+      "avg_days_to_close": 0.1310573955365622,
       "weekly": [
         {
           "week_start": "2026-08-31T00:00:00Z",
-          "closed": 38
+          "closed": 39
         },
         {
           "week_start": "2026-08-24T00:00:00Z",
@@ -318,8 +252,8 @@
     }
   },
   "commands": {
-    "claim_top": "CI=1 br update jwr-up7.14.1 --status in_progress --json",
-    "show_top": "CI=1 br show jwr-up7.14.1 --json",
+    "claim_top": "CI=1 br update jwr-up7.15 --status in_progress --json",
+    "show_top": "CI=1 br show jwr-up7.15 --json",
     "list_ready": "CI=1 br ready --json",
     "list_blocked": "CI=1 br blocked --json",
     "refresh_triage": "bv --robot-triage"
