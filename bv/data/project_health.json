@@ -1,7 +1,7 @@
 {
   "counts": {
     "total": 38,
-    "open": 3,
+    "open": 2,
     "closed": 35,
     "blocked": 0,
     "actionable": 2,
@@ -9,7 +9,8 @@
     "dependency_blocked": 1,
     "by_status": {
       "closed": 35,
-      "open": 3
+      "in_progress": 1,
+      "open": 2
     },
     "by_type": {
       "bug": 4,

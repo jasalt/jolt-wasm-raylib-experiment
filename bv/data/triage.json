@@ -1,7 +1,7 @@
 {
   "meta": {
     "version": "1.0.0",
-    "generated_at": "2026-08-31T19:57:25.424705671Z",
+    "generated_at": "2026-08-31T19:58:39.354508205Z",
     "phase2_ready": true,
     "issue_count": 38,
     "compute_time_ms": 0
@@ -9,66 +9,56 @@
   "status": {
     "PageRank": {
       "state": "computed",
-      "ms": 0.057757
+      "ms": 0.052799
     },
     "Betweenness": {
       "state": "computed",
-      "ms": 0.226654
+      "ms": 0.155364
     },
     "Eigenvector": {
       "state": "computed",
-      "ms": 0.021239
+      "ms": 0.014182
     },
     "HITS": {
       "state": "computed",
-      "ms": 0.05913
+      "ms": 0.045409
     },
     "Critical": {
       "state": "computed",
-      "ms": 0.023303
+      "ms": 0.021392
     },
     "Cycles": {
       "state": "computed",
-      "ms": 0.016481
+      "ms": 0.018588
     },
     "KCore": {
       "state": "computed",
-      "ms": 0.036138
+      "ms": 0.027221
     },
     "Articulation": {
       "state": "computed"
     },
     "Slack": {
       "state": "computed",
-      "ms": 0.006102
+      "ms": 0.00656
     }
   },
   "quick_ref": {
-    "open_count": 3,
+    "open_count": 2,
     "actionable_count": 2,
     "blocked_count": 0,
-    "in_progress_count": 0,
+    "in_progress_count": 1,
     "not_closed_count": 3,
     "not_actionable_count": 1,
-    "top_picks": [
-      {
-        "id": "jwr-up7.9",
-        "title": "EXP-014 I prove threaded Petite Jolt browser variant",
-        "score": 0.2388490331861225,
-        "reasons": [
-          "🔓 Unblocks 1 item(s): jwr-up7.10",
-          "✅ Currently unclaimed - available for work"
-        ],
-        "unblocks": 1
-      }
-    ]
+    "top_picks": []
   },
   "recommendations": [
     {
       "id": "jwr-up7.9",
       "title": "EXP-014 I prove threaded Petite Jolt browser variant",
       "type": "task",
-      "status": "open",
+      "status": "in_progress",
+      "assignee": "norbot7865",
       "priority": 2,
       "labels": [
         "chez",
@@ -82,23 +72,23 @@
         "research",
         "wasm"
       ],
-      "score": 0.2388490331861225,
+      "score": 0.20165942926455044,
       "breakdown": {
         "pagerank": 0.04878618896487688,
         "betweenness": 0.05882352941176471,
         "blocker_ratio": 0.043333333333333335,
-        "staleness": 0.00048318720497050546,
+        "staleness": 3.3477060580632724e-7,
         "priority_boost": 0.05,
         "time_to_impact": 0.04025,
-        "urgency": 0.002028506009904557,
+        "urgency": 0.0020343696116341737,
         "risk": 0.0020000000000000005,
         "pagerank_norm": 0.22175540438580402,
         "betweenness_norm": 0.29411764705882354,
         "blocker_ratio_norm": 0.3333333333333333,
-        "staleness_norm": 0.009663744099410109,
+        "staleness_norm": 0.000006695412116126544,
         "priority_boost_norm": 0.5,
         "time_to_impact_norm": 0.40249999999999997,
-        "urgency_norm": 0.02028506009904557,
+        "urgency_norm": 0.020343696116341736,
         "risk_norm": 0.020000000000000004,
         "time_to_impact_explanation": "On dependency chain (depth 2), median estimate 60m",
         "risk_explanation": "Low risk - stable dependency structure",
@@ -111,10 +101,10 @@
           "explanation": "Low risk - stable dependency structure"
         }
       },
-      "action": "Start work on this issue",
+      "action": "Contact norbot7865 if you want to help",
       "reasons": [
         "🔓 Unblocks 1 item(s): jwr-up7.10",
-        "✅ Currently unclaimed - available for work"
+        "👤 Claimed by norbot7865"
       ],
       "unblocks_ids": [
         "jwr-up7.10"
@@ -135,23 +125,23 @@
         "research",
         "wasm"
       ],
-      "score": 0.11826362908085991,
+      "score": 0.11826982524944697,
       "breakdown": {
         "pagerank": 0.02637090337589066,
         "betweenness": 0,
         "blocker_ratio": 0,
-        "staleness": 0.00048339939632853013,
+        "staleness": 0.00048482551134654706,
         "priority_boost": 0.07500000000000001,
         "time_to_impact": 0.03325,
-        "urgency": 0.0020293784993807187,
+        "urgency": 0.0020352419944651146,
         "risk": 0.0020000000000000005,
         "pagerank_norm": 0.11986774261768482,
         "betweenness_norm": 0,
         "blocker_ratio_norm": 0,
-        "staleness_norm": 0.009667987926570603,
+        "staleness_norm": 0.009696510226930941,
         "priority_boost_norm": 0.75,
         "time_to_impact_norm": 0.3325,
-        "urgency_norm": 0.020293784993807185,
+        "urgency_norm": 0.020352419944651146,
         "risk_norm": 0.020000000000000004,
         "time_to_impact_explanation": "On dependency chain (depth 1), median estimate 60m",
         "risk_explanation": "Low risk - stable dependency structure",
@@ -189,23 +179,23 @@
         "research",
         "wasm"
       ],
-      "score": 0.09130599838610422,
+      "score": 0.09131183016725843,
       "breakdown": {
         "pagerank": 0.02637090337589066,
         "betweenness": 0,
         "blocker_ratio": 0,
-        "staleness": 0.0004831679148470487,
+        "staleness": 0.0004845940298650656,
         "priority_boost": 0.05,
         "time_to_impact": 0.03325,
-        "urgency": 0.002028426691892571,
+        "urgency": 0.0020342903033173042,
         "risk": 0.0020000000000000005,
         "pagerank_norm": 0.11986774261768482,
         "betweenness_norm": 0,
         "blocker_ratio_norm": 0,
-        "staleness_norm": 0.009663358296940974,
+        "staleness_norm": 0.00969188059730131,
         "priority_boost_norm": 0.5,
         "time_to_impact_norm": 0.3325,
-        "urgency_norm": 0.02028426691892571,
+        "urgency_norm": 0.020342903033173043,
         "risk_norm": 0.020000000000000004,
         "time_to_impact_explanation": "On dependency chain (depth 1), median estimate 60m",
         "risk_explanation": "Low risk - stable dependency structure",
@@ -265,7 +255,7 @@
   "project_health": {
     "counts": {
       "total": 38,
-      "open": 3,
+      "open": 2,
       "closed": 35,
       "blocked": 0,
       "actionable": 2,
@@ -273,7 +263,8 @@
       "dependency_blocked": 1,
       "by_status": {
         "closed": 35,
-        "open": 3
+        "in_progress": 1,
+        "open": 2
       },
       "by_type": {
         "bug": 4,
@@ -334,8 +325,8 @@
     }
   },
   "commands": {
-    "claim_top": "CI=1 br update jwr-up7.9 --status in_progress --json",
-    "show_top": "CI=1 br show jwr-up7.9 --json",
+    "claim_top": "CI=1 br ready --json  # No top pick available",
+    "show_top": "CI=1 br ready --json  # No top pick available",
     "list_ready": "CI=1 br ready --json",
     "list_blocked": "CI=1 br blocked --json",
     "refresh_triage": "bv --robot-triage"
