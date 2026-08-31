@@ -53,4 +53,4 @@ A normal native Jolt nREPL remains the primary fast loop for portable code.
 - [`../jolt-android`](../jolt-android) — experiment documentation and evidence
   conventions followed by this project
 
-Live task state is tracked in Beads; the plan remains a research specification.
+Live task state is tracked in [Beads task tracker (read only)](https://jasalt.github.io/jolt-wasm-raylib-experiment/bv/); the plan remains a research specification.
