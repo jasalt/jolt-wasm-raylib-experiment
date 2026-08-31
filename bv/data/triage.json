@@ -1,7 +1,7 @@
 {
   "meta": {
     "version": "1.0.0",
-    "generated_at": "2026-08-31T09:45:49.742551752Z",
+    "generated_at": "2026-08-31T09:47:24.090914472Z",
     "phase2_ready": true,
     "issue_count": 16,
     "compute_time_ms": 0
@@ -9,123 +9,61 @@
   "status": {
     "PageRank": {
       "state": "computed",
-      "ms": 0.025698
+      "ms": 0.072327
     },
     "Betweenness": {
       "state": "computed",
-      "ms": 0.054382
+      "ms": 0.073879
     },
     "Eigenvector": {
       "state": "computed",
-      "ms": 0.008005
+      "ms": 0.011527
     },
     "HITS": {
       "state": "computed",
-      "ms": 0.01584
+      "ms": 0.030765
     },
     "Critical": {
       "state": "computed",
-      "ms": 0.010259
+      "ms": 0.015883
     },
     "Cycles": {
       "state": "computed",
-      "ms": 0.010219
+      "ms": 0.014982
     },
     "KCore": {
       "state": "computed",
-      "ms": 0.008867
+      "ms": 0.01319
     },
     "Articulation": {
       "state": "computed"
     },
     "Slack": {
       "state": "computed",
-      "ms": 0.003236
+      "ms": 0.004467
     }
   },
   "quick_ref": {
-    "open_count": 10,
+    "open_count": 9,
     "actionable_count": 3,
     "blocked_count": 0,
     "in_progress_count": 0,
-    "not_closed_count": 10,
-    "not_actionable_count": 7,
+    "not_closed_count": 9,
+    "not_actionable_count": 6,
     "top_picks": [
       {
-        "id": "jwr-c52.5",
-        "title": "EXP-004 run a pure Jolt boot payload under Node Wasm",
-        "score": 0.26442747053774557,
+        "id": "jwr-c52.9",
+        "title": "EXP-008 run the pure Jolt payload in an automated browser",
+        "score": 0.26445337957357157,
         "reasons": [
-          "🔓 Unblocks 1 item(s): jwr-c52.9",
           "✅ Currently unclaimed - available for work",
           "🚨 High priority (P1) - prioritize this work"
         ],
-        "unblocks": 1
+        "unblocks": 0
       }
     ]
   },
   "recommendations": [
-    {
-      "id": "jwr-c52.12",
-      "title": "EXP-011/012 implement persistent browser-owned frames and input",
-      "type": "feature",
-      "status": "open",
-      "priority": 1,
-      "labels": [
-        "browser",
-        "input",
-        "jolt",
-        "lifecycle",
-        "raylib",
-        "research",
-        "wasm"
-      ],
-      "score": 0.3529726700751349,
-      "breakdown": {
-        "pagerank": 0.06653900526467717,
-        "betweenness": 0.14666666666666667,
-        "blocker_ratio": 0.08666666666666667,
-        "staleness": 0.0002692658671248457,
-        "priority_boost": 0.07500000000000001,
-        "time_to_impact": 0.04025,
-        "urgency": 0.001140781356485926,
-        "risk": 0.0020000000000000005,
-        "pagerank_norm": 0.30245002393035075,
-        "betweenness_norm": 0.7333333333333333,
-        "blocker_ratio_norm": 0.6666666666666666,
-        "staleness_norm": 0.005385317342496914,
-        "priority_boost_norm": 0.75,
-        "time_to_impact_norm": 0.40249999999999997,
-        "urgency_norm": 0.01140781356485926,
-        "risk_norm": 0.020000000000000004,
-        "time_to_impact_explanation": "On dependency chain (depth 2), median estimate 60m",
-        "risk_explanation": "Low risk - stable dependency structure",
-        "risk_signals": {
-          "fan_variance": 0,
-          "activity_churn": 0,
-          "cross_repo_risk": 0,
-          "status_risk": 0.1,
-          "composite_risk": 0.020000000000000004,
-          "explanation": "Low risk - stable dependency structure"
-        }
-      },
-      "action": "Work on jwr-c52.11 first to unblock this",
-      "reasons": [
-        "🔓 Unblocks 2 item(s): jwr-c52.13, jwr-c52.14",
-        "🔀 Critical path bottleneck (betweenness: 73%)",
-        "📊 High centrality in dependency graph (PageRank: 30%)",
-        "✅ Currently unclaimed - available for work",
-        "⏳ Blocked by jwr-c52.11 - complete that first",
-        "🚨 High priority (P1) - prioritize this work"
-      ],
-      "unblocks_ids": [
-        "jwr-c52.13",
-        "jwr-c52.14"
-      ],
-      "blocked_by": [
-        "jwr-c52.11"
-      ]
-    },
     {
       "id": "jwr-c52.11",
       "title": "EXP-010 render and inspect the first Jolt-driven Raylib frame",
@@ -141,23 +79,23 @@
         "vision",
         "wasm"
       ],
-      "score": 0.3451370012502607,
+      "score": 0.36765386808484696,
       "breakdown": {
         "pagerank": 0.08120213536338683,
         "betweenness": 0.2,
         "blocker_ratio": 0.043333333333333335,
-        "staleness": 0.00026930444737175926,
+        "staleness": 0.0002711244389365741,
         "priority_boost": 0.07500000000000001,
         "time_to_impact": 0.04725000000000001,
-        "urgency": 0.0011409429277090045,
+        "urgency": 0.001148564310805822,
         "risk": 0.0020000000000000005,
         "pagerank_norm": 0.36910061528812194,
         "betweenness_norm": 1,
         "blocker_ratio_norm": 0.3333333333333333,
-        "staleness_norm": 0.005386088947435185,
+        "staleness_norm": 0.005422488778731482,
         "priority_boost_norm": 0.75,
         "time_to_impact_norm": 0.47250000000000003,
-        "urgency_norm": 0.011409429277090044,
+        "urgency_norm": 0.011485643108058219,
         "risk_norm": 0.020000000000000004,
         "time_to_impact_explanation": "Deep in critical path (depth 3), median estimate 60m",
         "risk_explanation": "Low risk - stable dependency structure",
@@ -188,6 +126,67 @@
       ]
     },
     {
+      "id": "jwr-c52.12",
+      "title": "EXP-011/012 implement persistent browser-owned frames and input",
+      "type": "feature",
+      "status": "open",
+      "priority": 1,
+      "labels": [
+        "browser",
+        "input",
+        "jolt",
+        "lifecycle",
+        "raylib",
+        "research",
+        "wasm"
+      ],
+      "score": 0.3529792790550402,
+      "breakdown": {
+        "pagerank": 0.06653900526467717,
+        "betweenness": 0.14666666666666667,
+        "blocker_ratio": 0.08666666666666667,
+        "staleness": 0.0002710858586896605,
+        "priority_boost": 0.07500000000000001,
+        "time_to_impact": 0.04025,
+        "urgency": 0.0011484027647857776,
+        "risk": 0.0020000000000000005,
+        "pagerank_norm": 0.30245002393035075,
+        "betweenness_norm": 0.7333333333333333,
+        "blocker_ratio_norm": 0.6666666666666666,
+        "staleness_norm": 0.00542171717379321,
+        "priority_boost_norm": 0.75,
+        "time_to_impact_norm": 0.40249999999999997,
+        "urgency_norm": 0.011484027647857775,
+        "risk_norm": 0.020000000000000004,
+        "time_to_impact_explanation": "On dependency chain (depth 2), median estimate 60m",
+        "risk_explanation": "Low risk - stable dependency structure",
+        "risk_signals": {
+          "fan_variance": 0,
+          "activity_churn": 0,
+          "cross_repo_risk": 0,
+          "status_risk": 0.1,
+          "composite_risk": 0.020000000000000004,
+          "explanation": "Low risk - stable dependency structure"
+        }
+      },
+      "action": "Work on jwr-c52.11 first to unblock this",
+      "reasons": [
+        "🔓 Unblocks 2 item(s): jwr-c52.13, jwr-c52.14",
+        "🔀 Critical path bottleneck (betweenness: 73%)",
+        "📊 High centrality in dependency graph (PageRank: 30%)",
+        "✅ Currently unclaimed - available for work",
+        "⏳ Blocked by jwr-c52.11 - complete that first",
+        "🚨 High priority (P1) - prioritize this work"
+      ],
+      "unblocks_ids": [
+        "jwr-c52.13",
+        "jwr-c52.14"
+      ],
+      "blocked_by": [
+        "jwr-c52.11"
+      ]
+    },
+    {
       "id": "jwr-c52.7",
       "title": "EXP-006 prove a static registered Chez pb FFI facade",
       "type": "task",
@@ -204,23 +203,23 @@
         "research",
         "wasm"
       ],
-      "score": 0.30800272675289986,
+      "score": 0.30801075184638377,
       "breakdown": {
         "pagerank": 0.0665454315668088,
         "betweenness": 0.034444444444444444,
         "blocker_ratio": 0.08666666666666667,
-        "staleness": 0.000013980373297685186,
+        "staleness": 0.0000158003648625,
         "priority_boost": 0.07500000000000001,
         "time_to_impact": 0.061250000000000006,
-        "urgency": 0.0011415084227822004,
+        "urgency": 0.0011491297176690785,
         "risk": 0.0020000000000000005,
         "pagerank_norm": 0.30247923439458546,
         "betweenness_norm": 0.17222222222222222,
         "blocker_ratio_norm": 0.6666666666666666,
-        "staleness_norm": 0.0002796074659537037,
+        "staleness_norm": 0.00031600729725,
         "priority_boost_norm": 0.75,
         "time_to_impact_norm": 0.6125,
-        "urgency_norm": 0.011415084227822003,
+        "urgency_norm": 0.011491297176690785,
         "risk_norm": 0.020000000000000004,
         "time_to_impact_explanation": "Deep in critical path (depth 5), median estimate 60m",
         "risk_explanation": "Low risk - stable dependency structure",
@@ -260,23 +259,23 @@
         "vision",
         "wasm"
       ],
-      "score": 0.2804021984324195,
+      "score": 0.28040975147166197,
       "breakdown": {
         "pagerank": 0.05915481508267566,
         "betweenness": 0.1111111111111111,
         "blocker_ratio": 0.043333333333333335,
-        "staleness": 0.0002694201881125,
+        "staleness": 0.00027124017967731487,
         "priority_boost": 0.07500000000000001,
         "time_to_impact": 0.05425,
-        "urgency": 0.0011414276381724597,
+        "urgency": 0.0011490489456606968,
         "risk": 0.006242640687119286,
         "pagerank_norm": 0.2688855231030712,
         "betweenness_norm": 0.5555555555555555,
         "blocker_ratio_norm": 0.3333333333333333,
-        "staleness_norm": 0.00538840376225,
+        "staleness_norm": 0.005424803593546297,
         "priority_boost_norm": 0.75,
         "time_to_impact_norm": 0.5425,
-        "urgency_norm": 0.011414276381724597,
+        "urgency_norm": 0.011490489456606967,
         "risk_norm": 0.06242640687119285,
         "time_to_impact_explanation": "Deep in critical path (depth 4), median estimate 60m",
         "risk_explanation": "Low risk - stable dependency structure",
@@ -301,59 +300,6 @@
       ]
     },
     {
-      "id": "jwr-c52.5",
-      "title": "EXP-004 run a pure Jolt boot payload under Node Wasm",
-      "type": "task",
-      "status": "open",
-      "priority": 1,
-      "labels": [
-        "experiment",
-        "jolt",
-        "node",
-        "raylib",
-        "research",
-        "wasm"
-      ],
-      "score": 0.26442747053774557,
-      "breakdown": {
-        "pagerank": 0.045802542778636365,
-        "betweenness": 0.04000000000000001,
-        "blocker_ratio": 0.043333333333333335,
-        "staleness": 0.0002694780584828704,
-        "priority_boost": 0.07500000000000001,
-        "time_to_impact": 0.06825,
-        "urgency": 0.0011416699916009577,
-        "risk": 0.0020000000000000005,
-        "pagerank_norm": 0.20819337626652892,
-        "betweenness_norm": 0.2,
-        "blocker_ratio_norm": 0.3333333333333333,
-        "staleness_norm": 0.005389561169657408,
-        "priority_boost_norm": 0.75,
-        "time_to_impact_norm": 0.6825,
-        "urgency_norm": 0.011416699916009576,
-        "risk_norm": 0.020000000000000004,
-        "time_to_impact_explanation": "Deep in critical path (depth 6), median estimate 60m",
-        "risk_explanation": "Low risk - stable dependency structure",
-        "risk_signals": {
-          "fan_variance": 0,
-          "activity_churn": 0,
-          "cross_repo_risk": 0,
-          "status_risk": 0.1,
-          "composite_risk": 0.020000000000000004,
-          "explanation": "Low risk - stable dependency structure"
-        }
-      },
-      "action": "Start work on this issue",
-      "reasons": [
-        "🔓 Unblocks 1 item(s): jwr-c52.9",
-        "✅ Currently unclaimed - available for work",
-        "🚨 High priority (P1) - prioritize this work"
-      ],
-      "unblocks_ids": [
-        "jwr-c52.9"
-      ]
-    },
-    {
       "id": "jwr-c52.10",
       "title": "EXP-009 implement and verify the minimal Jolt Raylib facade",
       "type": "feature",
@@ -367,23 +313,23 @@
         "research",
         "wasm"
       ],
-      "score": 0.25677811362318576,
+      "score": 0.2739042076109651,
       "breakdown": {
         "pagerank": 0.05915481508267566,
         "betweenness": 0.10222222222222221,
         "blocker_ratio": 0.043333333333333335,
-        "staleness": 0.0002693430276186729,
+        "staleness": 0.00027116301918348764,
         "priority_boost": 0.07500000000000001,
         "time_to_impact": 0.05425,
-        "urgency": 0.0011411044983977825,
+        "urgency": 0.0011487258562916604,
         "risk": 0.007000000000000001,
         "pagerank_norm": 0.2688855231030712,
         "betweenness_norm": 0.5111111111111111,
         "blocker_ratio_norm": 0.3333333333333333,
-        "staleness_norm": 0.005386860552373457,
+        "staleness_norm": 0.005423260383669752,
         "priority_boost_norm": 0.75,
         "time_to_impact_norm": 0.5425,
-        "urgency_norm": 0.011411044983977825,
+        "urgency_norm": 0.011487258562916602,
         "risk_norm": 0.07,
         "time_to_impact_explanation": "Deep in critical path (depth 4), median estimate 60m",
         "risk_explanation": "Low risk - stable dependency structure",
@@ -423,23 +369,23 @@
         "research",
         "wasm"
       ],
-      "score": 0.2488897453627803,
+      "score": 0.26445337957357157,
       "breakdown": {
         "pagerank": 0.049784867360390866,
         "betweenness": 0.07333333333333333,
         "blocker_ratio": 0.043333333333333335,
-        "staleness": 0.0002693816078655864,
+        "staleness": 0.00027120159943040125,
         "priority_boost": 0.07500000000000001,
         "time_to_impact": 0.061250000000000006,
-        "urgency": 0.0011412660685522658,
+        "urgency": 0.0011488874012432816,
         "risk": 0.007000000000000001,
         "pagerank_norm": 0.2262948516381403,
         "betweenness_norm": 0.36666666666666664,
         "blocker_ratio_norm": 0.3333333333333333,
-        "staleness_norm": 0.005387632157311728,
+        "staleness_norm": 0.005424031988608025,
         "priority_boost_norm": 0.75,
         "time_to_impact_norm": 0.6125,
-        "urgency_norm": 0.011412660685522658,
+        "urgency_norm": 0.011488874012432815,
         "risk_norm": 0.07,
         "time_to_impact_explanation": "Deep in critical path (depth 5), median estimate 60m",
         "risk_explanation": "Low risk - stable dependency structure",
@@ -452,14 +398,10 @@
           "explanation": "Low risk - stable dependency structure"
         }
       },
-      "action": "Work on jwr-c52.5 first to unblock this",
+      "action": "Start work on this issue",
       "reasons": [
         "✅ Currently unclaimed - available for work",
-        "⏳ Blocked by jwr-c52.5 - complete that first",
         "🚨 High priority (P1) - prioritize this work"
-      ],
-      "blocked_by": [
-        "jwr-c52.5"
       ]
     },
     {
@@ -474,23 +416,23 @@
         "research",
         "wasm"
       ],
-      "score": 0.11585964892492787,
+      "score": 0.11586767396485627,
       "breakdown": {
         "pagerank": 0.024644021050763968,
         "betweenness": 0,
         "blocker_ratio": 0,
-        "staleness": 0.0002695359288532408,
+        "staleness": 0.00027135592041805555,
         "priority_boost": 0.07500000000000001,
         "time_to_impact": 0.03325,
-        "urgency": 0.0011419123438273116,
+        "urgency": 0.0011495335757077119,
         "risk": 0.0020000000000000005,
         "pagerank_norm": 0.11201827750347258,
         "betweenness_norm": 0,
         "blocker_ratio_norm": 0,
-        "staleness_norm": 0.005390718577064815,
+        "staleness_norm": 0.005427118408361111,
         "priority_boost_norm": 0.75,
         "time_to_impact_norm": 0.3325,
-        "urgency_norm": 0.011419123438273115,
+        "urgency_norm": 0.011495335757077119,
         "risk_norm": 0.020000000000000004,
         "time_to_impact_explanation": "On dependency chain (depth 1), median estimate 60m",
         "risk_explanation": "Low risk - stable dependency structure",
@@ -525,23 +467,23 @@
         "vision",
         "wasm"
       ],
-      "score": 0.07791284779206233,
+      "score": 0.07791945677196759,
       "breakdown": {
         "pagerank": 0.024644021050763968,
         "betweenness": 0,
         "blocker_ratio": 0,
-        "staleness": 0.0002692658671248457,
+        "staleness": 0.0002710858586896605,
         "priority_boost": 0.05,
         "time_to_impact": 0.03325,
-        "urgency": 0.001140781356485926,
+        "urgency": 0.0011484027647857776,
         "risk": 0.0020000000000000005,
         "pagerank_norm": 0.11201827750347258,
         "betweenness_norm": 0,
         "blocker_ratio_norm": 0,
-        "staleness_norm": 0.005385317342496914,
+        "staleness_norm": 0.00542171717379321,
         "priority_boost_norm": 0.5,
         "time_to_impact_norm": 0.3325,
-        "urgency_norm": 0.01140781356485926,
+        "urgency_norm": 0.011484027647857775,
         "risk_norm": 0.020000000000000004,
         "time_to_impact_explanation": "On dependency chain (depth 1), median estimate 60m",
         "risk_explanation": "Low risk - stable dependency structure",
@@ -579,23 +521,23 @@
         "vision",
         "wasm"
       ],
-      "score": 0.07791277773890758,
+      "score": 0.07791938672763392,
       "breakdown": {
         "pagerank": 0.024644021050763968,
         "betweenness": 0,
         "blocker_ratio": 0,
-        "staleness": 0.0002692465770013889,
+        "staleness": 0.0002710665685662037,
         "priority_boost": 0.05,
         "time_to_impact": 0.03325,
-        "urgency": 0.0011407005706740303,
+        "urgency": 0.0011483219915754239,
         "risk": 0.0020000000000000005,
         "pagerank_norm": 0.11201827750347258,
         "betweenness_norm": 0,
         "blocker_ratio_norm": 0,
-        "staleness_norm": 0.005384931540027778,
+        "staleness_norm": 0.005421331371324074,
         "priority_boost_norm": 0.5,
         "time_to_impact_norm": 0.3325,
-        "urgency_norm": 0.011407005706740303,
+        "urgency_norm": 0.01148321991575424,
         "risk_norm": 0.020000000000000004,
         "time_to_impact_explanation": "On dependency chain (depth 1), median estimate 60m",
         "risk_explanation": "Low risk - stable dependency structure",
@@ -639,15 +581,6 @@
       ]
     },
     {
-      "id": "jwr-c52.5",
-      "title": "EXP-004 run a pure Jolt boot payload under Node Wasm",
-      "score": 0.7000000000000001,
-      "reason": "Unblocks 1 items, high priority",
-      "unblocks_ids": [
-        "jwr-c52.9"
-      ]
-    },
-    {
       "id": "jwr-c52",
       "title": "Prove Jolt + Chez Wasm + Raylib browser feasibility",
       "score": 0.5,
@@ -661,6 +594,12 @@
       "unblocks_ids": [
         "jwr-c52.8"
       ]
+    },
+    {
+      "id": "jwr-c52.13",
+      "title": "EXP-013 prove debug-only live browser redefinition",
+      "score": 0.4,
+      "reason": "Low complexity"
     }
   ],
   "blockers_to_clear": [
@@ -691,15 +630,6 @@
       ]
     },
     {
-      "id": "jwr-c52.5",
-      "title": "EXP-004 run a pure Jolt boot payload under Node Wasm",
-      "unblocks_count": 1,
-      "unblocks_ids": [
-        "jwr-c52.9"
-      ],
-      "actionable": true
-    },
-    {
       "id": "jwr-c52.7",
       "title": "EXP-006 prove a static registered Chez pb FFI facade",
       "unblocks_count": 1,
@@ -712,15 +642,15 @@
   "project_health": {
     "counts": {
       "total": 16,
-      "open": 10,
-      "closed": 6,
+      "open": 9,
+      "closed": 7,
       "blocked": 0,
       "actionable": 3,
-      "not_closed": 10,
-      "dependency_blocked": 7,
+      "not_closed": 9,
+      "dependency_blocked": 6,
       "by_status": {
-        "closed": 6,
-        "open": 10
+        "closed": 7,
+        "open": 9
       },
       "by_type": {
         "epic": 1,
@@ -740,13 +670,13 @@
       "phase2_ready": true
     },
     "velocity": {
-      "closed_last_7_days": 6,
-      "closed_last_30_days": 6,
-      "avg_days_to_close": 0.08238618827160495,
+      "closed_last_7_days": 7,
+      "closed_last_30_days": 7,
+      "avg_days_to_close": 0.09381117724867725,
       "weekly": [
         {
           "week_start": "2026-08-31T00:00:00Z",
-          "closed": 6
+          "closed": 7
         },
         {
           "week_start": "2026-08-24T00:00:00Z",
@@ -780,8 +710,8 @@
     }
   },
   "commands": {
-    "claim_top": "CI=1 br update jwr-c52.5 --status in_progress --json",
-    "show_top": "CI=1 br show jwr-c52.5 --json",
+    "claim_top": "CI=1 br update jwr-c52.9 --status in_progress --json",
+    "show_top": "CI=1 br show jwr-c52.9 --json",
     "list_ready": "CI=1 br ready --json",
     "list_blocked": "CI=1 br blocked --json",
     "refresh_triage": "bv --robot-triage"
