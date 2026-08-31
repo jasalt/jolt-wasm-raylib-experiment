@@ -4,18 +4,6 @@
 
 **38** total issues | **87%** complete | **2** ready to work | **0** blocked
 
-## 🎯 Top Priorities
-
-The graph analysis identified these as the highest-impact items to work on:
-
-### 1. EXP-014 G prove threaded Chez witness under Chromium
-**ID:** `jwr-up7.7` | **Impact Score:** 0.29 | **Unblocks:** 1 issues
-
-**Why this matters:**
-- 🔓 Unblocks 1 item(s): jwr-up7.8
-- ✅ Currently unclaimed - available for work
-- 🚨 High priority (P1) - prioritize this work
-
 ## 🚧 Critical Bottlenecks
 
 These issues are blocking the most downstream work. Clearing them has outsized impact:
@@ -55,5 +43,5 @@ Low-effort items that clear the path forward:
 
 ---
 
-*Generated Aug 31, 2026 at 6:44 PM UTC by [bv](https://github.com/Dicklesworthstone/beads_viewer)*
+*Generated Aug 31, 2026 at 6:46 PM UTC by [bv](https://github.com/Dicklesworthstone/beads_viewer)*
 
