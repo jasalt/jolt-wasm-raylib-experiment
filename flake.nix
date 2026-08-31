@@ -47,7 +47,13 @@
     in {
       packages = forAllSystems (system:
         let pkgs = import nixpkgs { inherit system; };
-        in { jolt = mkJolt pkgs; });
+        in {
+          jolt = mkJolt pkgs;
+          # The stock tpb32l target is a real 32-bit Linux executable before
+          # it becomes Emscripten Wasm. Keep its compiler in the locked flake
+          # rather than relying on host multilib headers.
+          i686-cc = pkgs.pkgsi686Linux.stdenv.cc;
+        });
       devShells = forAllSystems (system:
         let
           pkgs = import nixpkgs { inherit system; };

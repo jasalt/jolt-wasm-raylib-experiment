@@ -78,22 +78,32 @@ Emscripten word size to 32 and maps threaded 32-bit PB to `tpb32l`; its
 plus `xc-tpb32l/s/xpatch`. The experiment used that documented route without an
 upstream patch.
 
-`witness-thread.ss` now uses the pinned Chez forms `fork-thread`,
-`make-mutex`, `mutex-acquire`, `mutex-release`, `make-condition`,
-`condition-wait`, and `condition-signal`. Its predicate loop accounts for a
-wake before state publication. It has not yet established T1.
+`witness-thread.ss` uses the pinned Chez forms `fork-thread`, `make-mutex`,
+`mutex-acquire`, `mutex-release`, `make-condition`, `condition-wait`, and
+`condition-signal`. Its predicate loop accounts for a wake before state
+publication. The normal 64-bit dev shell has no 32-bit multilib headers, so the
+flake now exposes its locked `pkgsi686Linux.stdenv.cc` as `i686-cc`; this is a
+pinned Nix cross-toolchain, not an unrecorded host SDK.
+
+**Observed 2026-08-31 — T1:** under that compiler, a fresh target-compatible
+native configuration used `--threads --pbarch --32` and produced an ELF
+32-bit `tpb32l/bin/tpb32l/scheme`. The witness printed `THREAD-WITNESS-OK` and
+exited 0. An earlier attempt using the 64-bit shell's `gcc -m32` failed before
+Chez compilation because `gnu/stubs-32.h` was absent; that setup was rejected
+as an `ENVIRONMENT` issue and was not treated as a Chez result.
 
 ## Result
 
-**T0 PASS / later target status not yet run.** The current workspace retains
-the known non-threaded Jolt boundary, and stock pinned Chez generated `tpb32l`
-boot and cross-compilation material. T1 through T6 are not established by this
-scaffold or target generation.
+**T0–T1 PASS / later target status not yet run.** The current workspace
+retains the known non-threaded Jolt boundary, stock pinned Chez generated
+`tpb32l` boot and cross-compilation material, and an actual 32-bit native
+threaded target completed deterministic cross-thread communication. T2 through
+T6 are not established.
 
 | Gate | Result | Evidence |
 | --- | --- | --- |
 | T0 generated `tpb32l` boots | PASS | bootquick log/files/hashes |
-| T1 native thread witness | not run | — |
+| T1 native thread witness | PASS | native thread log |
 | T2 Emscripten Chez / Node | not run | — |
 | T3 Jolt / Node | not run | — |
 | T4 Chez / Chromium | not run | — |
@@ -107,9 +117,9 @@ the untested `tpb32l` route.
 
 ## Workaround or next experiment
 
-Proceed to T1 only: run the API-correct thread witness against a
- target-compatible runtime. Do not patch Jolt, add `PROXY_TO_PTHREAD`,
-substitute a host Scheme, or mix in Raylib/FFI work.
+Proceed to T2 only: configure the generated `tpb32l` boots with Emscripten
+pthreads and run this same witness under Node. Do not patch Jolt, add
+`PROXY_TO_PTHREAD`, substitute a host Scheme, or mix in Raylib/FFI work.
 
 ## Upstream suitability
 
@@ -137,6 +147,12 @@ Ignored reproducibility logs created by `control`:
   `61c24a66befa23177e37bdea90e95ffb72f566aa3194748eee6c80cc223212cd`,
   and `xpatch`
   `6e54168b8552aa7b31754678d565c40a5a72853e92660cd8f67d6d8898ae9d63`.
+- `artifacts/logs/EXP-014/native-thread-witness.log` — an ELF 32-bit
+  `tpb32l` build followed by `THREAD-WITNESS-OK`, exit 0.
+- `artifacts/logs/EXP-014/native-tpb32l-32bit-build.log` — full pinned i686
+  build and witness command, exit 0.
+- `artifacts/logs/EXP-014/tpb64l-api-control.log` — API control for the same
+  witness, exit 0; this is not substituted for the T1 target result.
 - Existing immutable EXP-008 evidence:
   `artifacts/logs/EXP-008-native-pb.log` — SHA-256
   `dcbb6a2ab1ccb7e2b65f1a18a90638b138f68ac1e0dd38509c547b331991c7fb`
