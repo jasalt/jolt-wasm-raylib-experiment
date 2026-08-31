@@ -55,9 +55,14 @@ def recv():
  a,b=s.recv(2); n=b&127
  if n==126:n=struct.unpack('!H',s.recv(2))[0]
  if n==127:n=struct.unpack('!Q',s.recv(8))[0]
- data=b''
- while len(data)<n:data+=s.recv(n-len(data))
- return json.loads(data)
+ if n > 32 * 1024 * 1024: raise RuntimeError(f'unexpected DevTools frame size: {n}')
+ # Screenshot responses are multi-megabyte; immutable-byte concatenation is quadratic.
+ chunks=[]; remaining=n
+ while remaining:
+  chunk=s.recv(min(remaining, 65536))
+  if not chunk: raise RuntimeError('DevTools socket closed mid-frame')
+  chunks.append(chunk); remaining-=len(chunk)
+ return json.loads(b''.join(chunks))
 def cmd(method, params={}):
  global ident; ident+=1; send({'id':ident,'method':method,'params':params})
  while True:
@@ -73,7 +78,7 @@ deadline=time.time()+45; state={}
 while time.time()<deadline:
  r=cmd('Runtime.evaluate',{'expression':"({isolated:crossOriginIsolated,sab:typeof SharedArrayBuffer !== 'undefined',output:document.querySelector('#output')?.value,status:document.querySelector('#status')?.textContent})",'returnByValue':True})
  state=r.get('result',{}).get('value',{})
- if 'EXP-014-JOLT-COMPLETE' in state.get('output',''): break
+ if 'EXP-015-JOLT-RAYLIB-SCENE-SELECTED' in state.get('output',''): break
  time.sleep(.2)
 else: raise RuntimeError(f'EXP-015 readiness timeout: {state}; errors={errors}; failed={failed}')
 # Emscripten clean exit cancels its still-observed data request. Preserve it in
