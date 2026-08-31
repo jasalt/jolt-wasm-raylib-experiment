@@ -1,27 +1,49 @@
 <!doctype html>
 <html lang="en">
   <head>
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
     <title>Raylib web diagnostic</title>
     <style>
-      body { background: #141829; color: #f8f8f2; font: 16px system-ui, sans-serif; margin: 0; }
-      main { margin: 1rem auto; max-width: 720px; }
-      canvas { display: block; height: auto; max-width: 100%; }
-      #raylib-status { margin: .75rem 0; }
+      body {
+        background: #141829;
+        color: #f8f8f2;
+        font:
+          16px system-ui,
+          sans-serif;
+        margin: 0;
+      }
+      main {
+        margin: 1rem auto;
+        max-width: 720px;
+      }
+      canvas {
+        display: block;
+        height: auto;
+        max-width: 100%;
+      }
+      #raylib-status {
+        margin: 0.75rem 0;
+      }
     </style>
   </head>
   <body>
     <main>
       <h1>Raylib PLATFORM_WEB diagnostic</h1>
       <p id="raylib-status" data-raylib-state="loading">loading</p>
-      <canvas id="canvas" width="720" height="360" tabindex="-1" aria-label="Raylib diagnostic canvas"></canvas>
+      <canvas
+        id="canvas"
+        width="720"
+        height="360"
+        tabindex="-1"
+        aria-label="Raylib diagnostic canvas"
+      ></canvas>
     </main>
     <script>
       var Module = {
         canvas: document.querySelector("#canvas"),
         print: function () {},
-        printErr: function () {}
+        printErr: function () {},
       };
     </script>
     {{{ SCRIPT }}}
