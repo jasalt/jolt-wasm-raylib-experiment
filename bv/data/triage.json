@@ -1,7 +1,7 @@
 {
   "meta": {
     "version": "1.0.0",
-    "generated_at": "2026-08-31T20:07:23.263943788Z",
+    "generated_at": "2026-08-31T20:08:37.031769513Z",
     "phase2_ready": true,
     "issue_count": 38,
     "compute_time_ms": 0
@@ -9,107 +9,50 @@
   "status": {
     "PageRank": {
       "state": "computed",
-      "ms": 0.074803
+      "ms": 0.04531
     },
     "Betweenness": {
       "state": "computed",
-      "ms": 0.22587
+      "ms": 0.099553
     },
     "Eigenvector": {
       "state": "computed",
-      "ms": 0.021433
+      "ms": 0.012356
     },
     "HITS": {
       "state": "computed",
-      "ms": 0.054602
+      "ms": 0.04536
     },
     "Critical": {
       "state": "computed",
-      "ms": 0.030677
+      "ms": 0.018685
     },
     "Cycles": {
       "state": "computed",
-      "ms": 0.017085
+      "ms": 0.01526
     },
     "KCore": {
       "state": "computed",
-      "ms": 0.031187
+      "ms": 0.029279
     },
     "Articulation": {
       "state": "computed"
     },
     "Slack": {
       "state": "computed",
-      "ms": 0.006439
+      "ms": 0.010303
     }
   },
   "quick_ref": {
-    "open_count": 2,
+    "open_count": 1,
     "actionable_count": 2,
     "blocked_count": 0,
     "in_progress_count": 1,
-    "not_closed_count": 3,
-    "not_actionable_count": 1,
+    "not_closed_count": 2,
+    "not_actionable_count": 0,
     "top_picks": []
   },
   "recommendations": [
-    {
-      "id": "jwr-up7.9",
-      "title": "EXP-014 I prove threaded Petite Jolt browser variant",
-      "type": "task",
-      "status": "in_progress",
-      "assignee": "norbot7865",
-      "priority": 2,
-      "labels": [
-        "chez",
-        "chromium",
-        "comparison",
-        "emscripten",
-        "exp-014",
-        "jolt",
-        "petite",
-        "pthreads",
-        "research",
-        "wasm"
-      ],
-      "score": 0.20168846017727446,
-      "breakdown": {
-        "pagerank": 0.04878618896487688,
-        "betweenness": 0.05882352941176471,
-        "blocker_ratio": 0.043333333333333335,
-        "staleness": 2.7515323665123457e-7,
-        "priority_boost": 0.05,
-        "time_to_impact": 0.04025,
-        "urgency": 0.002075901961466231,
-        "risk": 0.0020000000000000005,
-        "pagerank_norm": 0.22175540438580402,
-        "betweenness_norm": 0.29411764705882354,
-        "blocker_ratio_norm": 0.3333333333333333,
-        "staleness_norm": 0.000005503064733024692,
-        "priority_boost_norm": 0.5,
-        "time_to_impact_norm": 0.40249999999999997,
-        "urgency_norm": 0.02075901961466231,
-        "risk_norm": 0.020000000000000004,
-        "time_to_impact_explanation": "On dependency chain (depth 2), median estimate 60m",
-        "risk_explanation": "Low risk - stable dependency structure",
-        "risk_signals": {
-          "fan_variance": 0,
-          "activity_churn": 0,
-          "cross_repo_risk": 0,
-          "status_risk": 0.1,
-          "composite_risk": 0.020000000000000004,
-          "explanation": "Low risk - stable dependency structure"
-        }
-      },
-      "action": "Contact norbot7865 if you want to help",
-      "reasons": [
-        "🔓 Unblocks 1 item(s): jwr-up7.10",
-        "👤 Claimed by norbot7865"
-      ],
-      "unblocks_ids": [
-        "jwr-up7.10"
-      ]
-    },
     {
       "id": "jwr-up7",
       "title": "EXP-014 prove threaded Jolt on Chez tpb32l Emscripten",
@@ -125,23 +68,23 @@
         "research",
         "wasm"
       ],
-      "score": 0.11831371744077292,
+      "score": 0.11831989512111729,
       "breakdown": {
         "pagerank": 0.02637090337589066,
         "betweenness": 0,
         "blocker_ratio": 0,
-        "staleness": 0.0004949317890391204,
+        "staleness": 0.0004963547795044947,
         "priority_boost": 0.07500000000000001,
         "time_to_impact": 0.03325,
-        "urgency": 0.002076773588920694,
+        "urgency": 0.0020826184576840157,
         "risk": 0.0020000000000000005,
         "pagerank_norm": 0.11986774261768482,
         "betweenness_norm": 0,
         "blocker_ratio_norm": 0,
-        "staleness_norm": 0.009898635780782407,
+        "staleness_norm": 0.009927095590089892,
         "priority_boost_norm": 0.75,
         "time_to_impact_norm": 0.3325,
-        "urgency_norm": 0.02076773588920694,
+        "urgency_norm": 0.020826184576840157,
         "risk_norm": 0.020000000000000004,
         "time_to_impact_explanation": "On dependency chain (depth 1), median estimate 60m",
         "risk_explanation": "Low risk - stable dependency structure",
@@ -164,7 +107,8 @@
       "id": "jwr-up7.10",
       "title": "EXP-014 J finalize evidence, classification, and architecture decision",
       "type": "task",
-      "status": "open",
+      "status": "in_progress",
+      "assignee": "norbot7865",
       "priority": 2,
       "labels": [
         "artifacts",
@@ -179,23 +123,23 @@
         "research",
         "wasm"
       ],
-      "score": 0.09135314112421514,
+      "score": 0.07959208375151307,
       "breakdown": {
         "pagerank": 0.02637090337589066,
         "betweenness": 0,
         "blocker_ratio": 0,
-        "staleness": 0.0004947003075576388,
+        "staleness": 4.0570543042052474e-7,
         "priority_boost": 0.05,
         "time_to_impact": 0.03325,
-        "urgency": 0.0020758227218206303,
+        "urgency": 0.002081667706554724,
         "risk": 0.0020000000000000005,
         "pagerank_norm": 0.11986774261768482,
         "betweenness_norm": 0,
         "blocker_ratio_norm": 0,
-        "staleness_norm": 0.009894006151152776,
+        "staleness_norm": 0.000008114108608410494,
         "priority_boost_norm": 0.5,
         "time_to_impact_norm": 0.3325,
-        "urgency_norm": 0.020758227218206304,
+        "urgency_norm": 0.02081667706554724,
         "risk_norm": 0.020000000000000004,
         "time_to_impact_explanation": "On dependency chain (depth 1), median estimate 60m",
         "risk_explanation": "Low risk - stable dependency structure",
@@ -208,26 +152,13 @@
           "explanation": "Low risk - stable dependency structure"
         }
       },
-      "action": "Work on jwr-up7.9 first to unblock this",
+      "action": "Contact norbot7865 if you want to help",
       "reasons": [
-        "✅ Currently unclaimed - available for work",
-        "⏳ Blocked by jwr-up7.9 - complete that first"
-      ],
-      "blocked_by": [
-        "jwr-up7.9"
+        "👤 Claimed by norbot7865"
       ]
     }
   ],
   "quick_wins": [
-    {
-      "id": "jwr-up7.9",
-      "title": "EXP-014 I prove threaded Petite Jolt browser variant",
-      "score": 0.6000000000000001,
-      "reason": "Unblocks 1 items",
-      "unblocks_ids": [
-        "jwr-up7.10"
-      ]
-    },
     {
       "id": "jwr-up7",
       "title": "EXP-014 prove threaded Jolt on Chez tpb32l Emscripten",
@@ -241,30 +172,20 @@
       "reason": "Low complexity"
     }
   ],
-  "blockers_to_clear": [
-    {
-      "id": "jwr-up7.9",
-      "title": "EXP-014 I prove threaded Petite Jolt browser variant",
-      "unblocks_count": 1,
-      "unblocks_ids": [
-        "jwr-up7.10"
-      ],
-      "actionable": true
-    }
-  ],
+  "blockers_to_clear": [],
   "project_health": {
     "counts": {
       "total": 38,
-      "open": 2,
-      "closed": 35,
+      "open": 1,
+      "closed": 36,
       "blocked": 0,
       "actionable": 2,
-      "not_closed": 3,
-      "dependency_blocked": 1,
+      "not_closed": 2,
+      "dependency_blocked": 0,
       "by_status": {
-        "closed": 35,
+        "closed": 36,
         "in_progress": 1,
-        "open": 2
+        "open": 1
       },
       "by_type": {
         "bug": 4,
@@ -285,13 +206,13 @@
       "phase2_ready": true
     },
     "velocity": {
-      "closed_last_7_days": 35,
-      "closed_last_30_days": 35,
-      "avg_days_to_close": 0.12017824074074072,
+      "closed_last_7_days": 36,
+      "closed_last_30_days": 36,
+      "avg_days_to_close": 0.12508101851851852,
       "weekly": [
         {
           "week_start": "2026-08-31T00:00:00Z",
-          "closed": 35
+          "closed": 36
         },
         {
           "week_start": "2026-08-24T00:00:00Z",

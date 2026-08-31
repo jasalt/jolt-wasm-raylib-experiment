@@ -1,16 +1,16 @@
 {
   "counts": {
     "total": 38,
-    "open": 2,
-    "closed": 35,
+    "open": 1,
+    "closed": 36,
     "blocked": 0,
     "actionable": 2,
-    "not_closed": 3,
-    "dependency_blocked": 1,
+    "not_closed": 2,
+    "dependency_blocked": 0,
     "by_status": {
-      "closed": 35,
+      "closed": 36,
       "in_progress": 1,
-      "open": 2
+      "open": 1
     },
     "by_type": {
       "bug": 4,
@@ -31,13 +31,13 @@
     "phase2_ready": true
   },
   "velocity": {
-    "closed_last_7_days": 35,
-    "closed_last_30_days": 35,
-    "avg_days_to_close": 0.12017824074074072,
+    "closed_last_7_days": 36,
+    "closed_last_30_days": 36,
+    "avg_days_to_close": 0.12508101851851852,
     "weekly": [
       {
         "week_start": "2026-08-31T00:00:00Z",
-        "closed": 35
+        "closed": 36
       },
       {
         "week_start": "2026-08-24T00:00:00Z",
