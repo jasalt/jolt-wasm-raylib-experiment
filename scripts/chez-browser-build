@@ -2,13 +2,18 @@
 set -euo pipefail
 root=$(CDPATH= cd -- "$(dirname -- "$0")/.." && pwd)
 out="$root/build/EXP-002-chez-pb-browser"
-if [[ ! -f "$root/build/EXP-001-chez-pb-node/source/em-pb/bin/pb/scheme.js" ]]; then
-  "$root/scripts/chez-wasm-build"
+source="$out/source/em-pb/bin/pb"
+if [[ ${CHEZ_REBUILD:-1} == 1 ]]; then
+  CHEZ_EXPERIMENT=EXP-002-chez-pb-browser \
+    CHEZ_WITNESS="$root/experiments/EXP-002-chez-pb-browser/witness.ss" \
+    "$root/scripts/chez-wasm-build"
 fi
-rm -rf "$out"; mkdir -p "$out"
-cp "$root/experiments/EXP-002-chez-pb-browser/web/index.html" "$out/index.html"
-cp "$root/build/EXP-001-chez-pb-node/source/em-pb/bin/pb/scheme.js" "$out/scheme.js"
-cp "$root/build/EXP-001-chez-pb-node/source/em-pb/bin/pb/scheme.wasm" "$out/scheme.wasm"
-cp "$root/build/EXP-001-chez-pb-node/source/em-pb/bin/pb/scheme.data" "$out/scheme.data"
-cp -R "$root/build/EXP-001-chez-pb-node/source/em-pb/bin/pb/petite.boot" "$out/petite.boot" 2>/dev/null || true
+[[ -f "$source/scheme.js" ]] || { printf 'missing EXP-002 Chez build; rebuild with CHEZ_REBUILD=1\n' >&2; exit 1; }
+rm -rf "$out/web"; mkdir -p "$out/web"
+cp "$root/experiments/EXP-002-chez-pb-browser/web/index.html" "$out/web/index.html"
+cp "$source/scheme.js" "$out/web/scheme.js"
+cp "$source/scheme.wasm" "$out/web/scheme.wasm"
+cp "$source/scheme.data" "$out/web/scheme.data"
+cp -R "$source/petite.boot" "$out/web/petite.boot" 2>/dev/null || true
+out="$out/web"
 printf 'Built %s\n' "$out/index.html"

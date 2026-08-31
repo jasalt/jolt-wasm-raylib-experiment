@@ -4,8 +4,12 @@ set -euo pipefail
 
 root=$(CDPATH= cd -- "$(dirname -- "$0")/.." && pwd)
 source=${CHEZ_SOURCE:?run through nix develop so CHEZ_SOURCE is set}
-work="$root/build/EXP-001-chez-pb-node/source"
-log="$root/artifacts/logs/EXP-001/build.log"
+experiment=${CHEZ_EXPERIMENT:-EXP-001-chez-pb-node}
+witness=${CHEZ_WITNESS:-$root/experiments/EXP-001-chez-pb-node/witness.ss}
+work="$root/build/$experiment/source"
+experiment_number=$(printf '%s' "$experiment" | cut -d- -f1-2)
+log="$root/artifacts/logs/$experiment_number/build.log"
+[[ -f "$witness" ]] || { printf 'missing Chez witness: %s\n' "$witness" >&2; exit 1; }
 mkdir -p "$(dirname -- "$log")"
 rm -rf "$work"
 mkdir -p "$work"
@@ -13,7 +17,7 @@ mkdir -p "$work"
 # itself is immutable and Chez writes generated boot/kernel outputs in-tree.
 cp -RL "$source/." "$work"
 chmod -R u+w "$work"
-cp "$root/experiments/EXP-001-chez-pb-node/witness.ss" "$work/witness.ss"
+cp "$witness" "$work/witness.ss"
 
 {
   cd "$work"

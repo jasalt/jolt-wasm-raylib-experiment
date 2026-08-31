@@ -1,16 +1,160 @@
 #!/usr/bin/env bash
+# Validate EXP-002 with a real Chromium session through the DevTools protocol.
 set -euo pipefail
+
 root=$(CDPATH= cd -- "$(dirname -- "$0")/.." && pwd)
-out="$root/build/EXP-002-chez-pb-browser"
-log="$root/artifacts/logs/EXP-002/browser.log"
-report="$root/artifacts/reports/EXP-002-browser.txt"
-mkdir -p "$(dirname "$log")" "$(dirname "$report")"
-"$root/scripts/chez-browser-build" >"$log" 2>&1
-port=$((20000 + ($$ % 1000)))
-(cd "$out" && python3 -m http.server "$port" --bind 127.0.0.1) >>"$log" 2>&1 & server=$!
-trap 'kill "$server" 2>/dev/null || true' EXIT
-for _ in $(seq 1 50); do curl -fsS "http://127.0.0.1:$port/" >/dev/null && break; sleep .1; done
-chromium-browser --headless --no-sandbox --disable-gpu --virtual-time-budget=5000 --dump-dom "http://127.0.0.1:$port/" >"$report" 2>>"$log"
-grep -q 'data-chez-state="ready"' "$report"
-grep -q 'EXP-002-PB-BROWSER-OK' "$report"
+build_dir="$root/build/EXP-002-chez-pb-browser/web"
+log_dir="$root/artifacts/logs/EXP-002"
+screenshot_dir="$root/artifacts/screenshots/EXP-002"
+report_dir="$root/artifacts/reports"
+mkdir -p "$log_dir" "$screenshot_dir" "$report_dir"
+
+"$root/scripts/chez-browser-build" >"$log_dir/build-driver.log" 2>&1
+web_port=$((18000 + ($$ % 1000)))
+debug_port=$((19000 + ($$ % 1000)))
+PORT="$web_port" "$root/scripts/web-serve" "$build_dir" >"$log_dir/server.log" 2>&1 &
+server_pid=$!
+profile=$(mktemp -d)
+browser_pid=''
+cleanup() {
+  [[ -n "$browser_pid" ]] && kill "$browser_pid" 2>/dev/null || true
+  kill "$server_pid" 2>/dev/null || true
+  wait "$browser_pid" 2>/dev/null || true
+  wait "$server_pid" 2>/dev/null || true
+  rm -rf "$profile" || true
+}
+trap cleanup EXIT
+
+for _ in $(seq 1 50); do
+  curl --fail --silent "http://127.0.0.1:$web_port/" >/dev/null && break
+  sleep .1
+done
+curl --fail --silent "http://127.0.0.1:$web_port/" >/dev/null
+
+chromium --headless --no-sandbox --disable-gpu --use-angle=swiftshader \
+  --remote-debugging-port="$debug_port" --user-data-dir="$profile" about:blank \
+  >"$log_dir/chromium.log" 2>&1 &
+browser_pid=$!
+
+for _ in $(seq 1 100); do
+  curl --fail --silent "http://127.0.0.1:$debug_port/json/version" >/dev/null && break
+  sleep .1
+done
+curl --fail --silent "http://127.0.0.1:$debug_port/json/version" >/dev/null
+
+python3 - "$screenshot_dir" "$report_dir" "$web_port" "$debug_port" <<'PY'
+import base64
+import hashlib
+import json
+import sys
+import time
+import urllib.request
+from pathlib import Path
+
+screenshots = Path(sys.argv[1])
+reports = Path(sys.argv[2])
+web_port = int(sys.argv[3])
+debug_port = int(sys.argv[4])
+errors, console, failed, responses, requests = [], [], [], [], {}
+
+version = json.load(urllib.request.urlopen(f"http://127.0.0.1:{debug_port}/json/version"))
+request = urllib.request.Request(f"http://127.0.0.1:{debug_port}/json/new?http://127.0.0.1:{web_port}/", method="PUT")
+target = json.load(urllib.request.urlopen(request))
+ws_url = target["webSocketDebuggerUrl"]
+
+# Minimal RFC 6455 client; Chromium's local DevTools endpoint is the browser
+# automation transport, not a substitute for a browser.
+import os, socket, struct
+from urllib.parse import urlparse
+u = urlparse(ws_url)
+s = socket.create_connection((u.hostname, u.port))
+key = base64.b64encode(os.urandom(16)).decode()
+s.sendall((f"GET {u.path} HTTP/1.1\r\nHost: {u.hostname}:{u.port}\r\nUpgrade: websocket\r\nConnection: Upgrade\r\nSec-WebSocket-Key: {key}\r\nSec-WebSocket-Version: 13\r\n\r\n").encode())
+response = s.recv(4096)
+if b"101" not in response:
+    raise RuntimeError(f"DevTools WebSocket handshake failed: {response!r}")
+
+def send(payload):
+    raw = json.dumps(payload).encode()
+    mask = os.urandom(4)
+    header = bytearray([0x81])
+    if len(raw) < 126: header.append(0x80 | len(raw))
+    elif len(raw) < 65536: header.extend([0x80 | 126]); header.extend(struct.pack("!H", len(raw)))
+    else: header.extend([0x80 | 127]); header.extend(struct.pack("!Q", len(raw)))
+    masked = bytes(b ^ mask[i % 4] for i, b in enumerate(raw))
+    s.sendall(header + mask + masked)
+
+def recv():
+    first, second = s.recv(2)
+    length = second & 0x7f
+    if length == 126: length = struct.unpack("!H", s.recv(2))[0]
+    elif length == 127: length = struct.unpack("!Q", s.recv(8))[0]
+    data = b""
+    while len(data) < length: data += s.recv(length - len(data))
+    return json.loads(data)
+
+next_id = 1
+def command(method, params=None):
+    global next_id
+    ident = next_id; next_id += 1
+    send({"id": ident, "method": method, "params": params or {}})
+    while True:
+        message = recv()
+        if message.get("method") == "Runtime.consoleAPICalled": console.append(message["params"])
+        elif message.get("method") == "Runtime.exceptionThrown": errors.append(message["params"])
+        elif message.get("method") == "Network.requestWillBeSent":
+            requests[message["params"]["requestId"]] = message["params"]["request"]["url"]
+        elif message.get("method") == "Network.loadingFailed":
+            failure = message["params"]
+            failure["url"] = requests.get(failure["requestId"], "unknown")
+            failed.append(failure)
+        elif message.get("method") == "Network.responseReceived":
+            response = message["params"]["response"]
+            responses.append({"url": response["url"], "status": response["status"], "mimeType": response["mimeType"]})
+        elif message.get("id") == ident:
+            if "error" in message: raise RuntimeError(message["error"])
+            return message.get("result", {})
+
+command("Page.enable"); command("Runtime.enable"); command("Network.enable")
+command("Emulation.setDeviceMetricsOverride", {"width": 800, "height": 500, "deviceScaleFactor": 1, "mobile": False})
+command("Page.navigate", {"url": f"http://127.0.0.1:{web_port}/"})
+deadline = time.time() + 30
+ready = False
+last_result = None
+while time.time() < deadline:
+    result = command("Runtime.evaluate", {"expression": "document.querySelector('#status')?.dataset.chezState", "returnByValue": True})
+    last_result = result
+    if result.get("result", {}).get("value") == "ready":
+        ready = True; break
+    time.sleep(.2)
+if not ready:
+    raise RuntimeError(f"readiness marker did not become ready: result={last_result} console={console} errors={errors} failed={failed}")
+
+check = command("Runtime.evaluate", {"expression": "({state:document.querySelector('#status')?.dataset.chezState, text:document.querySelector('#output')?.textContent})", "returnByValue": True})
+value = check.get("result", {}).get("value")
+if not value or value["state"] != "ready" or "EXP-002-PB-BROWSER-OK" not in value["text"]:
+    raise RuntimeError(f"unexpected witness state: {value}")
+required = ("scheme.js", "scheme.data", "scheme.wasm")
+missing = [name for name in required if not any(r["url"].endswith(name) and 200 <= r["status"] < 300 for r in responses)]
+unexpected_failures = [failure for failure in failed if any(failure["url"].endswith(name) for name in required)]
+if errors or unexpected_failures or missing:
+    raise RuntimeError(f"browser diagnostics errors={errors} failed={failed} missing={missing}")
+
+data = command("Page.captureScreenshot", {"format": "png", "captureBeyondViewport": True, "fromSurface": True})["data"]
+output = screenshots / "page.png"
+output.write_bytes(base64.b64decode(data))
+
+console_messages = [
+    " ".join(str(arg.get("value", arg.get("description", ""))) for arg in entry.get("args", []))
+    for entry in console
+]
+report = {
+    "browser": version["Browser"], "userAgent": version["User-Agent"], "ready": ready,
+    "witness": value, "consoleMessages": console_messages, "pageErrors": errors,
+    "requestFailures": failed, "responses": responses,
+    "screenshots": {p.name: hashlib.sha256(p.read_bytes()).hexdigest() for p in screenshots.glob("*.png")},
+}
+(reports / "EXP-002-browser.json").write_text(json.dumps(report, indent=2) + "\n")
+print(json.dumps(report, indent=2))
+PY
 printf 'EXP-002 browser witness: PASS\n'
