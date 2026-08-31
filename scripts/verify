@@ -8,5 +8,10 @@ run() { local name=$1; shift; "$@" 2>&1 | tee "$log_dir/$name.log"; }
 run bootstrap "$root/scripts/bootstrap"
 run native "$root/scripts/test-native"
 run nrepl "$root/scripts/nrepl-smoke"
-printf 'PASS: Phase 0 native verification completed.\n' >"$summary"
+if [[ "${VERIFY_BROWSER:-0}" == 1 ]]; then
+  run raylib-web "$root/scripts/browser-smoke"
+else
+  printf 'SKIP raylib-web: set VERIFY_BROWSER=1 to run Chromium visual validation\n' | tee "$log_dir/raylib-web-skip.log"
+fi
+printf 'PASS: supported verification tiers completed.\n' >"$summary"
 printf 'Wrote %s\n' "$summary"

@@ -57,6 +57,7 @@
             packages = with pkgs; [
               bash
               chez
+              chromium
               cmake
               d2
               emscripten

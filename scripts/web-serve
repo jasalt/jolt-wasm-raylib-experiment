@@ -1,0 +1,36 @@
+#!/usr/bin/env bash
+# Serve generated web experiments locally with WebAssembly and pthread headers.
+set -euo pipefail
+
+root=$(CDPATH= cd -- "$(dirname -- "$0")/.." && pwd)
+directory=${1:-"$root/build/EXP-005-raylib-web"}
+port=${PORT:-8080}
+
+[[ -f "$directory/index.html" ]] || {
+  printf 'missing %s/index.html; run scripts/raylib-web-build first\n' "$directory" >&2
+  exit 1
+}
+
+exec python3 - "$directory" "$port" <<'PY'
+from http.server import SimpleHTTPRequestHandler, ThreadingHTTPServer
+from pathlib import Path
+import os
+import sys
+
+root = Path(sys.argv[1]).resolve()
+port = int(sys.argv[2])
+
+class Handler(SimpleHTTPRequestHandler):
+    extensions_map = {**SimpleHTTPRequestHandler.extensions_map, ".wasm": "application/wasm"}
+    def __init__(self, *args, **kwargs):
+        super().__init__(*args, directory=str(root), **kwargs)
+    def end_headers(self):
+        self.send_header("Cache-Control", "no-store")
+        self.send_header("Cross-Origin-Opener-Policy", "same-origin")
+        self.send_header("Cross-Origin-Embedder-Policy", "require-corp")
+        super().end_headers()
+
+server = ThreadingHTTPServer(("127.0.0.1", port), Handler)
+print(f"Serving {root} at http://127.0.0.1:{port}/", flush=True)
+server.serve_forever()
+PY

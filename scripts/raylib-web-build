@@ -1,0 +1,35 @@
+#!/usr/bin/env bash
+# Build the EXP-005 plain-C Raylib browser witness from pinned sources.
+set -euo pipefail
+
+root=$(CDPATH= cd -- "$(dirname -- "$0")/.." && pwd)
+source_dir="$root/experiments/EXP-005-raylib-web"
+build_dir="$root/build/EXP-005-raylib-web"
+raylib_source=${RAYLIB_SOURCE:?run through nix develop so RAYLIB_SOURCE is set}
+
+for command in emcc emar; do
+  command -v "$command" >/dev/null || {
+    printf 'missing required command: %s\n' "$command" >&2
+    exit 1
+  }
+done
+
+rm -rf "$build_dir"
+mkdir -p "$build_dir/raylib"
+
+raylib_modules=(rcore rshapes rtextures rtext rmodels raudio)
+for module in "${raylib_modules[@]}"; do
+  emcc -c "$raylib_source/src/$module.c" \
+    -o "$build_dir/raylib/$module.o" \
+    -Os -Wall -DPLATFORM_WEB -DGRAPHICS_API_OPENGL_ES2 \
+    -I"$raylib_source/src"
+done
+
+emar rcs "$build_dir/libraylib.a" "$build_dir"/raylib/*.o
+emcc "$source_dir/src/main.c" "$build_dir/libraylib.a" \
+  -o "$build_dir/index.html" \
+  -Os -Wall -DPLATFORM_WEB -DGRAPHICS_API_OPENGL_ES2 \
+  -I"$raylib_source/src" \
+  -sUSE_GLFW=3 -sASSERTIONS=1 -sWASM=1 \
+  --shell-file "$source_dir/web/shell.html"
+printf 'Built %s\n' "$build_dir/index.html"
