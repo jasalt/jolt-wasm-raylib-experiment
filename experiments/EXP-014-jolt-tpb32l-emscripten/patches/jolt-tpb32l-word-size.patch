@@ -1,0 +1,360 @@
+--- a/host/chez/hasheq.ss
++++ b/host/chez/hasheq.ss
+@@ -10,7 +10,6 @@
+-;; SOUNDNESS of #3% unsafe primitives: every primitive marked #3% below
+-;; operates on values that are PROVABLY fixnums — either masked to ≤32 bits
+-;; (fxand #xFFFFFFFF, fxand #xFFFF), the product of two ≤2^31 inputs (|p| ≤ 2^47
+-;; ≪ 2^60), or a fixnum loop index. The #3% prefix drops Chez's runtime fixnum?
+-;; check per call site, which is sound because (a) all intermediates are bounded
+-;; far below the 61-bit fixnum ceiling, and (b) the entry point (jolt-hasheq)
+-;; only reaches these paths after `fixnum?` guards or type dispatch.
++;; SOUNDNESS of #3% unsafe primitives: the hash-fx* wrappers below select them
++;; only when the complete unsigned 32-bit window is a fixnum. On those machines,
++;; every operand is provably a fixnum — either masked to ≤32 bits, the product of
++;; bounded 32-bit pieces (≤2^48), or a loop index. On 32-bit Chez, the wrappers
++;; select generic exact-integer operations because valid Java int values exceed
++;; the target's 29-bit positive fixnum range.
+@@ -49,0 +49,36 @@
++;; A Java int fits Chez's fixnum domain on 64-bit machines but not on 32-bit
++;; machines, whose positive fixnum ceiling is 2^29-1. Keep the measured unsafe
++;; fast path where the complete unsigned 32-bit window is a fixnum and select
++;; generic exact-integer operations otherwise. The target compiler can fold the
++;; literal fixnum? test, so 64-bit generated code retains the existing fx chain.
++(define-syntax hash-fx>=?
++  (syntax-rules () ((_ a b) (if (fixnum? #xFFFFFFFF) (#3%fx>=? a b) (>= a b)))))
++(define-syntax hash-fx<?
++  (syntax-rules () ((_ a b) (if (fixnum? #xFFFFFFFF) (#3%fx<? a b) (< a b)))))
++(define-syntax hash-fx=?
++  (syntax-rules () ((_ a b) (if (fixnum? #xFFFFFFFF) (#3%fx=? a b) (= a b)))))
++(define-syntax hash-fx+
++  (syntax-rules () ((_ a b) (if (fixnum? #xFFFFFFFF) (#3%fx+ a b) (+ a b)))))
++(define-syntax hash-fx-
++  (syntax-rules () ((_ a b) (if (fixnum? #xFFFFFFFF) (#3%fx- a b) (- a b)))))
++(define-syntax hash-fx*
++  (syntax-rules () ((_ a b) (if (fixnum? #xFFFFFFFF) (#3%fx* a b) (* a b)))))
++(define-syntax hash-fxand
++  (syntax-rules () ((_ a b) (if (fixnum? #xFFFFFFFF) (#3%fxand a b) (bitwise-and a b)))))
++(define-syntax hash-fxior
++  (syntax-rules () ((_ a b) (if (fixnum? #xFFFFFFFF) (#3%fxior a b) (bitwise-ior a b)))))
++(define-syntax hash-fxxor
++  (syntax-rules () ((_ a b) (if (fixnum? #xFFFFFFFF) (#3%fxxor a b) (bitwise-xor a b)))))
++(define-syntax hash-fxsll
++  (syntax-rules ()
++    ((_ a b) (if (fixnum? #xFFFFFFFF) (#3%fxsll a b)
++                 (bitwise-arithmetic-shift-left a b)))))
++(define-syntax hash-fxsra
++  (syntax-rules ()
++    ((_ a b) (if (fixnum? #xFFFFFFFF) (#3%fxsra a b)
++                 (bitwise-arithmetic-shift-right a b)))))
++(define-syntax hash-fxsrl
++  (syntax-rules ()
++    ((_ a b) (if (fixnum? #xFFFFFFFF) (#3%fxsrl a b)
++                 (bitwise-arithmetic-shift-right a b)))))
++
+@@ -61,3 +96,3 @@
+-;; What the fx forms below rely on is the OUTPUT: (u32 x) is always in
+-;; [0, 2^32-1] and therefore a fixnum, whatever came in. That is what makes
+-;; i32/urs32/rotl32 safe to build on with unsafe fx ops.
++;; The output is always in [0, 2^32-1]. hash-fx* exploits that as a fixnum
++;; invariant only on wide-fixnum machines and uses generic exact arithmetic on
++;; narrower targets.
+@@ -72 +107 @@
+-             (if (#3%fx>=? u #x80000000) (#3%fx- u #x100000000) u)))))
++             (if (hash-fx>=? u #x80000000) (hash-fx- u #x100000000) u)))))
+@@ -74 +109,3 @@
+-;; 32-bit wrapping multiply — fixnum-pure via 16-bit split.
++;; 32-bit wrapping multiply via a 16-bit split. On a wide-fixnum target the
++;; selected fast path is fixnum-pure; on a narrow target the same bounded
++;; intermediates use generic exact arithmetic.
+@@ -79,6 +116,6 @@
+-;;   (#3%fx* a hi) : |a| ≤ 2^31, hi ≤ 0xFFFF → |p| ≤ 2^47        ≪ 2^60  ✓
+-;;   (#3%fxand p #xFFFF) ∈ [0, 0xFFFF]                              ≪ 2^60  ✓
+-;;   (#3%fxsll ... 16)  ∈ [0, 0xFFFF0000] ≤ 2^32                   ≪ 2^60  ✓
+-;;   (#3%fx* a lo) : |a| ≤ 2^31, lo ≤ 0xFFFF → |p| ≤ 2^47          ≪ 2^60  ✓
+-;;   (#3%fx+ hi_part lo_part) : each ≤ max(2^32, 2^47) = 2^47 → sum ≤ 2^48 ≪ 2^60 ✓
+-;;   final (#3%fxand sum #xFFFFFFFF) ∈ [0, 2^32−1]                  ≪ 2^60  ✓
++;;   (hash-fx* a hi) : |a| ≤ 2^31, hi ≤ 0xFFFF → |p| ≤ 2^47        ≪ 2^60  ✓
++;;   (hash-fxand p #xFFFF) ∈ [0, 0xFFFF]                              ≪ 2^60  ✓
++;;   (hash-fxsll ... 16)  ∈ [0, 0xFFFF0000] ≤ 2^32                   ≪ 2^60  ✓
++;;   (hash-fx* a lo) : |a| ≤ 2^31, lo ≤ 0xFFFF → |p| ≤ 2^47          ≪ 2^60  ✓
++;;   (hash-fx+ hi_part lo_part) : each ≤ max(2^32, 2^47) = 2^47 → sum ≤ 2^48 ≪ 2^60 ✓
++;;   final (hash-fxand sum #xFFFFFFFF) ∈ [0, 2^32−1]                  ≪ 2^60  ✓
+@@ -92,5 +129,5 @@
+-            (hi (#3%fxand (#3%fxsra b* 16) #xFFFF))
+-            (lo (#3%fxand b* #xFFFF))
+-            (hi-part (#3%fxsll (#3%fxand (#3%fx* a* hi) #xFFFF) 16))
+-            (lo-part (#3%fx* a* lo)))
+-       (i32 (#3%fxand (#3%fx+ hi-part lo-part) #xFFFFFFFF))))))
++            (hi (hash-fxand (hash-fxsra b* 16) #xFFFF))
++            (lo (hash-fxand b* #xFFFF))
++            (hi-part (hash-fxsll (hash-fxand (hash-fx* a* hi) #xFFFF) 16))
++            (lo-part (hash-fx* a* lo)))
++       (i32 (hash-fxand (hash-fx+ hi-part lo-part) #xFFFFFFFF))))))
+@@ -101 +138 @@
+-    ((_ a b) (i32 (#3%fx+ (i32 a) (i32 b))))))
++    ((_ a b) (i32 (hash-fx+ (i32 a) (i32 b))))))
+@@ -108 +145 @@
+-    ((_ x n) (#3%fxsrl (u32 x) n))))
++    ((_ x n) (hash-fxsrl (u32 x) n))))
+@@ -133,3 +170,3 @@
+-            (lo (#3%fxsll (#3%fxand x* (#3%fxsrl #xFFFFFFFF n*)) n*))
+-            (hi (#3%fxsrl x* (#3%fx- 32 n*))))
+-       (i32 (#3%fxior lo hi))))))
++            (lo (hash-fxsll (hash-fxand x* (hash-fxsrl #xFFFFFFFF n*)) n*))
++            (hi (hash-fxsrl x* (hash-fx- 32 n*))))
++       (i32 (hash-fxior lo hi))))))
+@@ -158 +195 @@
+-  (let* ((h1 (#3%fxxor h1 k1))
++  (let* ((h1 (hash-fxxor h1 k1))
+@@ -164,2 +201,2 @@
+-  (let* ((h1 (#3%fxxor h1 len))
+-         (h1 (#3%fxxor h1 (urs32 h1 16)))
++  (let* ((h1 (hash-fxxor h1 len))
++         (h1 (hash-fxxor h1 (urs32 h1 16)))
+@@ -167 +204 @@
+-         (h1 (#3%fxxor h1 (urs32 h1 13)))
++         (h1 (hash-fxxor h1 (urs32 h1 13)))
+@@ -169 +206 @@
+-         (h1 (#3%fxxor h1 (urs32 h1 16))))
++         (h1 (hash-fxxor h1 (urs32 h1 16))))
+@@ -190 +227 @@
+-    ((_ h k) (let* ((h1 (#3%fxxor h k))
++    ((_ h k) (let* ((h1 (hash-fxxor h k))
+@@ -195,2 +232,2 @@
+-    ((_ h len) (let* ((h1 (#3%fxxor h len))
+-                      (h1 (#3%fxxor h1 (urs32 h1 16)))
++    ((_ h len) (let* ((h1 (hash-fxxor h len))
++                      (h1 (hash-fxxor h1 (urs32 h1 16)))
+@@ -198 +235 @@
+-                      (h1 (#3%fxxor h1 (urs32 h1 13)))
++                      (h1 (hash-fxxor h1 (urs32 h1 13)))
+@@ -200 +237 @@
+-                 (#3%fxxor h1 (urs32 h1 16))))))
++                 (hash-fxxor h1 (urs32 h1 16))))))
+@@ -218 +255 @@
+-  (if (#3%fx=? input 0) 0
++  (if (hash-fx=? input 0) 0
+@@ -226 +263 @@
+-             (h1 (#3%fxxor murmur3-seed k1))
++             (h1 (hash-fxxor murmur3-seed k1))
+@@ -234 +271 @@
+-             (h1 (#3%fxxor h1 k1))
++             (h1 (hash-fxxor h1 k1))
+@@ -238,2 +275,2 @@
+-             (h1 (#3%fxxor h1 8))
+-             (h1 (#3%fxxor h1 (urs32 h1 16)))
++             (h1 (hash-fxxor h1 8))
++             (h1 (hash-fxxor h1 (urs32 h1 16)))
+@@ -241 +278 @@
+-             (h1 (#3%fxxor h1 (urs32 h1 13)))
++             (h1 (hash-fxxor h1 (urs32 h1 13)))
+@@ -243 +280 @@
+-             (h1 (#3%fxxor h1 (urs32 h1 16))))
++             (h1 (hash-fxxor h1 (urs32 h1 16))))
+@@ -283 +320 @@
+-      (if (#3%fx>=? i len)
++      (if (hash-fx>=? i len)
+@@ -286,3 +323,3 @@
+-            (if (#3%fx<? cp #x10000)
+-                (loop (#3%fx+ i 1) (i32 (#3%fx+ (#3%fx* 31 h) cp)))
+-                (let* ((cp2 (#3%fx- cp #x10000))
++            (if (hash-fx<? cp #x10000)
++                (loop (hash-fx+ i 1) (i32 (hash-fx+ (hash-fx* 31 h) cp)))
++                (let* ((cp2 (hash-fx- cp #x10000))
+@@ -291,2 +328,2 @@
+-                  (let ((h* (i32 (#3%fx+ (#3%fx* 31 h) high))))
+-                    (loop (#3%fx+ i 1) (i32 (#3%fx+ (#3%fx* 31 h*) low)))))))))))
++                  (let ((h* (i32 (hash-fx+ (hash-fx* 31 h) high))))
++                    (loop (hash-fx+ i 1) (i32 (hash-fx+ (hash-fx* 31 h*) low)))))))))))
+@@ -313 +350 @@
+-      (if (#3%fx>=? i len)
++      (if (hash-fx>=? i len)
+@@ -317,3 +354,3 @@
+-                     (h1 (#3%fxxor h1 k1)))
+-                (murmur3-fmix-flat h1 (#3%fx* 2 (#3%fx+ count 1))))
+-              (murmur3-fmix-flat h1 (#3%fx* 2 count)))
++                     (h1 (hash-fxxor h1 k1)))
++                (murmur3-fmix-flat h1 (hash-fx* 2 (hash-fx+ count 1))))
++              (murmur3-fmix-flat h1 (hash-fx* 2 count)))
+@@ -321 +358 @@
+-            (if (#3%fx<? cp #x10000)
++            (if (hash-fx<? cp #x10000)
+@@ -326 +363 @@
+-                                (#3%fxior pending (#3%fxsll cp 16))))
++                                (hash-fxior pending (hash-fxsll cp 16))))
+@@ -328 +365 @@
+-                      (loop (#3%fx+ i 1) h1 #f (#3%fx+ count 2)))
++                      (loop (hash-fx+ i 1) h1 #f (hash-fx+ count 2)))
+@@ -330 +367 @@
+-                    (loop (#3%fx+ i 1) h1 cp count))
++                    (loop (hash-fx+ i 1) h1 cp count))
+@@ -332 +369 @@
+-                (let* ((cp2 (#3%fx- cp #x10000))
++                (let* ((cp2 (hash-fx- cp #x10000))
+@@ -338 +375 @@
+-                                  (#3%fxior pending (#3%fxsll high 16))))
++                                  (hash-fxior pending (hash-fxsll high 16))))
+@@ -340 +377 @@
+-                        (loop (#3%fx+ i 1) h1 low (#3%fx+ count 2)))
++                        (loop (hash-fx+ i 1) h1 low (hash-fx+ count 2)))
+@@ -343 +380 @@
+-                                  (#3%fxior high (#3%fxsll low 16))))
++                                  (hash-fxior high (hash-fxsll low 16))))
+@@ -345 +382 @@
+-                        (loop (#3%fx+ i 1) h1 #f (#3%fx+ count 2)))))))))))
++                        (loop (hash-fx+ i 1) h1 #f (hash-fx+ count 2)))))))))))
+@@ -420,2 +457,2 @@
+-              (#3%fx+ n 1)
+-              (i32 (#3%fx+ (#3%fx* 31 h) (jolt-hasheq (seq-first xs))))))))
++              (hash-fx+ n 1)
++              (i32 (hash-fx+ (hash-fx* 31 h) (jolt-hasheq (seq-first xs))))))))
+@@ -426,2 +463,2 @@
+-  (let* ((h1 (i32 (#3%fx+ 31 (jolt-hasheq k))))
+-         (h2 (i32 (#3%fx+ (#3%fx* 31 h1) (jolt-hasheq v)))))
++  (let* ((h1 (i32 (hash-fx+ 31 (jolt-hasheq k))))
++         (h2 (i32 (hash-fx+ (hash-fx* 31 h1) (jolt-hasheq v)))))
+@@ -436 +473 @@
+-                (#3%fx+ n 1)
++                (hash-fx+ n 1)
+@@ -460,4 +497,4 @@
+-         (sl   (i32 (#3%fxsll seed 6)))
+-         (sr   (#3%fxsra seed 2))
+-         (sum  (i32 (#3%fx+ (i32 (#3%fx+ hash #x9e3779b9)) (i32 (#3%fx+ sl sr)))))
+-         (result (#3%fxxor seed sum)))
++         (sl   (i32 (hash-fxsll seed 6)))
++         (sr   (hash-fxsra seed 2))
++         (sum  (i32 (hash-fx+ (i32 (hash-fx+ hash #x9e3779b9)) (i32 (hash-fx+ sl sr)))))
++         (result (hash-fxxor seed sum)))
+@@ -653 +690 @@
+-                                 (i32 (#3%fx+ (#3%fx* 31 h)
++                                 (i32 (hash-fx+ (hash-fx* 31 h)
+--- a/host/chez/collections.ss
++++ b/host/chez/collections.ss
+@@ -672,3 +672,25 @@
+-;; bitwise-and (not fxand): jolt-hasheq returns a signed 32-bit int, so it's
+-;; always a fixnum. But keep the generic fallback for extension types that might
+-;; return bignums via equal-hash.
++
++;; HAMT hashes and bitmaps span all 32 bits. Select the existing fx fast path on
++;; a wide-fixnum machine and exact-integer operations on 32-bit Chez, where bit
++;; 30 and many valid signed int hashes are bignums.
++(define-syntax hamt-and
++  (syntax-rules () ((_ a b) (if (fixnum? hmask) (fxand a b) (bitwise-and a b)))))
++(define-syntax hamt-ior
++  (syntax-rules () ((_ a b) (if (fixnum? hmask) (fxior a b) (bitwise-ior a b)))))
++(define-syntax hamt-not
++  (syntax-rules () ((_ a) (if (fixnum? hmask) (fxnot a) (bitwise-not a)))))
++(define-syntax hamt-sll
++  (syntax-rules ()
++    ((_ a b) (if (fixnum? hmask) (fxsll a b)
++                 (bitwise-arithmetic-shift-left a b)))))
++(define-syntax hamt-sra
++  (syntax-rules ()
++    ((_ a b) (if (fixnum? hmask) (fxsra a b)
++                 (bitwise-arithmetic-shift-right a b)))))
++(define-syntax hamt-popcount
++  (syntax-rules ()
++    ((_ a) (if (fixnum? hmask) (fxbit-count a) (bitwise-bit-count a)))))
++
++;; bitwise-and (not fxand): jolt-hasheq returns a signed 32-bit int, which
++;; is not necessarily a fixnum on a 32-bit machine. Keep the generic fallback
++;; for those values and for extension types that return bignums via equal-hash.
+@@ -680,5 +702,5 @@
+-    (if (fixnum? h) (fxand h hmask) (bitwise-and h hmask))))
+-(define (chunk h shift) (fxand (fxsra h shift) 31))
+-(define (bitpos h shift) (fxsll 1 (chunk h shift)))
+-(define (popcount n) (fxbit-count n))
+-(define (arr-index bm bit) (popcount (fxand bm (fx- bit 1))))
++    (hamt-and h hmask)))
++(define (chunk h shift) (hamt-and (hamt-sra h shift) 31))
++(define (bitpos h shift) (hamt-sll 1 (chunk h shift)))
++(define (popcount n) (hamt-popcount n))
++(define (arr-index bm bit) (popcount (hamt-and bm (- bit 1))))
+@@ -699 +721 @@
+-    (if (or (fx>? shift max-shift) (fx=? eh h))
++    (if (or (fx>? shift max-shift) (= eh h))
+@@ -703,2 +725,2 @@
+-              (make-hnode (fxsll 1 ei) (vector (split-leaf (fx+ shift 5) ek ev h k v)))
+-              (let ((eb (fxsll 1 ei)) (nb (fxsll 1 ni)))
++              (make-hnode (hamt-sll 1 ei) (vector (split-leaf (fx+ shift 5) ek ev h k v)))
++              (let ((eb (hamt-sll 1 ei)) (nb (hamt-sll 1 ni)))
+@@ -706,2 +728,2 @@
+-                    (make-hnode (fxior eb nb) (vector (cons ek ev) (cons k v)))
+-                    (make-hnode (fxior eb nb) (vector (cons k v) (cons ek ev))))))))))
++                    (make-hnode (hamt-ior eb nb) (vector (cons ek ev) (cons k v)))
++                    (make-hnode (hamt-ior eb nb) (vector (cons k v) (cons ek ev))))))))))
+@@ -711 +733 @@
+-    (if (fx=? 0 (fxand bm bit))
++    (if (= 0 (hamt-and bm bit))
+@@ -713 +735 @@
+-               (make-hnode (fxior bm bit) (vec-insert arr (arr-index bm bit) (cons k v))))
++               (make-hnode (hamt-ior bm bit) (vec-insert arr (arr-index bm bit) (cons k v))))
+@@ -730 +752 @@
+-    (if (fx=? 0 (fxand bm bit)) default
++    (if (= 0 (hamt-and bm bit)) default
+@@ -742 +764 @@
+-    (if (fx=? 0 (fxand bm bit)) #f
++    (if (= 0 (hamt-and bm bit)) #f
+@@ -751 +773 @@
+-    (if (fx=? 0 (fxand bm bit)) node
++    (if (= 0 (hamt-and bm bit)) node
+@@ -759 +781 @@
+-                          (cond ((null? nal) (make-hnode (fxand bm (fxnot bit)) (vec-remove arr i)))
++                          (cond ((null? nal) (make-hnode (hamt-and bm (hamt-not bit)) (vec-remove arr i)))
+@@ -764 +786 @@
+-             (set-box! removed #t) (make-hnode (fxand bm (fxnot bit)) (vec-remove arr i)))
++             (set-box! removed #t) (make-hnode (hamt-and bm (hamt-not bit)) (vec-remove arr i)))
+@@ -842 +864 @@
+-    (if (fx=? 0 (fxand bm bit))
++    (if (= 0 (hamt-and bm bit))
+@@ -845 +867 @@
+-               (enode-bm-set! nd (fxior bm bit)))
++               (enode-bm-set! nd (hamt-ior bm bit)))
+@@ -872 +894 @@
+-    (unless (fx=? 0 (fxand bm bit))
++    (unless (= 0 (hamt-and bm bit))
+@@ -883 +905 @@
+-               (cond ((null? nal) (enode-remove! nd i) (enode-bm-set! nd (fxand bm (fxnot bit))))
++               (cond ((null? nal) (enode-remove! nd i) (enode-bm-set! nd (hamt-and bm (hamt-not bit))))
+@@ -889 +911 @@
+-           (enode-bm-set! nd (fxand bm (fxnot bit)))))))))
++           (enode-bm-set! nd (hamt-and bm (hamt-not bit)))))))))
+@@ -900 +922 @@
+-        (if (fx=? 0 (fxand bm bit))
++        (if (= 0 (hamt-and bm bit))
+@@ -1022 +1044 @@
+-        (let ((h (fxand h hmask)))
++        (let ((h (hamt-and h hmask)))
+@@ -1024 +1046 @@
+-            (let* ((bit (fxsll 1 (fxand (fxsra h shift) 31)))
++            (let* ((bit (hamt-sll 1 (hamt-and (hamt-sra h shift) 31)))
+@@ -1026 +1048 @@
+-              (if (fx=? 0 (fxand bm bit)) d
++              (if (= 0 (hamt-and bm bit)) d
+@@ -1028 +1050 @@
+-                                           (fxbit-count (fxand bm (fx- bit 1))))))
++                                           (hamt-popcount (hamt-and bm (- bit 1))))))
+--- /dev/null
++++ b/test/chez/tpb32l-hash-test.ss
+@@ -0,0 +1,21 @@
++;; Regression for Jolt's narrow-fixnum Chez hash paths.
++;; Run from the Jolt root with a generated tpb32l interpreter:
++;;   /path/to/tpb32l/bin/tpb32l/scheme --script test/chez/tpb32l-hash-test.ss
++(import (chezscheme))
++(load "host/chez/scheme-adapter-runtime.ss")
++(load "host/chez/locks.ss")
++(load "host/chez/values.ss")
++(load "host/chez/hasheq.ss")
++
++(define (check name got want)
++  (unless (= got want)
++    (error 'tpb32l-hash-test name got want)))
++
++(unless (eq? (machine-type) 'tpb32l)
++  (error 'tpb32l-hash-test "this regression requires the 32-bit threaded PB target" (machine-type)))
++(check "hash int" (murmur3-hash-long-flat 1) 1392991556)
++(check "hash signed" (murmur3-hash-long-flat 100) -970256272)
++(check "32-bit fold" (i32 #xFFFFFFFF) -1)
++(check "32-bit multiply" (mul32 #x7FFFFFFF 31) 2147483617)
++(check "hash string" (murmur3-hash-unencoded-chars "select") 203636772)
++(display "TPB32L-HASH-OK\n")

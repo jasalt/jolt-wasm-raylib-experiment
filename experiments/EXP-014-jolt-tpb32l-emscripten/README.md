@@ -25,10 +25,17 @@ No result is inferred from the already-proven native `tpb64l` control.
 The full proposed procedure and gate definitions are in
 [`../../EXP-014-jolt-tpb32l-emscripten/PLAN.md`](../../EXP-014-jolt-tpb32l-emscripten/PLAN.md).
 
+Current boundary: `tpb32l` boots **yes**; threaded Chez/Node **yes**, fixed pool
+1; genuine patched Jolt boot minted **yes**; Jolt/Node **no**; Chez/Chromium,
+Jolt/Chromium, cross-origin isolation, and Petite **not run**. The first blocker
+is now Jolt's eager POSIX FFI setup on a portable-bytecode kernel without
+libffi, not the repaired 32-bit hash/HAMT assumptions.
+
 ## Minimal reproduction
 
 ```sh
-nix develop -c ./experiments/EXP-014-jolt-tpb32l-emscripten/commands.sh control
+nix develop -c ./experiments/EXP-014-jolt-tpb32l-emscripten/commands.sh host64-pack
+nix develop -c ./experiments/EXP-014-jolt-tpb32l-emscripten/commands.sh jolt-mint
 ```
 
 The command records the current Nix-shell environment and reruns the narrow
@@ -94,57 +101,71 @@ as an `ENVIRONMENT` issue and was not treated as a Chez result.
 
 ## Result
 
-**T0–T2 PASS / T3 reduced blocker.** The current workspace retains the known
-non-threaded Jolt boundary, stock pinned Chez generated `tpb32l` boot and
-cross-compilation material, an actual 32-bit native threaded target completed
-deterministic cross-thread communication, and the same witness completed
-through the Emscripten pthread module under Node.
+**T0–T2 PASS / Jolt boot minting repaired / T3 next blocker reduced.** The
+current workspace retains the known non-threaded Jolt boundary, stock pinned
+Chez generated `tpb32l` material, a deterministic native threaded target, and
+the same witness under Emscripten pthreads/Node.
 
-**Observed 2026-08-31 — Jolt boot minting:** the exact unchanged Jolt
-`app.witness` build was invoked with a pack assembled from the generated
-`tpb32l` target and the locked i686 compiler. It stopped before `flat.ss`,
-FASL, application boot, or Emscripten preload creation with:
+**Historical no-patch failure:** running Jolt's machine-neutral source-emission
+stages on the target's 32-bit interpreter stopped before `flat.ss` at
+`fx>=?: 2147483648 is not a fixnum` (exit 255). That invocation did not follow
+Jolt's documented host/target split. A `tpb64l` host with its own
+`tpb32l` xpatch correctly emits target `flat.ss`, FASL, and boot.
+
+**Observed 2026-08-31 — sustainable word-size patch:** stock emitted runtime
+then exposed two real narrow-fixnum assumptions: `murmur3-seed` remained
+unbound after unsafe 32-bit hash operations, followed by `fxsll` overflow at
+HAMT bit 30 under a correctness-first reduction. The experiment-local patch
+selects the existing unsafe hash/HAMT path only when all unsigned 32-bit values
+fit a Chez fixnum and otherwise uses exact-integer operations. It changes no
+thread or integer semantics. Native `tpb64l` hash tests pass 60/60 and the
+actual `tpb32l` regression prints `TPB32L-HASH-OK`.
+
+The patched exact-revision Jolt runtime with unchanged `app.witness` now mints:
 
 ```text
-Exception in fx>=?: 2147483648 is not a fixnum
-exit_status=255
+flat.ss  SHA-256 485cc3a5150486eaa4afbeb9db9824273126f1cb908afc5b2db71e45a7251f7b
+flat.so  SHA-256 c678818c0f95ae9942cb70c99a90f4a47452ee06dacc8b396b447c29f0f56e98
+jolt.boot SHA-256 dc710819041cb11716d3b962c5c5fba3281f6c12d9694b9a88a4026b7a2b6fa0
 ```
 
-The target runtime independently reports `machine=tpb32l`, `threaded=#t`, and
-`most-positive-fixnum=536870911`; evaluating `(fx>=? 2147483648 0)` reproduces
-the same primitive error. This is a reduced **`JOLT_CHEZ_HOST`** 32-bit-fixnum
-compatibility blocker, not a pthread, linker, or browser result. The same
-Jolt fixture source is `flat.ss` SHA-256
-`a612c0677a16e318a7ec6f2fd6cff3a740c9dffaa5f8c8e2c407c2d199b4e9d4`
-from EXP-004, but no target `flat.ss` was emitted in this run. T3 through T6
-are not established.
+The resulting native 32-bit application advances past the repaired hash/HAMT
+startup and next aborts at Chez `foreign-procedure` with `protocol not
+supported (libffi unavailable)`, exit 134. This is the new reduced
+**`JOLT_CHEZ_HOST / FFI capability`** boundary. T3 is still not established,
+and no Emscripten Jolt run is claimed.
 
 | Gate | Result | Evidence |
 | --- | --- | --- |
 | T0 generated `tpb32l` boots | PASS | bootquick log/files/hashes |
 | T1 native thread witness | PASS | native thread log |
 | T2 Emscripten Chez / Node | PASS | Node/build logs |
-| T3 Jolt / Node | FAIL / reduced `JOLT_CHEZ_HOST` | Jolt compile/fixnum logs |
+| T3 Jolt / Node | FAIL / boot minted; next FFI blocker | patched mint/native logs |
 | T4 Chez / Chromium | not run | — |
 | T5 Jolt / Chromium | not run | — |
 | T6 Petite Jolt / Chromium | not run | — |
 
 ## Suspected layer
 
-The retained control is `JOLT_THREADLESS_ADAPTER` on `pb`. It does not classify
-the untested `tpb32l` route.
+The retained `pb` control remains `JOLT_THREADLESS_ADAPTER`. On `tpb32l`, the
+word-size defect is repaired and boot minting passes; the current blocker is
+`JOLT_CHEZ_HOST / FFI capability`, before application entry and independently
+of pthread execution.
 
 ## Workaround or next experiment
 
-The first remaining blocker is Jolt's `fx>=?` use of `2147483648` on the
-actual 32-bit target. Reduce or fix that Jolt/Chez-host compatibility without
-weakening Jolt semantics before reopening T3. Do not add `PROXY_TO_PTHREAD`,
-substitute a host Scheme, or mix in Raylib/FFI work.
+Reduce why Jolt's guarded POSIX foreign-procedure setup aborts rather than
+degrading on the no-libffi portable-bytecode kernel. Determine which eager
+signature is first and whether the sustainable correction is lazy capability
+initialization or explicit static target registration. Do not add libffi to
+Emscripten by assumption, no-op FFI, alter threads, add `PROXY_TO_PTHREAD`, or
+mix in Raylib work.
 
 ## Upstream suitability
 
-No upstream patch is proposed. See [`patches/README.md`](patches/README.md) for
-the no-patch discipline.
+The exact-base, regression-covered patch is proposed for upstream review. See
+[`patches/README.md`](patches/README.md) for its rationale, changed files,
+validation, and remaining boundary.
 
 ## Artifacts and hashes
 
@@ -172,10 +193,26 @@ Ignored reproducibility logs created by `control`:
   `b739d6d84ff9076e36819945d668f2c66ee23da8b50b915c41e8aef8607c8126`,
   `1c24a015d26cc143caea9b05f334a9a9be5160d3670ac0536aab9a32a9e7e59c`,
   and `7d6e47c2d91aad482b53ff7199a535eeb644834acc45ebd43b6a8b1f16024ac6`.
-- `artifacts/logs/EXP-014/jolt-tpb32l-compile.log` — exact no-patch Jolt
+- `artifacts/logs/EXP-014/jolt-tpb32l-compile.log` — historical target-host Jolt
   invocation and the `fx>=?` failure, exit 255.
 - `artifacts/logs/EXP-014/tpb32l-fixnum-boundary.log` — target machine,
   threaded state, maximum fixnum, and minimal primitive reproduction.
+- `artifacts/logs/EXP-014/host64-build-and-bootquick.log` and
+  `host64-target-kernel.log` — one exact Chez tree built as the `tpb64l` host,
+  generated its `tpb32l` xpatch, and built the target kernel. Pack xpatch,
+  Petite boot, Scheme boot, and kernel hashes are respectively
+  `510a781d1a279b631decc4624b9dfb77053b7918151321be1e982868ee70b3be`,
+  `bc9a40acebed0d2436b654d61ea68bb3860a87b457dd33a22f1b6bfa3d3467e5`,
+  `4a9aeb030e6ba4845e7e31ac7280a5e143d3b2476c144450e58e3d0353547e90`,
+  and `5c92b7db4468955a4dabc263614da314cb77fa46166f58700f4957bb18383f83`.
+- `artifacts/logs/EXP-014/host64-hasheq-test.log` — 60/60 existing hash checks.
+- `artifacts/logs/EXP-014/tpb32l-hash-test.log` — `TPB32L-HASH-OK`, exit 0.
+- `artifacts/logs/EXP-014/jolt-tpb32l-patched-mint.log` — genuine target FASL
+  and boot minting, exit 0.
+- `artifacts/logs/EXP-014/jolt-tpb32l-patched-native-run.log` — first later FFI
+  capability failure, exit 134.
+- `experiments/EXP-014-jolt-tpb32l-emscripten/patches/jolt-tpb32l-word-size.patch`
+  — SHA-256 `d9d26bd2192be705d5f028683a1ddeca060bd095e9ff27807b071b95edad60be`.
 - `artifacts/logs/EXP-014/emscripten-thread-pool-1-build.log` — stock pinned
   Chez configured `--emscripten --threads --pbarch --emboot=witness-thread.boot`
   with named `-s PTHREAD_POOL_SIZE=1`; compile and final link both contain
