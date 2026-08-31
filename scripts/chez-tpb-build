@@ -1,0 +1,16 @@
+#!/usr/bin/env bash
+# Build the stock threaded 32-bit little-endian portable-bytecode target.
+set -euo pipefail
+root=$(CDPATH= cd -- "$(dirname -- "$0")/.." && pwd)
+source=${CHEZ_SOURCE:?run through nix develop so CHEZ_SOURCE is set}
+work="$root/build/EXP-003-jolt-tpb32l/source"
+log="$root/artifacts/logs/EXP-003/build.log"
+mkdir -p "$(dirname "$log")"
+rm -rf "$work"; mkdir -p "$work"
+cp -RL "$source/." "$work"; chmod -R u+w "$work"
+{
+  cd "$work"
+  ./configure --threads --pbarch --disable-x11 --disable-curses
+  make -j"${JOBS:-2}"
+} 2>&1 | tee "$log"
+printf 'Built %s/bin/tpb32l/scheme\n' "$work"
