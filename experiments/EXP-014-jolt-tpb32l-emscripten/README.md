@@ -26,16 +26,15 @@ The full proposed procedure and gate definitions are in
 [`../../EXP-014-jolt-tpb32l-emscripten/PLAN.md`](../../EXP-014-jolt-tpb32l-emscripten/PLAN.md).
 
 Current boundary: `tpb32l` boots **yes**; threaded Chez/Node **yes**, fixed pool
-1; genuine patched Jolt boot minted **yes**; Jolt/Node **no**; Chez/Chromium,
-Jolt/Chromium, cross-origin isolation, and Petite **not run**. The first blocker
-is now Jolt's eager POSIX FFI setup on a portable-bytecode kernel without
-libffi, not the repaired 32-bit hash/HAMT assumptions.
+1; genuine patched Jolt boot minted **yes**; Jolt/Node **yes**, canonical
+output parity, exit 0; Chez/Chromium, Jolt/Chromium, cross-origin isolation,
+and Petite **not run**. The first blocker is now browser pthread workers (T4/T5),
+not the repaired 32-bit hash/HAMT assumptions or the libffi FFI capability.
 
 ## Minimal reproduction
 
 ```sh
-nix develop -c ./experiments/EXP-014-jolt-tpb32l-emscripten/commands.sh host64-pack
-nix develop -c ./experiments/EXP-014-jolt-tpb32l-emscripten/commands.sh jolt-mint
+nix develop -c ./experiments/EXP-014-jolt-tpb32l-emscripten/commands.sh jolt-node
 ```
 
 The command records the current Nix-shell environment and reruns the narrow
@@ -101,10 +100,10 @@ as an `ENVIRONMENT` issue and was not treated as a Chez result.
 
 ## Result
 
-**T0–T2 PASS / Jolt boot minting repaired / T3 next blocker reduced.** The
-current workspace retains the known non-threaded Jolt boundary, stock pinned
-Chez generated `tpb32l` material, a deterministic native threaded target, and
-the same witness under Emscripten pthreads/Node.
+**T0–T3 PASS.** The current workspace retains the known non-threaded Jolt
+boundary, stock pinned Chez generated `tpb32l` material, a deterministic
+native threaded target, the same witness under Emscripten pthreads/Node, and
+genuine Jolt under threaded Node Wasm with canonical output parity.
 
 **Historical no-patch failure:** running Jolt's machine-neutral source-emission
 stages on the target's 32-bit interpreter stopped before `flat.ss` at
@@ -121,26 +120,30 @@ fit a Chez fixnum and otherwise uses exact-integer operations. It changes no
 thread or integer semantics. Native `tpb64l` hash tests pass 60/60 and the
 actual `tpb32l` regression prints `TPB32L-HASH-OK`.
 
-The patched exact-revision Jolt runtime with unchanged `app.witness` now mints:
+**Observed 2026-08-31 — libffi FFI capability:** stock Jolt's guarded POSIX
+foreign-procedure setup aborts on the no-libffi portable-bytecode kernel with
+`protocol not supported (libffi unavailable)`, exit 134. Cross-building
+static libffi 3.5.2 for Emscripten and applying the reviewed Chez Emscripten
+FFI delta (ffi.c, foreign.c, configure, pb.ss, prims.ss) resolves this. The
+patched exact-revision Jolt runtime with unchanged canonical `app.exp014`
+fixture now mints and runs under threaded Node Wasm:
 
 ```text
-flat.ss  SHA-256 485cc3a5150486eaa4afbeb9db9824273126f1cb908afc5b2db71e45a7251f7b
-flat.so  SHA-256 c678818c0f95ae9942cb70c99a90f4a47452ee06dacc8b396b447c29f0f56e98
-jolt.boot SHA-256 dc710819041cb11716d3b962c5c5fba3281f6c12d9694b9a88a4026b7a2b6fa0
+EXP-004-JOLT-PB-OK
+{:unicode λ-東京, :collection [1 2 3]}
+allocation 40000
+EXP-014-JOLT-COMPLETE
+exit_status=0
 ```
 
-The resulting native 32-bit application advances past the repaired hash/HAMT
-startup and next aborts at Chez `foreign-procedure` with `protocol not
-supported (libffi unavailable)`, exit 134. This is the new reduced
-**`JOLT_CHEZ_HOST / FFI capability`** boundary. T3 is still not established,
-and no Emscripten Jolt run is claimed.
+Native expected output matches Node output exactly (4 lines, exit 0).
 
 | Gate | Result | Evidence |
 | --- | --- | --- |
 | T0 generated `tpb32l` boots | PASS | bootquick log/files/hashes |
 | T1 native thread witness | PASS | native thread log |
 | T2 Emscripten Chez / Node | PASS | Node/build logs |
-| T3 Jolt / Node | FAIL / boot minted; next FFI blocker | patched mint/native logs |
+| T3 Jolt / Node | PASS | libffi-jolt-node.log, canonical parity |
 | T4 Chez / Chromium | not run | — |
 | T5 Jolt / Chromium | not run | — |
 | T6 Petite Jolt / Chromium | not run | — |
@@ -148,18 +151,14 @@ and no Emscripten Jolt run is claimed.
 ## Suspected layer
 
 The retained `pb` control remains `JOLT_THREADLESS_ADAPTER`. On `tpb32l`, the
-word-size defect is repaired and boot minting passes; the current blocker is
-`JOLT_CHEZ_HOST / FFI capability`, before application entry and independently
-of pthread execution.
+defects are repaired and Jolt runs under threaded Node Wasm. The next boundary
+is browser pthread workers (T4/T5).
 
 ## Workaround or next experiment
 
-Reduce why Jolt's guarded POSIX foreign-procedure setup aborts rather than
-degrading on the no-libffi portable-bytecode kernel. Determine which eager
-signature is first and whether the sustainable correction is lazy capability
-initialization or explicit static target registration. Do not add libffi to
-Emscripten by assumption, no-op FFI, alter threads, add `PROXY_TO_PTHREAD`, or
-mix in Raylib work.
+The next experiment is T4: prove the threaded Chez witness under Chromium with
+cross-origin isolation. Do not add `PROXY_TO_PTHREAD`, alter threads, or mix
+in Raylib work.
 
 ## Upstream suitability
 
@@ -212,7 +211,15 @@ Ignored reproducibility logs created by `control`:
 - `artifacts/logs/EXP-014/jolt-tpb32l-patched-native-run.log` — first later FFI
   capability failure, exit 134.
 - `experiments/EXP-014-jolt-tpb32l-emscripten/patches/jolt-tpb32l-word-size.patch`
-  — SHA-256 `d9d26bd2192be705d5f028683a1ddeca060bd095e9ff27807b071b95edad60be`.
+  — SHA-256 `d10ede3861899b4eeb691720bc1b7a273f73a282f177e7b9478bc7c2f65267c5`.
+- `experiments/EXP-014-jolt-tpb32l-emscripten/patches/chez-emscripten-libffi.patch`
+  — SHA-256 `6a630204b734b06361cc74a2c75204eda29095e20debacbd43367c1b391f1a16`.
+- `artifacts/logs/EXP-014/libffi-jolt-node.log` — threaded Node Wasm Jolt
+  output, exit 0; SHA-256 `19f60fe4f7dba3f2fb37a6056c3745ee94bccff6a43923502c1071909cf59d6a`.
+- `artifacts/logs/EXP-014/libffi-jolt-native-expected.log` — native expected
+  output, exit 0; SHA-256 `943e410459f1f92981fe5ad4d15f2ed205595270418b4d8d9ab381c5bd830db8`.
+- `artifacts/logs/EXP-014/libffi-jolt-hashes.txt` — patch, boot, and runtime
+  SHA-256 values for the T3 run.
 - `artifacts/logs/EXP-014/emscripten-thread-pool-1-build.log` — stock pinned
   Chez configured `--emscripten --threads --pbarch --emboot=witness-thread.boot`
   with named `-s PTHREAD_POOL_SIZE=1`; compile and final link both contain

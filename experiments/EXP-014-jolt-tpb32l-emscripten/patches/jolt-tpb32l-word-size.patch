@@ -151,6 +151,9 @@
 @@ -243 +280 @@
 -             (h1 (#3%fxxor h1 (urs32 h1 16))))
 +             (h1 (hash-fxxor h1 (urs32 h1 16))))
+@@ -250 +287 @@
+-  (if (fx=? (i32 input) 0) 0
++  (if (= (i32 input) 0) 0
 @@ -283 +320 @@
 -      (if (#3%fx>=? i len)
 +      (if (hash-fx>=? i len)

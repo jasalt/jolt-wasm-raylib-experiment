@@ -9,7 +9,7 @@ stage=${1:-}
 
 usage() {
   cat >&2 <<'USAGE'
-usage: commands.sh control|bootquick|native-thread|em-thread-node|host64-pack|jolt-mint
+usage: commands.sh control|bootquick|native-thread|em-thread-node|host64-pack|jolt-mint|jolt-node
 
 control    Record the pinned environment and rerun the genuine non-threaded
            EXP-008 Jolt pb control. It is expected to abort at make-mutex.
@@ -23,9 +23,11 @@ host64-pack     Build a pinned tpb64l cross host, generate its tpb32l xpatch,
                 and build the target kernel in the same Chez tree.
 jolt-mint       Apply the reviewed Jolt word-size patch to a copied pinned tree,
                 run 64/32-bit hash gates, and mint the unchanged tpb32l app boot.
+jolt-node       Cross-build pinned libffi, apply the reviewed Chez Emscripten
+                FFI delta, mint the unchanged app, and prove T3 under Node.
 
-`jolt-mint` proves boot minting and checks the next reduced native boundary. It
-does not claim the Jolt/Node T3 gate.
+`jolt-node` is the highest demonstrated command. It retains the exact patched
+sources, compiler/link flags, native expected output, and Node output.
 USAGE
   exit 64
 }
@@ -117,7 +119,7 @@ host64-pack)
   log_run "$log_dir/host64-target-kernel.log" \
     nix shell "$root#i686-cc" nixpkgs#gnumake -c bash -c \
     'cd "$1" && ./configure --cross --force --threads --pbarch --32 --disable-x11 --disable-curses CC_FOR_BUILD=cc && make -j"${JOBS:-2}"' _ "$work"
-  CHEZ_SRC="$work" "$root/../jolt/tools/cross-compile/make-pack.sh" tpb32l "$pack" | \
+  CHEZ_SRC="$work" "$root/../jolt/tools/cross-compile/make-pack.sh" tpb32l "$pack" |
     tee "$log_dir/host64-pack.log"
   sha256sum "$pack"/{xpatch,petite.boot,scheme.boot,libkernel.a} \
     >"$log_dir/host64-pack-hashes.txt"
@@ -162,6 +164,76 @@ jolt-mint)
       "$experiment" "$status" "$log_dir/jolt-tpb32l-patched-native-run.log" >&2
     exit "$status"
   fi
+  ;;
+jolt-node)
+  work="$root/build/$experiment/source-libffi"
+  pack="$root/build/$experiment/pack-libffi"
+  ffi="$root/build/$experiment/libffi-em"
+  jolt="$root/build/$experiment/jolt-libffi"
+  out="$root/build/$experiment/app-libffi"
+  chez_patch="$root/experiments/$experiment/patches/chez-emscripten-libffi.patch"
+  jolt_patch="$root/experiments/$experiment/patches/jolt-tpb32l-word-size.patch"
+  rm -rf "$work" "$pack" "$ffi" "$jolt" "$out" "$out.build"
+  nix develop -c bash -c 'cp -RL "$CHEZ_SOURCE"/. "$1"; chmod -R u+w "$1"' _ "$work"
+  nix develop -c patch --directory="$work" --strip=1 <"$chez_patch"
+  log_run "$log_dir/libffi-host64-bootquick.log" \
+    bash -c "cd '$work' && ./configure --threads --pbarch --disable-x11 --disable-curses && make -j\"\${JOBS:-2}\" && make bootquick XM=tpb32l"
+  log_run "$log_dir/libffi-target-kernel.log" \
+    nix shell "$root#i686-cc" nixpkgs#gnumake -c bash -c \
+    'cd "$1" && ./configure --cross --force --threads --pbarch --32 --disable-x11 --disable-curses CC_FOR_BUILD=cc && make -j"${JOBS:-2}"' _ "$work"
+  CHEZ_SRC="$work" "$root/../jolt/tools/cross-compile/make-pack.sh" tpb32l "$pack" |
+    tee "$log_dir/libffi-pack.log"
+
+  mkdir -p "$ffi/src"
+  curl -fsSL https://github.com/libffi/libffi/releases/download/v3.5.2/libffi-3.5.2.tar.gz \
+    -o "$ffi/libffi.tar.gz"
+  printf '%s  %s\n' \
+    f3a3082a23b37c293a4fcd1053147b371f2ff91fa7ea1b2a52e335676bac82dc \
+    "$ffi/libffi.tar.gz" | sha256sum -c -
+  tar -xf "$ffi/libffi.tar.gz" -C "$ffi/src" --strip-components=1
+  mkdir "$ffi/src/build"
+  log_run "$log_dir/libffi-em-build.log" nix develop -c bash -c '
+    set -euo pipefail
+    cd "$1/src/build"
+    flags="-pthread -Wcast-function-type"
+    CFLAGS="$flags" CPPFLAGS="$flags" LDFLAGS="$flags" \
+      emconfigure ../configure --host=wasm32-unknown-emscripten \
+        --prefix="$1/install" --enable-static --disable-shared \
+        --disable-docs --disable-multi-os-directory
+    emmake make -j"${JOBS:-2}"
+    make install
+  ' _ "$ffi"
+
+  nix develop -c bash -c 'cp -RL "$JOLT_SOURCE"/. "$1"; chmod -R u+w "$1"' _ "$jolt"
+  nix develop -c patch --directory="$jolt" --strip=1 <"$jolt_patch"
+  log_run "$log_dir/tpb32l-full-hasheq-test.log" \
+    bash -c "cd '$jolt' && '$work/tpb32l/bin/tpb32l/scheme' --script test/chez/hasheq-test.ss"
+  log_run "$log_dir/libffi-jolt-native-expected.log" \
+    env JOLT_CHEZ="$work/tpb64l/bin/tpb64l/scheme" \
+    JOLT_CHEZ_CSV="$work/tpb64l/boot/tpb64l" "$jolt/bin/jolt" run -m app.exp014
+  log_run "$log_dir/libffi-jolt-mint.log" \
+    nix shell "$root#i686-cc" -c bash -c \
+    'export JOLT_CHEZ="$1/tpb64l/bin/tpb64l/scheme" JOLT_CHEZ_CSV="$1/tpb64l/boot/tpb64l" JOLT_TARGET_CC=gcc; "$2/bin/jolt" build -m app.exp014 -o "$3" --target tpb32l --target-pack "$4"' \
+    _ "$work" "$jolt" "$out" "$pack"
+  log_run "$log_dir/libffi-jolt-em-build.log" nix develop -c bash -c '
+    set -euo pipefail
+    cd "$1"
+    CPPFLAGS="-I$2/install/include" LDFLAGS="-L$2/install/lib -s PTHREAD_POOL_SIZE=1" \
+      ./configure --emscripten --threads --pbarch --enable-libffi \
+        --emboot="$3" --disable-x11 --disable-curses
+    make -j"${JOBS:-2}"
+  ' _ "$work" "$ffi" "$out.build/jolt.boot"
+  log_run "$log_dir/libffi-jolt-node.log" \
+    nix develop -c bash -c 'cd "$1/em-tpb32l/bin/tpb32l" && node scheme.js' _ "$work"
+  grep -v '^warning: Git tree' "$log_dir/libffi-jolt-node.log" | head -n 4 >"$log_dir/libffi-jolt-node-output.txt"
+  head -n 4 "$log_dir/libffi-jolt-native-expected.log" >"$log_dir/libffi-jolt-native-output.txt"
+  diff -u "$log_dir/libffi-jolt-native-output.txt" "$log_dir/libffi-jolt-node-output.txt"
+  grep -Fxq 'EXP-014-JOLT-COMPLETE' "$log_dir/libffi-jolt-node-output.txt"
+  sha256sum "$jolt_patch" "$chez_patch" "$out.build"/{flat.ss,flat.so,jolt.boot} \
+    "$work/em-tpb32l/bin/tpb32l"/{scheme.js,scheme.wasm,scheme.data} \
+    >"$log_dir/libffi-jolt-hashes.txt"
+  printf '%s JOLT-NODE-PASS target=tpb32l pool=1 log=%s\n' \
+    "$experiment" "$log_dir/libffi-jolt-node.log"
   ;;
 *) usage ;;
 esac
