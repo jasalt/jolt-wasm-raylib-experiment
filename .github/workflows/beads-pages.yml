@@ -4,7 +4,7 @@ on:
   push:
     branches: [main]
     paths:
-      - ".beads/**"
+      - ".beads/issues.jsonl"
       - ".github/workflows/beads-pages.yml"
   workflow_dispatch:
 
@@ -31,6 +31,11 @@ jobs:
           tar -xzf /tmp/bv.tar.gz -C /tmp
           install -m 0755 /tmp/bv /usr/local/bin/bv
           bv --version
+
+      - name: Verify committed Beads export
+        run: |
+          set -euo pipefail
+          test -s .beads/issues.jsonl
 
       - name: Export static dashboard
         run: bv --export-pages html-output
