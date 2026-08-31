@@ -1,7 +1,7 @@
 {
   "meta": {
     "version": "1.0.0",
-    "generated_at": "2026-08-31T20:10:55.021659111Z",
+    "generated_at": "2026-08-31T20:27:33.931575454Z",
     "phase2_ready": true,
     "issue_count": 41,
     "compute_time_ms": 0
@@ -9,38 +9,38 @@
   "status": {
     "PageRank": {
       "state": "computed",
-      "ms": 0.068988
+      "ms": 0.041962
     },
     "Betweenness": {
       "state": "computed",
-      "ms": 0.144524
+      "ms": 0.134599
     },
     "Eigenvector": {
       "state": "computed",
-      "ms": 0.01324
+      "ms": 0.012259
     },
     "HITS": {
       "state": "computed",
-      "ms": 0.038944
+      "ms": 0.031697
     },
     "Critical": {
       "state": "computed",
-      "ms": 0.02222
+      "ms": 0.026249
     },
     "Cycles": {
       "state": "computed",
-      "ms": 0.011768
+      "ms": 0.012729
     },
     "KCore": {
       "state": "computed",
-      "ms": 0.030826
+      "ms": 0.026629
     },
     "Articulation": {
       "state": "computed"
     },
     "Slack": {
       "state": "computed",
-      "ms": 0.005332
+      "ms": 0.005027
     }
   },
   "quick_ref": {
@@ -54,7 +54,7 @@
       {
         "id": "jwr-up7.14.1",
         "title": "EXP-015 A prove Jolt static-symbol call reaches threaded Raylib facade",
-        "score": 0.11612896798975088,
+        "score": 0.11619913442234714,
         "reasons": [
           "✅ Currently unclaimed - available for work",
           "🚨 High priority (P1) - prioritize this work"
@@ -64,7 +64,7 @@
       {
         "id": "jwr-up7.15",
         "title": "Investigate docs-engine live Wasm demo embedding for raylib-jlt",
-        "score": 0.0948870274491358,
+        "score": 0.09497353051301892,
         "reasons": [
           "✅ Currently unclaimed - available for work"
         ],
@@ -88,23 +88,23 @@
         "research",
         "wasm"
       ],
-      "score": 0.11612896798975088,
+      "score": 0.11619913442234714,
       "breakdown": {
         "pagerank": 0.026370987578186154,
         "betweenness": 0,
         "blocker_ratio": 0,
-        "staleness": 2.5118941186342594e-7,
+        "staleness": 2.8803193391203705e-7,
         "priority_boost": 0.07500000000000001,
         "time_to_impact": 0.03325,
-        "urgency": 0.0000010765144618452017,
+        "urgency": 0.0000835884161706768,
         "risk": 0.0020000000000000005,
         "pagerank_norm": 0.11986812535539161,
         "betweenness_norm": 0,
         "blocker_ratio_norm": 0,
-        "staleness_norm": 0.000005023788237268518,
+        "staleness_norm": 0.000005760638678240741,
         "priority_boost_norm": 0.75,
         "time_to_impact_norm": 0.3325,
-        "urgency_norm": 0.000010765144618452016,
+        "urgency_norm": 0.000835884161706768,
         "risk_norm": 0.020000000000000004,
         "time_to_impact_explanation": "On dependency chain (depth 1), median estimate 60m",
         "risk_explanation": "Low risk - stable dependency structure",
@@ -139,23 +139,23 @@
         "research",
         "wasm"
       ],
-      "score": 0.09564135704033126,
+      "score": 0.0957122976942604,
       "breakdown": {
         "pagerank": 0.026370987578186154,
         "betweenness": 0,
         "blocker_ratio": 0,
-        "staleness": 6.755721279128086e-7,
+        "staleness": 0.000019520285020331788,
         "priority_boost": 0.07500000000000001,
         "time_to_impact": 0.03325,
-        "urgency": 0.000008846907301984785,
+        "urgency": 0.00009134598573692366,
         "risk": 0.0020000000000000005,
         "pagerank_norm": 0.11986812535539161,
         "betweenness_norm": 0,
         "blocker_ratio_norm": 0,
-        "staleness_norm": 0.000013511442558256172,
+        "staleness_norm": 0.00039040570040663577,
         "priority_boost_norm": 0.75,
         "time_to_impact_norm": 0.3325,
-        "urgency_norm": 0.00008846907301984785,
+        "urgency_norm": 0.0009134598573692365,
         "risk_norm": 0.020000000000000004,
         "time_to_impact_explanation": "On dependency chain (depth 1), median estimate 60m",
         "risk_explanation": "Low risk - stable dependency structure",
@@ -189,23 +189,23 @@
         "research",
         "wasm"
       ],
-      "score": 0.0948870274491358,
+      "score": 0.09497353051301892,
       "breakdown": {
         "pagerank": 0.026370987578186154,
         "betweenness": 0,
         "blocker_ratio": 0,
-        "staleness": 0.0000020451708933449073,
+        "staleness": 0.000021314266501813276,
         "priority_boost": 0.05,
         "time_to_impact": 0.03325,
-        "urgency": 0.00000876424990379765,
+        "urgency": 0.00009126346474605529,
         "risk": 0.0020000000000000005,
         "pagerank_norm": 0.11986812535539161,
         "betweenness_norm": 0,
         "blocker_ratio_norm": 0,
-        "staleness_norm": 0.000040903417866898145,
+        "staleness_norm": 0.0004262853300362655,
         "priority_boost_norm": 0.5,
         "time_to_impact_norm": 0.3325,
-        "urgency_norm": 0.0000876424990379765,
+        "urgency_norm": 0.0009126346474605529,
         "risk_norm": 0.020000000000000004,
         "time_to_impact_explanation": "On dependency chain (depth 1), median estimate 60m",
         "risk_explanation": "Low risk - stable dependency structure",
