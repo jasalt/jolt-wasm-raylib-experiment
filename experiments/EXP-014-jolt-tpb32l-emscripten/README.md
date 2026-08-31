@@ -44,35 +44,55 @@ thread witness pass.
 
 ## Actual
 
-**Observed 2026-08-31:** `commands.sh control` reran the genuine EXP-008
-control. It compiled the Jolt-emitted `flat.ss`, then aborted at:
+**Observed 2026-08-31 — control:** `commands.sh control` reran the genuine
+EXP-008 control. It compiled the Jolt-emitted `flat.ss`, then aborted at:
 
 ```text
 Call error: (1 0 #{make-mutex *top*:make-mutex} ())
 exit_status=134
 ```
 
-The control is not a Jolt browser success. It preserves the existing
+**Observed 2026-08-31 — T0:** a fresh writable copy of the exact pinned Chez
+source was configured as a portable `pb` build (host machine `pb`), built, and
+then ran the documented command:
+
+```sh
+make bootquick XM=tpb32l
+```
+
+It completed with exit 0, reporting `building boot files for tpb32l using pb`.
+It produced `boot/tpb32l/petite.boot`, `boot/tpb32l/scheme.boot`, and the
+cross-compiler material including `xc-tpb32l/s/xpatch`. The generated boot
+hashes are listed below. This proves target boot generation only; it does not
+prove a thread can run or that an Emscripten module is viable.
+
+The `pb` control is not a Jolt browser success. It preserves the existing
 `JOLT_THREADLESS_ADAPTER` boundary for non-threaded `pb`.
 
 ## Investigation
 
-The root PLAN and pinned Chez `BUILDING` identify `make bootquick XM=tpb32l`
-as the provisional stock cross-boot mechanism. Work package B must inspect and
-run that mechanism against the exact Nix-pinned Chez source before any Jolt
-payload is minted. `witness-thread.ss` is intentionally a non-executable
-contract placeholder until that target exists; task C owns its API-correct
-implementation and native execution.
+Pinned Chez `BUILDING` identifies `make bootquick XM=tpb32l` (or Zuo's
+equivalent) as the stock cross-boot mechanism. Pinned `configure` sets the
+Emscripten word size to 32 and maps threaded 32-bit PB to `tpb32l`; its
+`bootquick` target builds the cross compiler and writes the target boot files
+plus `xc-tpb32l/s/xpatch`. The experiment used that documented route without an
+upstream patch.
+
+`witness-thread.ss` now uses the pinned Chez forms `fork-thread`,
+`make-mutex`, `mutex-acquire`, `mutex-release`, `make-condition`,
+`condition-wait`, and `condition-signal`. Its predicate loop accounts for a
+wake before state publication. It has not yet established T1.
 
 ## Result
 
-**Control PASS / target status not yet run.** The current workspace remains at
-the known non-threaded Jolt boundary. T0 through T6 are not established by this
-scaffold or control.
+**T0 PASS / later target status not yet run.** The current workspace retains
+the known non-threaded Jolt boundary, and stock pinned Chez generated `tpb32l`
+boot and cross-compilation material. T1 through T6 are not established by this
+scaffold or target generation.
 
 | Gate | Result | Evidence |
 | --- | --- | --- |
-| T0 generated `tpb32l` boots | not run | — |
+| T0 generated `tpb32l` boots | PASS | bootquick log/files/hashes |
 | T1 native thread witness | not run | — |
 | T2 Emscripten Chez / Node | not run | — |
 | T3 Jolt / Node | not run | — |
@@ -87,9 +107,9 @@ the untested `tpb32l` route.
 
 ## Workaround or next experiment
 
-Proceed to T0 only: generate target boots from the stock pinned Chez source.
-Do not patch Jolt, add `PROXY_TO_PTHREAD`, substitute a host Scheme, or mix in
-Raylib/FFI work.
+Proceed to T1 only: run the API-correct thread witness against a
+ target-compatible runtime. Do not patch Jolt, add `PROXY_TO_PTHREAD`,
+substitute a host Scheme, or mix in Raylib/FFI work.
 
 ## Upstream suitability
 
@@ -104,6 +124,19 @@ Ignored reproducibility logs created by `control`:
   `e5009ccd95940239f7d5ac93188d54c2613a4854bb93a5900aeb64733f6a7396`
 - `artifacts/logs/EXP-014/pb-control.log` — SHA-256
   `2b13fce449e33bd0440070d46ff0137805c38fc4eb65a6136b2c2363f0bf67a6`
+- `artifacts/logs/EXP-014/bootquick-tpb32l.log` — SHA-256
+  `4a160b507621fbee213181e4563d5adf7edc4de5f471389a7fa96c57595cd6a0`
+  (exit 0)
+- `artifacts/logs/EXP-014/bootquick-files.txt` — SHA-256
+  `c9656cb4a6856815c014bb136ca46b66395435290775bdd647e9ff06a10ff58f`
+- `artifacts/logs/EXP-014/bootquick-hashes.txt` — SHA-256
+  `18e173bf96af8b98c5a01474078932bbe8aa765c0f01e75d9e0709aa1eaae239`;
+  the key boot hashes are `petite.boot`
+  `abc458e90f3434f9c368aec41e77688621372dd9f1dedfb5707d7efe5113e733`,
+  `scheme.boot`
+  `61c24a66befa23177e37bdea90e95ffb72f566aa3194748eee6c80cc223212cd`,
+  and `xpatch`
+  `6e54168b8552aa7b31754678d565c40a5a72853e92660cd8f67d6d8898ae9d63`.
 - Existing immutable EXP-008 evidence:
   `artifacts/logs/EXP-008-native-pb.log` — SHA-256
   `dcbb6a2ab1ccb7e2b65f1a18a90638b138f68ac1e0dd38509c547b331991c7fb`

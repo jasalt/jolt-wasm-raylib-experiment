@@ -9,14 +9,16 @@ stage=${1:-}
 
 usage() {
   cat >&2 <<'USAGE'
-usage: commands.sh control
+usage: commands.sh control|bootquick
 
-control  Record the pinned environment and rerun the genuine non-threaded
-         EXP-008 Jolt pb control. It is expected to abort at make-mutex.
+control    Record the pinned environment and rerun the genuine non-threaded
+           EXP-008 Jolt pb control. It is expected to abort at make-mutex.
+bootquick  Copy the pinned Chez source, build its portable pb host, and run the
+           documented `make bootquick XM=tpb32l` target generator.
 
-Threaded target stages are intentionally unavailable until their owning Beads
-work package has established the preceding gate. Do not infer a tpb32l target
-from this control.
+Later stages are intentionally unavailable until their owning Beads work package
+has established the preceding gate. Do not infer an Emscripten runtime from
+boot generation.
 USAGE
   exit 64
 }
@@ -62,6 +64,16 @@ case "$stage" in
         "$experiment" "$status" "$log_dir/pb-control.log" >&2
       exit "$status"
     fi
+    ;;
+  bootquick)
+    work="$root/build/$experiment/source"
+    rm -rf "$work"
+    nix develop -c bash -c 'cp -RL "$CHEZ_SOURCE"/. "$1"; chmod -R u+w "$1"' _ "$work"
+    metadata | sed 's/target_machine=.*/target_machine=tpb32l/' | tee "$log_dir/bootquick-metadata.log"
+    log_run "$log_dir/bootquick-tpb32l.log" bash -c "cd '$work' && ./configure --pb --disable-x11 --disable-curses && make -j\"\${JOBS:-2}\" && make bootquick XM=tpb32l"
+    find "$work/boot/tpb32l" "$work/xc-tpb32l" -type f -print | sort >"$log_dir/bootquick-files.txt"
+    sha256sum "$work/boot/tpb32l/petite.boot" "$work/boot/tpb32l/scheme.boot" "$work/xc-tpb32l/s/xpatch" >"$log_dir/bootquick-hashes.txt"
+    printf '%s BOOTQUICK-PASS target=tpb32l log=%s\n' "$experiment" "$log_dir/bootquick-tpb32l.log"
     ;;
   *) usage ;;
 esac

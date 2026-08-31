@@ -1,16 +1,25 @@
 #!r6rs
-;; Task C owns the concrete witness after task B has generated and identified
-;; the exact tpb32l target. This placeholder intentionally does not claim that
-;; its imports or thread API have been validated for that target.
-;;
-;; Required eventual behavior:
-;;   1. create a mutex, condition, and shared state;
-;;   2. fork a worker that writes 73 while holding the mutex, signals, and
-;;      releases it;
-;;   3. wait in a predicate loop (no sleep or busy wait);
-;;   4. verify the state and print THREAD-WITNESS-OK.
-;;
-;; Do not execute this file as evidence until its Chez API and target runtime
-;; have been established by jwr-up7.2 and jwr-up7.3.
-(assertion-violation 'EXP-014
-  "thread witness is intentionally pending generated tpb32l target validation")
+(import (chezscheme))
+
+;; The pinned Chez API releases and later reacquires `lock` around
+;; condition-wait. The predicate loop makes this witness correct if a wait
+;; wakes before the worker's state publication; no sleep or busy wait is used.
+(let ([lock (make-mutex 'exp-014-lock)]
+      [ready (make-condition 'exp-014-ready)]
+      [state 0])
+  (fork-thread
+   (lambda ()
+     (mutex-acquire lock)
+     (set! state 73)
+     (condition-signal ready)
+     (mutex-release lock)))
+  (mutex-acquire lock)
+  (let wait-until-ready ()
+    (unless (= state 73)
+      (condition-wait ready lock)
+      (wait-until-ready)))
+  (mutex-release lock)
+  (unless (= state 73)
+    (assertion-violation 'EXP-014 "thread witness state mismatch" state))
+  (display "THREAD-WITNESS-OK\n")
+  (flush-output-port (current-output-port)))
