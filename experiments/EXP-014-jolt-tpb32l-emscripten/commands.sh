@@ -9,7 +9,7 @@ stage=${1:-}
 
 usage() {
   cat >&2 <<'USAGE'
-usage: commands.sh control|bootquick|native-thread|em-thread-node|em-thread-chromium|host64-pack|jolt-mint|jolt-node|jolt-chromium
+usage: commands.sh control|bootquick|native-thread|em-thread-node|em-thread-chromium|host64-pack|jolt-mint|jolt-node|jolt-chromium|jolt-petite-chromium
 
 control    Record the pinned environment and rerun the genuine non-threaded
            EXP-008 Jolt pb control. It is expected to abort at make-mutex.
@@ -27,6 +27,7 @@ jolt-mint       Apply the reviewed Jolt word-size patch to a copied pinned tree,
 jolt-node       Cross-build pinned libffi, apply the reviewed Chez Emscripten
                 FFI delta, mint the unchanged app, and prove T3 under Node.
 jolt-chromium   Run T5 browser automation for the built libffi-backed Jolt boot.
+jolt-petite-chromium  Run T6 browser automation for the named Petite build.
 
 `jolt-node` is the highest demonstrated command. It retains the exact patched
 sources, compiler/link flags, native expected output, and Node output.
@@ -242,6 +243,9 @@ jolt-node)
   ;;
 jolt-chromium)
   "$root/experiments/$experiment/browser-jolt-smoke"
+  ;;
+jolt-petite-chromium)
+  "$root/experiments/$experiment/browser-petite-smoke"
   ;;
 *) usage ;;
 esac

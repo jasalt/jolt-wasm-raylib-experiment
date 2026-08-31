@@ -27,9 +27,8 @@ The full proposed procedure and gate definitions are in
 
 Current boundary: `tpb32l` boots **yes**; threaded Chez/Node **yes**, fixed pool
 1; genuine patched Jolt boot minted **yes**; Jolt/Node **yes**, canonical
-output parity, exit 0; Chez/Chromium, Petite is **not run**. Threaded Chez and genuine Jolt now pass under Chromium
-with cross-origin isolation and canonical output parity; the remaining gate is
-T6, the named Petite comparison.
+output parity, exit 0; Chez/Chromium, **T0–T6 PASS.** Threaded Chez, full Jolt, and named Petite Jolt now pass under
+Chromium with cross-origin isolation and canonical output parity.
 
 ## Minimal reproduction
 
@@ -146,20 +145,19 @@ Native expected output matches Node output exactly (4 lines, exit 0).
 | T3 Jolt / Node | PASS | libffi-jolt-node.log, canonical parity |
 | T4 Chez / Chromium | PASS | `EXP-014-t4-browser.json`, headers, screenshot |
 | T5 Jolt / Chromium | PASS | `EXP-014-t5-browser.json`, screenshot |
-| T6 Petite Jolt / Chromium | not run | — |
+| T6 Petite Jolt / Chromium | PASS | `EXP-014-t6-browser.json`, size/hash comparison |
 
 ## Suspected layer
 
 The retained `pb` control remains `JOLT_THREADLESS_ADAPTER`. On `tpb32l`, the
 defects are repaired, Jolt runs under threaded Node Wasm, and genuine Jolt
-runs under Chromium pthread workers. The remaining EXP-014 gate is the named
-Petite comparison (T6).
+runs under Chromium pthread workers, including named Petite. EXP-014 has no
+remaining runtime gate.
 
 ## Workaround or next experiment
 
-The next experiment is T6: rebuild the exact Jolt fixture with `--empetite`
-and compare full/Petite output composition and sizes. Do not add
-`PROXY_TO_PTHREAD`, alter threads, or mix in Raylib work.
+The threaded-Jolt runtime route is demonstrated through T6. Downstream work is
+Jolt-to-Raylib integration; do not infer a Raylib or input result from EXP-014.
 
 ## Upstream suitability
 
@@ -255,6 +253,14 @@ Ignored reproducibility logs created by `control`:
   `a6c86ce36390df43996dad95ee7332c738232cd4363856d1ea9ecb5f8729920b`;
   screenshot
   `ba33bfc886d4f5817081b7bf2b1299b406c088adf2091129f4423f9c375c47e4`.
+- T6 named `--empetite` build links only `petite.boot` and `jolt.boot`, not
+  `scheme.boot`; it runs the exact fixture in Chromium. Full/Petite byte sizes:
+  JS `125169`/`125115`, Wasm `891643`/`891643`, data `25377348`/`24337546`.
+  Full/Petite data SHA-256 values are respectively
+  `cba13a2b614177d301da62dc885fc3589e724e38720226e1cc755bbab2a0840b` and
+  `48546f4129095f5720b717e3ef8229148c59dfacbf3c10f009ec2736d6dbc0bb`.
+  `artifacts/reports/EXP-014-t6-browser.json` SHA-256 is
+  `793e21de88811a66c601bf2acb4476ed33b4230d473c758ab9d334f6e161475a`.
 - `artifacts/logs/EXP-014/native-thread-witness.log` — an ELF 32-bit
   `tpb32l` build followed by `THREAD-WITNESS-OK`, exit 0.
 - `artifacts/logs/EXP-014/native-tpb32l-32bit-build.log` — full pinned i686
