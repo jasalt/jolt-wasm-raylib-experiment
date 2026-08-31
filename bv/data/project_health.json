@@ -1,0 +1,70 @@
+{
+  "counts": {
+    "total": 16,
+    "open": 14,
+    "closed": 2,
+    "blocked": 0,
+    "actionable": 3,
+    "not_closed": 14,
+    "dependency_blocked": 11,
+    "by_status": {
+      "closed": 2,
+      "open": 14
+    },
+    "by_type": {
+      "epic": 1,
+      "feature": 4,
+      "task": 11
+    },
+    "by_priority": {
+      "1": 13,
+      "2": 3
+    }
+  },
+  "graph": {
+    "node_count": 16,
+    "edge_count": 18,
+    "density": 0.075,
+    "has_cycles": false,
+    "phase2_ready": true
+  },
+  "velocity": {
+    "closed_last_7_days": 2,
+    "closed_last_30_days": 2,
+    "avg_days_to_close": 0.013541666666666667,
+    "weekly": [
+      {
+        "week_start": "2026-08-31T00:00:00Z",
+        "closed": 2
+      },
+      {
+        "week_start": "2026-08-24T00:00:00Z",
+        "closed": 0
+      },
+      {
+        "week_start": "2026-08-17T00:00:00Z",
+        "closed": 0
+      },
+      {
+        "week_start": "2026-08-10T00:00:00Z",
+        "closed": 0
+      },
+      {
+        "week_start": "2026-08-03T00:00:00Z",
+        "closed": 0
+      },
+      {
+        "week_start": "2026-07-27T00:00:00Z",
+        "closed": 0
+      },
+      {
+        "week_start": "2026-07-20T00:00:00Z",
+        "closed": 0
+      },
+      {
+        "week_start": "2026-07-13T00:00:00Z",
+        "closed": 0
+      }
+    ]
+  }
+}
