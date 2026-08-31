@@ -2,19 +2,32 @@
 
 ## 📊 Executive Summary
 
-**16** total issues | **19%** complete | **2** ready to work | **0** blocked
+**16** total issues | **25%** complete | **4** ready to work | **0** blocked
 
 ## 🎯 Top Priorities
 
 The graph analysis identified these as the highest-impact items to work on:
 
-### 1. EXP-001 prove stock Chez portable bytecode under Node
-**ID:** `jwr-c52.2` | **Impact Score:** 0.53 | **Unblocks:** 3 issues
+### 1. EXP-006 prove a static registered Chez pb FFI facade
+**ID:** `jwr-c52.7` | **Impact Score:** 0.28
 
 **Why this matters:**
-- 🎯 Completing this unblocks 3 downstream issues (jwr-c52.3, jwr-c52.4, jwr-c52.7)
-- 📊 High centrality in dependency graph (PageRank: 86%)
-- ⚡ Low effort, high impact - good starting point
+- 📊 High centrality in dependency graph (PageRank: 30%)
+- ✅ Currently unclaimed - available for work
+- 🚨 High priority (P1) - prioritize this work
+
+### 2. EXP-002 prove stock Chez portable bytecode in an automated browser
+**ID:** `jwr-c52.3` | **Impact Score:** 0.27
+
+**Why this matters:**
+- ✅ Currently unclaimed - available for work
+- 🚨 High priority (P1) - prioritize this work
+
+### 3. EXP-003 audit Jolt on native tpb32l Chez
+**ID:** `jwr-c52.4` | **Impact Score:** 0.26 | **Unblocks:** 1 issues
+
+**Why this matters:**
+- 🔓 Unblocks 1 item(s): jwr-c52.5
 - ✅ Currently unclaimed - available for work
 - 🚨 High priority (P1) - prioritize this work
 
@@ -24,10 +37,9 @@ These issues are blocking the most downstream work. Clearing them has outsized i
 
 | Issue | Title | Unblocks | Status |
 |-------|-------|----------|--------|
-| `jwr-c52.2` | EXP-001 prove stock Chez portable byt... | **3** issues | Ready |
 | `jwr-c52.12` | EXP-011/012 implement persistent brow... | **2** issues | Blocked by 1 |
 | `jwr-c52.11` | EXP-010 render and inspect the first ... | **1** issues | Blocked by 2 |
-| `jwr-c52.4` | EXP-003 audit Jolt on native tpb32l Chez | **1** issues | Blocked by 1 |
+| `jwr-c52.4` | EXP-003 audit Jolt on native tpb32l Chez | **1** issues | Ready |
 
 ## 📈 Graph Analysis
 
@@ -39,8 +51,6 @@ These issues are blocking the most downstream work. Clearing them has outsized i
 
 Low-effort items that clear the path forward:
 
-- **jwr-c52.2**: EXP-001 prove stock Chez portable bytecode under Node (unblocks 3)
-  - *Unblocks 3 items, high priority*
 - **jwr-c52.12**: EXP-011/012 implement persistent browser-owned frames and input (unblocks 2)
   - *Unblocks 2 items, high priority*
 - **jwr-c52.11**: EXP-010 render and inspect the first Jolt-driven Raylib frame (unblocks 1)
@@ -49,6 +59,8 @@ Low-effort items that clear the path forward:
   - *Unblocks 1 items, high priority*
 - **jwr-c52**: Prove Jolt + Chez Wasm + Raylib browser feasibility
   - *Low complexity, high priority*
+- **jwr-c52.13**: EXP-013 prove debug-only live browser redefinition
+  - *Low complexity*
 
 ## 📋 Status Summary
 
@@ -58,5 +70,5 @@ Low-effort items that clear the path forward:
 
 ---
 
-*Generated Aug 31, 2026 at 7:25 AM UTC by [bv](https://github.com/Dicklesworthstone/beads_viewer)*
+*Generated Aug 31, 2026 at 8:43 AM UTC by [bv](https://github.com/Dicklesworthstone/beads_viewer)*
 

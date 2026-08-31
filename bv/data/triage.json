@@ -1,7 +1,7 @@
 {
   "meta": {
     "version": "1.0.0",
-    "generated_at": "2026-08-31T07:25:48.097299914Z",
+    "generated_at": "2026-08-31T08:43:52.523865879Z",
     "phase2_ready": true,
     "issue_count": 16,
     "compute_time_ms": 0
@@ -9,123 +9,83 @@
   "status": {
     "PageRank": {
       "state": "computed",
-      "ms": 0.061545
+      "ms": 0.036568
     },
     "Betweenness": {
       "state": "computed",
-      "ms": 0.075732
+      "ms": 0.066374
     },
     "Eigenvector": {
       "state": "computed",
-      "ms": 0.012403
+      "ms": 0.01111
     },
     "HITS": {
       "state": "computed",
-      "ms": 0.034754
+      "ms": 0.029445
     },
     "Critical": {
       "state": "computed",
-      "ms": 0.017442
+      "ms": 0.016621
     },
     "Cycles": {
       "state": "computed",
-      "ms": 0.020748
+      "ms": 0.010931
     },
     "KCore": {
       "state": "computed",
-      "ms": 0.013175
+      "ms": 0.013836
     },
     "Articulation": {
       "state": "computed"
     },
     "Slack": {
       "state": "computed",
-      "ms": 0.004619
+      "ms": 0.004659
     }
   },
   "quick_ref": {
-    "open_count": 13,
-    "actionable_count": 2,
+    "open_count": 12,
+    "actionable_count": 4,
     "blocked_count": 0,
     "in_progress_count": 0,
-    "not_closed_count": 13,
-    "not_actionable_count": 11,
+    "not_closed_count": 12,
+    "not_actionable_count": 8,
     "top_picks": [
       {
-        "id": "jwr-c52.2",
-        "title": "EXP-001 prove stock Chez portable bytecode under Node",
-        "score": 0.5305053408541487,
+        "id": "jwr-c52.7",
+        "title": "EXP-006 prove a static registered Chez pb FFI facade",
+        "score": 0.2779028814682926,
         "reasons": [
-          "🎯 Completing this unblocks 3 downstream issues (jwr-c52.3, jwr-c52.4, jwr-c52.7)",
-          "📊 High centrality in dependency graph (PageRank: 86%)",
-          "⚡ Low effort, high impact - good starting point",
+          "📊 High centrality in dependency graph (PageRank: 30%)",
           "✅ Currently unclaimed - available for work",
           "🚨 High priority (P1) - prioritize this work"
         ],
-        "unblocks": 3
+        "unblocks": 0
+      },
+      {
+        "id": "jwr-c52.3",
+        "title": "EXP-002 prove stock Chez portable bytecode in an automated browser",
+        "score": 0.27291260647814963,
+        "reasons": [
+          "✅ Currently unclaimed - available for work",
+          "🚨 High priority (P1) - prioritize this work"
+        ],
+        "unblocks": 0
+      },
+      {
+        "id": "jwr-c52.4",
+        "title": "EXP-003 audit Jolt on native tpb32l Chez",
+        "score": 0.2625014417361293,
+        "reasons": [
+          "🔓 Unblocks 1 item(s): jwr-c52.5",
+          "✅ Currently unclaimed - available for work",
+          "🚨 High priority (P1) - prioritize this work"
+        ],
+        "unblocks": 1
       }
     ]
   },
   "recommendations": [
-    {
-      "id": "jwr-c52.2",
-      "title": "EXP-001 prove stock Chez portable bytecode under Node",
-      "type": "task",
-      "status": "open",
-      "priority": 1,
-      "labels": [
-        "chez",
-        "emscripten",
-        "experiment",
-        "jolt",
-        "node",
-        "raylib",
-        "research",
-        "wasm"
-      ],
-      "score": 0.5305053408541487,
-      "breakdown": {
-        "pagerank": 0.18842575278599266,
-        "betweenness": 0.04000000000000001,
-        "blocker_ratio": 0.13,
-        "staleness": 0.00010744786458167439,
-        "priority_boost": 0.07500000000000001,
-        "time_to_impact": 0.08225,
-        "urgency": 0.00045837682489479616,
-        "risk": 0.0020000000000000005,
-        "pagerank_norm": 0.8564806944817848,
-        "betweenness_norm": 0.2,
-        "blocker_ratio_norm": 1,
-        "staleness_norm": 0.0021489572916334877,
-        "priority_boost_norm": 0.75,
-        "time_to_impact_norm": 0.8225,
-        "urgency_norm": 0.004583768248947961,
-        "risk_norm": 0.020000000000000004,
-        "time_to_impact_explanation": "Deep in critical path (depth 8), median estimate 60m",
-        "risk_explanation": "Low risk - stable dependency structure",
-        "risk_signals": {
-          "fan_variance": 0,
-          "activity_churn": 0,
-          "cross_repo_risk": 0,
-          "status_risk": 0.1,
-          "composite_risk": 0.020000000000000004,
-          "explanation": "Low risk - stable dependency structure"
-        }
-      },
-      "action": "Quick win - start here for fast progress",
-      "reasons": [
-        "🎯 Completing this unblocks 3 downstream issues (jwr-c52.3, jwr-c52.4, jwr-c52.7)",
-        "📊 High centrality in dependency graph (PageRank: 86%)",
-        "⚡ Low effort, high impact - good starting point",
-        "✅ Currently unclaimed - available for work",
-        "🚨 High priority (P1) - prioritize this work"
-      ],
-      "unblocks_ids": [
-        "jwr-c52.3",
-        "jwr-c52.4",
-        "jwr-c52.7"
-      ]
-    },
     {
       "id": "jwr-c52.12",
       "title": "EXP-011/012 implement persistent browser-owned frames and input",
@@ -141,23 +101,23 @@
         "research",
         "wasm"
       ],
-      "score": 0.3523807933351648,
+      "score": 0.3527116200354616,
       "breakdown": {
         "pagerank": 0.06653900526467717,
         "betweenness": 0.14666666666666667,
         "blocker_ratio": 0.08666666666666667,
-        "staleness": 0.00010719709297673613,
+        "staleness": 0.0001975602597584684,
         "priority_boost": 0.07500000000000001,
         "time_to_impact": 0.04025,
-        "urgency": 0.00045731193067676814,
+        "urgency": 0.0008395583357475534,
         "risk": 0.0020000000000000005,
         "pagerank_norm": 0.30245002393035075,
         "betweenness_norm": 0.7333333333333333,
         "blocker_ratio_norm": 0.6666666666666666,
-        "staleness_norm": 0.0021439418595347224,
+        "staleness_norm": 0.003951205195169368,
         "priority_boost_norm": 0.75,
         "time_to_impact_norm": 0.40249999999999997,
-        "urgency_norm": 0.004573119306767681,
+        "urgency_norm": 0.008395583357475533,
         "risk_norm": 0.020000000000000004,
         "time_to_impact_explanation": "On dependency chain (depth 2), median estimate 60m",
         "risk_explanation": "Low risk - stable dependency structure",
@@ -202,23 +162,23 @@
         "vision",
         "wasm"
       ],
-      "score": 0.3445451260923931,
+      "score": 0.3448759519078617,
       "breakdown": {
         "pagerank": 0.08120213536338683,
         "betweenness": 0.2,
         "blocker_ratio": 0.043333333333333335,
-        "staleness": 0.00010723567322364969,
+        "staleness": 0.00019759884000538199,
         "priority_boost": 0.07500000000000001,
         "time_to_impact": 0.04725000000000001,
-        "urgency": 0.00045747576204632214,
+        "urgency": 0.0008397209030768515,
         "risk": 0.0020000000000000005,
         "pagerank_norm": 0.36910061528812194,
         "betweenness_norm": 1,
         "blocker_ratio_norm": 0.3333333333333333,
-        "staleness_norm": 0.002144713464472994,
+        "staleness_norm": 0.003951976800107639,
         "priority_boost_norm": 0.75,
         "time_to_impact_norm": 0.47250000000000003,
-        "urgency_norm": 0.004574757620463221,
+        "urgency_norm": 0.008397209030768515,
         "risk_norm": 0.020000000000000004,
         "time_to_impact_explanation": "Deep in critical path (depth 3), median estimate 60m",
         "risk_explanation": "Low risk - stable dependency structure",
@@ -264,23 +224,23 @@
         "vision",
         "wasm"
       ],
-      "score": 0.2622429141608311,
+      "score": 0.28010385871745985,
       "breakdown": {
         "pagerank": 0.05915481508267566,
         "betweenness": 0.1111111111111111,
         "blocker_ratio": 0.043333333333333335,
-        "staleness": 0.00010735141396439043,
+        "staleness": 0.0001977145807461227,
         "priority_boost": 0.07500000000000001,
         "time_to_impact": 0.05425,
-        "urgency": 0.0004579672529043788,
+        "urgency": 0.0008402086018392263,
         "risk": 0.006242640687119286,
         "pagerank_norm": 0.2688855231030712,
         "betweenness_norm": 0.5555555555555555,
         "blocker_ratio_norm": 0.3333333333333333,
-        "staleness_norm": 0.0021470282792878086,
+        "staleness_norm": 0.003954291614922454,
         "priority_boost_norm": 0.75,
         "time_to_impact_norm": 0.5425,
-        "urgency_norm": 0.004579672529043788,
+        "urgency_norm": 0.008402086018392263,
         "risk_norm": 0.06242640687119285,
         "time_to_impact_explanation": "Deep in critical path (depth 4), median estimate 60m",
         "risk_explanation": "Low risk - stable dependency structure",
@@ -321,23 +281,23 @@
         "research",
         "wasm"
       ],
-      "score": 0.2611775700396649,
+      "score": 0.2779028814682926,
       "breakdown": {
         "pagerank": 0.0665454315668088,
         "betweenness": 0.034444444444444444,
         "blocker_ratio": 0.08666666666666667,
-        "staleness": 0.00010737070408784723,
+        "staleness": 0.00019773387086957948,
         "priority_boost": 0.07500000000000001,
         "time_to_impact": 0.061250000000000006,
-        "urgency": 0.00045804916757334336,
+        "urgency": 0.000840289884495904,
         "risk": 0.0020000000000000005,
         "pagerank_norm": 0.30247923439458546,
         "betweenness_norm": 0.17222222222222222,
         "blocker_ratio_norm": 0.6666666666666666,
-        "staleness_norm": 0.0021474140817569444,
+        "staleness_norm": 0.003954677417391589,
         "priority_boost_norm": 0.75,
         "time_to_impact_norm": 0.6125,
-        "urgency_norm": 0.0045804916757334335,
+        "urgency_norm": 0.00840289884495904,
         "risk_norm": 0.020000000000000004,
         "time_to_impact_explanation": "Deep in critical path (depth 5), median estimate 60m",
         "risk_explanation": "Low risk - stable dependency structure",
@@ -350,15 +310,11 @@
           "explanation": "Low risk - stable dependency structure"
         }
       },
-      "action": "Work on jwr-c52.2 first to unblock this",
+      "action": "Start work on this issue",
       "reasons": [
         "📊 High centrality in dependency graph (PageRank: 30%)",
         "✅ Currently unclaimed - available for work",
-        "⏳ Blocked by jwr-c52.2 - complete that first",
         "🚨 High priority (P1) - prioritize this work"
-      ],
-      "blocked_by": [
-        "jwr-c52.2"
       ]
     },
     {
@@ -377,23 +333,23 @@
         "research",
         "wasm"
       ],
-      "score": 0.25648084215400185,
+      "score": 0.27291260647814963,
       "breakdown": {
         "pagerank": 0.0625631069850543,
         "betweenness": 0.02555555555555556,
         "blocker_ratio": 0.08666666666666667,
-        "staleness": 0.00010742857445821761,
+        "staleness": 0.00019779174123994985,
         "priority_boost": 0.07500000000000001,
         "time_to_impact": 0.06825,
-        "urgency": 0.0004582949107675927,
+        "urgency": 0.0008405337316595486,
         "risk": 0.0020000000000000005,
         "pagerank_norm": 0.2843777590229741,
         "betweenness_norm": 0.1277777777777778,
         "blocker_ratio_norm": 0.6666666666666666,
-        "staleness_norm": 0.002148571489164352,
+        "staleness_norm": 0.0039558348247989965,
         "priority_boost_norm": 0.75,
         "time_to_impact_norm": 0.6825,
-        "urgency_norm": 0.0045829491076759266,
+        "urgency_norm": 0.008405337316595485,
         "risk_norm": 0.020000000000000004,
         "time_to_impact_explanation": "Deep in critical path (depth 6), median estimate 60m",
         "risk_explanation": "Low risk - stable dependency structure",
@@ -406,14 +362,10 @@
           "explanation": "Low risk - stable dependency structure"
         }
       },
-      "action": "Work on jwr-c52.2 first to unblock this",
+      "action": "Start work on this issue",
       "reasons": [
         "✅ Currently unclaimed - available for work",
-        "⏳ Blocked by jwr-c52.2 - complete that first",
         "🚨 High priority (P1) - prioritize this work"
-      ],
-      "blocked_by": [
-        "jwr-c52.2"
       ]
     },
     {
@@ -431,23 +383,23 @@
         "research",
         "wasm"
       ],
-      "score": 0.24844680424414023,
+      "score": 0.2625014417361293,
       "breakdown": {
         "pagerank": 0.06357621635766887,
         "betweenness": 0.013333333333333334,
         "blocker_ratio": 0.043333333333333335,
-        "staleness": 0.00010740928433476082,
+        "staleness": 0.0001977724511164931,
         "priority_boost": 0.07500000000000001,
         "time_to_impact": 0.07525,
-        "urgency": 0.0004582129965049475,
+        "urgency": 0.0008404524494060651,
         "risk": 0.0020000000000000005,
         "pagerank_norm": 0.2889828016257676,
         "betweenness_norm": 0.06666666666666667,
         "blocker_ratio_norm": 0.3333333333333333,
-        "staleness_norm": 0.0021481856866952163,
+        "staleness_norm": 0.003955449022329862,
         "priority_boost_norm": 0.75,
         "time_to_impact_norm": 0.7525,
-        "urgency_norm": 0.004582129965049475,
+        "urgency_norm": 0.00840452449406065,
         "risk_norm": 0.020000000000000004,
         "time_to_impact_explanation": "Deep in critical path (depth 7), median estimate 60m",
         "risk_explanation": "Low risk - stable dependency structure",
@@ -460,18 +412,14 @@
           "explanation": "Low risk - stable dependency structure"
         }
       },
-      "action": "Work on jwr-c52.2 first to unblock this",
+      "action": "Start work on this issue",
       "reasons": [
         "🔓 Unblocks 1 item(s): jwr-c52.5",
         "✅ Currently unclaimed - available for work",
-        "⏳ Blocked by jwr-c52.2 - complete that first",
         "🚨 High priority (P1) - prioritize this work"
       ],
       "unblocks_ids": [
         "jwr-c52.5"
-      ],
-      "blocked_by": [
-        "jwr-c52.2"
       ]
     },
     {
@@ -488,23 +436,23 @@
         "research",
         "wasm"
       ],
-      "score": 0.23906769913920312,
+      "score": 0.2393985240698465,
       "breakdown": {
         "pagerank": 0.05915481508267566,
         "betweenness": 0.10222222222222221,
         "blocker_ratio": 0.043333333333333335,
-        "staleness": 0.00010727425347056327,
+        "staleness": 0.0001976374202522955,
         "priority_boost": 0.07500000000000001,
         "time_to_impact": 0.05425,
-        "urgency": 0.00045763959287410953,
+        "urgency": 0.0008398834698685631,
         "risk": 0.007000000000000001,
         "pagerank_norm": 0.2688855231030712,
         "betweenness_norm": 0.5111111111111111,
         "blocker_ratio_norm": 0.3333333333333333,
-        "staleness_norm": 0.0021454850694112653,
+        "staleness_norm": 0.00395274840504591,
         "priority_boost_norm": 0.75,
         "time_to_impact_norm": 0.5425,
-        "urgency_norm": 0.004576395928741095,
+        "urgency_norm": 0.008398834698685631,
         "risk_norm": 0.07,
         "time_to_impact_explanation": "Deep in critical path (depth 4), median estimate 60m",
         "risk_explanation": "Low risk - stable dependency structure",
@@ -544,23 +492,23 @@
         "research",
         "wasm"
       ],
-      "score": 0.21718665519875463,
+      "score": 0.2330544420477596,
       "breakdown": {
         "pagerank": 0.049784867360390866,
         "betweenness": 0.07333333333333333,
         "blocker_ratio": 0.043333333333333335,
-        "staleness": 0.00010731283371747684,
+        "staleness": 0.00019767600049920908,
         "priority_boost": 0.07500000000000001,
         "time_to_impact": 0.061250000000000006,
-        "urgency": 0.0004578034231601247,
+        "urgency": 0.0008400460361226881,
         "risk": 0.007000000000000001,
         "pagerank_norm": 0.2262948516381403,
         "betweenness_norm": 0.36666666666666664,
         "blocker_ratio_norm": 0.3333333333333333,
-        "staleness_norm": 0.0021462566743495367,
+        "staleness_norm": 0.003953520009984181,
         "priority_boost_norm": 0.75,
         "time_to_impact_norm": 0.6125,
-        "urgency_norm": 0.004578034231601247,
+        "urgency_norm": 0.00840046036122688,
         "risk_norm": 0.07,
         "time_to_impact_explanation": "Deep in critical path (depth 5), median estimate 60m",
         "risk_explanation": "Low risk - stable dependency structure",
@@ -598,23 +546,23 @@
         "research",
         "wasm"
       ],
-      "score": 0.20621362379460703,
+      "score": 0.2203392808099938,
       "breakdown": {
         "pagerank": 0.045802542778636365,
         "betweenness": 0.04000000000000001,
         "blocker_ratio": 0.043333333333333335,
-        "staleness": 0.00010740928433476082,
+        "staleness": 0.0001977724511164931,
         "priority_boost": 0.07500000000000001,
         "time_to_impact": 0.06825,
-        "urgency": 0.0004582129965049475,
+        "urgency": 0.0008404524494060651,
         "risk": 0.0020000000000000005,
         "pagerank_norm": 0.20819337626652892,
         "betweenness_norm": 0.2,
         "blocker_ratio_norm": 0.3333333333333333,
-        "staleness_norm": 0.0021481856866952163,
+        "staleness_norm": 0.003955449022329862,
         "priority_boost_norm": 0.75,
         "time_to_impact_norm": 0.6825,
-        "urgency_norm": 0.004582129965049475,
+        "urgency_norm": 0.00840452449406065,
         "risk_norm": 0.020000000000000004,
         "time_to_impact_explanation": "Deep in critical path (depth 6), median estimate 60m",
         "risk_explanation": "Low risk - stable dependency structure",
@@ -636,20 +584,56 @@
       "blocked_by": [
         "jwr-c52.4"
       ]
+    },
+    {
+      "id": "jwr-c52",
+      "title": "Prove Jolt + Chez Wasm + Raylib browser feasibility",
+      "type": "epic",
+      "status": "open",
+      "priority": 1,
+      "labels": [
+        "jolt",
+        "raylib",
+        "research",
+        "wasm"
+      ],
+      "score": 0.11554266551781205,
+      "breakdown": {
+        "pagerank": 0.024644021050763968,
+        "betweenness": 0,
+        "blocker_ratio": 0,
+        "staleness": 0.00019783032148686347,
+        "priority_boost": 0.07500000000000001,
+        "time_to_impact": 0.03325,
+        "urgency": 0.0008406962957633435,
+        "risk": 0.0020000000000000005,
+        "pagerank_norm": 0.11201827750347258,
+        "betweenness_norm": 0,
+        "blocker_ratio_norm": 0,
+        "staleness_norm": 0.003956606429737269,
+        "priority_boost_norm": 0.75,
+        "time_to_impact_norm": 0.3325,
+        "urgency_norm": 0.008406962957633435,
+        "risk_norm": 0.020000000000000004,
+        "time_to_impact_explanation": "On dependency chain (depth 1), median estimate 60m",
+        "risk_explanation": "Low risk - stable dependency structure",
+        "risk_signals": {
+          "fan_variance": 0,
+          "activity_churn": 0,
+          "cross_repo_risk": 0,
+          "status_risk": 0.1,
+          "composite_risk": 0.020000000000000004,
+          "explanation": "Low risk - stable dependency structure"
+        }
+      },
+      "action": "Start work on this issue",
+      "reasons": [
+        "✅ Currently unclaimed - available for work",
+        "🚨 High priority (P1) - prioritize this work"
+      ]
     }
   ],
   "quick_wins": [
-    {
-      "id": "jwr-c52.2",
-      "title": "EXP-001 prove stock Chez portable bytecode under Node",
-      "score": 0.9,
-      "reason": "Unblocks 3 items, high priority",
-      "unblocks_ids": [
-        "jwr-c52.3",
-        "jwr-c52.4",
-        "jwr-c52.7"
-      ]
-    },
     {
       "id": "jwr-c52.12",
       "title": "EXP-011/012 implement persistent browser-owned frames and input",
@@ -683,20 +667,15 @@
       "title": "Prove Jolt + Chez Wasm + Raylib browser feasibility",
       "score": 0.5,
       "reason": "Low complexity, high priority"
+    },
+    {
+      "id": "jwr-c52.13",
+      "title": "EXP-013 prove debug-only live browser redefinition",
+      "score": 0.4,
+      "reason": "Low complexity"
     }
   ],
   "blockers_to_clear": [
-    {
-      "id": "jwr-c52.2",
-      "title": "EXP-001 prove stock Chez portable bytecode under Node",
-      "unblocks_count": 3,
-      "unblocks_ids": [
-        "jwr-c52.3",
-        "jwr-c52.4",
-        "jwr-c52.7"
-      ],
-      "actionable": true
-    },
     {
       "id": "jwr-c52.12",
       "title": "EXP-011/012 implement persistent browser-owned frames and input",
@@ -730,24 +709,21 @@
       "unblocks_ids": [
         "jwr-c52.5"
       ],
-      "actionable": false,
-      "blocked_by": [
-        "jwr-c52.2"
-      ]
+      "actionable": true
     }
   ],
   "project_health": {
     "counts": {
       "total": 16,
-      "open": 13,
-      "closed": 3,
+      "open": 12,
+      "closed": 4,
       "blocked": 0,
-      "actionable": 2,
-      "not_closed": 13,
-      "dependency_blocked": 11,
+      "actionable": 4,
+      "not_closed": 12,
+      "dependency_blocked": 8,
       "by_status": {
-        "closed": 3,
-        "open": 13
+        "closed": 4,
+        "open": 12
       },
       "by_type": {
         "epic": 1,
@@ -767,13 +743,13 @@
       "phase2_ready": true
     },
     "velocity": {
-      "closed_last_7_days": 3,
-      "closed_last_30_days": 3,
-      "avg_days_to_close": 0.03031635802469136,
+      "closed_last_7_days": 4,
+      "closed_last_30_days": 4,
+      "avg_days_to_close": 0.045078125,
       "weekly": [
         {
           "week_start": "2026-08-31T00:00:00Z",
-          "closed": 3
+          "closed": 4
         },
         {
           "week_start": "2026-08-24T00:00:00Z",
@@ -807,8 +783,8 @@
     }
   },
   "commands": {
-    "claim_top": "CI=1 br update jwr-c52.2 --status in_progress --json",
-    "show_top": "CI=1 br show jwr-c52.2 --json",
+    "claim_top": "CI=1 br update jwr-c52.7 --status in_progress --json",
+    "show_top": "CI=1 br show jwr-c52.7 --json",
     "list_ready": "CI=1 br ready --json",
     "list_blocked": "CI=1 br blocked --json",
     "refresh_triage": "bv --robot-triage"
