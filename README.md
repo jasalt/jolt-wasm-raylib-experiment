@@ -14,14 +14,17 @@ runtime.
 
 ## Status
 
-**Planning and task decomposition only.** No Jolt/Wasm or Jolt/Raylib browser
-rendering claim has been demonstrated in this repository yet.
+**Completed evidence ladder: W3.** Pinned Chez portable bytecode runs under
+Node and Chromium; pinned Raylib renders in Chromium; and Chez reaches a
+statically registered signed-scalar C facade. A two-scene integration witness
+visibly proves Scheme-selected green/red Raylib frames under browser/C frame
+ownership.
 
-The research proceeds in small proofs: stock Chez under Node and a browser,
-Jolt without graphics, plain C Raylib in a browser, static Chez-to-C FFI, one
-Chez-driven frame, and finally one Jolt-driven persistent frame loop. Browser
-rendering is validated with browser automation, screenshots, and semantic
-inspection by a vision-capable coding agent.
+Jolt itself does **not** yet run on this browser target. Genuine Jolt-emitted
+Scheme recompiles to a `pb` boot, but runtime initialization aborts at
+`make-mutex`; Jolt's threadless browser adapter is explicitly design-only in
+the pinned source. See [REPORT.md](REPORT.md) for the graded conclusion,
+evidence table, exact boundary, and required upstream work.
 
 Read the complete [PLAN.md](PLAN.md) for architecture, proof order, experiment
 format, acceptance criteria, and graded outcomes. Coding agents must also read

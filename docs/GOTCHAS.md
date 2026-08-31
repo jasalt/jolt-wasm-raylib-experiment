@@ -6,6 +6,15 @@
 `emsdk` or machine-local checkout paths. `flake.nix` and `pins.edn` define the
 intended source/tool boundary; experiments record the exact resolved revisions.
 
+## Jolt requires threads before application startup
+
+**Observed 2026-08-31.** A genuine Jolt-emitted source payload compiles into a
+pinned Chez `pb` boot, but loading it aborts at top-level `make-mutex`. The
+Emscripten checkout has `pb` boots only, while `--threads --pb --emscripten`
+requires an unavailable `tpb` boot. Jolt's `host/scheme-adapter/THREADS.md`
+confirms threadless semantics are design-only and not implemented. Do not mask
+one mutex call or relabel the Chez-only EXP-007 frame as Jolt.
+
 ## Pin source inputs as tarballs with content hashes
 
 **Observed 2026-08-31.** Git-input locking began downloading a large full Chez

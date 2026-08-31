@@ -18,5 +18,10 @@ if [[ "${VERIFY_BROWSER:-0}" == 1 ]]; then
 else
   printf 'SKIP raylib-web: set VERIFY_BROWSER=1 to run Chromium visual validation\n' | tee "$log_dir/raylib-web-skip.log"
 fi
-printf 'PASS: supported verification tiers completed.\n' >"$summary"
+printf '%s\n' \
+  'PASS bootstrap/native/nREPL: supported native tiers completed.' \
+  'SKIP Jolt Node/browser/Raylib/input/debug: pinned Jolt aborts at make-mutex on non-threaded pb; see EXP-008.' \
+  'SKIP stress/performance: no initialized Jolt browser runtime; Chez-only timing would not satisfy the gate.' \
+  'PASS report consistency: REPORT.md records W3 and does not claim Jolt browser execution.' \
+  >"$summary"
 printf 'Wrote %s\n' "$summary"
