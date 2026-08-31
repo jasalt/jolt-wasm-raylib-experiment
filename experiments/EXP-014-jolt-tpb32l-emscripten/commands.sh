@@ -9,14 +9,16 @@ stage=${1:-}
 
 usage() {
   cat >&2 <<'USAGE'
-usage: commands.sh control|bootquick|native-thread
+usage: commands.sh control|bootquick|native-thread|em-thread-node
 
 control    Record the pinned environment and rerun the genuine non-threaded
            EXP-008 Jolt pb control. It is expected to abort at make-mutex.
 bootquick      Copy the pinned Chez source, build its portable pb host, and run
                the documented `make bootquick XM=tpb32l` target generator.
-native-thread  Build and run the actual 32-bit tpb32l witness with the flake's
-               pinned i686 compiler (not host `-m32` multilib).
+native-thread   Build and run the actual 32-bit tpb32l witness with the flake's
+                pinned i686 compiler (not host `-m32` multilib).
+em-thread-node  Build the same witness in threaded Emscripten Chez and execute
+                it with Node using named pre-created pthread pool size 1.
 
 Later stages are intentionally unavailable until their owning Beads work package
 has established the preceding gate. Do not infer an Emscripten runtime from
@@ -82,6 +84,17 @@ case "$stage" in
     [[ -d "$work" ]] || { printf 'run bootquick first\n' >&2; exit 1; }
     log_run "$log_dir/native-thread-witness.log" nix shell "$root#i686-cc" nixpkgs#gnumake -c bash -c "cd '$work' && ./configure --threads --pbarch --32 --disable-x11 --disable-curses && make -j\"\${JOBS:-2}\" && file tpb32l/bin/tpb32l/scheme && ./tpb32l/bin/tpb32l/scheme --script '$root/experiments/$experiment/witness-thread.ss'"
     printf '%s NATIVE-THREAD-PASS target=tpb32l log=%s\n' "$experiment" "$log_dir/native-thread-witness.log"
+    ;;
+  em-thread-node)
+    work="$root/build/$experiment/source"
+    [[ -x "$work/tpb32l/bin/tpb32l/scheme" ]] || { printf 'run native-thread first\n' >&2; exit 1; }
+    "$work/tpb32l/bin/tpb32l/scheme" --script /dev/stdin <<SCHEME
+(compile-file "$root/experiments/$experiment/witness-thread.ss" "$work/witness-thread.so")
+(make-boot-file "$work/witness-thread.boot" '("petite") "$work/witness-thread.so")
+SCHEME
+    log_run "$log_dir/emscripten-thread-pool-1-build.log" nix develop -c bash -c "cd '$work' && ./configure --emscripten --threads --pbarch --emboot=witness-thread.boot --disable-x11 --disable-curses 'LDFLAGS+=-s PTHREAD_POOL_SIZE=1' && make -j\"\${JOBS:-2}\""
+    log_run "$log_dir/node-thread-pool-1.log" nix develop -c bash -c "cd '$work/em-tpb32l/bin/tpb32l' && node scheme.js"
+    printf '%s EM-THREAD-NODE-PASS target=tpb32l pool=1 log=%s\n' "$experiment" "$log_dir/node-thread-pool-1.log"
     ;;
   *) usage ;;
 esac

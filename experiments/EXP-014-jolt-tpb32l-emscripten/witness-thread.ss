@@ -4,7 +4,9 @@
 ;; The pinned Chez API releases and later reacquires `lock` around
 ;; condition-wait. The predicate loop makes this witness correct if a wait
 ;; wakes before the worker's state publication; no sleep or busy wait is used.
-(let ([lock (make-mutex 'exp-014-lock)]
+(scheme-start
+ (lambda ()
+  (let ([lock (make-mutex 'exp-014-lock)]
       [ready (make-condition 'exp-014-ready)]
       [state 0])
   (fork-thread
@@ -22,4 +24,5 @@
   (unless (= state 73)
     (assertion-violation 'EXP-014 "thread witness state mismatch" state))
   (display "THREAD-WITNESS-OK\n")
-  (flush-output-port (current-output-port)))
+  (flush-output-port (current-output-port))
+  (exit))))

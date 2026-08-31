@@ -94,17 +94,18 @@ as an `ENVIRONMENT` issue and was not treated as a Chez result.
 
 ## Result
 
-**T0–T1 PASS / later target status not yet run.** The current workspace
+**T0–T2 PASS / later target status not yet run.** The current workspace
 retains the known non-threaded Jolt boundary, stock pinned Chez generated
-`tpb32l` boot and cross-compilation material, and an actual 32-bit native
-threaded target completed deterministic cross-thread communication. T2 through
-T6 are not established.
+`tpb32l` boot and cross-compilation material, an actual 32-bit native threaded
+target completed deterministic cross-thread communication, and the same witness
+completed through the Emscripten pthread module under Node. T3 through T6 are
+not established.
 
 | Gate | Result | Evidence |
 | --- | --- | --- |
 | T0 generated `tpb32l` boots | PASS | bootquick log/files/hashes |
 | T1 native thread witness | PASS | native thread log |
-| T2 Emscripten Chez / Node | not run | — |
+| T2 Emscripten Chez / Node | PASS | Node/build logs |
 | T3 Jolt / Node | not run | — |
 | T4 Chez / Chromium | not run | — |
 | T5 Jolt / Chromium | not run | — |
@@ -117,9 +118,9 @@ the untested `tpb32l` route.
 
 ## Workaround or next experiment
 
-Proceed to T2 only: configure the generated `tpb32l` boots with Emscripten
-pthreads and run this same witness under Node. Do not patch Jolt, add
-`PROXY_TO_PTHREAD`, substitute a host Scheme, or mix in Raylib/FFI work.
+Proceed to T3 only: mint the unchanged genuine Jolt application boot for the
+generated `tpb32l` target. Do not patch Jolt, add `PROXY_TO_PTHREAD`,
+substitute a host Scheme, or mix in Raylib/FFI work.
 
 ## Upstream suitability
 
@@ -147,6 +148,14 @@ Ignored reproducibility logs created by `control`:
   `61c24a66befa23177e37bdea90e95ffb72f566aa3194748eee6c80cc223212cd`,
   and `xpatch`
   `6e54168b8552aa7b31754678d565c40a5a72853e92660cd8f67d6d8898ae9d63`.
+- `artifacts/logs/EXP-014/emscripten-thread-pool-1-build.log` — stock pinned
+  Chez configured `--emscripten --threads --pbarch --emboot=witness-thread.boot`
+  with named `-s PTHREAD_POOL_SIZE=1`; compile and final link both contain
+  `-pthread` and exited 0.
+- `artifacts/logs/EXP-014/node-thread-pool-1.log` — Node printed Chez startup
+  and `THREAD-WITNESS-OK`, exit 0. The first default and named pool=1 attempts
+  hung because the early witness did not set `scheme-start`; the final exact
+  same pool=1 build uses the boot's `scheme-start` and exits cleanly.
 - `artifacts/logs/EXP-014/native-thread-witness.log` — an ELF 32-bit
   `tpb32l` build followed by `THREAD-WITNESS-OK`, exit 0.
 - `artifacts/logs/EXP-014/native-tpb32l-32bit-build.log` — full pinned i686
