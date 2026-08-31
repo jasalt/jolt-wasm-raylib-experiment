@@ -9,10 +9,14 @@ chez="$chez_source/tpb64l/bin/tpb64l/scheme"
 log_dir="$root/artifacts/logs/EXP-004"
 mkdir -p "$log_dir"
 
-[[ -x "$chez" ]] || { printf 'build EXP-003 first: %s\n' "$chez" >&2; exit 1; }
+[[ -x "$chez" ]] || {
+  printf 'build EXP-003 first: %s\n' "$chez" >&2
+  exit 1
+}
 CHEZ_SRC="$chez_source" "$root/../jolt/tools/cross-compile/make-pack.sh" tpb64l "$pack"
 {
-  printf 'jolt_revision='; git -C "$root/../jolt" rev-parse HEAD
+  printf 'jolt_revision='
+  git -C "$root/../jolt" rev-parse HEAD
   printf 'chez_executable=%s\n' "$chez"
   "$chez" --version
   printf '(display (machine-type)) (newline) (display (threaded?)) (newline) (exit)\n' | "$chez" -q
