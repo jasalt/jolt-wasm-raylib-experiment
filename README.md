@@ -20,11 +20,11 @@ statically registered signed-scalar C facade. A two-scene integration witness
 visibly proves Scheme-selected green/red Raylib frames under browser/C frame
 ownership.
 
-Jolt itself does **not** yet run on this browser target. Genuine Jolt-emitted
-Scheme recompiles to a `pb` boot, but runtime initialization aborts at
-`make-mutex`; Jolt's threadless browser adapter is explicitly design-only in
-the pinned source. See [REPORT.md](REPORT.md) for the graded conclusion,
-evidence table, exact boundary, and required upstream work.
+Jolt itself now runs on the distinct threaded Chez `tpb32l` browser target:
+EXP-014 proves canonical Jolt output under Node and Chromium, including a
+named Petite variant. The retained non-threaded `pb` control still aborts at
+`make-mutex`; it is not representative of the threaded route. Raylib and input
+integration remain downstream. See [REPORT.md](REPORT.md) and EXP-014.
 
 Read the complete [PLAN.md](PLAN.md) for architecture, proof order, experiment
 format, acceptance criteria, and graded outcomes. Coding agents must also read

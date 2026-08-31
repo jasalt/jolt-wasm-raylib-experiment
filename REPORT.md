@@ -2,7 +2,10 @@
 
 ## Conclusion
 
-**Highest demonstrated level: W3 — static FFI and plain Raylib.**
+**Highest demonstrated runtime level: W2 — genuine Jolt under threaded Chez Wasm.**
+
+EXP-014 additionally retains W3's independent static-FFI/plain-Raylib evidence,
+but has not combined Jolt with Raylib.
 
 Pinned Chez portable bytecode runs under Node and Chromium (W1). Pinned Raylib
 renders a vision-inspected browser scene, and Chez reaches a statically
@@ -10,13 +13,12 @@ registered C facade through independently measured portable-bytecode ABI shapes
 (W3). A stronger integration control also proves that a Scheme-selected signed
 scalar visibly changes a browser-owned Raylib frame while C owns scheduling.
 
-**W2 and W4–W6 are not achieved.** The exact revision-matched Jolt compiler
-emits its full Scheme payload, and that source recompiles into a genuine `pb`
-boot. The boot then fails before application startup at Jolt's top-level
-`make-mutex`. Pinned Chez has no threaded `tpb` Emscripten boot, while Jolt's
-own threadless-adapter specification says degraded browser semantics are design
-only and not implemented. Consequently no Jolt browser fixture, Jolt-driven
-frame, persistent Jolt state, or browser live redefinition is claimed.
+**W2 is achieved; W4–W6 are not.** EXP-014's exact revision-matched Jolt boot
+runs its canonical fixture under Emscripten pthreads in Node and Chromium with
+cross-origin isolation, and the Petite comparison also passes. The old
+non-threaded `pb` control still stops at `make-mutex`; this remains an observed
+threadless-adapter boundary, not a failure of `tpb32l`. No Jolt-driven Raylib
+frame, persistent Jolt state, browser input, or live redefinition is claimed.
 
 ## Pinned boundary
 
@@ -41,7 +43,8 @@ frame, persistent Jolt state, or browser live redefinition is claimed.
 | EXP-005 plain Raylib Chromium | PASS | browser-owned frame, clean diagnostics, vision inspection |
 | EXP-006 static FFI | PARTIAL PASS | no-arg and signed-32 pass; unsigned/pointer/string/memory shapes fail clearly |
 | EXP-007 Chez + static facade + Raylib | PASS | Scheme scenes 1/2 visibly produce green/red frames; not Jolt |
-| EXP-008 pure Jolt browser payload | FAIL | genuine `pb` boot aborts at `make-mutex` before app startup |
+| EXP-008 pure Jolt browser payload | FAIL (non-threaded control) | genuine `pb` boot aborts at `make-mutex` before app startup |
+| EXP-014 threaded Jolt `tpb32l` | PASS T0–T6 | Node and Chromium canonical parity; Petite comparison passes |
 | EXP-009/010 Jolt declarations/frame | SKIP | no initialized Jolt browser runtime |
 | EXP-011/012 lifecycle/input | SKIP | no Jolt first frame or persistent model |
 | EXP-013 live redefinition | SKIP | no persistent Jolt browser instance; no eval bridge added |
@@ -79,8 +82,8 @@ would answer a different question.
 ## Architecture and ownership demonstrated
 
 ```d2
-Jolt-emitted Scheme -> "pb boot creation: succeeds"
-"pb boot creation: succeeds" -> "Jolt runtime make-mutex: FAIL"
+Jolt-emitted Scheme -> "non-threaded pb": "make-mutex FAIL control"
+Jolt-emitted Scheme -> "threaded tpb32l": "Node + Chromium canonical PASS"
 
 "Scheme EXP-007" -> "signed int32 static facade": "scene id; returns"
 "signed int32 static facade" -> "C/browser owner"
@@ -106,5 +109,5 @@ used.
 4. Only then execute the Jolt first-frame, 600-frame/input, stress, and
    debug-redefinition gates.
 
-The experiment therefore proves that the Chez/Wasm + static facade + Raylib
-substrate is feasible, but **does not prove Jolt on that browser substrate**.
+The experiment proves Jolt on the threaded Chez/Wasm browser substrate, but
+**does not yet prove Jolt driving Raylib or browser input**.
