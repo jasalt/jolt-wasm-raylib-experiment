@@ -9,7 +9,7 @@ stage=${1:-}
 
 usage() {
   cat >&2 <<'USAGE'
-usage: commands.sh control|bootquick|native-thread|em-thread-node|host64-pack|jolt-mint|jolt-node
+usage: commands.sh control|bootquick|native-thread|em-thread-node|em-thread-chromium|host64-pack|jolt-mint|jolt-node
 
 control    Record the pinned environment and rerun the genuine non-threaded
            EXP-008 Jolt pb control. It is expected to abort at make-mutex.
@@ -19,6 +19,7 @@ native-thread   Build and run the actual 32-bit tpb32l witness with the flake's
                 pinned i686 compiler (not host `-m32` multilib).
 em-thread-node  Build the same witness in threaded Emscripten Chez and execute
                 it with Node using named pre-created pthread pool size 1.
+em-thread-chromium  Run T4 browser automation for the built threaded witness.
 host64-pack     Build a pinned tpb64l cross host, generate its tpb32l xpatch,
                 and build the target kernel in the same Chez tree.
 jolt-mint       Apply the reviewed Jolt word-size patch to a copied pinned tree,
@@ -108,6 +109,9 @@ SCHEME
   log_run "$log_dir/emscripten-thread-pool-1-build.log" nix develop -c bash -c "cd '$work' && ./configure --emscripten --threads --pbarch --emboot=witness-thread.boot --disable-x11 --disable-curses 'LDFLAGS+=-s PTHREAD_POOL_SIZE=1' && make -j\"\${JOBS:-2}\""
   log_run "$log_dir/node-thread-pool-1.log" nix develop -c bash -c "cd '$work/em-tpb32l/bin/tpb32l' && node scheme.js"
   printf '%s EM-THREAD-NODE-PASS target=tpb32l pool=1 log=%s\n' "$experiment" "$log_dir/node-thread-pool-1.log"
+  ;;
+em-thread-chromium)
+  "$root/experiments/$experiment/browser-thread-smoke"
   ;;
 host64-pack)
   work="$root/build/$experiment/source-host64"
