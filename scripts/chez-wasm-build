@@ -13,12 +13,17 @@ mkdir -p "$work"
 # itself is immutable and Chez writes generated boot/kernel outputs in-tree.
 cp -RL "$source/." "$work"
 chmod -R u+w "$work"
+cp "$root/experiments/EXP-001-chez-pb-node/witness.ss" "$work/witness.ss"
 
 {
   cd "$work"
   ./configure --pb
   make -j"${JOBS:-2}"
-  ./configure --pb --emscripten --empetite
+  pb/bin/pb/scheme --script /dev/stdin <<'SCHEME'
+(compile-file "witness.ss" "witness.so")
+(make-boot-file "witness.boot" '("petite") "witness.so")
+SCHEME
+  ./configure --pb --emscripten --empetite --emboot=witness.boot
   make -j"${JOBS:-2}"
 } 2>&1 | tee "$log"
 printf 'Built %s/em-pb/bin/pb/scheme.js\n' "$work"

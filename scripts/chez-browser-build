@@ -1,0 +1,14 @@
+#!/usr/bin/env bash
+set -euo pipefail
+root=$(CDPATH= cd -- "$(dirname -- "$0")/.." && pwd)
+out="$root/build/EXP-002-chez-pb-browser"
+if [[ ! -f "$root/build/EXP-001-chez-pb-node/source/em-pb/bin/pb/scheme.js" ]]; then
+  "$root/scripts/chez-wasm-build"
+fi
+rm -rf "$out"; mkdir -p "$out"
+cp "$root/experiments/EXP-002-chez-pb-browser/web/index.html" "$out/index.html"
+cp "$root/build/EXP-001-chez-pb-node/source/em-pb/bin/pb/scheme.js" "$out/scheme.js"
+cp "$root/build/EXP-001-chez-pb-node/source/em-pb/bin/pb/scheme.wasm" "$out/scheme.wasm"
+cp "$root/build/EXP-001-chez-pb-node/source/em-pb/bin/pb/scheme.data" "$out/scheme.data"
+cp -R "$root/build/EXP-001-chez-pb-node/source/em-pb/bin/pb/petite.boot" "$out/petite.boot" 2>/dev/null || true
+printf 'Built %s\n' "$out/index.html"

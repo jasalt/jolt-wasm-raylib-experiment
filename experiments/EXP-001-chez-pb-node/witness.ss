@@ -1,4 +1,4 @@
-(begin
+(define (run-witness)
   (display "EXP-001-PB-OK\n")
   (let loop ([n 100000])
     (unless (zero? n)
@@ -12,3 +12,5 @@
   (display (+ 1.5 2.25))
   (newline)
   (exit))
+
+(scheme-start run-witness)

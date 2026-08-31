@@ -1,0 +1,16 @@
+#!/usr/bin/env bash
+set -euo pipefail
+root=$(CDPATH= cd -- "$(dirname -- "$0")/.." && pwd)
+out="$root/build/EXP-002-chez-pb-browser"
+log="$root/artifacts/logs/EXP-002/browser.log"
+report="$root/artifacts/reports/EXP-002-browser.txt"
+mkdir -p "$(dirname "$log")" "$(dirname "$report")"
+"$root/scripts/chez-browser-build" >"$log" 2>&1
+port=$((20000 + ($$ % 1000)))
+(cd "$out" && python3 -m http.server "$port" --bind 127.0.0.1) >>"$log" 2>&1 & server=$!
+trap 'kill "$server" 2>/dev/null || true' EXIT
+for _ in $(seq 1 50); do curl -fsS "http://127.0.0.1:$port/" >/dev/null && break; sleep .1; done
+chromium-browser --headless --no-sandbox --disable-gpu --virtual-time-budget=5000 --dump-dom "http://127.0.0.1:$port/" >"$report" 2>>"$log"
+grep -q 'data-chez-state="ready"' "$report"
+grep -q 'EXP-002-PB-BROWSER-OK' "$report"
+printf 'EXP-002 browser witness: PASS\n'
