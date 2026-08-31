@@ -1,7 +1,7 @@
 {
   "meta": {
     "version": "1.0.0",
-    "generated_at": "2026-08-31T19:57:06.481755082Z",
+    "generated_at": "2026-08-31T19:57:25.424705671Z",
     "phase2_ready": true,
     "issue_count": 38,
     "compute_time_ms": 0
@@ -9,110 +9,61 @@
   "status": {
     "PageRank": {
       "state": "computed",
-      "ms": 0.043996
+      "ms": 0.057757
     },
     "Betweenness": {
       "state": "computed",
-      "ms": 0.126469
+      "ms": 0.226654
     },
     "Eigenvector": {
       "state": "computed",
-      "ms": 0.011166
+      "ms": 0.021239
     },
     "HITS": {
       "state": "computed",
-      "ms": 0.028482
+      "ms": 0.05913
     },
     "Critical": {
       "state": "computed",
-      "ms": 0.031257
+      "ms": 0.023303
     },
     "Cycles": {
       "state": "computed",
-      "ms": 0.014131
+      "ms": 0.016481
     },
     "KCore": {
       "state": "computed",
-      "ms": 0.020751
+      "ms": 0.036138
     },
     "Articulation": {
       "state": "computed"
     },
     "Slack": {
       "state": "computed",
-      "ms": 0.004677
+      "ms": 0.006102
     }
   },
   "quick_ref": {
     "open_count": 3,
     "actionable_count": 2,
     "blocked_count": 0,
-    "in_progress_count": 1,
-    "not_closed_count": 4,
-    "not_actionable_count": 2,
-    "top_picks": []
+    "in_progress_count": 0,
+    "not_closed_count": 3,
+    "not_actionable_count": 1,
+    "top_picks": [
+      {
+        "id": "jwr-up7.9",
+        "title": "EXP-014 I prove threaded Petite Jolt browser variant",
+        "score": 0.2388490331861225,
+        "reasons": [
+          "🔓 Unblocks 1 item(s): jwr-up7.10",
+          "✅ Currently unclaimed - available for work"
+        ],
+        "unblocks": 1
+      }
+    ]
   },
   "recommendations": [
-    {
-      "id": "jwr-up7.8",
-      "title": "EXP-014 H run genuine Jolt tpb32l fixture under Chromium",
-      "type": "feature",
-      "status": "in_progress",
-      "assignee": "norbot7865",
-      "priority": 1,
-      "labels": [
-        "automation",
-        "chez",
-        "chromium",
-        "emscripten",
-        "exp-014",
-        "hard",
-        "jolt",
-        "pthreads",
-        "research",
-        "wasm"
-      ],
-      "score": 0.27033265891287195,
-      "breakdown": {
-        "pagerank": 0.06783920571463782,
-        "betweenness": 0.10588235294117648,
-        "blocker_ratio": 0.043333333333333335,
-        "staleness": 3.9509558414351857e-7,
-        "priority_boost": 0.07500000000000001,
-        "time_to_impact": 0.04725000000000001,
-        "urgency": 0.0020270827907996336,
-        "risk": 0.0020000000000000005,
-        "pagerank_norm": 0.30836002597562645,
-        "betweenness_norm": 0.5294117647058824,
-        "blocker_ratio_norm": 0.3333333333333333,
-        "staleness_norm": 0.00000790191168287037,
-        "priority_boost_norm": 0.75,
-        "time_to_impact_norm": 0.47250000000000003,
-        "urgency_norm": 0.020270827907996336,
-        "risk_norm": 0.020000000000000004,
-        "time_to_impact_explanation": "Deep in critical path (depth 3), median estimate 60m",
-        "risk_explanation": "Low risk - stable dependency structure",
-        "risk_signals": {
-          "fan_variance": 0,
-          "activity_churn": 0,
-          "cross_repo_risk": 0,
-          "status_risk": 0.1,
-          "composite_risk": 0.020000000000000004,
-          "explanation": "Low risk - stable dependency structure"
-        }
-      },
-      "action": "Contact norbot7865 if you want to help",
-      "reasons": [
-        "🔓 Unblocks 1 item(s): jwr-up7.9",
-        "🔀 Critical path bottleneck (betweenness: 53%)",
-        "📊 High centrality in dependency graph (PageRank: 31%)",
-        "👤 Claimed by norbot7865",
-        "🚨 High priority (P1) - prioritize this work"
-      ],
-      "unblocks_ids": [
-        "jwr-up7.9"
-      ]
-    },
     {
       "id": "jwr-up7.9",
       "title": "EXP-014 I prove threaded Petite Jolt browser variant",
@@ -131,23 +82,23 @@
         "research",
         "wasm"
       ],
-      "score": 0.2265623015788195,
+      "score": 0.2388490331861225,
       "breakdown": {
         "pagerank": 0.04878618896487688,
         "betweenness": 0.05882352941176471,
         "blocker_ratio": 0.043333333333333335,
-        "staleness": 0.00048282179311500773,
+        "staleness": 0.00048318720497050546,
         "priority_boost": 0.05,
         "time_to_impact": 0.04025,
-        "urgency": 0.002027003470434441,
+        "urgency": 0.002028506009904557,
         "risk": 0.0020000000000000005,
         "pagerank_norm": 0.22175540438580402,
         "betweenness_norm": 0.29411764705882354,
         "blocker_ratio_norm": 0.3333333333333333,
-        "staleness_norm": 0.009656435862300155,
+        "staleness_norm": 0.009663744099410109,
         "priority_boost_norm": 0.5,
         "time_to_impact_norm": 0.40249999999999997,
-        "urgency_norm": 0.02027003470434441,
+        "urgency_norm": 0.02028506009904557,
         "risk_norm": 0.020000000000000004,
         "time_to_impact_explanation": "On dependency chain (depth 2), median estimate 60m",
         "risk_explanation": "Low risk - stable dependency structure",
@@ -160,17 +111,13 @@
           "explanation": "Low risk - stable dependency structure"
         }
       },
-      "action": "Work on jwr-up7.8 first to unblock this",
+      "action": "Start work on this issue",
       "reasons": [
         "🔓 Unblocks 1 item(s): jwr-up7.10",
-        "✅ Currently unclaimed - available for work",
-        "⏳ Blocked by jwr-up7.8 - complete that first"
+        "✅ Currently unclaimed - available for work"
       ],
       "unblocks_ids": [
         "jwr-up7.10"
-      ],
-      "blocked_by": [
-        "jwr-up7.8"
       ]
     },
     {
@@ -188,23 +135,23 @@
         "research",
         "wasm"
       ],
-      "score": 0.11826204134546169,
+      "score": 0.11826362908085991,
       "breakdown": {
         "pagerank": 0.02637090337589066,
         "betweenness": 0,
         "blocker_ratio": 0,
-        "staleness": 0.00048303398447303245,
+        "staleness": 0.00048339939632853013,
         "priority_boost": 0.07500000000000001,
         "time_to_impact": 0.03325,
-        "urgency": 0.0020278759872382926,
+        "urgency": 0.0020293784993807187,
         "risk": 0.0020000000000000005,
         "pagerank_norm": 0.11986774261768482,
         "betweenness_norm": 0,
         "blocker_ratio_norm": 0,
-        "staleness_norm": 0.009660679689460648,
+        "staleness_norm": 0.009667987926570603,
         "priority_boost_norm": 0.75,
         "time_to_impact_norm": 0.3325,
-        "urgency_norm": 0.020278759872382923,
+        "urgency_norm": 0.020293784993807185,
         "risk_norm": 0.020000000000000004,
         "time_to_impact_explanation": "On dependency chain (depth 1), median estimate 60m",
         "risk_explanation": "Low risk - stable dependency structure",
@@ -242,23 +189,23 @@
         "research",
         "wasm"
       ],
-      "score": 0.08559797252161523,
+      "score": 0.09130599838610422,
       "breakdown": {
         "pagerank": 0.02637090337589066,
         "betweenness": 0,
         "blocker_ratio": 0,
-        "staleness": 0.00048280250299155103,
+        "staleness": 0.0004831679148470487,
         "priority_boost": 0.05,
         "time_to_impact": 0.03325,
-        "urgency": 0.0020269241499380974,
+        "urgency": 0.002028426691892571,
         "risk": 0.0020000000000000005,
         "pagerank_norm": 0.11986774261768482,
         "betweenness_norm": 0,
         "blocker_ratio_norm": 0,
-        "staleness_norm": 0.00965605005983102,
+        "staleness_norm": 0.009663358296940974,
         "priority_boost_norm": 0.5,
         "time_to_impact_norm": 0.3325,
-        "urgency_norm": 0.020269241499380974,
+        "urgency_norm": 0.02028426691892571,
         "risk_norm": 0.020000000000000004,
         "time_to_impact_explanation": "On dependency chain (depth 1), median estimate 60m",
         "risk_explanation": "Low risk - stable dependency structure",
@@ -283,15 +230,6 @@
   ],
   "quick_wins": [
     {
-      "id": "jwr-up7.8",
-      "title": "EXP-014 H run genuine Jolt tpb32l fixture under Chromium",
-      "score": 0.7000000000000001,
-      "reason": "Unblocks 1 items, high priority",
-      "unblocks_ids": [
-        "jwr-up7.9"
-      ]
-    },
-    {
       "id": "jwr-up7.9",
       "title": "EXP-014 I prove threaded Petite Jolt browser variant",
       "score": 0.6000000000000001,
@@ -315,39 +253,26 @@
   ],
   "blockers_to_clear": [
     {
-      "id": "jwr-up7.8",
-      "title": "EXP-014 H run genuine Jolt tpb32l fixture under Chromium",
-      "unblocks_count": 1,
-      "unblocks_ids": [
-        "jwr-up7.9"
-      ],
-      "actionable": true
-    },
-    {
       "id": "jwr-up7.9",
       "title": "EXP-014 I prove threaded Petite Jolt browser variant",
       "unblocks_count": 1,
       "unblocks_ids": [
         "jwr-up7.10"
       ],
-      "actionable": false,
-      "blocked_by": [
-        "jwr-up7.8"
-      ]
+      "actionable": true
     }
   ],
   "project_health": {
     "counts": {
       "total": 38,
       "open": 3,
-      "closed": 34,
+      "closed": 35,
       "blocked": 0,
       "actionable": 2,
-      "not_closed": 4,
-      "dependency_blocked": 2,
+      "not_closed": 3,
+      "dependency_blocked": 1,
       "by_status": {
-        "closed": 34,
-        "in_progress": 1,
+        "closed": 35,
         "open": 3
       },
       "by_type": {
@@ -369,13 +294,13 @@
       "phase2_ready": true
     },
     "velocity": {
-      "closed_last_7_days": 34,
-      "closed_last_30_days": 34,
-      "avg_days_to_close": 0.11519880174291938,
+      "closed_last_7_days": 35,
+      "closed_last_30_days": 35,
+      "avg_days_to_close": 0.12017824074074072,
       "weekly": [
         {
           "week_start": "2026-08-31T00:00:00Z",
-          "closed": 34
+          "closed": 35
         },
         {
           "week_start": "2026-08-24T00:00:00Z",
@@ -409,8 +334,8 @@
     }
   },
   "commands": {
-    "claim_top": "CI=1 br ready --json  # No top pick available",
-    "show_top": "CI=1 br ready --json  # No top pick available",
+    "claim_top": "CI=1 br update jwr-up7.9 --status in_progress --json",
+    "show_top": "CI=1 br show jwr-up7.9 --json",
     "list_ready": "CI=1 br ready --json",
     "list_blocked": "CI=1 br blocked --json",
     "refresh_triage": "bv --robot-triage"
