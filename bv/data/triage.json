@@ -1,7 +1,7 @@
 {
   "meta": {
     "version": "1.0.0",
-    "generated_at": "2026-08-31T20:38:36.160484699Z",
+    "generated_at": "2026-08-31T20:39:05.437365752Z",
     "phase2_ready": true,
     "issue_count": 42,
     "compute_time_ms": 0
@@ -9,52 +9,52 @@
   "status": {
     "PageRank": {
       "state": "computed",
-      "ms": 0.092441
+      "ms": 0.058574
     },
     "Betweenness": {
       "state": "computed",
-      "ms": 0.176366
+      "ms": 0.120496
     },
     "Eigenvector": {
       "state": "computed",
-      "ms": 0.016376
+      "ms": 0.021149
     },
     "HITS": {
       "state": "computed",
-      "ms": 0.025966
+      "ms": 0.040859
     },
     "Critical": {
       "state": "computed",
-      "ms": 0.017962
+      "ms": 0.019251
     },
     "Cycles": {
       "state": "computed",
-      "ms": 0.029784
+      "ms": 0.012668
     },
     "KCore": {
       "state": "computed",
-      "ms": 0.017448
+      "ms": 0.014838
     },
     "Articulation": {
       "state": "computed"
     },
     "Slack": {
       "state": "computed",
-      "ms": 0.005266
+      "ms": 0.005116
     }
   },
   "quick_ref": {
     "open_count": 1,
-    "actionable_count": 3,
+    "actionable_count": 2,
     "blocked_count": 0,
-    "in_progress_count": 2,
-    "not_closed_count": 3,
+    "in_progress_count": 1,
+    "not_closed_count": 2,
     "not_actionable_count": 0,
     "top_picks": [
       {
         "id": "jwr-up7.15",
         "title": "Investigate docs-engine live Wasm demo embedding for raylib-jlt",
-        "score": 0.09503081226355037,
+        "score": 0.09503334357336904,
         "reasons": [
           "✅ Currently unclaimed - available for work"
         ],
@@ -79,74 +79,23 @@
         "research",
         "wasm"
       ],
-      "score": 0.09575947083736529,
+      "score": 0.09576155544265813,
       "breakdown": {
         "pagerank": 0.02637098547211146,
         "betweenness": 0,
         "blocker_ratio": 0,
-        "staleness": 0.000032294762436323304,
+        "staleness": 0.00003285951708626543,
         "priority_boost": 0.07500000000000001,
         "time_to_impact": 0.03325,
-        "urgency": 0.0001459638188311685,
+        "urgency": 0.0001483770717424504,
         "risk": 0.0020000000000000005,
         "pagerank_norm": 0.11986811578232481,
         "betweenness_norm": 0,
         "blocker_ratio_norm": 0,
-        "staleness_norm": 0.000645895248726466,
+        "staleness_norm": 0.0006571903417253086,
         "priority_boost_norm": 0.75,
         "time_to_impact_norm": 0.3325,
-        "urgency_norm": 0.001459638188311685,
-        "risk_norm": 0.020000000000000004,
-        "time_to_impact_explanation": "On dependency chain (depth 1), median estimate 60m",
-        "risk_explanation": "Low risk - stable dependency structure",
-        "risk_signals": {
-          "fan_variance": 0,
-          "activity_churn": 0,
-          "cross_repo_risk": 0,
-          "status_risk": 0.1,
-          "composite_risk": 0.020000000000000004,
-          "explanation": "Low risk - stable dependency structure"
-        }
-      },
-      "action": "Contact norbot7865 if you want to help",
-      "reasons": [
-        "👤 Claimed by norbot7865",
-        "🚨 High priority (P1) - prioritize this work"
-      ]
-    },
-    {
-      "id": "jwr-up7.14.2",
-      "title": "EXP-015 B prove browser mouse and keyboard scalar input facade",
-      "type": "task",
-      "status": "in_progress",
-      "assignee": "norbot7865",
-      "priority": 1,
-      "labels": [
-        "chez",
-        "emscripten",
-        "exp-014",
-        "jolt",
-        "pthreads",
-        "research",
-        "wasm"
-      ],
-      "score": 0.0956629250729399,
-      "breakdown": {
-        "pagerank": 0.02637098547211146,
-        "betweenness": 0,
-        "blocker_ratio": 0,
-        "staleness": 4.0818836224922837e-7,
-        "priority_boost": 0.07500000000000001,
-        "time_to_impact": 0.03325,
-        "urgency": 0.000039927872297595984,
-        "risk": 0.0020000000000000005,
-        "pagerank_norm": 0.11986811578232481,
-        "betweenness_norm": 0,
-        "blocker_ratio_norm": 0,
-        "staleness_norm": 0.000008163767244984567,
-        "priority_boost_norm": 0.75,
-        "time_to_impact_norm": 0.3325,
-        "urgency_norm": 0.0003992787229759598,
+        "urgency_norm": 0.001483770717424504,
         "risk_norm": 0.020000000000000004,
         "time_to_impact_explanation": "On dependency chain (depth 1), median estimate 60m",
         "risk_explanation": "Low risk - stable dependency structure",
@@ -180,23 +129,23 @@
         "research",
         "wasm"
       ],
-      "score": 0.09503081226355037,
+      "score": 0.09503334357336904,
       "breakdown": {
         "pagerank": 0.02637098547211146,
         "betweenness": 0,
         "blocker_ratio": 0,
-        "staleness": 0.00003408874391780478,
+        "staleness": 0.00003465349856774692,
         "priority_boost": 0.05,
         "time_to_impact": 0.03325,
-        "urgency": 0.00014588138814764507,
+        "urgency": 0.0001482946450490963,
         "risk": 0.0020000000000000005,
         "pagerank_norm": 0.11986811578232481,
         "betweenness_norm": 0,
         "blocker_ratio_norm": 0,
-        "staleness_norm": 0.0006817748783560957,
+        "staleness_norm": 0.0006930699713549383,
         "priority_boost_norm": 0.5,
         "time_to_impact_norm": 0.3325,
-        "urgency_norm": 0.0014588138814764506,
+        "urgency_norm": 0.0014829464504909629,
         "risk_norm": 0.020000000000000004,
         "time_to_impact_explanation": "On dependency chain (depth 1), median estimate 60m",
         "risk_explanation": "Low risk - stable dependency structure",
@@ -223,12 +172,6 @@
       "reason": "Low complexity, high priority"
     },
     {
-      "id": "jwr-up7.14.2",
-      "title": "EXP-015 B prove browser mouse and keyboard scalar input facade",
-      "score": 0.5,
-      "reason": "Low complexity, high priority"
-    },
-    {
       "id": "jwr-up7.15",
       "title": "Investigate docs-engine live Wasm demo embedding for raylib-jlt",
       "score": 0.4,
@@ -240,14 +183,14 @@
     "counts": {
       "total": 42,
       "open": 1,
-      "closed": 39,
+      "closed": 40,
       "blocked": 0,
-      "actionable": 3,
-      "not_closed": 3,
+      "actionable": 2,
+      "not_closed": 2,
       "dependency_blocked": 0,
       "by_status": {
-        "closed": 39,
-        "in_progress": 2,
+        "closed": 40,
+        "in_progress": 1,
         "open": 1
       },
       "by_type": {
@@ -269,13 +212,13 @@
       "phase2_ready": true
     },
     "velocity": {
-      "closed_last_7_days": 39,
-      "closed_last_30_days": 39,
-      "avg_days_to_close": 0.1310573955365622,
+      "closed_last_7_days": 40,
+      "closed_last_30_days": 40,
+      "avg_days_to_close": 0.12791493055555556,
       "weekly": [
         {
           "week_start": "2026-08-31T00:00:00Z",
-          "closed": 39
+          "closed": 40
         },
         {
           "week_start": "2026-08-24T00:00:00Z",

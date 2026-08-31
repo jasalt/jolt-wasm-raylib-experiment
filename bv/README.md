@@ -2,7 +2,7 @@
 
 ## 📊 Executive Summary
 
-**42** total issues | **93%** complete | **3** ready to work | **0** blocked
+**42** total issues | **95%** complete | **2** ready to work | **0** blocked
 
 ## 🎯 Top Priorities
 
@@ -26,8 +26,6 @@ Low-effort items that clear the path forward:
 
 - **jwr-up7.14**: EXP-015 prove Jolt threaded Wasm Raylib input facade
   - *Low complexity, high priority*
-- **jwr-up7.14.2**: EXP-015 B prove browser mouse and keyboard scalar input facade
-  - *Low complexity, high priority*
 - **jwr-up7.15**: Investigate docs-engine live Wasm demo embedding for raylib-jlt
   - *Low complexity*
 
@@ -39,5 +37,5 @@ Low-effort items that clear the path forward:
 
 ---
 
-*Generated Aug 31, 2026 at 8:38 PM UTC by [bv](https://github.com/Dicklesworthstone/beads_viewer)*
+*Generated Aug 31, 2026 at 8:39 PM UTC by [bv](https://github.com/Dicklesworthstone/beads_viewer)*
 
