@@ -4,13 +4,19 @@
       "flake": false,
       "locked": {
         "lastModified": 1787068496,
-        "narHash": "sha256-XBjtfthxg95OSrsZiso1ZqtIxW21PAyvasGK/eMTEfE=",
-        "type": "tarball",
-        "url": "https://github.com/cisco/ChezScheme/archive/7fadeee45fcc0135b17f5c1a926157004f898339.tar.gz"
+        "narHash": "sha256-lDF3BREXRQSkVnbntUkt8NYhvIpTuuGyUtMuwBDZchk=",
+        "ref": "refs/heads/main",
+        "rev": "7fadeee45fcc0135b17f5c1a926157004f898339",
+        "revCount": 2532,
+        "submodules": true,
+        "type": "git",
+        "url": "https://github.com/cisco/ChezScheme.git"
       },
       "original": {
-        "type": "tarball",
-        "url": "https://github.com/cisco/ChezScheme/archive/7fadeee45fcc0135b17f5c1a926157004f898339.tar.gz"
+        "rev": "7fadeee45fcc0135b17f5c1a926157004f898339",
+        "submodules": true,
+        "type": "git",
+        "url": "https://github.com/cisco/ChezScheme.git"
       }
     },
     "jolt": {

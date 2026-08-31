@@ -8,6 +8,11 @@ run() { local name=$1; shift; "$@" 2>&1 | tee "$log_dir/$name.log"; }
 run bootstrap "$root/scripts/bootstrap"
 run native "$root/scripts/test-native"
 run nrepl "$root/scripts/nrepl-smoke"
+if [[ "${VERIFY_CHEZ_NODE:-0}" == 1 ]]; then
+  run chez-pb-node "$root/experiments/EXP-001-chez-pb-node/commands.sh"
+else
+  printf 'SKIP chez-pb-node: set VERIFY_CHEZ_NODE=1 to rebuild the stock Chez Node witness\n' | tee "$log_dir/chez-pb-node-skip.log"
+fi
 if [[ "${VERIFY_BROWSER:-0}" == 1 ]]; then
   run raylib-web "$root/scripts/browser-smoke"
 else

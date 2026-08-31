@@ -8,7 +8,7 @@
       flake = false;
     };
     chezScheme = {
-      url = "https://github.com/cisco/ChezScheme/archive/7fadeee45fcc0135b17f5c1a926157004f898339.tar.gz";
+      url = "git+https://github.com/cisco/ChezScheme.git?rev=7fadeee45fcc0135b17f5c1a926157004f898339&submodules=1";
       flake = false;
     };
     raylib = {
@@ -65,6 +65,7 @@
               gnumake
               git
               nodejs
+              ncurses
               ninja
               pinnedJolt
               pkg-config

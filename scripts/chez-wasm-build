@@ -1,0 +1,24 @@
+#!/usr/bin/env bash
+# Build stock pinned Chez portable bytecode through its documented Emscripten path.
+set -euo pipefail
+
+root=$(CDPATH= cd -- "$(dirname -- "$0")/.." && pwd)
+source=${CHEZ_SOURCE:?run through nix develop so CHEZ_SOURCE is set}
+work="$root/build/EXP-001-chez-pb-node/source"
+log="$root/artifacts/logs/EXP-001/build.log"
+mkdir -p "$(dirname -- "$log")"
+rm -rf "$work"
+mkdir -p "$work"
+# Copy dereferenced submodules and make the work tree writable; the Nix store
+# itself is immutable and Chez writes generated boot/kernel outputs in-tree.
+cp -RL "$source/." "$work"
+chmod -R u+w "$work"
+
+{
+  cd "$work"
+  ./configure --pb
+  make -j"${JOBS:-2}"
+  ./configure --pb --emscripten --empetite
+  make -j"${JOBS:-2}"
+} 2>&1 | tee "$log"
+printf 'Built %s/em-pb/bin/pb/scheme.js\n' "$work"

@@ -1,0 +1,17 @@
+#!/usr/bin/env bash
+# Run the EXP-001 allocation, arithmetic, and machine-type witness under Node.
+set -euo pipefail
+
+root=$(CDPATH= cd -- "$(dirname -- "$0")/.." && pwd)
+work="$root/build/EXP-001-chez-pb-node/source"
+log="$root/artifacts/logs/EXP-001/node.log"
+mkdir -p "$(dirname -- "$log")"
+[[ -f "$work/em-pb/bin/pb/scheme.js" ]] || "$root/scripts/chez-wasm-build"
+
+cd "$work/em-pb/bin/pb"
+node scheme.js < "$root/experiments/EXP-001-chez-pb-node/witness.ss" 2>&1 | tee "$log"
+grep -Fx 'EXP-001-PB-OK' "$log"
+grep -Fx 'pb' "$log"
+grep -Fx '42' "$log"
+grep -Fx '3.75' "$log"
+printf 'EXP-001 Node witness: PASS\n'
