@@ -1,316 +1,79 @@
 {
   "meta": {
     "version": "1.0.0",
-    "generated_at": "2026-08-31T13:12:40.84143394Z",
+    "generated_at": "2026-08-31T14:05:50.280131385Z",
     "phase2_ready": true,
-    "issue_count": 33,
+    "issue_count": 34,
     "compute_time_ms": 0
   },
   "status": {
     "PageRank": {
       "state": "computed",
-      "ms": 0.039615
+      "ms": 0.058798
     },
     "Betweenness": {
       "state": "computed",
-      "ms": 0.139135
+      "ms": 0.145717
     },
     "Eigenvector": {
       "state": "computed",
-      "ms": 0.014327
+      "ms": 0.014902
     },
     "HITS": {
       "state": "computed",
-      "ms": 0.033093
+      "ms": 0.043164
     },
     "Critical": {
       "state": "computed",
-      "ms": 0.027502
+      "ms": 0.023615
     },
     "Cycles": {
       "state": "computed",
-      "ms": 0.01105
+      "ms": 0.010345
     },
     "KCore": {
       "state": "computed",
-      "ms": 0.021039
+      "ms": 0.022223
     },
     "Articulation": {
       "state": "computed"
     },
     "Slack": {
       "state": "computed",
-      "ms": 0.00556
+      "ms": 0.005669
     }
   },
   "quick_ref": {
-    "open_count": 11,
-    "actionable_count": 2,
+    "open_count": 6,
+    "actionable_count": 3,
     "blocked_count": 0,
     "in_progress_count": 0,
-    "not_closed_count": 11,
-    "not_actionable_count": 9,
+    "not_closed_count": 6,
+    "not_actionable_count": 3,
     "top_picks": [
       {
-        "id": "jwr-up7.1",
-        "title": "EXP-014 A scaffold experiment and establish pinned controls",
-        "score": 0.31540785366185825,
+        "id": "jwr-up7.7",
+        "title": "EXP-014 G prove threaded Chez witness under Chromium",
+        "score": 0.25566005200536546,
         "reasons": [
-          "🔓 Unblocks 1 item(s): jwr-up7.2",
-          "📊 High centrality in dependency graph (PageRank: 69%)",
-          "⚡ Low effort, high impact - good starting point",
-          "✅ Currently unclaimed - available for work"
+          "✅ Currently unclaimed - available for work",
+          "🚨 High priority (P1) - prioritize this work"
         ],
-        "unblocks": 1
+        "unblocks": 0
+      },
+      {
+        "id": "jwr-up7.6",
+        "title": "EXP-014 F run genuine Jolt tpb32l boot under Node Wasm",
+        "score": 0.21066013821490023,
+        "reasons": [
+          "✅ Currently unclaimed - available for work",
+          "🚨 High priority (P1) - prioritize this work"
+        ],
+        "unblocks": 0
       }
     ]
   },
   "recommendations": [
-    {
-      "id": "jwr-up7.4",
-      "title": "EXP-014 D prove Emscripten tpb32l Chez threads under Node",
-      "type": "task",
-      "status": "open",
-      "priority": 1,
-      "labels": [
-        "chez",
-        "emscripten",
-        "exp-014",
-        "hard",
-        "jolt",
-        "node",
-        "pthreads",
-        "research",
-        "wasm"
-      ],
-      "score": 0.39142896818080725,
-      "breakdown": {
-        "pagerank": 0.13559248079020977,
-        "betweenness": 0.10588235294117648,
-        "blocker_ratio": 0.08666666666666667,
-        "staleness": 0.000014850336302854939,
-        "priority_boost": 0.07500000000000001,
-        "time_to_impact": 0.06825,
-        "urgency": 0.00006360380965458878,
-        "risk": 0.0020000000000000005,
-        "pagerank_norm": 0.6163294581373172,
-        "betweenness_norm": 0.5294117647058824,
-        "blocker_ratio_norm": 0.6666666666666666,
-        "staleness_norm": 0.00029700672605709877,
-        "priority_boost_norm": 0.75,
-        "time_to_impact_norm": 0.6825,
-        "urgency_norm": 0.0006360380965458878,
-        "risk_norm": 0.020000000000000004,
-        "time_to_impact_explanation": "Deep in critical path (depth 6), median estimate 60m",
-        "risk_explanation": "Low risk - stable dependency structure",
-        "risk_signals": {
-          "fan_variance": 0,
-          "activity_churn": 0,
-          "cross_repo_risk": 0,
-          "status_risk": 0.1,
-          "composite_risk": 0.020000000000000004,
-          "explanation": "Low risk - stable dependency structure"
-        }
-      },
-      "action": "Work on jwr-up7.3 first to unblock this",
-      "reasons": [
-        "🔓 Unblocks 2 item(s): jwr-up7.5, jwr-up7.7",
-        "🔀 Critical path bottleneck (betweenness: 53%)",
-        "📊 High centrality in dependency graph (PageRank: 62%)",
-        "✅ Currently unclaimed - available for work",
-        "⏳ Blocked by jwr-up7.3 - complete that first",
-        "🚨 High priority (P1) - prioritize this work"
-      ],
-      "unblocks_ids": [
-        "jwr-up7.5",
-        "jwr-up7.7"
-      ],
-      "blocked_by": [
-        "jwr-up7.3"
-      ]
-    },
-    {
-      "id": "jwr-up7.2",
-      "title": "EXP-014 B generate pinned Chez tpb32l target boots",
-      "type": "task",
-      "status": "open",
-      "priority": 1,
-      "labels": [
-        "bootquick",
-        "chez",
-        "cross-compile",
-        "emscripten",
-        "exp-014",
-        "hard",
-        "jolt",
-        "pthreads",
-        "research",
-        "wasm"
-      ],
-      "score": 0.34717867455121754,
-      "breakdown": {
-        "pagerank": 0.1467525284667602,
-        "betweenness": 0.047058823529411764,
-        "blocker_ratio": 0.043333333333333335,
-        "staleness": 0.000014888916549768518,
-        "priority_boost": 0.07500000000000001,
-        "time_to_impact": 0.08225,
-        "urgency": 0.00006376894296684089,
-        "risk": 0.0020000000000000005,
-        "pagerank_norm": 0.6670569475761827,
-        "betweenness_norm": 0.23529411764705882,
-        "blocker_ratio_norm": 0.3333333333333333,
-        "staleness_norm": 0.00029777833099537033,
-        "priority_boost_norm": 0.75,
-        "time_to_impact_norm": 0.8225,
-        "urgency_norm": 0.0006376894296684088,
-        "risk_norm": 0.020000000000000004,
-        "time_to_impact_explanation": "Deep in critical path (depth 8), median estimate 60m",
-        "risk_explanation": "Low risk - stable dependency structure",
-        "risk_signals": {
-          "fan_variance": 0,
-          "activity_churn": 0,
-          "cross_repo_risk": 0,
-          "status_risk": 0.1,
-          "composite_risk": 0.020000000000000004,
-          "explanation": "Low risk - stable dependency structure"
-        }
-      },
-      "action": "Work on jwr-up7.1 first to unblock this",
-      "reasons": [
-        "🔓 Unblocks 1 item(s): jwr-up7.3",
-        "📊 High centrality in dependency graph (PageRank: 67%)",
-        "✅ Currently unclaimed - available for work",
-        "⏳ Blocked by jwr-up7.1 - complete that first",
-        "🚨 High priority (P1) - prioritize this work"
-      ],
-      "unblocks_ids": [
-        "jwr-up7.3"
-      ],
-      "blocked_by": [
-        "jwr-up7.1"
-      ]
-    },
-    {
-      "id": "jwr-up7.3",
-      "title": "EXP-014 C prove native tpb32l threaded Chez semantics",
-      "type": "task",
-      "status": "open",
-      "priority": 1,
-      "labels": [
-        "chez",
-        "emscripten",
-        "exp-014",
-        "jolt",
-        "native",
-        "pthreads",
-        "research",
-        "threads",
-        "wasm",
-        "witness"
-      ],
-      "score": 0.344729545214749,
-      "breakdown": {
-        "pagerank": 0.14162456310705623,
-        "betweenness": 0.08235294117647059,
-        "blocker_ratio": 0.043333333333333335,
-        "staleness": 0.000014869626426311728,
-        "priority_boost": 0.07500000000000001,
-        "time_to_impact": 0.07525,
-        "urgency": 0.00006368637637897412,
-        "risk": 0.0020000000000000005,
-        "pagerank_norm": 0.6437480141229829,
-        "betweenness_norm": 0.4117647058823529,
-        "blocker_ratio_norm": 0.3333333333333333,
-        "staleness_norm": 0.00029739252852623455,
-        "priority_boost_norm": 0.75,
-        "time_to_impact_norm": 0.7525,
-        "urgency_norm": 0.0006368637637897412,
-        "risk_norm": 0.020000000000000004,
-        "time_to_impact_explanation": "Deep in critical path (depth 7), median estimate 60m",
-        "risk_explanation": "Low risk - stable dependency structure",
-        "risk_signals": {
-          "fan_variance": 0,
-          "activity_churn": 0,
-          "cross_repo_risk": 0,
-          "status_risk": 0.1,
-          "composite_risk": 0.020000000000000004,
-          "explanation": "Low risk - stable dependency structure"
-        }
-      },
-      "action": "Work on jwr-up7.2 first to unblock this",
-      "reasons": [
-        "🔓 Unblocks 1 item(s): jwr-up7.4",
-        "📊 High centrality in dependency graph (PageRank: 64%)",
-        "✅ Currently unclaimed - available for work",
-        "⏳ Blocked by jwr-up7.2 - complete that first",
-        "🚨 High priority (P1) - prioritize this work"
-      ],
-      "unblocks_ids": [
-        "jwr-up7.4"
-      ],
-      "blocked_by": [
-        "jwr-up7.2"
-      ]
-    },
-    {
-      "id": "jwr-up7.1",
-      "title": "EXP-014 A scaffold experiment and establish pinned controls",
-      "type": "task",
-      "status": "open",
-      "priority": 2,
-      "labels": [
-        "chez",
-        "control",
-        "emscripten",
-        "exp-014",
-        "jolt",
-        "pthreads",
-        "reproducibility",
-        "research",
-        "scaffold",
-        "wasm"
-      ],
-      "score": 0.31540785366185825,
-      "breakdown": {
-        "pagerank": 0.15111175057867612,
-        "betweenness": 0,
-        "blocker_ratio": 0.043333333333333335,
-        "staleness": 0.000014927496796682098,
-        "priority_boost": 0.05,
-        "time_to_impact": 0.08925000000000001,
-        "urgency": 0.00006393407573301314,
-        "risk": 0.0020000000000000005,
-        "pagerank_norm": 0.6868715935394369,
-        "betweenness_norm": 0,
-        "blocker_ratio_norm": 0.3333333333333333,
-        "staleness_norm": 0.00029854993593364195,
-        "priority_boost_norm": 0.5,
-        "time_to_impact_norm": 0.8925000000000001,
-        "urgency_norm": 0.0006393407573301313,
-        "risk_norm": 0.020000000000000004,
-        "time_to_impact_explanation": "Deep in critical path (depth 9), median estimate 60m",
-        "risk_explanation": "Low risk - stable dependency structure",
-        "risk_signals": {
-          "fan_variance": 0,
-          "activity_churn": 0,
-          "cross_repo_risk": 0,
-          "status_risk": 0.1,
-          "composite_risk": 0.020000000000000004,
-          "explanation": "Low risk - stable dependency structure"
-        }
-      },
-      "action": "Quick win - start here for fast progress",
-      "reasons": [
-        "🔓 Unblocks 1 item(s): jwr-up7.2",
-        "📊 High centrality in dependency graph (PageRank: 69%)",
-        "⚡ Low effort, high impact - good starting point",
-        "✅ Currently unclaimed - available for work"
-      ],
-      "unblocks_ids": [
-        "jwr-up7.2"
-      ]
-    },
     {
       "id": "jwr-up7.8",
       "title": "EXP-014 H run genuine Jolt tpb32l fixture under Chromium",
@@ -329,23 +92,23 @@
         "research",
         "wasm"
       ],
-      "score": 0.2524974337401679,
+      "score": 0.2845421011200491,
       "breakdown": {
-        "pagerank": 0.06783925740219408,
+        "pagerank": 0.06783923162233581,
         "betweenness": 0.08235294117647059,
         "blocker_ratio": 0.043333333333333335,
-        "staleness": 0.000014753885685570985,
+        "staleness": 0.00007627855191714892,
         "priority_boost": 0.07500000000000001,
         "time_to_impact": 0.04725000000000001,
-        "urgency": 0.00006319097398488349,
+        "urgency": 0.00032584171600449907,
         "risk": 0.0020000000000000005,
-        "pagerank_norm": 0.308360260919064,
+        "pagerank_norm": 0.30836014373789,
         "betweenness_norm": 0.4117647058823529,
         "blocker_ratio_norm": 0.3333333333333333,
-        "staleness_norm": 0.0002950777137114197,
+        "staleness_norm": 0.0015255710383429784,
         "priority_boost_norm": 0.75,
         "time_to_impact_norm": 0.47250000000000003,
-        "urgency_norm": 0.0006319097398488349,
+        "urgency_norm": 0.0032584171600449907,
         "risk_norm": 0.020000000000000004,
         "time_to_impact_explanation": "Deep in critical path (depth 3), median estimate 60m",
         "risk_explanation": "Low risk - stable dependency structure",
@@ -375,68 +138,6 @@
       ]
     },
     {
-      "id": "jwr-up7.5",
-      "title": "EXP-014 E mint genuine Jolt application boot for tpb32l",
-      "type": "task",
-      "status": "open",
-      "priority": 1,
-      "labels": [
-        "boot",
-        "chez",
-        "cross-compile",
-        "emscripten",
-        "exp-014",
-        "hard",
-        "jolt",
-        "pthreads",
-        "research",
-        "wasm"
-      ],
-      "score": 0.22493906163311855,
-      "breakdown": {
-        "pagerank": 0.07329327637458566,
-        "betweenness": 0.023529411764705882,
-        "blocker_ratio": 0.043333333333333335,
-        "staleness": 0.00001483104617939815,
-        "priority_boost": 0.07500000000000001,
-        "time_to_impact": 0.061250000000000006,
-        "urgency": 0.00006352124279369043,
-        "risk": 0.0020000000000000005,
-        "pagerank_norm": 0.33315125624811665,
-        "betweenness_norm": 0.11764705882352941,
-        "blocker_ratio_norm": 0.3333333333333333,
-        "staleness_norm": 0.000296620923587963,
-        "priority_boost_norm": 0.75,
-        "time_to_impact_norm": 0.6125,
-        "urgency_norm": 0.0006352124279369042,
-        "risk_norm": 0.020000000000000004,
-        "time_to_impact_explanation": "Deep in critical path (depth 5), median estimate 60m",
-        "risk_explanation": "Low risk - stable dependency structure",
-        "risk_signals": {
-          "fan_variance": 0,
-          "activity_churn": 0,
-          "cross_repo_risk": 0,
-          "status_risk": 0.1,
-          "composite_risk": 0.020000000000000004,
-          "explanation": "Low risk - stable dependency structure"
-        }
-      },
-      "action": "Work on jwr-up7.4 first to unblock this",
-      "reasons": [
-        "🔓 Unblocks 1 item(s): jwr-up7.6",
-        "📊 High centrality in dependency graph (PageRank: 33%)",
-        "✅ Currently unclaimed - available for work",
-        "⏳ Blocked by jwr-up7.4 - complete that first",
-        "🚨 High priority (P1) - prioritize this work"
-      ],
-      "unblocks_ids": [
-        "jwr-up7.6"
-      ],
-      "blocked_by": [
-        "jwr-up7.4"
-      ]
-    },
-    {
       "id": "jwr-up7.7",
       "title": "EXP-014 G prove threaded Chez witness under Chromium",
       "type": "task",
@@ -454,23 +155,23 @@
         "research",
         "wasm"
       ],
-      "score": 0.21031666171673158,
+      "score": 0.25566005200536546,
       "breakdown": {
-        "pagerank": 0.055202656678999346,
+        "pagerank": 0.05520264002927372,
         "betweenness": 0.07058823529411766,
         "blocker_ratio": 0.043333333333333335,
-        "staleness": 0.000014792465932484569,
+        "staleness": 0.00007631713216406253,
         "priority_boost": 0.07500000000000001,
         "time_to_impact": 0.05425,
-        "urgency": 0.00006335610866232688,
+        "urgency": 0.0003260059821293404,
         "risk": 0.0020000000000000005,
-        "pagerank_norm": 0.2509211667227243,
+        "pagerank_norm": 0.25092109104215327,
         "betweenness_norm": 0.35294117647058826,
         "blocker_ratio_norm": 0.3333333333333333,
-        "staleness_norm": 0.00029584931864969137,
+        "staleness_norm": 0.0015263426432812503,
         "priority_boost_norm": 0.75,
         "time_to_impact_norm": 0.5425,
-        "urgency_norm": 0.0006335610866232688,
+        "urgency_norm": 0.003260059821293404,
         "risk_norm": 0.020000000000000004,
         "time_to_impact_explanation": "Deep in critical path (depth 4), median estimate 60m",
         "risk_explanation": "Low risk - stable dependency structure",
@@ -483,14 +184,62 @@
           "explanation": "Low risk - stable dependency structure"
         }
       },
-      "action": "Work on jwr-up7.4 first to unblock this",
+      "action": "Start work on this issue",
       "reasons": [
         "✅ Currently unclaimed - available for work",
-        "⏳ Blocked by jwr-up7.4 - complete that first",
         "🚨 High priority (P1) - prioritize this work"
+      ]
+    },
+    {
+      "id": "jwr-up7.6",
+      "title": "EXP-014 F run genuine Jolt tpb32l boot under Node Wasm",
+      "type": "task",
+      "status": "open",
+      "priority": 1,
+      "labels": [
+        "chez",
+        "emscripten",
+        "exp-014",
+        "hard",
+        "jolt",
+        "node",
+        "pthreads",
+        "research",
+        "wasm"
       ],
-      "blocked_by": [
-        "jwr-up7.4"
+      "score": 0.21066013821490023,
+      "breakdown": {
+        "pagerank": 0.05520264002927372,
+        "betweenness": 0.017647058823529415,
+        "blocker_ratio": 0.043333333333333335,
+        "staleness": 0.00007633642228751929,
+        "priority_boost": 0.07500000000000001,
+        "time_to_impact": 0.05425,
+        "urgency": 0.0003260881149880546,
+        "risk": 0.0020000000000000005,
+        "pagerank_norm": 0.25092109104215327,
+        "betweenness_norm": 0.08823529411764706,
+        "blocker_ratio_norm": 0.3333333333333333,
+        "staleness_norm": 0.0015267284457503858,
+        "priority_boost_norm": 0.75,
+        "time_to_impact_norm": 0.5425,
+        "urgency_norm": 0.0032608811498805457,
+        "risk_norm": 0.020000000000000004,
+        "time_to_impact_explanation": "Deep in critical path (depth 4), median estimate 60m",
+        "risk_explanation": "Low risk - stable dependency structure",
+        "risk_signals": {
+          "fan_variance": 0,
+          "activity_churn": 0,
+          "cross_repo_risk": 0,
+          "status_risk": 0.1,
+          "composite_risk": 0.020000000000000004,
+          "explanation": "Low risk - stable dependency structure"
+        }
+      },
+      "action": "Start work on this issue",
+      "reasons": [
+        "✅ Currently unclaimed - available for work",
+        "🚨 High priority (P1) - prioritize this work"
       ]
     },
     {
@@ -511,23 +260,23 @@
         "research",
         "wasm"
       ],
-      "score": 0.19205445182227926,
+      "score": 0.20387288206482604,
       "breakdown": {
-        "pagerank": 0.048786359881364656,
+        "pagerank": 0.04878633371249088,
         "betweenness": 0.047058823529411764,
         "blocker_ratio": 0.043333333333333335,
-        "staleness": 0.000014734595562114197,
+        "staleness": 0.00007625926179369214,
         "priority_boost": 0.05,
         "time_to_impact": 0.04025,
-        "urgency": 0.00006310840644138117,
+        "urgency": 0.0003257595827383775,
         "risk": 0.0020000000000000005,
-        "pagerank_norm": 0.22175618127893026,
+        "pagerank_norm": 0.22175606232950398,
         "betweenness_norm": 0.23529411764705882,
         "blocker_ratio_norm": 0.3333333333333333,
-        "staleness_norm": 0.0002946919112422839,
+        "staleness_norm": 0.0015251852358738427,
         "priority_boost_norm": 0.5,
         "time_to_impact_norm": 0.40249999999999997,
-        "urgency_norm": 0.0006310840644138116,
+        "urgency_norm": 0.0032575958273837746,
         "risk_norm": 0.020000000000000004,
         "time_to_impact_explanation": "On dependency chain (depth 2), median estimate 60m",
         "risk_explanation": "Low risk - stable dependency structure",
@@ -554,62 +303,6 @@
       ]
     },
     {
-      "id": "jwr-up7.6",
-      "title": "EXP-014 F run genuine Jolt tpb32l boot under Node Wasm",
-      "type": "task",
-      "status": "open",
-      "priority": 1,
-      "labels": [
-        "chez",
-        "emscripten",
-        "exp-014",
-        "hard",
-        "jolt",
-        "node",
-        "pthreads",
-        "research",
-        "wasm"
-      ],
-      "score": 0.17325790948740002,
-      "breakdown": {
-        "pagerank": 0.055202656678999346,
-        "betweenness": 0.017647058823529415,
-        "blocker_ratio": 0.043333333333333335,
-        "staleness": 0.000014811756055941362,
-        "priority_boost": 0.07500000000000001,
-        "time_to_impact": 0.05425,
-        "urgency": 0.00006343867579626794,
-        "risk": 0.0020000000000000005,
-        "pagerank_norm": 0.2509211667227243,
-        "betweenness_norm": 0.08823529411764706,
-        "blocker_ratio_norm": 0.3333333333333333,
-        "staleness_norm": 0.0002962351211188272,
-        "priority_boost_norm": 0.75,
-        "time_to_impact_norm": 0.5425,
-        "urgency_norm": 0.0006343867579626794,
-        "risk_norm": 0.020000000000000004,
-        "time_to_impact_explanation": "Deep in critical path (depth 4), median estimate 60m",
-        "risk_explanation": "Low risk - stable dependency structure",
-        "risk_signals": {
-          "fan_variance": 0,
-          "activity_churn": 0,
-          "cross_repo_risk": 0,
-          "status_risk": 0.1,
-          "composite_risk": 0.020000000000000004,
-          "explanation": "Low risk - stable dependency structure"
-        }
-      },
-      "action": "Work on jwr-up7.5 first to unblock this",
-      "reasons": [
-        "✅ Currently unclaimed - available for work",
-        "⏳ Blocked by jwr-up7.5 - complete that first",
-        "🚨 High priority (P1) - prioritize this work"
-      ],
-      "blocked_by": [
-        "jwr-up7.5"
-      ]
-    },
-    {
       "id": "jwr-up7",
       "title": "EXP-014 prove threaded Jolt on Chez tpb32l Emscripten",
       "type": "epic",
@@ -624,23 +317,23 @@
         "research",
         "wasm"
       ],
-      "score": 0.11619500762245966,
+      "score": 0.11647054162337413,
       "breakdown": {
-        "pagerank": 0.026371045538768116,
+        "pagerank": 0.026371032121385918,
         "betweenness": 0,
         "blocker_ratio": 0,
-        "staleness": 0.00001494678692013889,
+        "staleness": 0.00007647145315171683,
         "priority_boost": 0.07500000000000001,
         "time_to_impact": 0.03325,
-        "urgency": 0.00006401664191131862,
+        "urgency": 0.00032666304119663425,
         "risk": 0.0020000000000000005,
-        "pagerank_norm": 0.11986838881258234,
+        "pagerank_norm": 0.11986832782448144,
         "betweenness_norm": 0,
         "blocker_ratio_norm": 0,
-        "staleness_norm": 0.0002989357384027778,
+        "staleness_norm": 0.0015294290630343365,
         "priority_boost_norm": 0.75,
         "time_to_impact_norm": 0.3325,
-        "urgency_norm": 0.0006401664191131862,
+        "urgency_norm": 0.0032666304119663425,
         "risk_norm": 0.020000000000000004,
         "time_to_impact_explanation": "On dependency chain (depth 1), median estimate 60m",
         "risk_explanation": "Low risk - stable dependency structure",
@@ -658,46 +351,66 @@
         "✅ Currently unclaimed - available for work",
         "🚨 High priority (P1) - prioritize this work"
       ]
+    },
+    {
+      "id": "jwr-up7.10",
+      "title": "EXP-014 J finalize evidence, classification, and architecture decision",
+      "type": "task",
+      "status": "open",
+      "priority": 2,
+      "labels": [
+        "artifacts",
+        "chez",
+        "decision",
+        "documentation",
+        "emscripten",
+        "evidence",
+        "exp-014",
+        "jolt",
+        "pthreads",
+        "research",
+        "wasm"
+      ],
+      "score": 0.07841606467967482,
+      "breakdown": {
+        "pagerank": 0.026371032121385918,
+        "betweenness": 0,
+        "blocker_ratio": 0,
+        "staleness": 0.00007623997167023535,
+        "priority_boost": 0.05,
+        "time_to_impact": 0.03325,
+        "urgency": 0.0003256774493364534,
+        "risk": 0.0020000000000000005,
+        "pagerank_norm": 0.11986832782448144,
+        "betweenness_norm": 0,
+        "blocker_ratio_norm": 0,
+        "staleness_norm": 0.0015247994334047067,
+        "priority_boost_norm": 0.5,
+        "time_to_impact_norm": 0.3325,
+        "urgency_norm": 0.0032567744933645337,
+        "risk_norm": 0.020000000000000004,
+        "time_to_impact_explanation": "On dependency chain (depth 1), median estimate 60m",
+        "risk_explanation": "Low risk - stable dependency structure",
+        "risk_signals": {
+          "fan_variance": 0,
+          "activity_churn": 0,
+          "cross_repo_risk": 0,
+          "status_risk": 0.1,
+          "composite_risk": 0.020000000000000004,
+          "explanation": "Low risk - stable dependency structure"
+        }
+      },
+      "action": "Work on jwr-up7.9 first to unblock this",
+      "reasons": [
+        "✅ Currently unclaimed - available for work",
+        "⏳ Blocked by jwr-up7.9 - complete that first"
+      ],
+      "blocked_by": [
+        "jwr-up7.9"
+      ]
     }
   ],
   "quick_wins": [
-    {
-      "id": "jwr-up7.4",
-      "title": "EXP-014 D prove Emscripten tpb32l Chez threads under Node",
-      "score": 0.7339850002884626,
-      "reason": "Unblocks 2 items, high priority",
-      "unblocks_ids": [
-        "jwr-up7.5",
-        "jwr-up7.7"
-      ]
-    },
-    {
-      "id": "jwr-up7.2",
-      "title": "EXP-014 B generate pinned Chez tpb32l target boots",
-      "score": 0.7000000000000001,
-      "reason": "Unblocks 1 items, high priority",
-      "unblocks_ids": [
-        "jwr-up7.3"
-      ]
-    },
-    {
-      "id": "jwr-up7.3",
-      "title": "EXP-014 C prove native tpb32l threaded Chez semantics",
-      "score": 0.7000000000000001,
-      "reason": "Unblocks 1 items, high priority",
-      "unblocks_ids": [
-        "jwr-up7.4"
-      ]
-    },
-    {
-      "id": "jwr-up7.5",
-      "title": "EXP-014 E mint genuine Jolt application boot for tpb32l",
-      "score": 0.7000000000000001,
-      "reason": "Unblocks 1 items, high priority",
-      "unblocks_ids": [
-        "jwr-up7.6"
-      ]
-    },
     {
       "id": "jwr-up7.8",
       "title": "EXP-014 H run genuine Jolt tpb32l fixture under Chromium",
@@ -706,107 +419,101 @@
       "unblocks_ids": [
         "jwr-up7.9"
       ]
+    },
+    {
+      "id": "jwr-up7.9",
+      "title": "EXP-014 I prove threaded Petite Jolt browser variant",
+      "score": 0.6000000000000001,
+      "reason": "Unblocks 1 items",
+      "unblocks_ids": [
+        "jwr-up7.10"
+      ]
+    },
+    {
+      "id": "jwr-up7",
+      "title": "EXP-014 prove threaded Jolt on Chez tpb32l Emscripten",
+      "score": 0.5,
+      "reason": "Low complexity, high priority"
+    },
+    {
+      "id": "jwr-up7.10",
+      "title": "EXP-014 J finalize evidence, classification, and architecture decision",
+      "score": 0.4,
+      "reason": "Low complexity"
+    },
+    {
+      "id": "jwr-up7.6",
+      "title": "EXP-014 F run genuine Jolt tpb32l boot under Node Wasm",
+      "score": 0.30000000000000004,
+      "reason": "Low complexity, high priority"
     }
   ],
   "blockers_to_clear": [
     {
-      "id": "jwr-up7.4",
-      "title": "EXP-014 D prove Emscripten tpb32l Chez threads under Node",
-      "unblocks_count": 2,
+      "id": "jwr-up7.8",
+      "title": "EXP-014 H run genuine Jolt tpb32l fixture under Chromium",
+      "unblocks_count": 1,
       "unblocks_ids": [
-        "jwr-up7.5",
+        "jwr-up7.9"
+      ],
+      "actionable": false,
+      "blocked_by": [
+        "jwr-up7.6",
         "jwr-up7.7"
-      ],
-      "actionable": false,
-      "blocked_by": [
-        "jwr-up7.3"
       ]
     },
     {
-      "id": "jwr-up7.1",
-      "title": "EXP-014 A scaffold experiment and establish pinned controls",
+      "id": "jwr-up7.9",
+      "title": "EXP-014 I prove threaded Petite Jolt browser variant",
       "unblocks_count": 1,
       "unblocks_ids": [
-        "jwr-up7.2"
-      ],
-      "actionable": true
-    },
-    {
-      "id": "jwr-up7.2",
-      "title": "EXP-014 B generate pinned Chez tpb32l target boots",
-      "unblocks_count": 1,
-      "unblocks_ids": [
-        "jwr-up7.3"
+        "jwr-up7.10"
       ],
       "actionable": false,
       "blocked_by": [
-        "jwr-up7.1"
-      ]
-    },
-    {
-      "id": "jwr-up7.3",
-      "title": "EXP-014 C prove native tpb32l threaded Chez semantics",
-      "unblocks_count": 1,
-      "unblocks_ids": [
-        "jwr-up7.4"
-      ],
-      "actionable": false,
-      "blocked_by": [
-        "jwr-up7.2"
-      ]
-    },
-    {
-      "id": "jwr-up7.5",
-      "title": "EXP-014 E mint genuine Jolt application boot for tpb32l",
-      "unblocks_count": 1,
-      "unblocks_ids": [
-        "jwr-up7.6"
-      ],
-      "actionable": false,
-      "blocked_by": [
-        "jwr-up7.4"
+        "jwr-up7.8"
       ]
     }
   ],
   "project_health": {
     "counts": {
-      "total": 33,
-      "open": 11,
-      "closed": 22,
+      "total": 34,
+      "open": 6,
+      "closed": 28,
       "blocked": 0,
-      "actionable": 2,
-      "not_closed": 11,
-      "dependency_blocked": 9,
+      "actionable": 3,
+      "not_closed": 6,
+      "dependency_blocked": 3,
       "by_status": {
-        "closed": 22,
-        "open": 11
+        "closed": 28,
+        "open": 6
       },
       "by_type": {
         "bug": 2,
         "epic": 2,
         "feature": 6,
-        "task": 23
+        "task": 24
       },
       "by_priority": {
-        "1": 27,
+        "1": 28,
         "2": 6
       }
     },
     "graph": {
-      "node_count": 33,
+      "node_count": 34,
       "edge_count": 36,
-      "density": 0.03409090909090909,
+      "density": 0.03208556149732621,
       "has_cycles": false,
       "phase2_ready": true
     },
     "velocity": {
-      "closed_last_7_days": 22,
-      "closed_last_30_days": 22,
-      "avg_days_to_close": 0.13884680134680136,
+      "closed_last_7_days": 28,
+      "closed_last_30_days": 28,
+      "avg_days_to_close": 0.11492146164021165,
       "weekly": [
         {
           "week_start": "2026-08-31T00:00:00Z",
-          "closed": 22
+          "closed": 28
         },
         {
           "week_start": "2026-08-24T00:00:00Z",
@@ -840,8 +547,8 @@
     }
   },
   "commands": {
-    "claim_top": "CI=1 br update jwr-up7.1 --status in_progress --json",
-    "show_top": "CI=1 br show jwr-up7.1 --json",
+    "claim_top": "CI=1 br update jwr-up7.7 --status in_progress --json",
+    "show_top": "CI=1 br show jwr-up7.7 --json",
     "list_ready": "CI=1 br ready --json",
     "list_blocked": "CI=1 br blocked --json",
     "refresh_triage": "bv --robot-triage"
