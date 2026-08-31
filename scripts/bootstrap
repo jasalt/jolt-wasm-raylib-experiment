@@ -1,0 +1,59 @@
+#!/usr/bin/env bash
+# Record the actual resolved Phase 0 tool boundary. Run from nix develop.
+set -euo pipefail
+
+root=$(CDPATH= cd -- "$(dirname -- "$0")/.." && pwd)
+report="$root/artifacts/reports/environment.txt"
+mkdir -p "$(dirname -- "$report")"
+
+require() {
+  command -v "$1" >/dev/null || {
+    printf 'missing required command: %s\n' "$1" >&2
+    exit 1
+  }
+}
+
+for command in git nix node python3 scheme cmake ninja make; do require "$command"; done
+
+version_or_unavailable() {
+  local command=$1
+  shift
+  if command -v "$command" >/dev/null; then
+    "$@" 2>&1 | head -n 3
+  else
+    printf '%s unavailable\n' "$command"
+  fi
+}
+
+{
+  printf '# Jolt + Chez Wasm + Raylib environment report\n\n'
+  printf 'Generated UTC: '; date --utc --iso-8601=seconds
+  printf 'Repository: %s\n\n' "$root"
+  printf '## Host\n\n'
+  uname -a
+  printf 'DISPLAY=%s\nWAYLAND_DISPLAY=%s\n\n' "${DISPLAY-<unset>}" "${WAYLAND_DISPLAY-<unset>}"
+  printf '## Source revisions\n\n'
+  for name in jolt chez raylib raylib-jlt; do
+    source_var=$(printf '%s_SOURCE' "$(printf '%s' "$name" | tr '[:lower:]-' '[:upper:]_')")
+    printf '%s source=%s\n' "$name" "${!source_var-<flake input; inspect flake.lock>}"
+  done
+  printf 'local Jolt revision='; git -C "$root/../jolt" rev-parse HEAD
+  printf 'local Raylib-Jolt revision='; git -C "$root/../raylib-jlt" rev-parse HEAD
+  printf '\n## Tool versions\n\n'
+  nix --version
+  version_or_unavailable jolt jolt --version
+  version_or_unavailable scheme scheme --version
+  version_or_unavailable emcc emcc --version
+  node --version
+  python3 --version
+  cmake --version | sed -n '1p'
+  ninja --version
+  printf 'wasm-ld='; (wasm-ld --version 2>&1 || printf 'unavailable\n') | sed -n '1p'
+  version_or_unavailable chromium chromium --version
+  version_or_unavailable chromium-browser chromium-browser --version
+  printf '\n## Browser-server policy\n\n'
+  printf 'Development server binds 127.0.0.1 and future pthread builds require COOP=same-origin and COEP=require-corp.\n'
+  printf '\n## Git status\n\n'
+  git -C "$root" status --short --branch
+} >"$report"
+printf 'Wrote %s\n' "$report"

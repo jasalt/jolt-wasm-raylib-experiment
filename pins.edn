@@ -1,0 +1,14 @@
+{:format 1
+ :purpose "Immutable source baselines for the Jolt + Chez WebAssembly + Raylib experiment."
+ :jolt {:url "https://github.com/jolt-lang/jolt.git"
+        :revision "447b874d06066d15fee187200fabaf410f4ff5b6"}
+ :chez {:url "https://github.com/cisco/ChezScheme.git"
+        :revision "7fadeee45fcc0135b17f5c1a926157004f898339"}
+ :raylib {:url "https://github.com/raysan5/raylib.git"
+          :revision "9f3cadf1e618f125bd9b282c7759f8cb26ce17fc"
+          :license "zlib"}
+ :raylib-jlt {:url "https://github.com/jlt-commons/raylib-jlt.git"
+              :revision "7685ed987aa2dc27ab2499f2804bb28b793d6638"
+              :license "zlib"}
+ :chez-wasm {:target "Emscripten portable-bytecode interpreter"
+             :machine-types ["pb32l" "tpb32l"]}}

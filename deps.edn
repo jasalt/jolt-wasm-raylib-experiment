@@ -1,0 +1,4 @@
+{:paths ["src" "test"]
+ :aliases
+ {:test {:main-opts ["-m" "app.witness-test"]}
+  :nrepl {:main-opts ["nrepl-server" "7888"]}}}

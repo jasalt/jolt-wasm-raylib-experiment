@@ -1,0 +1,89 @@
+{
+  "nodes": {
+    "chezScheme": {
+      "flake": false,
+      "locked": {
+        "lastModified": 1787068496,
+        "narHash": "sha256-XBjtfthxg95OSrsZiso1ZqtIxW21PAyvasGK/eMTEfE=",
+        "type": "tarball",
+        "url": "https://github.com/cisco/ChezScheme/archive/7fadeee45fcc0135b17f5c1a926157004f898339.tar.gz"
+      },
+      "original": {
+        "type": "tarball",
+        "url": "https://github.com/cisco/ChezScheme/archive/7fadeee45fcc0135b17f5c1a926157004f898339.tar.gz"
+      }
+    },
+    "jolt": {
+      "flake": false,
+      "locked": {
+        "lastModified": 1788086833,
+        "narHash": "sha256-ecm7W7h0kCI+TAk2lo/temf7N8/UugEeitrqd4HHFtY=",
+        "ref": "refs/heads/main",
+        "rev": "447b874d06066d15fee187200fabaf410f4ff5b6",
+        "revCount": 2786,
+        "submodules": true,
+        "type": "git",
+        "url": "https://github.com/jolt-lang/jolt.git"
+      },
+      "original": {
+        "rev": "447b874d06066d15fee187200fabaf410f4ff5b6",
+        "submodules": true,
+        "type": "git",
+        "url": "https://github.com/jolt-lang/jolt.git"
+      }
+    },
+    "nixpkgs": {
+      "locked": {
+        "lastModified": 1788039129,
+        "narHash": "sha256-pa4Q0qErvCvzCaaUph7Sm37RhR4xvPrYI8Lgz6k85+A=",
+        "owner": "NixOS",
+        "repo": "nixpkgs",
+        "rev": "d2f67949798825fe853f7c5d0492b8bf016d3f88",
+        "type": "github"
+      },
+      "original": {
+        "owner": "NixOS",
+        "ref": "nixos-unstable",
+        "repo": "nixpkgs",
+        "type": "github"
+      }
+    },
+    "raylib": {
+      "flake": false,
+      "locked": {
+        "lastModified": 1787999961,
+        "narHash": "sha256-Ap0qpmOiYj+X2j1X9xFmjFy0gnamBms8XsiKrJlRp0A=",
+        "type": "tarball",
+        "url": "https://github.com/raysan5/raylib/archive/9f3cadf1e618f125bd9b282c7759f8cb26ce17fc.tar.gz"
+      },
+      "original": {
+        "type": "tarball",
+        "url": "https://github.com/raysan5/raylib/archive/9f3cadf1e618f125bd9b282c7759f8cb26ce17fc.tar.gz"
+      }
+    },
+    "raylib-jlt": {
+      "flake": false,
+      "locked": {
+        "lastModified": 1788093522,
+        "narHash": "sha256-T/fjaoJBXIFpdke+kEeMW7C8rIrP3Hu+ee3oO6IaXJA=",
+        "type": "tarball",
+        "url": "https://github.com/jlt-commons/raylib-jlt/archive/7685ed987aa2dc27ab2499f2804bb28b793d6638.tar.gz"
+      },
+      "original": {
+        "type": "tarball",
+        "url": "https://github.com/jlt-commons/raylib-jlt/archive/7685ed987aa2dc27ab2499f2804bb28b793d6638.tar.gz"
+      }
+    },
+    "root": {
+      "inputs": {
+        "chezScheme": "chezScheme",
+        "jolt": "jolt",
+        "nixpkgs": "nixpkgs",
+        "raylib": "raylib",
+        "raylib-jlt": "raylib-jlt"
+      }
+    }
+  },
+  "root": "root",
+  "version": 7
+}

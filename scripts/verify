@@ -1,0 +1,12 @@
+#!/usr/bin/env bash
+set -euo pipefail
+root=$(CDPATH= cd -- "$(dirname -- "$0")/.." && pwd)
+log_dir="$root/artifacts/logs/verify"
+summary="$root/artifacts/reports/verify-summary.txt"
+mkdir -p "$log_dir" "$(dirname -- "$summary")"
+run() { local name=$1; shift; "$@" 2>&1 | tee "$log_dir/$name.log"; }
+run bootstrap "$root/scripts/bootstrap"
+run native "$root/scripts/test-native"
+run nrepl "$root/scripts/nrepl-smoke"
+printf 'PASS: Phase 0 native verification completed.\n' >"$summary"
+printf 'Wrote %s\n' "$summary"

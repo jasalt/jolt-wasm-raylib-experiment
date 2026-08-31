@@ -1,0 +1,8 @@
+#!/usr/bin/env bash
+set -euo pipefail
+root=$(CDPATH= cd -- "$(dirname -- "$0")/.." && pwd)
+log="$root/artifacts/logs/EXP-000/test-native.log"
+mkdir -p "$(dirname -- "$log")"
+cd "$root"
+"${JOLT_BIN:-$root/../jolt/bin/jolt}" -M:test 2>&1 | tee "$log"
+printf 'Wrote %s\n' "$log"
