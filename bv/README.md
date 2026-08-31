@@ -2,7 +2,7 @@
 
 ## 📊 Executive Summary
 
-**16** total issues | **12%** complete | **3** ready to work | **0** blocked
+**16** total issues | **19%** complete | **2** ready to work | **0** blocked
 
 ## 🎯 Top Priorities
 
@@ -15,13 +15,6 @@ The graph analysis identified these as the highest-impact items to work on:
 - 🎯 Completing this unblocks 3 downstream issues (jwr-c52.3, jwr-c52.4, jwr-c52.7)
 - 📊 High centrality in dependency graph (PageRank: 86%)
 - ⚡ Low effort, high impact - good starting point
-- ✅ Currently unclaimed - available for work
-- 🚨 High priority (P1) - prioritize this work
-
-### 2. EXP-005 prove plain C Raylib web rendering with screenshots
-**ID:** `jwr-c52.6` | **Impact Score:** 0.22
-
-**Why this matters:**
 - ✅ Currently unclaimed - available for work
 - 🚨 High priority (P1) - prioritize this work
 
@@ -65,5 +58,5 @@ Low-effort items that clear the path forward:
 
 ---
 
-*Generated Aug 31, 2026 at 6:55 AM UTC by [bv](https://github.com/Dicklesworthstone/beads_viewer)*
+*Generated Aug 31, 2026 at 7:25 AM UTC by [bv](https://github.com/Dicklesworthstone/beads_viewer)*
 
