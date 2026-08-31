@@ -1,60 +1,60 @@
 {
   "meta": {
     "version": "1.0.0",
-    "generated_at": "2026-08-31T09:50:39.088006047Z",
+    "generated_at": "2026-08-31T09:58:57.181050356Z",
     "phase2_ready": true,
-    "issue_count": 16,
+    "issue_count": 17,
     "compute_time_ms": 0
   },
   "status": {
     "PageRank": {
       "state": "computed",
-      "ms": 0.045756
+      "ms": 0.041026
     },
     "Betweenness": {
       "state": "computed",
-      "ms": 0.097684
+      "ms": 0.061379
     },
     "Eigenvector": {
       "state": "computed",
-      "ms": 0.009839
+      "ms": 0.008478
     },
     "HITS": {
       "state": "computed",
-      "ms": 0.023114
+      "ms": 0.030343
     },
     "Critical": {
       "state": "computed",
-      "ms": 0.011181
+      "ms": 0.014922
     },
     "Cycles": {
       "state": "computed",
-      "ms": 0.006692
+      "ms": 0.010793
     },
     "KCore": {
       "state": "computed",
-      "ms": 0.009788
+      "ms": 0.0096
     },
     "Articulation": {
       "state": "computed"
     },
     "Slack": {
       "state": "computed",
-      "ms": 0.003387
+      "ms": 0.003217
     }
   },
   "quick_ref": {
-    "open_count": 4,
-    "actionable_count": 2,
+    "open_count": 5,
+    "actionable_count": 3,
     "blocked_count": 0,
     "in_progress_count": 0,
-    "not_closed_count": 4,
+    "not_closed_count": 5,
     "not_actionable_count": 2,
     "top_picks": [
       {
         "id": "jwr-c52.12",
         "title": "EXP-011/012 implement persistent browser-owned frames and input",
-        "score": 0.41577713621938994,
+        "score": 0.4158194503422317,
         "reasons": [
           "🔓 Unblocks 2 item(s): jwr-c52.13, jwr-c52.14",
           "🔀 Critical path bottleneck (betweenness: 73%)",
@@ -64,6 +64,16 @@
           "🚨 High priority (P1) - prioritize this work"
         ],
         "unblocks": 2
+      },
+      {
+        "id": "jwr-c52.16",
+        "title": "Remediate EXP-002 browser witness token and complete browser evidence",
+        "score": 0.11466444839445303,
+        "reasons": [
+          "✅ Currently unclaimed - available for work",
+          "🚨 High priority (P1) - prioritize this work"
+        ],
+        "unblocks": 0
       }
     ]
   },
@@ -83,23 +93,23 @@
         "research",
         "wasm"
       ],
-      "score": 0.41577713621938994,
+      "score": 0.4158194503422317,
       "breakdown": {
-        "pagerank": 0.06653900526467717,
+        "pagerank": 0.06653897529508535,
         "betweenness": 0.14666666666666667,
         "blocker_ratio": 0.08666666666666667,
-        "staleness": 0.00027484737665985727,
+        "staleness": 0.0002844556529775463,
         "priority_boost": 0.07500000000000001,
         "time_to_impact": 0.04025,
-        "urgency": 0.001164150754023713,
+        "urgency": 0.0012043537682881744,
         "risk": 0.0020000000000000005,
-        "pagerank_norm": 0.30245002393035075,
+        "pagerank_norm": 0.30244988770493336,
         "betweenness_norm": 0.7333333333333333,
         "blocker_ratio_norm": 0.6666666666666666,
-        "staleness_norm": 0.005496947533197145,
+        "staleness_norm": 0.005689113059550926,
         "priority_boost_norm": 0.75,
         "time_to_impact_norm": 0.40249999999999997,
-        "urgency_norm": 0.011641507540237128,
+        "urgency_norm": 0.012043537682881744,
         "risk_norm": 0.020000000000000004,
         "time_to_impact_explanation": "On dependency chain (depth 2), median estimate 60m",
         "risk_explanation": "Low risk - stable dependency structure",
@@ -138,23 +148,75 @@
         "research",
         "wasm"
       ],
-      "score": 0.11588425673613052,
+      "score": 0.11592660378636921,
       "breakdown": {
-        "pagerank": 0.024644021050763968,
+        "pagerank": 0.024644030749900733,
         "betweenness": 0,
         "blocker_ratio": 0,
-        "staleness": 0.00027511743838825236,
+        "staleness": 0.00028472571470594134,
         "priority_boost": 0.07500000000000001,
         "time_to_impact": 0.03325,
-        "urgency": 0.001165281200413082,
+        "urgency": 0.0012054832840629804,
         "risk": 0.0020000000000000005,
-        "pagerank_norm": 0.11201827750347258,
+        "pagerank_norm": 0.11201832159045787,
         "betweenness_norm": 0,
         "blocker_ratio_norm": 0,
-        "staleness_norm": 0.005502348767765047,
+        "staleness_norm": 0.005694514294118827,
         "priority_boost_norm": 0.75,
         "time_to_impact_norm": 0.3325,
-        "urgency_norm": 0.01165281200413082,
+        "urgency_norm": 0.012054832840629803,
+        "risk_norm": 0.020000000000000004,
+        "time_to_impact_explanation": "On dependency chain (depth 1), median estimate 60m",
+        "risk_explanation": "Low risk - stable dependency structure",
+        "risk_signals": {
+          "fan_variance": 0,
+          "activity_churn": 0,
+          "cross_repo_risk": 0,
+          "status_risk": 0.1,
+          "composite_risk": 0.020000000000000004,
+          "explanation": "Low risk - stable dependency structure"
+        }
+      },
+      "action": "Start work on this issue",
+      "reasons": [
+        "✅ Currently unclaimed - available for work",
+        "🚨 High priority (P1) - prioritize this work"
+      ]
+    },
+    {
+      "id": "jwr-c52.16",
+      "title": "Remediate EXP-002 browser witness token and complete browser evidence",
+      "type": "bug",
+      "status": "open",
+      "priority": 1,
+      "labels": [
+        "automation",
+        "browser",
+        "chez",
+        "experiment",
+        "jolt",
+        "raylib",
+        "remediation",
+        "research",
+        "wasm"
+      ],
+      "score": 0.11466444839445303,
+      "breakdown": {
+        "pagerank": 0.024644030749900733,
+        "betweenness": 0,
+        "blocker_ratio": 0,
+        "staleness": 0.0000010065789034722222,
+        "priority_boost": 0.07500000000000001,
+        "time_to_impact": 0.03325,
+        "urgency": 0.000004313723493504229,
+        "risk": 0.0020000000000000005,
+        "pagerank_norm": 0.11201832159045787,
+        "betweenness_norm": 0,
+        "blocker_ratio_norm": 0,
+        "staleness_norm": 0.000020131578069444442,
+        "priority_boost_norm": 0.75,
+        "time_to_impact_norm": 0.3325,
+        "urgency_norm": 0.00004313723493504229,
         "risk_norm": 0.020000000000000004,
         "time_to_impact_explanation": "On dependency chain (depth 1), median estimate 60m",
         "risk_explanation": "Low risk - stable dependency structure",
@@ -189,23 +251,23 @@
         "vision",
         "wasm"
       ],
-      "score": 0.08906641534515802,
+      "score": 0.08910627213693315,
       "breakdown": {
-        "pagerank": 0.024644021050763968,
+        "pagerank": 0.024644030749900733,
         "betweenness": 0,
         "blocker_ratio": 0,
-        "staleness": 0.00027484737665985727,
+        "staleness": 0.0002844556529775463,
         "priority_boost": 0.05,
         "time_to_impact": 0.03325,
-        "urgency": 0.001164150754023713,
+        "urgency": 0.0012043537682881744,
         "risk": 0.0020000000000000005,
-        "pagerank_norm": 0.11201827750347258,
+        "pagerank_norm": 0.11201832159045787,
         "betweenness_norm": 0,
         "blocker_ratio_norm": 0,
-        "staleness_norm": 0.005496947533197145,
+        "staleness_norm": 0.005689113059550926,
         "priority_boost_norm": 0.5,
         "time_to_impact_norm": 0.3325,
-        "urgency_norm": 0.011641507540237128,
+        "urgency_norm": 0.012043537682881744,
         "risk_norm": 0.020000000000000004,
         "time_to_impact_explanation": "On dependency chain (depth 1), median estimate 60m",
         "risk_explanation": "Low risk - stable dependency structure",
@@ -243,23 +305,23 @@
         "vision",
         "wasm"
       ],
-      "score": 0.08906633531532168,
+      "score": 0.08910619216027545,
       "breakdown": {
-        "pagerank": 0.024644021050763968,
+        "pagerank": 0.024644030749900733,
         "betweenness": 0,
         "blocker_ratio": 0,
-        "staleness": 0.00027482808653640046,
+        "staleness": 0.0002844363628540895,
         "priority_boost": 0.05,
         "time_to_impact": 0.03325,
-        "urgency": 0.0011640700068517253,
+        "urgency": 0.0012042730875894748,
         "risk": 0.0020000000000000005,
-        "pagerank_norm": 0.11201827750347258,
+        "pagerank_norm": 0.11201832159045787,
         "betweenness_norm": 0,
         "blocker_ratio_norm": 0,
-        "staleness_norm": 0.005496561730728009,
+        "staleness_norm": 0.00568872725708179,
         "priority_boost_norm": 0.5,
         "time_to_impact_norm": 0.3325,
-        "urgency_norm": 0.011640700068517251,
+        "urgency_norm": 0.012042730875894747,
         "risk_norm": 0.020000000000000004,
         "time_to_impact_explanation": "On dependency chain (depth 1), median estimate 60m",
         "risk_explanation": "Low risk - stable dependency structure",
@@ -300,6 +362,12 @@
       "reason": "Low complexity, high priority"
     },
     {
+      "id": "jwr-c52.16",
+      "title": "Remediate EXP-002 browser witness token and complete browser evidence",
+      "score": 0.5,
+      "reason": "Low complexity, high priority"
+    },
+    {
       "id": "jwr-c52.13",
       "title": "EXP-013 prove debug-only live browser redefinition",
       "score": 0.4,
@@ -326,31 +394,32 @@
   ],
   "project_health": {
     "counts": {
-      "total": 16,
-      "open": 4,
+      "total": 17,
+      "open": 5,
       "closed": 12,
       "blocked": 0,
-      "actionable": 2,
-      "not_closed": 4,
+      "actionable": 3,
+      "not_closed": 5,
       "dependency_blocked": 2,
       "by_status": {
         "closed": 12,
-        "open": 4
+        "open": 5
       },
       "by_type": {
+        "bug": 1,
         "epic": 1,
         "feature": 4,
         "task": 11
       },
       "by_priority": {
-        "1": 13,
+        "1": 14,
         "2": 3
       }
     },
     "graph": {
-      "node_count": 16,
+      "node_count": 17,
       "edge_count": 18,
-      "density": 0.075,
+      "density": 0.0661764705882353,
       "has_cycles": false,
       "phase2_ready": true
     },
