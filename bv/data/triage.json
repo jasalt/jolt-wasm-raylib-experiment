@@ -1,7 +1,7 @@
 {
   "meta": {
     "version": "1.0.0",
-    "generated_at": "2026-08-31T18:46:12.075527366Z",
+    "generated_at": "2026-08-31T19:55:11.879681878Z",
     "phase2_ready": true,
     "issue_count": 38,
     "compute_time_ms": 0
@@ -9,38 +9,38 @@
   "status": {
     "PageRank": {
       "state": "computed",
-      "ms": 0.081803
+      "ms": 0.087344
     },
     "Betweenness": {
       "state": "computed",
-      "ms": 0.169747
+      "ms": 0.225622
     },
     "Eigenvector": {
       "state": "computed",
-      "ms": 0.015148
+      "ms": 0.016531
     },
     "HITS": {
       "state": "computed",
-      "ms": 0.041768
+      "ms": 0.043832
     },
     "Critical": {
       "state": "computed",
-      "ms": 0.023264
+      "ms": 0.021861
     },
     "Cycles": {
       "state": "computed",
-      "ms": 0.020989
+      "ms": 0.022131
     },
     "KCore": {
       "state": "computed",
-      "ms": 0.025397
+      "ms": 0.027952
     },
     "Articulation": {
       "state": "computed"
     },
     "Slack": {
       "state": "computed",
-      "ms": 0.006221
+      "ms": 0.006082
     }
   },
   "quick_ref": {
@@ -71,23 +71,23 @@
         "research",
         "wasm"
       ],
-      "score": 0.30471527788783875,
+      "score": 0.3050428112343686,
       "breakdown": {
         "pagerank": 0.06783920571463782,
         "betweenness": 0.10588235294117648,
         "blocker_ratio": 0.043333333333333335,
-        "staleness": 0.0004007730618704861,
+        "staleness": 0.0004806303950979553,
         "priority_boost": 0.07500000000000001,
         "time_to_impact": 0.04725000000000001,
-        "urgency": 0.00168843230878033,
+        "urgency": 0.0020179916587152124,
         "risk": 0.0020000000000000005,
         "pagerank_norm": 0.30836002597562645,
         "betweenness_norm": 0.5294117647058824,
         "blocker_ratio_norm": 0.3333333333333333,
-        "staleness_norm": 0.008015461237409722,
+        "staleness_norm": 0.009612607901959105,
         "priority_boost_norm": 0.75,
         "time_to_impact_norm": 0.47250000000000003,
-        "urgency_norm": 0.0168843230878033,
+        "urgency_norm": 0.020179916587152125,
         "risk_norm": 0.020000000000000004,
         "time_to_impact_explanation": "Deep in critical path (depth 3), median estimate 60m",
         "risk_explanation": "Low risk - stable dependency structure",
@@ -135,23 +135,23 @@
         "research",
         "wasm"
       ],
-      "score": 0.24144505887381884,
+      "score": 0.24167492332311546,
       "breakdown": {
         "pagerank": 0.055202548715749325,
         "betweenness": 0.07058823529411766,
         "blocker_ratio": 0.043333333333333335,
-        "staleness": 0.0000016604075494984573,
+        "staleness": 4.799321349922839e-7,
         "priority_boost": 0.07500000000000001,
         "time_to_impact": 0.05425,
-        "urgency": 0.0016885920689913459,
+        "urgency": 0.0020181503291153645,
         "risk": 0.0020000000000000005,
         "pagerank_norm": 0.25092067598067874,
         "betweenness_norm": 0.35294117647058826,
         "blocker_ratio_norm": 0.3333333333333333,
-        "staleness_norm": 0.00003320815098996914,
+        "staleness_norm": 0.000009598642699845678,
         "priority_boost_norm": 0.75,
         "time_to_impact_norm": 0.5425,
-        "urgency_norm": 0.01688592068991346,
+        "urgency_norm": 0.020181503291153646,
         "risk_norm": 0.020000000000000004,
         "time_to_impact_explanation": "Deep in critical path (depth 4), median estimate 60m",
         "risk_explanation": "Low risk - stable dependency structure",
@@ -192,23 +192,23 @@
         "research",
         "wasm"
       ],
-      "score": 0.21396161843264902,
+      "score": 0.21426868135370086,
       "breakdown": {
         "pagerank": 0.04878618896487688,
         "betweenness": 0.05882352941176471,
         "blocker_ratio": 0.043333333333333335,
-        "staleness": 0.0004007537717470293,
+        "staleness": 0.00048061110497449853,
         "priority_boost": 0.05,
         "time_to_impact": 0.04025,
-        "urgency": 0.0016883524284767083,
+        "urgency": 0.002017912323318372,
         "risk": 0.0020000000000000005,
         "pagerank_norm": 0.22175540438580402,
         "betweenness_norm": 0.29411764705882354,
         "blocker_ratio_norm": 0.3333333333333333,
-        "staleness_norm": 0.008015075434940585,
+        "staleness_norm": 0.00961222209948997,
         "priority_boost_norm": 0.5,
         "time_to_impact_norm": 0.40249999999999997,
-        "urgency_norm": 0.016883524284767082,
+        "urgency_norm": 0.020179123233183716,
         "risk_norm": 0.020000000000000004,
         "time_to_impact_explanation": "On dependency chain (depth 2), median estimate 60m",
         "risk_explanation": "Low risk - stable dependency structure",
@@ -249,23 +249,23 @@
         "research",
         "wasm"
       ],
-      "score": 0.11790443537701586,
+      "score": 0.11825243492603832,
       "breakdown": {
         "pagerank": 0.02637090337589066,
         "betweenness": 0,
         "blocker_ratio": 0,
-        "staleness": 0.0004009659631050541,
+        "staleness": 0.00048082329633252315,
         "priority_boost": 0.07500000000000001,
         "time_to_impact": 0.03325,
-        "urgency": 0.001689231104552358,
+        "urgency": 0.002018785005468965,
         "risk": 0.0020000000000000005,
         "pagerank_norm": 0.11986774261768482,
         "betweenness_norm": 0,
         "blocker_ratio_norm": 0,
-        "staleness_norm": 0.008019319262101081,
+        "staleness_norm": 0.009616465926650462,
         "priority_boost_norm": 0.75,
         "time_to_impact_norm": 0.3325,
-        "urgency_norm": 0.016892311045523578,
+        "urgency_norm": 0.02018785005468965,
         "risk_norm": 0.020000000000000004,
         "time_to_impact_explanation": "On dependency chain (depth 1), median estimate 60m",
         "risk_explanation": "Low risk - stable dependency structure",
@@ -303,23 +303,23 @@
         "research",
         "wasm"
       ],
-      "score": 0.07959693728388867,
+      "score": 0.07988352972497244,
       "breakdown": {
         "pagerank": 0.02637090337589066,
         "betweenness": 0,
         "blocker_ratio": 0,
-        "staleness": 0.00040073448162357254,
+        "staleness": 0.0004805918148510417,
         "priority_boost": 0.05,
         "time_to_impact": 0.03325,
-        "urgency": 0.0016882725480410088,
+        "urgency": 0.002017832987790358,
         "risk": 0.0020000000000000005,
         "pagerank_norm": 0.11986774261768482,
         "betweenness_norm": 0,
         "blocker_ratio_norm": 0,
-        "staleness_norm": 0.00801468963247145,
+        "staleness_norm": 0.009611836297020834,
         "priority_boost_norm": 0.5,
         "time_to_impact_norm": 0.3325,
-        "urgency_norm": 0.016882725480410088,
+        "urgency_norm": 0.020178329877903578,
         "risk_norm": 0.020000000000000004,
         "time_to_impact_explanation": "On dependency chain (depth 1), median estimate 60m",
         "risk_explanation": "Low risk - stable dependency structure",
