@@ -1,0 +1,21 @@
+<!doctype html>
+<html>
+<head><meta charset="utf-8"><title>Chez static facade + Raylib</title></head>
+<body style="margin:0;background:#101421;color:white;font-family:sans-serif">
+  <p id="project-status" data-project-state="loading">loading</p>
+  <canvas id="canvas" width="720" height="360" tabindex="-1"></canvas>
+  <pre id="output"></pre>
+  <script>
+    var Module = {
+      thisProgram: "scheme",
+      arguments: ["-b", "witness.boot"],
+      canvas: document.querySelector("#canvas"),
+      print: function (text) {
+        document.querySelector("#output").textContent += text + "\n";
+      },
+      printErr: function (text) { console.error(text); }
+    };
+  </script>
+  <script src="scheme.js"></script>
+</body>
+</html>
