@@ -6,10 +6,12 @@ root=$(CDPATH= cd -- "$(dirname -- "$0")/.." && pwd)
 source=${CHEZ_SOURCE:?run through nix develop so CHEZ_SOURCE is set}
 experiment=${CHEZ_EXPERIMENT:-EXP-001-chez-pb-node}
 witness=${CHEZ_WITNESS:-$root/experiments/EXP-001-chez-pb-node/witness.ss}
+patch_file=${CHEZ_PATCH:-}
 work="$root/build/$experiment/source"
 experiment_number=$(printf '%s' "$experiment" | cut -d- -f1-2)
 log="$root/artifacts/logs/$experiment_number/build.log"
 [[ -f "$witness" ]] || { printf 'missing Chez witness: %s\n' "$witness" >&2; exit 1; }
+[[ -z "$patch_file" || -f "$patch_file" ]] || { printf 'missing Chez patch: %s\n' "$patch_file" >&2; exit 1; }
 mkdir -p "$(dirname -- "$log")"
 rm -rf "$work"
 mkdir -p "$work"
@@ -18,6 +20,9 @@ mkdir -p "$work"
 cp -RL "$source/." "$work"
 chmod -R u+w "$work"
 cp "$witness" "$work/witness.ss"
+if [[ -n "$patch_file" ]]; then
+  patch --directory="$work" --strip=1 <"$patch_file"
+fi
 
 {
   cd "$work"

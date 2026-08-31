@@ -1,0 +1,6 @@
+(define noarg (foreign-procedure "project_noarg" () integer-32))
+(define (run-witness)
+  (unless (= (noarg) 73) (error 'EXP-006 "noarg failed"))
+  (display "EXP-006-NOARG-OK\n")
+  (exit))
+(scheme-start run-witness)

@@ -1,0 +1,53 @@
+diff --git aa/c/main.c bb/c/main.c
+index bb46eef..0237b4d 100644
+--- aa/c/main.c
++++ bb/c/main.c
+@@ -17,15 +17,38 @@
+ #include <stdlib.h>
+ #include <string.h>
+ #include <stdio.h>
++#include <stdint.h>
+ #include "scheme.h"
+ #include "config.h"
+ 
++/* EXP-006 static portable-bytecode facade: no dlopen and no libffi. */
++static int32_t project_noarg(void) { return 73; }
++static int32_t project_signed(int32_t value) { return value - 9; }
++static uint32_t project_unsigned(uint32_t value) { return value + 7U; }
++static void *project_pointer(void *value) { return value; }
++static int32_t project_utf8_bytes(const char *value) { return (int32_t)strlen(value); }
++static void *project_alloc(uptr bytes) { return malloc((size_t)bytes); }
++static int32_t project_read_first(const unsigned char *value) { return value == NULL ? -1 : (int32_t)value[0]; }
++static void project_write_first(unsigned char *value, int32_t byte) { if (value != NULL) value[0] = (unsigned char)byte; }
++static void project_free(void *value) { free(value); }
++static void project_init(void) {
++  Sforeign_symbol("project_noarg", (void *)project_noarg);
++  Sforeign_symbol("project_signed", (void *)project_signed);
++  Sforeign_symbol("project_unsigned", (void *)project_unsigned);
++  Sforeign_symbol("project_pointer", (void *)project_pointer);
++  Sforeign_symbol("project_utf8_bytes", (void *)project_utf8_bytes);
++  Sforeign_symbol("project_alloc", (void *)project_alloc);
++  Sforeign_symbol("project_read_first", (void *)project_read_first);
++  Sforeign_symbol("project_write_first", (void *)project_write_first);
++  Sforeign_symbol("project_free", (void *)project_free);
++}
++
+ /****
+   CUSTOM_INIT may be defined as a function with the signature shown to
+   perform boot-time initialization, e.g., registering foreign symbols.
+ ****/
+ #ifndef CUSTOM_INIT
+-#define CUSTOM_INIT ((void (*)(void))0)
++#define CUSTOM_INIT project_init
+ #endif /* CUSTOM_INIT */
+ 
+ /****
+@@ -301,6 +324,8 @@ int main(int argc, const char *argv[]) {
+   * CUSTOM_INIT is non-null, Sbuild_heap calls CUSTOM_INIT just
+   * prior to loading the boot file(s). */
+   Sbuild_heap(execpath, CUSTOM_INIT);
++  /* Emscripten registers preloaded boots, so CUSTOM_INIT is not invoked there. */
++  project_init();
+ 
+ #define CALL0(who) Scall0(Stop_level_value(Sstring_to_symbol(who)))
+ #define CALL1(who, arg) Scall1(Stop_level_value(Sstring_to_symbol(who)), arg)

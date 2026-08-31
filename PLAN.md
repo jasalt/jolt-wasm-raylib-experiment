@@ -291,6 +291,28 @@ Jolt declaration
 → test witness
 ```
 
+### EXP-006 observed portable-bytecode matrix
+
+The following is limited to the pinned Chez
+`7fadeee45fcc0135b17f5c1a926157004f898339` Emscripten `pb` module and the
+project-owned `CUSTOM_INIT` registration patch. It is not a Jolt declaration
+claim and excludes Raylib. `PASS` and `FAIL` link to the reduced witnesses in
+`experiments/EXP-006-chez-static-ffi/` and `artifacts/logs/EXP-006/`.
+
+| Jolt-facing facade shape | Chez foreign type list | stock pb prototype | C prototype | ownership/lifetime | expected witness | observed |
+| --- | --- | --- | --- | --- | --- | --- |
+| diagnostic no-arg scalar | `() → integer-32` | `[int32]` | `int32_t project_noarg(void)` | no transfer | 73 | PASS |
+| signed scalar | `(integer-32) → integer-32` | `[int32 int32]` | `int32_t project_signed(int32_t)` | value | -21 | PASS |
+| unsigned scalar | `(unsigned-32) → unsigned-32` | intended `[uint32 uint32]` | `uint32_t project_unsigned(uint32_t)` | value | 42 | FAIL: `protocol not supported (libffi unavailable)` |
+| pointer identity | `(ptr) → ptr` / `(void*) → void*` | intended `[uptr uptr]` / `[void* void*]` | `void *project_pointer(void *)` | borrowed, no transfer | null identity | FAIL: Wasm signature mismatch |
+| UTF-8 input | `(string) → integer-32` | intended `[int32 void*]` | `int32_t project_utf8_bytes(const char *)` | Chez borrows UTF-8 only during call | 8 bytes for `λ東京` | blocked by the same string/pointer protocol path; use a length-bearing integer command buffer |
+| foreign memory round trip | `(unsigned-64) → void*`, `(void*) → integer-32`, `(void* integer-32) → void`, `(void*) → void` | intended `uptr`/`void*` variants | `project_alloc/read_first/write_first/free` | C allocates; Scheme must call `free` once; no retained Scheme pointer | write/read 90 then free | blocked: `unsigned-64` protocol is unsupported; use a C-owned fixed command buffer with signed scalar offsets |
+
+The measured fallback is a project-owned C command/config buffer addressed by
+proven `integer-32` scalar operations, with UTF-8 copied by C and explicit
+create/write/read/destroy ownership. It avoids browser `dlopen` and does not
+add libffi.
+
 Start with no-argument, integer, unsigned integer, pointer, and string-shaped
 calls already supported by stock Chez portable bytecode. Prefer a data-oriented
 command/config pointer over adding many arbitrary portable-bytecode prototypes.

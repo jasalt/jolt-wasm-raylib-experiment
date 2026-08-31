@@ -69,6 +69,7 @@
               ninja
               pinnedJolt
               pkg-config
+              patch
               python3
               xxd
             ];
