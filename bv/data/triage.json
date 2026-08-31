@@ -1,88 +1,221 @@
 {
   "meta": {
     "version": "1.0.0",
-    "generated_at": "2026-08-31T20:09:23.533783136Z",
+    "generated_at": "2026-08-31T20:09:54.916322203Z",
     "phase2_ready": true,
-    "issue_count": 38,
+    "issue_count": 40,
     "compute_time_ms": 0
   },
   "status": {
     "PageRank": {
-      "state": "skipped",
-      "reason": "all phase 2 disabled"
+      "state": "computed",
+      "ms": 0.072558
     },
     "Betweenness": {
-      "state": "skipped",
-      "reason": "all phase 2 disabled"
+      "state": "computed",
+      "ms": 0.175872
     },
     "Eigenvector": {
-      "state": "skipped",
-      "reason": "all phase 2 disabled"
+      "state": "computed",
+      "ms": 0.02037
     },
     "HITS": {
-      "state": "skipped",
-      "reason": "all phase 2 disabled"
+      "state": "computed",
+      "ms": 0.045498
     },
     "Critical": {
-      "state": "skipped",
-      "reason": "all phase 2 disabled"
+      "state": "computed",
+      "ms": 0.022634
     },
     "Cycles": {
-      "state": "skipped",
-      "reason": "all phase 2 disabled"
+      "state": "computed",
+      "ms": 0.012028
     },
     "KCore": {
-      "state": "skipped",
-      "reason": "all phase 2 disabled"
+      "state": "computed",
+      "ms": 0.027851
     },
     "Articulation": {
-      "state": "skipped",
-      "reason": "all phase 2 disabled"
+      "state": "computed"
     },
     "Slack": {
-      "state": "skipped",
-      "reason": "all phase 2 disabled"
+      "state": "computed",
+      "ms": 0.006139
     }
   },
   "quick_ref": {
-    "open_count": 0,
-    "actionable_count": 0,
+    "open_count": 2,
+    "actionable_count": 2,
     "blocked_count": 0,
     "in_progress_count": 0,
-    "not_closed_count": 0,
+    "not_closed_count": 2,
     "not_actionable_count": 0,
-    "top_picks": []
+    "top_picks": [
+      {
+        "id": "jwr-up7.14",
+        "title": "EXP-015 prove Jolt threaded Wasm Raylib input facade",
+        "score": 0.11613184075633216,
+        "reasons": [
+          "✅ Currently unclaimed - available for work",
+          "🚨 High priority (P1) - prioritize this work"
+        ],
+        "unblocks": 0
+      },
+      {
+        "id": "jwr-up7.15",
+        "title": "Investigate docs-engine live Wasm demo embedding for raylib-jlt",
+        "score": 0.09488175409395606,
+        "reasons": [
+          "✅ Currently unclaimed - available for work"
+        ],
+        "unblocks": 0
+      }
+    ]
   },
-  "recommendations": [],
-  "quick_wins": [],
+  "recommendations": [
+    {
+      "id": "jwr-up7.14",
+      "title": "EXP-015 prove Jolt threaded Wasm Raylib input facade",
+      "type": "task",
+      "status": "open",
+      "priority": 1,
+      "labels": [
+        "chez",
+        "emscripten",
+        "exp-014",
+        "jolt",
+        "pthreads",
+        "research",
+        "wasm"
+      ],
+      "score": 0.11613184075633216,
+      "breakdown": {
+        "pagerank": 0.02637091147203535,
+        "betweenness": 0,
+        "blocker_ratio": 0,
+        "staleness": 9.050216474344135e-7,
+        "priority_boost": 0.07500000000000001,
+        "time_to_impact": 0.03325,
+        "urgency": 0.00000387851376681958,
+        "risk": 0.0020000000000000005,
+        "pagerank_norm": 0.1198677794183425,
+        "betweenness_norm": 0,
+        "blocker_ratio_norm": 0,
+        "staleness_norm": 0.00001810043294868827,
+        "priority_boost_norm": 0.75,
+        "time_to_impact_norm": 0.3325,
+        "urgency_norm": 0.0000387851376681958,
+        "risk_norm": 0.020000000000000004,
+        "time_to_impact_explanation": "On dependency chain (depth 1), median estimate 60m",
+        "risk_explanation": "Low risk - stable dependency structure",
+        "risk_signals": {
+          "fan_variance": 0,
+          "activity_churn": 0,
+          "cross_repo_risk": 0,
+          "status_risk": 0.1,
+          "composite_risk": 0.020000000000000004,
+          "explanation": "Low risk - stable dependency structure"
+        }
+      },
+      "action": "Start work on this issue",
+      "reasons": [
+        "✅ Currently unclaimed - available for work",
+        "🚨 High priority (P1) - prioritize this work"
+      ]
+    },
+    {
+      "id": "jwr-up7.15",
+      "title": "Investigate docs-engine live Wasm demo embedding for raylib-jlt",
+      "type": "task",
+      "status": "open",
+      "priority": 2,
+      "labels": [
+        "chez",
+        "emscripten",
+        "exp-014",
+        "jolt",
+        "pthreads",
+        "research",
+        "wasm"
+      ],
+      "score": 0.09488175409395606,
+      "breakdown": {
+        "pagerank": 0.02637091147203535,
+        "betweenness": 0,
+        "blocker_ratio": 0,
+        "staleness": 8.857315239776236e-7,
+        "priority_boost": 0.05,
+        "time_to_impact": 0.03325,
+        "urgency": 0.000003795848153692605,
+        "risk": 0.0020000000000000005,
+        "pagerank_norm": 0.1198677794183425,
+        "betweenness_norm": 0,
+        "blocker_ratio_norm": 0,
+        "staleness_norm": 0.00001771463047955247,
+        "priority_boost_norm": 0.5,
+        "time_to_impact_norm": 0.3325,
+        "urgency_norm": 0.00003795848153692605,
+        "risk_norm": 0.020000000000000004,
+        "time_to_impact_explanation": "On dependency chain (depth 1), median estimate 60m",
+        "risk_explanation": "Low risk - stable dependency structure",
+        "risk_signals": {
+          "fan_variance": 0,
+          "activity_churn": 0,
+          "cross_repo_risk": 0,
+          "status_risk": 0.1,
+          "composite_risk": 0.020000000000000004,
+          "explanation": "Low risk - stable dependency structure"
+        }
+      },
+      "action": "Start work on this issue",
+      "reasons": [
+        "✅ Currently unclaimed - available for work"
+      ]
+    }
+  ],
+  "quick_wins": [
+    {
+      "id": "jwr-up7.14",
+      "title": "EXP-015 prove Jolt threaded Wasm Raylib input facade",
+      "score": 0.5,
+      "reason": "Low complexity, high priority"
+    },
+    {
+      "id": "jwr-up7.15",
+      "title": "Investigate docs-engine live Wasm demo embedding for raylib-jlt",
+      "score": 0.4,
+      "reason": "Low complexity"
+    }
+  ],
   "blockers_to_clear": [],
   "project_health": {
     "counts": {
-      "total": 38,
-      "open": 0,
+      "total": 40,
+      "open": 2,
       "closed": 38,
       "blocked": 0,
-      "actionable": 0,
-      "not_closed": 0,
+      "actionable": 2,
+      "not_closed": 2,
       "dependency_blocked": 0,
       "by_status": {
-        "closed": 38
+        "closed": 38,
+        "open": 2
       },
       "by_type": {
         "bug": 4,
         "epic": 2,
         "feature": 6,
-        "task": 26
+        "task": 28
       },
       "by_priority": {
-        "1": 31,
-        "2": 7
+        "1": 32,
+        "2": 8
       }
     },
     "graph": {
-      "node_count": 38,
+      "node_count": 40,
       "edge_count": 38,
-      "density": 0.02702702702702703,
+      "density": 0.02435897435897436,
       "has_cycles": false,
       "phase2_ready": true
     },
@@ -127,8 +260,8 @@
     }
   },
   "commands": {
-    "claim_top": "CI=1 br ready --json  # No top pick available",
-    "show_top": "CI=1 br ready --json  # No top pick available",
+    "claim_top": "CI=1 br update jwr-up7.14 --status in_progress --json",
+    "show_top": "CI=1 br show jwr-up7.14 --json",
     "list_ready": "CI=1 br ready --json",
     "list_blocked": "CI=1 br blocked --json",
     "refresh_triage": "bv --robot-triage"
