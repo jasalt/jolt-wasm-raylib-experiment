@@ -3,7 +3,7 @@
 set -euo pipefail
 
 root=$(CDPATH= cd -- "$(dirname -- "$0")/../.." && pwd)
-build_dir="$root/build/EXP-014-jolt-tpb32l-emscripten/source-libffi-raylib-pack/em-tpb32l/bin/tpb32l"
+build_dir="$root/build/EXP-014-jolt-tpb32l-emscripten/source-libffi-raylib-input/em-tpb32l/bin/tpb32l"
 log_dir="$root/artifacts/logs/EXP-014"
 report_dir="$root/artifacts/reports"
 screenshot_dir="$root/artifacts/screenshots/EXP-014/exp015-jolt-raylib"
@@ -85,7 +85,14 @@ else: raise RuntimeError(f'EXP-015 readiness timeout: {state}; errors={errors}; 
 # the report, but treat only non-cancelled failures as browser failures.
 actionable_failed=[x for x in failed if not x.get('canceled')]
 if not state['isolated'] or not state['sab'] or errors or actionable_failed: raise RuntimeError(f'EXP-015 diagnostics: state={state}; errors={errors}; failed={failed}')
+# Exercise the page through real Chromium input dispatch. Keep ArrowRight down
+# while capturing so the canvas itself proves the keyboard state, not only CDP.
+cmd('Input.dispatchMouseEvent', {'type':'mouseMoved','x':500,'y':250,'button':'none','buttons':0})
+cmd('Input.dispatchKeyEvent', {'type':'keyDown','key':'ArrowRight','code':'ArrowRight','windowsVirtualKeyCode':39})
+time.sleep(.3)
 shot.write_bytes(base64.b64decode(cmd('Page.captureScreenshot',{'format':'png','captureBeyondViewport':True})['data']))
-report.write_text(json.dumps({'browser':version['Browser'],'ready':True,'state':state,'pageErrors':errors,'requestFailures':failed,'consoleMessages':[' '.join(str(a.get('value',a.get('description',''))) for a in x.get('args',[])) for x in console],'screenshot_sha256':hashlib.sha256(shot.read_bytes()).hexdigest()},indent=2)+'\n')
+cmd('Input.dispatchKeyEvent', {'type':'keyUp','key':'ArrowRight','code':'ArrowRight','windowsVirtualKeyCode':39})
+after=cmd('Runtime.evaluate',{'expression':"document.querySelector('#project-status')?.dataset.scene",'returnByValue':True})
+report.write_text(json.dumps({'browser':version['Browser'],'ready':True,'state':state,'mouseDispatch':[500,250],'keyboardDispatch':'ArrowRight','sceneAfterInput':after.get('result',{}).get('value'),'pageErrors':errors,'requestFailures':failed,'consoleMessages':[' '.join(str(a.get('value',a.get('description',''))) for a in x.get('args',[])) for x in console],'screenshot_sha256':hashlib.sha256(shot.read_bytes()).hexdigest()},indent=2)+'\n')
 PY
 printf 'EXP-015 Chromium threaded Jolt: PASS\n'

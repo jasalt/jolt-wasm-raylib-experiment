@@ -42,8 +42,11 @@ Only the EXP-006-proven signed `int32` ABI is in scope. Input and per-frame Jolt
 
 ## Result
 
-PASS for the narrow static-symbol boundary only. This is one Jolt-selected
-Raylib scene, not a raylib-jlt port, per-frame Jolt execution, or input proof.
+PASS for the narrow static-symbol boundary and browser input facade. Jolt
+selects scalar input mode; the C-owned Raylib owner loop reads browser input.
+Chromium automation moved the mouse and held ArrowRight. The inspected screenshot
+shows mouse `467,115`, `key-right: 1`, a moved green circle, and the rectangle
+shifted right. This is not a raylib-jlt port or per-frame Jolt execution.
 
 ## Suspected layer
 
@@ -51,8 +54,8 @@ Resolved `JOLT_FFI` static symbol resolution for signed `int32`.
 
 ## Workaround or next experiment
 
-Create a separate owner-thread callback experiment before adding mouse or
-keyboard input. C must not call drawing from an evaluator worker.
+Adapt applicable scalar-only raylib-jlt demos only after defining a data/owner
+boundary; C must not call drawing from an evaluator worker.
 
 ## Upstream suitability
 
@@ -60,6 +63,10 @@ Project-local experiment; no upstream patch proposed.
 
 ## Artifacts and hashes
 
-- `artifacts/reports/EXP-015-static-browser.json`
-- `artifacts/screenshots/EXP-014/exp015-jolt-raylib/page.png` (vision inspected)
+- `patches/chez-raylib-input-facade.patch` — SHA-256
+  `85ddbf655fd0eee7341e193f765b886f3b938f2171802eca7463e24ccd017fac`
+- `artifacts/reports/EXP-015-static-browser.json` — SHA-256
+  `be8233a0f3d86f48923a84a16fef78ce98326f2414af32298ddadd8078063e26`
+- `artifacts/screenshots/EXP-014/exp015-jolt-raylib/page.png` (vision inspected),
+  SHA-256 `2d852f6d3805626c4a11a826480ef601c34b4f344cb8ebc14a560a89b324cf2d`
 - `artifacts/logs/EXP-014/exp015-{server,chromium,headers}.log`

@@ -1,0 +1,94 @@
+--- a/c/main.c
++++ b/c/main.c
+@@ -20,12 +20,69 @@
+ #include "scheme.h"
+ #include "config.h"
+ 
++#ifdef __EMSCRIPTEN__
++#include <emscripten/emscripten.h>
++#include <raylib.h>
++
++static int32_t project_scene = 1;
++static unsigned int project_frame = 0;
++static int32_t project_input_mode = 0;
++static int32_t project_set_input_mode(int32_t mode) { project_input_mode = mode; return project_input_mode; }
++static int32_t project_set_scene(int32_t scene) {
++  project_scene = scene;
++  return project_scene;
++}
++
++EM_JS(void, project_ready, (int scene), {
++  let status = document.getElementById("project-status");
++  if (!status) {
++    status = document.createElement("p");
++    status.id = "project-status";
++    document.body.prepend(status);
++  }
++  status.dataset.projectState = "ready";
++  status.dataset.scene = String(scene);
++  status.textContent = `ready: Chez facade Raylib scene ${scene}`;
++});
++
++static void project_draw_frame(void) {
++  int mouse_x = project_input_mode ? GetMouseX() : 180;
++  int mouse_y = project_input_mode ? GetMouseY() : 150;
++  int key_shift = project_input_mode && IsKeyDown(KEY_RIGHT) ? 100 : 0;
++  Color accent = project_scene == 2 ? (Color){230, 41, 55, 255} : (Color){0, 228, 48, 255};
++  BeginDrawing();
++  ClearBackground((Color){20, 24, 41, 255});
++  DrawRectangle(36, 32, 648, 296, (Color){35, 45, 74, 255});
++  DrawCircle(mouse_x, mouse_y, 72, accent);
++  DrawRectangle(320 + key_shift, 88, 300, 124, accent);
++  DrawText("Chez static facade + Raylib", 58, 246, 28, RAYWHITE);
++  DrawText(TextFormat("Scene: %d frame: %u mouse: %d,%d key-right: %d", project_scene, project_frame, mouse_x, mouse_y, key_shift != 0), 58, 286, 20, RAYWHITE);
++  EndDrawing();
++  project_frame++;
++  if (project_frame == 1) project_ready(project_scene);
++}
++
++static void project_start_raylib(void) {
++  SetTraceLogLevel(LOG_ERROR);
++  InitWindow(720, 360, "Chez Raylib static facade");
++  emscripten_set_main_loop(project_draw_frame, 0, 1);
++}
++#endif
++
+ /****
+   CUSTOM_INIT may be defined as a function with the signature shown to
+   perform boot-time initialization, e.g., registering foreign symbols.
+ ****/
++#ifdef __EMSCRIPTEN__
++static void project_init(void) {
++  Sforeign_symbol("project_set_scene", (void *)project_set_scene);
++  Sforeign_symbol("project_set_input_mode", (void *)project_set_input_mode);
++}
++#define CUSTOM_INIT project_init
++#else
+ #ifndef CUSTOM_INIT
+ #define CUSTOM_INIT ((void (*)(void))0)
++#endif
+ #endif /* CUSTOM_INIT */
+ 
+ /****
+@@ -301,6 +358,10 @@
+   * CUSTOM_INIT is non-null, Sbuild_heap calls CUSTOM_INIT just
+   * prior to loading the boot file(s). */
+   Sbuild_heap(execpath, CUSTOM_INIT);
++#ifdef __EMSCRIPTEN__
++  /* Preloaded Emscripten boots bypass CUSTOM_INIT in Sbuild_heap. */
++  project_init();
++#endif
+ 
+ #define CALL0(who) Scall0(Stop_level_value(Sstring_to_symbol(who)))
+ #define CALL1(who, arg) Scall1(Stop_level_value(Sstring_to_symbol(who)), arg)
+@@ -376,6 +437,10 @@
+   }
+ #endif /* FunCRepl */
+ 
++#ifdef __EMSCRIPTEN__
++  if (status == 0) project_start_raylib();
++#endif
++
+ #ifdef SAVEDHEAPS
+   if (status == 0 && savefile != (char *)0) {
+       if (compact) Scompact_heap();
