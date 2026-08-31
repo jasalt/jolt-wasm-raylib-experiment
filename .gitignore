@@ -1,0 +1,36 @@
+# Build and generated WebAssembly output
+/build/
+/target/
+/dist/
+*.wasm
+*.wasm.map
+*.js.map
+*.data
+*.boot
+*.so
+
+# Local tool and package state
+.direnv/
+.cache/
+.emsdk/
+.jolt/
+.cpcache/
+.lsp/
+.clj-kondo/.cache/
+node_modules/
+.nrepl-port
+
+# Browser automation state and reports
+/playwright-report/
+/test-results/
+/browser-profile/
+
+# Generated experiment artifacts; curated evidence may be force-added explicitly
+/artifacts/logs/
+/artifacts/reports/
+/artifacts/screenshots/
+
+# Editor and OS noise
+.DS_Store
+*.swp
+*~
