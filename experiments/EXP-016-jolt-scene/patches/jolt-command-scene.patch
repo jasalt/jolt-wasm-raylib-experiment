@@ -1,0 +1,99 @@
+--- a/c/main.c
++++ b/c/main.c
+@@ -24,16 +24,24 @@
+ #include <emscripten/emscripten.h>
+ #include <raylib.h>
+ 
+-static int32_t project_scene = 1;
++enum { PROJECT_FIELDS = 10, PROJECT_MAX_COMMANDS = 16 };
++static int32_t project_commands[PROJECT_MAX_COMMANDS][PROJECT_FIELDS];
++static int32_t project_command_count = 0;
+ static unsigned int project_frame = 0;
+-static int32_t project_input_mode = 0;
+-static int32_t project_set_input_mode(int32_t mode) { project_input_mode = mode; return project_input_mode; }
+-static int32_t project_set_scene(int32_t scene) {
+-  project_scene = scene;
+-  return project_scene;
++
++static int32_t project_scene_write(int32_t index, int32_t value) {
++  if (index < 0 || index >= PROJECT_MAX_COMMANDS * PROJECT_FIELDS) return -1;
++  project_commands[index / PROJECT_FIELDS][index % PROJECT_FIELDS] = value;
++  return value;
++}
++
++static int32_t project_scene_commit(int32_t count) {
++  if (count < 1 || count > PROJECT_MAX_COMMANDS) return -1;
++  project_command_count = count;
++  return count;
+ }
+ 
+-EM_JS(void, project_ready, (int scene), {
++EM_JS(void, project_ready, (int commands), {
+   let status = document.getElementById("project-status");
+   if (!status) {
+     status = document.createElement("p");
+@@ -41,30 +49,39 @@
+     document.body.prepend(status);
+   }
+   status.dataset.projectState = "ready";
+-  status.dataset.scene = String(scene);
+-  status.textContent = `ready: Chez facade Raylib scene ${scene}`;
++  status.dataset.scene = "jolt";
++  status.dataset.commands = String(commands);
++  status.textContent = `ready: Jolt scene (${commands} commands)`;
+ });
+ 
++static int32_t project_input_value(int32_t base, int32_t mode, int32_t mouse) {
++  if (mode == 1) return mouse;
++  if (mode == 2 && IsKeyDown(KEY_RIGHT)) return base + 100;
++  return base;
++}
++
+ static void project_draw_frame(void) {
+-  int mouse_x = project_input_mode ? GetMouseX() : 180;
+-  int mouse_y = project_input_mode ? GetMouseY() : 150;
+-  int key_shift = project_input_mode && IsKeyDown(KEY_RIGHT) ? 100 : 0;
+-  Color accent = project_scene == 2 ? (Color){230, 41, 55, 255} : (Color){0, 228, 48, 255};
+   BeginDrawing();
+-  ClearBackground((Color){20, 24, 41, 255});
+-  DrawRectangle(36, 32, 648, 296, (Color){35, 45, 74, 255});
+-  DrawCircle(mouse_x, mouse_y, 72, accent);
+-  DrawRectangle(320 + key_shift, 88, 300, 124, accent);
+-  DrawText("Chez static facade + Raylib", 58, 246, 28, RAYWHITE);
+-  DrawText(TextFormat("Scene: %d frame: %u mouse: %d,%d key-right: %d", project_scene, project_frame, mouse_x, mouse_y, key_shift != 0), 58, 286, 20, RAYWHITE);
++  for (int32_t index = 0; index < project_command_count; index++) {
++    int32_t *command = project_commands[index];
++    int32_t op = command[0];
++    int32_t x = project_input_value(command[1], command[8], GetMouseX());
++    int32_t y = project_input_value(command[2], command[9], GetMouseY());
++    Color color = (Color){command[5], command[6], command[7], 255};
++    if (op == 1) ClearBackground(color);
++    if (op == 2) DrawRectangle(x, y, command[3], command[4], color);
++    if (op == 3) DrawCircle(x, y, command[3], color);
++  }
++  DrawText("Jolt command scene + Raylib", 58, 246, 28, RAYWHITE);
++  DrawText(TextFormat("commands: %d frame: %u mouse: %d,%d key-right: %d", project_command_count, project_frame, GetMouseX(), GetMouseY(), IsKeyDown(KEY_RIGHT)), 58, 286, 20, RAYWHITE);
+   EndDrawing();
+   project_frame++;
+-  if (project_frame == 1) project_ready(project_scene);
++  if (project_frame == 1) project_ready(project_command_count);
+ }
+ 
+ static void project_start_raylib(void) {
+   SetTraceLogLevel(LOG_ERROR);
+-  InitWindow(720, 360, "Chez Raylib static facade");
++  InitWindow(720, 360, "Jolt command scene");
+   emscripten_set_main_loop(project_draw_frame, 0, 1);
+ }
+ #endif
+@@ -75,8 +92,8 @@
+ ****/
+ #ifdef __EMSCRIPTEN__
+ static void project_init(void) {
+-  Sforeign_symbol("project_set_scene", (void *)project_set_scene);
+-  Sforeign_symbol("project_set_input_mode", (void *)project_set_input_mode);
++  Sforeign_symbol("project_scene_write", (void *)project_scene_write);
++  Sforeign_symbol("project_scene_commit", (void *)project_scene_commit);
+ }
+ #define CUSTOM_INIT project_init
+ #else
