@@ -1,88 +1,138 @@
 {
   "meta": {
     "version": "1.0.0",
-    "generated_at": "2026-09-01T04:16:27.184393045Z",
+    "generated_at": "2026-09-01T04:22:51.016718762Z",
     "phase2_ready": true,
-    "issue_count": 46,
+    "issue_count": 47,
     "compute_time_ms": 0
   },
   "status": {
     "PageRank": {
-      "state": "skipped",
-      "reason": "all phase 2 disabled"
+      "state": "computed",
+      "ms": 0.051297
     },
     "Betweenness": {
-      "state": "skipped",
-      "reason": "all phase 2 disabled"
+      "state": "computed",
+      "ms": 0.208504
     },
     "Eigenvector": {
-      "state": "skipped",
-      "reason": "all phase 2 disabled"
+      "state": "computed",
+      "ms": 0.034522
     },
     "HITS": {
-      "state": "skipped",
-      "reason": "all phase 2 disabled"
+      "state": "computed",
+      "ms": 0.047722
     },
     "Critical": {
-      "state": "skipped",
-      "reason": "all phase 2 disabled"
+      "state": "computed",
+      "ms": 0.030346
     },
     "Cycles": {
-      "state": "skipped",
-      "reason": "all phase 2 disabled"
+      "state": "computed",
+      "ms": 0.01326
     },
     "KCore": {
-      "state": "skipped",
-      "reason": "all phase 2 disabled"
+      "state": "computed",
+      "ms": 0.030276
     },
     "Articulation": {
-      "state": "skipped",
-      "reason": "all phase 2 disabled"
+      "state": "computed"
     },
     "Slack": {
-      "state": "skipped",
-      "reason": "all phase 2 disabled"
+      "state": "computed",
+      "ms": 0.0065
     }
   },
   "quick_ref": {
     "open_count": 0,
-    "actionable_count": 0,
+    "actionable_count": 1,
     "blocked_count": 0,
-    "in_progress_count": 0,
-    "not_closed_count": 0,
+    "in_progress_count": 1,
+    "not_closed_count": 1,
     "not_actionable_count": 0,
     "top_picks": []
   },
-  "recommendations": [],
-  "quick_wins": [],
+  "recommendations": [
+    {
+      "id": "jwr-6yq",
+      "title": "Show Jolt source below demo findings",
+      "type": "task",
+      "status": "in_progress",
+      "assignee": "norbot7865",
+      "priority": 2,
+      "labels": null,
+      "score": 0.07814701252138617,
+      "breakdown": {
+        "pagerank": 0.0263709813850967,
+        "betweenness": 0,
+        "blocker_ratio": 0,
+        "staleness": 5.790262106867284e-7,
+        "priority_boost": 0.05,
+        "time_to_impact": 0.03325,
+        "urgency": 0.000017028904958582558,
+        "risk": 0.0020000000000000005,
+        "pagerank_norm": 0.119868097204985,
+        "betweenness_norm": 0,
+        "blocker_ratio_norm": 0,
+        "staleness_norm": 0.000011580524213734567,
+        "priority_boost_norm": 0.5,
+        "time_to_impact_norm": 0.3325,
+        "urgency_norm": 0.00017028904958582558,
+        "risk_norm": 0.020000000000000004,
+        "time_to_impact_explanation": "On dependency chain (depth 1), median estimate 60m",
+        "risk_explanation": "Low risk - stable dependency structure",
+        "risk_signals": {
+          "fan_variance": 0,
+          "activity_churn": 0,
+          "cross_repo_risk": 0,
+          "status_risk": 0.1,
+          "composite_risk": 0.020000000000000004,
+          "explanation": "Low risk - stable dependency structure"
+        }
+      },
+      "action": "Contact norbot7865 if you want to help",
+      "reasons": [
+        "👤 Claimed by norbot7865"
+      ]
+    }
+  ],
+  "quick_wins": [
+    {
+      "id": "jwr-6yq",
+      "title": "Show Jolt source below demo findings",
+      "score": 0.4,
+      "reason": "Low complexity"
+    }
+  ],
   "blockers_to_clear": [],
   "project_health": {
     "counts": {
-      "total": 46,
+      "total": 47,
       "open": 0,
       "closed": 46,
       "blocked": 0,
-      "actionable": 0,
-      "not_closed": 0,
+      "actionable": 1,
+      "not_closed": 1,
       "dependency_blocked": 0,
       "by_status": {
-        "closed": 46
+        "closed": 46,
+        "in_progress": 1
       },
       "by_type": {
         "bug": 4,
         "epic": 2,
         "feature": 7,
-        "task": 33
+        "task": 34
       },
       "by_priority": {
         "1": 36,
-        "2": 10
+        "2": 11
       }
     },
     "graph": {
-      "node_count": 46,
+      "node_count": 47,
       "edge_count": 38,
-      "density": 0.018357487922705314,
+      "density": 0.01757631822386679,
       "has_cycles": false,
       "phase2_ready": true
     },
