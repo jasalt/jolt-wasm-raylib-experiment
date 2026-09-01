@@ -1,3 +1,8 @@
+# Historical downstream patch for Jolt 447b874d06066d15fee187200fabaf410f4ff5b6.
+# Upstreamed as https://github.com/jolt-lang/jolt/pull/801 and merged in
+# b6ea66bf9180ea63c0dbfe22079a613feb8378b1. Upstream's reviewed form uses
+# define-width-op and JOLT_NARROW_HASH; retain this exact-base patch only to
+# reproduce EXP-014, not for current Jolt revisions.
 --- a/host/chez/hasheq.ss
 +++ b/host/chez/hasheq.ss
 @@ -10,7 +10,6 @@

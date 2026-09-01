@@ -210,7 +210,7 @@ Ignored reproducibility logs created by `control`:
 - `artifacts/logs/EXP-014/jolt-tpb32l-patched-native-run.log` — first later FFI
   capability failure, exit 134.
 - `experiments/EXP-014-jolt-tpb32l-emscripten/patches/jolt-tpb32l-word-size.patch`
-  — SHA-256 `d10ede3861899b4eeb691720bc1b7a273f73a282f177e7b9478bc7c2f65267c5`.
+  — SHA-256 `d5eda87119768c3cb4ac634b809ae53e94406b6bbed9e943d7290b493eabc92a`.
 - `experiments/EXP-014-jolt-tpb32l-emscripten/patches/chez-emscripten-libffi.patch`
   — SHA-256 `6a630204b734b06361cc74a2c75204eda29095e20debacbd43367c1b391f1a16`.
 - `artifacts/logs/EXP-014/libffi-jolt-node.log` — threaded Node Wasm Jolt
