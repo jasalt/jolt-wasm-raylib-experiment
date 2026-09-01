@@ -1,0 +1,88 @@
+--- a/c/main.c
++++ b/c/main.c
+@@ -28,6 +28,10 @@
+ static int32_t project_commands[PROJECT_MAX_COMMANDS][PROJECT_FIELDS];
+ static int32_t project_command_count = 0;
+ static unsigned int project_frame = 0;
++static unsigned int project_flap_count = 0;
++static void project_jolt_frame(void) {
++  Scall0(Stop_level_value(Sstring_to_symbol("exp017-frame")));
++}
+
+ static int32_t project_scene_write(int32_t index, int32_t value) {
+   if (index < 0 || index >= PROJECT_MAX_COMMANDS * PROJECT_FIELDS) return -1;
+@@ -41,7 +45,13 @@
+   return count;
+ }
+
+-EM_JS(void, project_ready, (int commands), {
++static int32_t project_flap_pressed(void) {
++  int32_t pressed = (IsKeyPressed(KEY_SPACE) || IsMouseButtonPressed(MOUSE_BUTTON_LEFT)) ? 1 : 0;
++  if (pressed) project_flap_count++;
++  return pressed;
++}
++
++EM_JS(void, project_ready, (int commands, int frames, int flaps), {
+   let status = document.getElementById("project-status");
+   if (!status) {
+     status = document.createElement("p");
+@@ -49,39 +59,35 @@
+     document.body.prepend(status);
+   }
+   status.dataset.projectState = "ready";
+-  status.dataset.scene = "jolt";
++  status.dataset.scene = "flappy-jolt";
+   status.dataset.commands = String(commands);
+-  status.textContent = `ready: Jolt scene (${commands} commands)`;
++  status.dataset.frames = String(frames);
++  status.dataset.flaps = String(flaps);
++  status.textContent = `ready: Jolt Flappy Bird (${commands} commands, ${flaps} flaps)`;
+ });
+
+-static int32_t project_input_value(int32_t base, int32_t mode, int32_t mouse) {
+-  if (mode == 1) return mouse;
+-  if (mode == 2 && IsKeyDown(KEY_RIGHT)) return base + 100;
+-  return base;
+-}
+-
+ static void project_draw_frame(void) {
++  project_jolt_frame();
+   BeginDrawing();
+   for (int32_t index = 0; index < project_command_count; index++) {
+     int32_t *command = project_commands[index];
+     int32_t op = command[0];
+-    int32_t x = project_input_value(command[1], command[8], GetMouseX());
+-    int32_t y = project_input_value(command[2], command[9], GetMouseY());
+     Color color = (Color){command[5], command[6], command[7], 255};
+     if (op == 1) ClearBackground(color);
+-    if (op == 2) DrawRectangle(x, y, command[3], command[4], color);
+-    if (op == 3) DrawCircle(x, y, command[3], color);
++    if (op == 2) DrawRectangle(command[1], command[2], command[3], command[4], color);
++    if (op == 3) DrawCircle(command[1], command[2], command[3], color);
++    if (op == 4) DrawText(TextFormat("score %d", command[1]), command[2], 8, 20, color);
++    if (op == 5) DrawText("GAME OVER - SPACE / CLICK", 220, 200, 28, color);
+   }
+-  DrawText("Jolt command scene + Raylib", 58, 246, 28, RAYWHITE);
+-  DrawText(TextFormat("commands: %d frame: %u mouse: %d,%d key-right: %d", project_command_count, project_frame, GetMouseX(), GetMouseY(), IsKeyDown(KEY_RIGHT)), 58, 286, 20, RAYWHITE);
+   EndDrawing();
+   project_frame++;
+-  if (project_frame == 1) project_ready(project_command_count);
++  project_ready(project_command_count, project_frame, project_flap_count);
+ }
+
+ static void project_start_raylib(void) {
+   SetTraceLogLevel(LOG_ERROR);
+-  InitWindow(720, 360, "Jolt command scene");
++  InitWindow(800, 450, "raylib [games] example - flappy bird (Jolt Wasm)");
++  SetTargetFPS(60);
+   emscripten_set_main_loop(project_draw_frame, 0, 1);
+ }
+ #endif
+@@ -94,6 +100,7 @@
+ static void project_init(void) {
+   Sforeign_symbol("project_scene_write", (void *)project_scene_write);
+   Sforeign_symbol("project_scene_commit", (void *)project_scene_commit);
++  Sforeign_symbol("project_flap_pressed", (void *)project_flap_pressed);
+ }
+ #define CUSTOM_INIT project_init
+ #else

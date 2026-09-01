@@ -1,0 +1,117 @@
+#!/usr/bin/env bash
+# Browser gate EXP-016 for the already-built threaded Chez witness.
+set -euo pipefail
+
+root=$(CDPATH= cd -- "$(dirname -- "$0")/../.." && pwd)
+build_dir="$root/build/EXP-017-flappy/em-tpb32l/bin/tpb32l"
+log_dir="$root/artifacts/logs/EXP-016"
+report_dir="$root/artifacts/reports"
+screenshot_dir="$root/artifacts/screenshots/EXP-017"
+mkdir -p "$log_dir" "$report_dir" "$screenshot_dir"
+[[ -f "$build_dir/scheme.html" ]] || { echo 'run commands.sh em-thread-node first' >&2; exit 1; }
+# Chez emits scheme.html; web-serve deliberately requires the conventional index.
+cp "$build_dir/scheme.html" "$build_dir/index.html"
+
+web_port=$((18000 + ($$ % 1000)))
+debug_port=$((19000 + ($$ % 1000)))
+PORT="$web_port" "$root/scripts/web-serve" "$build_dir" >"$log_dir/exp016-server.log" 2>&1 &
+server_pid=$!
+profile=$(mktemp -d)
+browser_pid=''
+cleanup() {
+  [[ -n "$browser_pid" ]] && kill "$browser_pid" 2>/dev/null || true
+  kill "$server_pid" 2>/dev/null || true
+  wait "$browser_pid" 2>/dev/null || true
+  wait "$server_pid" 2>/dev/null || true
+  rm -rf "$profile"
+}
+trap cleanup EXIT
+
+for _ in $(seq 1 100); do curl -fsS "http://127.0.0.1:$web_port/scheme.html" >/dev/null && break; sleep .1; done
+curl -fsS -D "$log_dir/exp016-headers.txt" -o /dev/null "http://127.0.0.1:$web_port/scheme.html"
+nix develop -c chromium --headless --no-sandbox --disable-gpu --use-angle=swiftshader \
+  --remote-debugging-port="$debug_port" --user-data-dir="$profile" about:blank \
+  >"$log_dir/exp016-chromium.log" 2>&1 &
+browser_pid=$!
+for _ in $(seq 1 100); do curl -fsS "http://127.0.0.1:$debug_port/json/version" >/dev/null && break; sleep .1; done
+curl -fsS "http://127.0.0.1:$debug_port/json/version" >/dev/null
+
+python3 - "$web_port" "$debug_port" "$report_dir/EXP-017-browser.json" "$screenshot_dir/page.png" <<'PY'
+import base64, hashlib, json, os, socket, struct, sys, time, urllib.request
+from pathlib import Path
+from urllib.parse import urlparse
+web, debug = map(int, sys.argv[1:3]); report, shot = map(Path, sys.argv[3:])
+version=json.load(urllib.request.urlopen(f'http://127.0.0.1:{debug}/json/version'))
+target=json.load(urllib.request.urlopen(urllib.request.Request(f'http://127.0.0.1:{debug}/json/new?http://127.0.0.1:{web}/scheme.html', method='PUT')))
+u=urlparse(target['webSocketDebuggerUrl']); s=socket.create_connection((u.hostname,u.port)); key=base64.b64encode(os.urandom(16)).decode()
+s.sendall(f'GET {u.path} HTTP/1.1\r\nHost: {u.hostname}:{u.port}\r\nUpgrade: websocket\r\nConnection: Upgrade\r\nSec-WebSocket-Key: {key}\r\nSec-WebSocket-Version: 13\r\n\r\n'.encode())
+if b'101' not in s.recv(4096): raise RuntimeError('DevTools websocket handshake failed')
+errors=[]; console=[]; failed=[]; ident=0
+def send(obj):
+ raw=json.dumps(obj).encode(); mask=os.urandom(4); n=len(raw); h=bytearray([129]); h.extend([128|n] if n<126 else [254]);
+ if n >= 126: h.extend(struct.pack('!H',n))
+ s.sendall(h+mask+bytes(x^mask[i%4] for i,x in enumerate(raw)))
+def exact(n):
+ chunks=[]
+ while n:
+  chunk=s.recv(n)
+  if not chunk: raise RuntimeError('DevTools socket closed mid-frame')
+  chunks.append(chunk); n-=len(chunk)
+ return b''.join(chunks)
+def recv():
+ # recv(2) is allowed to return one byte: consume every header field exactly.
+ first,second=exact(2); opcode=first & 15; n=second&127
+ if n==126:n=struct.unpack('!H',exact(2))[0]
+ if n==127:n=struct.unpack('!Q',exact(8))[0]
+ if n > 32 * 1024 * 1024: raise RuntimeError(f'unexpected DevTools frame size: {n}')
+ data=exact(n)
+ if opcode == 9: # ping
+  s.sendall(bytes([138, len(data)]) + data); return recv()
+ if opcode != 1: return recv()
+ return json.loads(data)
+def cmd(method, params={}):
+ global ident; ident+=1; send({'id':ident,'method':method,'params':params})
+ while True:
+  m=recv()
+  if m.get('method')=='Runtime.exceptionThrown': errors.append(m['params'])
+  elif m.get('method')=='Runtime.consoleAPICalled': console.append(m['params'])
+  elif m.get('method')=='Network.loadingFailed': failed.append(m['params'])
+  elif m.get('id')==ident:
+   if 'error' in m: raise RuntimeError(m['error'])
+   return m.get('result',{})
+cmd('Page.enable'); cmd('Runtime.enable'); cmd('Network.enable'); cmd('Emulation.setDeviceMetricsOverride',{'width':800,'height':600,'deviceScaleFactor':1,'mobile':False})
+deadline=time.time()+45; state={}
+while time.time()<deadline:
+ try:
+  r=cmd('Runtime.evaluate',{'expression':"({isolated:crossOriginIsolated,sab:typeof SharedArrayBuffer !== 'undefined',output:document.querySelector('#output')?.value,status:document.querySelector('#status')?.textContent})",'returnByValue':True})
+ except RuntimeError as error:
+  if 'Cannot find default execution context' in str(error): time.sleep(.2); continue
+  raise
+ state=r.get('result',{}).get('value',{})
+ if 'EXP-017-JOLT-FLAPPY-READY' in state.get('output',''): break
+ time.sleep(.2)
+else: raise RuntimeError(f'EXP-017 readiness timeout: {state}; errors={errors}; failed={failed}')
+# Emscripten clean exit cancels its still-observed data request. Preserve it in
+# the report, but treat only non-cancelled failures as browser failures.
+actionable_failed=[x for x in failed if not x.get('canceled')]
+if not state['isolated'] or not state['sab'] or errors or actionable_failed: raise RuntimeError(f'EXP-017 diagnostics: state={state}; errors={errors}; failed={failed}')
+# Exercise both controls from the source example/adaptation: Space and click.
+# Focus the canvas, then hold each edge long enough to cross a browser frame.
+cmd('Runtime.evaluate', {'expression':"document.querySelector('#pointerLock').checked=false; document.querySelector('#canvas').focus()"})
+cmd('Input.dispatchKeyEvent', {'type':'keyDown','key':' ','code':'Space','windowsVirtualKeyCode':32})
+time.sleep(.2)
+cmd('Input.dispatchKeyEvent', {'type':'keyUp','key':' ','code':'Space','windowsVirtualKeyCode':32})
+time.sleep(.2)
+cmd('Input.dispatchMouseEvent', {'type':'mousePressed','x':150,'y':300,'button':'left','buttons':1,'clickCount':1})
+time.sleep(.2)
+cmd('Input.dispatchMouseEvent', {'type':'mouseReleased','x':150,'y':300,'button':'left','buttons':0,'clickCount':1})
+deadline=time.time()+5; after={}
+while time.time()<deadline:
+ after=cmd('Runtime.evaluate',{'expression':"(()=>{const s=document.querySelector('#project-status');return {scene:s?.dataset.scene,commands:Number(s?.dataset.commands),frames:Number(s?.dataset.frames),flaps:Number(s?.dataset.flaps)}})()",'returnByValue':True}).get('result',{}).get('value',{})
+ if after.get('flaps',0) >= 2: break
+ time.sleep(.1)
+if after.get('flaps',0) < 2: raise RuntimeError(f'EXP-017 inputs not consumed: {after}')
+shot.write_bytes(base64.b64decode(cmd('Page.captureScreenshot',{'format':'png','captureBeyondViewport':True})['data']))
+report.write_text(json.dumps({'browser':version['Browser'],'ready':True,'state':state,'keyboardDispatch':'Space','mouseDispatch':'left-click','sceneAfterInput':after,'pageErrors':errors,'requestFailures':failed,'consoleMessages':[' '.join(str(a.get('value',a.get('description',''))) for a in x.get('args',[])) for x in console],'screenshot_sha256':hashlib.sha256(shot.read_bytes()).hexdigest()},indent=2)+'\n')
+PY
+printf 'EXP-017 Chromium Jolt Flappy Bird: PASS\n'

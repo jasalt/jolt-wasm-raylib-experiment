@@ -1,0 +1,35 @@
+{
+  "browser": "Chrome/152.0.7977.64",
+  "ready": true,
+  "state": {
+    "isolated": true,
+    "sab": true,
+    "output": "EXP-004-JOLT-PB-OK\n{:unicode \u03bb-\u6771\u4eac, :collection [1 2 3]}\nallocation 40000\nEXP-017-JOLT-FLAPPY-READY\n",
+    "status": "Running..."
+  },
+  "keyboardDispatch": "Space",
+  "mouseDispatch": "left-click",
+  "sceneAfterInput": {
+    "scene": "flappy-jolt",
+    "commands": 9,
+    "frames": 39,
+    "flaps": 2
+  },
+  "pageErrors": [],
+  "requestFailures": [
+    {
+      "requestId": "261378.5",
+      "timestamp": 518621.63466,
+      "type": "Fetch",
+      "errorText": "net::ERR_ABORTED",
+      "canceled": true
+    }
+  ],
+  "consoleMessages": [
+    "EXP-004-JOLT-PB-OK",
+    "{:unicode \u03bb-\u6771\u4eac, :collection [1 2 3]}",
+    "allocation 40000",
+    "EXP-017-JOLT-FLAPPY-READY"
+  ],
+  "screenshot_sha256": "2a385112610872a8f47fb0881a263f56a810e77d9779ae49933c5132f15bf15a"
+}
