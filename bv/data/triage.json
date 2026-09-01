@@ -1,122 +1,72 @@
 {
   "meta": {
     "version": "1.0.0",
-    "generated_at": "2026-09-01T04:22:51.016718762Z",
+    "generated_at": "2026-09-01T04:22:54.545080146Z",
     "phase2_ready": true,
     "issue_count": 47,
     "compute_time_ms": 0
   },
   "status": {
     "PageRank": {
-      "state": "computed",
-      "ms": 0.051297
+      "state": "skipped",
+      "reason": "all phase 2 disabled"
     },
     "Betweenness": {
-      "state": "computed",
-      "ms": 0.208504
+      "state": "skipped",
+      "reason": "all phase 2 disabled"
     },
     "Eigenvector": {
-      "state": "computed",
-      "ms": 0.034522
+      "state": "skipped",
+      "reason": "all phase 2 disabled"
     },
     "HITS": {
-      "state": "computed",
-      "ms": 0.047722
+      "state": "skipped",
+      "reason": "all phase 2 disabled"
     },
     "Critical": {
-      "state": "computed",
-      "ms": 0.030346
+      "state": "skipped",
+      "reason": "all phase 2 disabled"
     },
     "Cycles": {
-      "state": "computed",
-      "ms": 0.01326
+      "state": "skipped",
+      "reason": "all phase 2 disabled"
     },
     "KCore": {
-      "state": "computed",
-      "ms": 0.030276
+      "state": "skipped",
+      "reason": "all phase 2 disabled"
     },
     "Articulation": {
-      "state": "computed"
+      "state": "skipped",
+      "reason": "all phase 2 disabled"
     },
     "Slack": {
-      "state": "computed",
-      "ms": 0.0065
+      "state": "skipped",
+      "reason": "all phase 2 disabled"
     }
   },
   "quick_ref": {
     "open_count": 0,
-    "actionable_count": 1,
+    "actionable_count": 0,
     "blocked_count": 0,
-    "in_progress_count": 1,
-    "not_closed_count": 1,
+    "in_progress_count": 0,
+    "not_closed_count": 0,
     "not_actionable_count": 0,
     "top_picks": []
   },
-  "recommendations": [
-    {
-      "id": "jwr-6yq",
-      "title": "Show Jolt source below demo findings",
-      "type": "task",
-      "status": "in_progress",
-      "assignee": "norbot7865",
-      "priority": 2,
-      "labels": null,
-      "score": 0.07814701252138617,
-      "breakdown": {
-        "pagerank": 0.0263709813850967,
-        "betweenness": 0,
-        "blocker_ratio": 0,
-        "staleness": 5.790262106867284e-7,
-        "priority_boost": 0.05,
-        "time_to_impact": 0.03325,
-        "urgency": 0.000017028904958582558,
-        "risk": 0.0020000000000000005,
-        "pagerank_norm": 0.119868097204985,
-        "betweenness_norm": 0,
-        "blocker_ratio_norm": 0,
-        "staleness_norm": 0.000011580524213734567,
-        "priority_boost_norm": 0.5,
-        "time_to_impact_norm": 0.3325,
-        "urgency_norm": 0.00017028904958582558,
-        "risk_norm": 0.020000000000000004,
-        "time_to_impact_explanation": "On dependency chain (depth 1), median estimate 60m",
-        "risk_explanation": "Low risk - stable dependency structure",
-        "risk_signals": {
-          "fan_variance": 0,
-          "activity_churn": 0,
-          "cross_repo_risk": 0,
-          "status_risk": 0.1,
-          "composite_risk": 0.020000000000000004,
-          "explanation": "Low risk - stable dependency structure"
-        }
-      },
-      "action": "Contact norbot7865 if you want to help",
-      "reasons": [
-        "👤 Claimed by norbot7865"
-      ]
-    }
-  ],
-  "quick_wins": [
-    {
-      "id": "jwr-6yq",
-      "title": "Show Jolt source below demo findings",
-      "score": 0.4,
-      "reason": "Low complexity"
-    }
-  ],
+  "recommendations": [],
+  "quick_wins": [],
   "blockers_to_clear": [],
   "project_health": {
     "counts": {
       "total": 47,
       "open": 0,
-      "closed": 46,
+      "closed": 47,
       "blocked": 0,
-      "actionable": 1,
-      "not_closed": 1,
+      "actionable": 0,
+      "not_closed": 0,
       "dependency_blocked": 0,
       "by_status": {
-        "closed": 46,
-        "in_progress": 1
+        "closed": 47
       },
       "by_type": {
         "bug": 4,
@@ -137,13 +87,13 @@
       "phase2_ready": true
     },
     "velocity": {
-      "closed_last_7_days": 46,
-      "closed_last_30_days": 46,
-      "avg_days_to_close": 0.11311820652173912,
+      "closed_last_7_days": 47,
+      "closed_last_30_days": 47,
+      "avg_days_to_close": 0.11075502364066193,
       "weekly": [
         {
           "week_start": "2026-08-31T00:00:00Z",
-          "closed": 46
+          "closed": 47
         },
         {
           "week_start": "2026-08-24T00:00:00Z",
