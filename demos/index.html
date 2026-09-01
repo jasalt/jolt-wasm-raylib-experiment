@@ -5,7 +5,7 @@
   <meta name="viewport" content="width=device-width,initial-scale=1">
   <title>Live Raylib demo · Jolt Wasm experiment</title>
   <style>
-    :root{color-scheme:dark;--bg:#09101a;--panel:#111d2a;--ink:#eef8ff;--muted:#adbed0;--green:#64e89a;--line:#294057}*{box-sizing:border-box}body{margin:0;background:var(--bg);color:var(--ink);font:16px/1.55 system-ui,sans-serif}header,main{width:min(1050px,calc(100% - 2rem));margin:auto}header{padding:2rem 0 1rem}a{color:var(--green)}h1{font-size:clamp(2rem,6vw,4rem);line-height:1.05;margin:.3em 0}.lede{max-width:780px;color:var(--muted);font-size:1.1rem}.demo,.evidence{border:1px solid var(--line);border-radius:14px;background:var(--panel);padding:1.25rem;margin:1.5rem 0}.actions{display:flex;gap:.75rem;flex-wrap:wrap;align-items:center}.button{border:0;border-radius:8px;background:var(--green);color:#05200f;font-weight:800;padding:.75rem 1rem;cursor:pointer}.button:hover,.button:focus{filter:brightness(1.1)}#status{color:var(--muted)}iframe{display:block;width:100%;height:760px;margin-top:1rem;border:1px solid var(--line);border-radius:8px;background:#000}.fallback{max-width:100%;height:auto;border:1px solid var(--line);border-radius:8px}code{background:#07101a;padding:.1em .35em;border-radius:4px}.grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));gap:1rem}.grid section{padding:1rem;border-left:3px solid var(--green)}footer{padding:2rem 0 4rem;color:var(--muted)}@media(max-width:600px){iframe{height:680px}}</style>
+    :root{color-scheme:dark;--bg:#09101a;--panel:#111d2a;--ink:#eef8ff;--muted:#adbed0;--green:#64e89a;--line:#294057}*{box-sizing:border-box}body{margin:0;background:var(--bg);color:var(--ink);font:16px/1.55 system-ui,sans-serif}header,main{width:min(1050px,calc(100% - 2rem));margin:auto}header{padding:2rem 0 1rem}a{color:var(--green)}h1{font-size:clamp(2rem,6vw,4rem);line-height:1.05;margin:.3em 0}.lede{max-width:780px;color:var(--muted);font-size:1.1rem}.demo,.evidence{border:1px solid var(--line);border-radius:14px;background:var(--panel);padding:1.25rem;margin:1.5rem 0}.actions{display:flex;gap:.75rem;flex-wrap:wrap;align-items:center}.button{border:0;border-radius:8px;background:var(--green);color:#05200f;font-weight:800;padding:.75rem 1rem;cursor:pointer}.button:hover,.button:focus{filter:brightness(1.1)}#status{color:var(--muted)}iframe{display:block;width:100%;height:760px;margin-top:1rem;border:1px solid var(--line);border-radius:8px;background:#000}.fallback{max-width:100%;height:auto;border:1px solid var(--line);border-radius:8px}code{background:#07101a;padding:.1em .35em;border-radius:4px}pre{overflow:auto;padding:1rem;border:1px solid var(--line);border-radius:8px;background:#07101a;color:#d9f7e5;font:14px/1.5 ui-monospace,SFMono-Regular,Consolas,monospace}pre code{padding:0;background:none}.source-note{color:var(--muted)}.grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));gap:1rem}.grid section{padding:1rem;border-left:3px solid var(--green)}footer{padding:2rem 0 4rem;color:var(--muted)}@media(max-width:600px){iframe{height:680px}}</style>
 </head>
 <body>
 <header><a href="../">← Project home</a><h1>Live Jolt-driven Raylib</h1><p class="lede">A functioning <a href="https://github.com/jasalt/jolt-wasm-raylib-experiment/tree/main/experiments/EXP-015-jolt-raylib-static">EXP-015 build</a>: Jolt runs through threaded Chez portable bytecode in WebAssembly, calls a signed-scalar static C façade, and Raylib owns the browser frame loop.</p></header>
@@ -20,7 +20,28 @@
     <section><h3>Observed</h3><p>Chromium reported <code>crossOriginIsolated</code> and <code>SharedArrayBuffer</code>, canonical Jolt output, scene readiness, real mouse dispatch, and ArrowRight dispatch with no page errors.</p></section>
     <section><h3>Ownership boundary</h3><p>Jolt selects scalar scene/input state through <code>jolt.ffi</code>. The C façade and Raylib own drawing, input polling, and browser frame scheduling.</p></section>
     <section><h3>Not claimed</h3><p>This is not the desktop <code>raylib-jlt</code> binding running unchanged, nor per-frame Jolt execution. It is the narrow ABI-proven route documented by EXP-015.</p></section>
-  </div><h3>Verified browser capture</h3><img class="fallback" src="verified-input.png" width="800" height="600" alt="Verified Chromium capture showing the Raylib canvas with green input-controlled shapes and Jolt runtime output.">
+  </div>
+  <h3>Jolt source used by this build</h3>
+  <p class="source-note">The published runtime was minted with <a href="https://github.com/jasalt/jolt-wasm-raylib-experiment/blob/main/src/app/exp015_input_keys.clj"><code>app.exp015-input-keys</code></a>. It selects input mode and scene through the proven signed-scalar ABI; drawing and input polling remain in the C-owned Raylib loop.</p>
+  <pre aria-label="Jolt source used by the live demo"><code>(ns app.exp015-input-keys
+  (:require [jolt.ffi :as ffi]
+            [app.witness :as witness]))
+
+;; The C facade owns Raylib's browser frame loop;
+;; Jolt selects its initial input mode and scene.
+(declare project-set-scene project-set-input-mode)
+(ffi/defcfn project-set-scene "project_set_scene" [:int32] :int32)
+(ffi/defcfn project-set-input-mode "project_set_input_mode" [:int32] :int32)
+
+(defn -main [&amp; args]
+  (when-not (= 1 (project-set-input-mode 1))
+    (throw (ex-info "EXP-015 input mode selection failed" {})))
+  (when-not (= 2 (project-set-scene 2))
+    (throw (ex-info "EXP-015 scene selection failed" {})))
+  (apply witness/-main args)
+  (println "EXP-015-JOLT-RAYLIB-SCENE-SELECTED"))</code></pre>
+  <p class="source-note">The invoked <a href="https://github.com/jasalt/jolt-wasm-raylib-experiment/blob/main/src/app/witness.clj"><code>app.witness</code></a> namespace emits the canonical collection, Unicode, and allocation-pressure output shown by the runtime.</p>
+  <h3>Verified browser capture</h3><img class="fallback" src="verified-input.png" width="800" height="600" alt="Verified Chromium capture showing the Raylib canvas with green input-controlled shapes and Jolt runtime output.">
   <p>Sources: <a href="https://github.com/jasalt/jolt-wasm-raylib-experiment/tree/main/experiments/EXP-015-jolt-raylib-static">EXP-015 findings</a> · <a href="https://github.com/jasalt/jolt-wasm-raylib-experiment/blob/main/docs/RAYLIB-JLT-LIVE-WASM.md">raylib-jlt live-Wasm proposal</a> · <a href="SHA256SUMS">published artifact hashes</a>.</p></article>
   <footer>The demo uses a service worker scoped to <code>/demos/</code> to synthesize COOP/COEP on GitHub Pages. A dedicated header-capable origin remains the recommended production architecture for raylib-jlt.</footer>
 </main>
