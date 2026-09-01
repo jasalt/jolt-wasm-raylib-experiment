@@ -1,88 +1,139 @@
 {
   "meta": {
     "version": "1.0.0",
-    "generated_at": "2026-08-31T20:57:24.248858145Z",
+    "generated_at": "2026-09-01T04:00:46.279817186Z",
     "phase2_ready": true,
-    "issue_count": 43,
+    "issue_count": 44,
     "compute_time_ms": 0
   },
   "status": {
     "PageRank": {
-      "state": "skipped",
-      "reason": "all phase 2 disabled"
+      "state": "computed",
+      "ms": 0.04277
     },
     "Betweenness": {
-      "state": "skipped",
-      "reason": "all phase 2 disabled"
+      "state": "computed",
+      "ms": 0.236575
     },
     "Eigenvector": {
-      "state": "skipped",
-      "reason": "all phase 2 disabled"
+      "state": "computed",
+      "ms": 0.03701
     },
     "HITS": {
-      "state": "skipped",
-      "reason": "all phase 2 disabled"
+      "state": "computed",
+      "ms": 0.058521
     },
     "Critical": {
-      "state": "skipped",
-      "reason": "all phase 2 disabled"
+      "state": "computed",
+      "ms": 0.057427
     },
     "Cycles": {
-      "state": "skipped",
-      "reason": "all phase 2 disabled"
+      "state": "computed",
+      "ms": 0.020589
     },
     "KCore": {
-      "state": "skipped",
-      "reason": "all phase 2 disabled"
+      "state": "computed",
+      "ms": 0.03232
     },
     "Articulation": {
-      "state": "skipped",
-      "reason": "all phase 2 disabled"
+      "state": "computed"
     },
     "Slack": {
-      "state": "skipped",
-      "reason": "all phase 2 disabled"
+      "state": "computed",
+      "ms": 0.006663
     }
   },
   "quick_ref": {
     "open_count": 0,
-    "actionable_count": 0,
+    "actionable_count": 1,
     "blocked_count": 0,
-    "in_progress_count": 0,
-    "not_closed_count": 0,
+    "in_progress_count": 1,
+    "not_closed_count": 1,
     "not_actionable_count": 0,
     "top_picks": []
   },
-  "recommendations": [],
-  "quick_wins": [],
+  "recommendations": [
+    {
+      "id": "jwr-wlj",
+      "title": "Publish GitHub Pages navigation and live Raylib demos",
+      "type": "feature",
+      "status": "in_progress",
+      "assignee": "norbot7865",
+      "priority": 1,
+      "labels": null,
+      "score": 0.09567363898290303,
+      "breakdown": {
+        "pagerank": 0.026370982241055167,
+        "betweenness": 0,
+        "blocker_ratio": 0,
+        "staleness": 7.577125228780864e-7,
+        "priority_boost": 0.07500000000000001,
+        "time_to_impact": 0.03325,
+        "urgency": 0.0000548871648548277,
+        "risk": 0.0020000000000000005,
+        "pagerank_norm": 0.1198681010957053,
+        "betweenness_norm": 0,
+        "blocker_ratio_norm": 0,
+        "staleness_norm": 0.000015154250457561728,
+        "priority_boost_norm": 0.75,
+        "time_to_impact_norm": 0.3325,
+        "urgency_norm": 0.000548871648548277,
+        "risk_norm": 0.020000000000000004,
+        "time_to_impact_explanation": "On dependency chain (depth 1), median estimate 60m",
+        "risk_explanation": "Low risk - stable dependency structure",
+        "risk_signals": {
+          "fan_variance": 0,
+          "activity_churn": 0,
+          "cross_repo_risk": 0,
+          "status_risk": 0.1,
+          "composite_risk": 0.020000000000000004,
+          "explanation": "Low risk - stable dependency structure"
+        }
+      },
+      "action": "Contact norbot7865 if you want to help",
+      "reasons": [
+        "👤 Claimed by norbot7865",
+        "🚨 High priority (P1) - prioritize this work"
+      ]
+    }
+  ],
+  "quick_wins": [
+    {
+      "id": "jwr-wlj",
+      "title": "Publish GitHub Pages navigation and live Raylib demos",
+      "score": 0.5,
+      "reason": "Low complexity, high priority"
+    }
+  ],
   "blockers_to_clear": [],
   "project_health": {
     "counts": {
-      "total": 43,
+      "total": 44,
       "open": 0,
       "closed": 43,
       "blocked": 0,
-      "actionable": 0,
-      "not_closed": 0,
+      "actionable": 1,
+      "not_closed": 1,
       "dependency_blocked": 0,
       "by_status": {
-        "closed": 43
+        "closed": 43,
+        "in_progress": 1
       },
       "by_type": {
         "bug": 4,
         "epic": 2,
-        "feature": 6,
+        "feature": 7,
         "task": 31
       },
       "by_priority": {
-        "1": 35,
+        "1": 36,
         "2": 8
       }
     },
     "graph": {
-      "node_count": 43,
+      "node_count": 44,
       "edge_count": 38,
-      "density": 0.021040974529346623,
+      "density": 0.0200845665961945,
       "has_cycles": false,
       "phase2_ready": true
     },
