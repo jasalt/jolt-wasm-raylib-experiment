@@ -10,6 +10,7 @@
 <body>
 <header><a href="../">← Project home</a><h1>Live Jolt-driven Raylib</h1><p class="lede">A functioning <a href="https://github.com/jasalt/jolt-wasm-raylib-experiment/tree/main/experiments/EXP-015-jolt-raylib-static">EXP-015 build</a>: Jolt runs through threaded Chez portable bytecode in WebAssembly, calls a signed-scalar static C façade, and Raylib owns the browser frame loop.</p></header>
 <main>
+  <article class="demo"><h2>Experiments</h2><div class="grid"><section><h3>EXP-015: C-authored scene</h3><p>The original signed-scalar scene-selection and input façade documented below.</p></section><section><h3><a href="EXP-016/">EXP-016: Jolt-authored scene →</a></h3><p>The same scene with geometry, colors, and input mapping defined as Jolt command data, with a separately embedded verified runtime.</p></section></div></article>
   <article class="demo">
     <h2>Interactive input façade</h2>
     <p>Launch the 26 MB experimental runtime, then move the pointer over its canvas and press <kbd>→</kbd>. The accent-colored circle follows pointer position; holding ArrowRight visibly changes keyboard state and shifts the rectangle.</p>
