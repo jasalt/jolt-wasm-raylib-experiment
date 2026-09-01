@@ -103,6 +103,6 @@ future `raylib-jlt` Wasm platform layer, but no upstream API is proposed yet.
 - `patches/jolt-command-scene.patch` — SHA-256
   `731d2707070640825bcffa8ee97b3fd8362b4c5d202009d4084b8d26255a753b`
 - `artifacts/reports/EXP-016-browser.json` — SHA-256
-  `aac91422cb25cc3c8602959207892b8f6eda22ae73ca4c76719d2fef84884113`
+  `c6d0ac27ca63ba90a48bd479c1332dd91f6edc68a982a7837ab205b2cc09fd50`
 - `artifacts/screenshots/EXP-016/page.png` — SHA-256
-  `667292a40521c2df3c6ec8d3c5fece0a3423cde73b449db05d286cf3dd2d4648`
+  `ee585aab22e0b91298509e42ce086bf75ad4da011ab9359d578c11669f74af29`
