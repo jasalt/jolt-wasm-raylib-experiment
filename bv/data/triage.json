@@ -1,88 +1,138 @@
 {
   "meta": {
     "version": "1.0.0",
-    "generated_at": "2026-09-01T04:01:00.99376641Z",
+    "generated_at": "2026-09-01T04:14:36.780238734Z",
     "phase2_ready": true,
-    "issue_count": 44,
+    "issue_count": 45,
     "compute_time_ms": 0
   },
   "status": {
     "PageRank": {
-      "state": "skipped",
-      "reason": "all phase 2 disabled"
+      "state": "computed",
+      "ms": 0.049023
     },
     "Betweenness": {
-      "state": "skipped",
-      "reason": "all phase 2 disabled"
+      "state": "computed",
+      "ms": 0.201369
     },
     "Eigenvector": {
-      "state": "skipped",
-      "reason": "all phase 2 disabled"
+      "state": "computed",
+      "ms": 0.023154
     },
     "HITS": {
-      "state": "skipped",
-      "reason": "all phase 2 disabled"
+      "state": "computed",
+      "ms": 0.06016
     },
     "Critical": {
-      "state": "skipped",
-      "reason": "all phase 2 disabled"
+      "state": "computed",
+      "ms": 0.023885
     },
     "Cycles": {
-      "state": "skipped",
-      "reason": "all phase 2 disabled"
+      "state": "computed",
+      "ms": 0.013911
     },
     "KCore": {
-      "state": "skipped",
-      "reason": "all phase 2 disabled"
+      "state": "computed",
+      "ms": 0.031367
     },
     "Articulation": {
-      "state": "skipped",
-      "reason": "all phase 2 disabled"
+      "state": "computed"
     },
     "Slack": {
-      "state": "skipped",
-      "reason": "all phase 2 disabled"
+      "state": "computed",
+      "ms": 0.006379
     }
   },
   "quick_ref": {
     "open_count": 0,
-    "actionable_count": 0,
+    "actionable_count": 1,
     "blocked_count": 0,
-    "in_progress_count": 0,
-    "not_closed_count": 0,
+    "in_progress_count": 1,
+    "not_closed_count": 1,
     "not_actionable_count": 0,
     "top_picks": []
   },
-  "recommendations": [],
-  "quick_wins": [],
+  "recommendations": [
+    {
+      "id": "jwr-e7u",
+      "title": "Copy raylib-jlt live-Wasm proposal into repository",
+      "type": "task",
+      "status": "in_progress",
+      "assignee": "norbot7865",
+      "priority": 2,
+      "labels": null,
+      "score": 0.07814108086604818,
+      "breakdown": {
+        "pagerank": 0.02637098136913694,
+        "betweenness": 0,
+        "blocker_ratio": 0,
+        "staleness": 5.551743582947531e-7,
+        "priority_boost": 0.05,
+        "time_to_impact": 0.03325,
+        "urgency": 0.000008578979430723389,
+        "risk": 0.0020000000000000005,
+        "pagerank_norm": 0.11986809713244065,
+        "betweenness_norm": 0,
+        "blocker_ratio_norm": 0,
+        "staleness_norm": 0.000011103487165895063,
+        "priority_boost_norm": 0.5,
+        "time_to_impact_norm": 0.3325,
+        "urgency_norm": 0.00008578979430723388,
+        "risk_norm": 0.020000000000000004,
+        "time_to_impact_explanation": "On dependency chain (depth 1), median estimate 60m",
+        "risk_explanation": "Low risk - stable dependency structure",
+        "risk_signals": {
+          "fan_variance": 0,
+          "activity_churn": 0,
+          "cross_repo_risk": 0,
+          "status_risk": 0.1,
+          "composite_risk": 0.020000000000000004,
+          "explanation": "Low risk - stable dependency structure"
+        }
+      },
+      "action": "Contact norbot7865 if you want to help",
+      "reasons": [
+        "👤 Claimed by norbot7865"
+      ]
+    }
+  ],
+  "quick_wins": [
+    {
+      "id": "jwr-e7u",
+      "title": "Copy raylib-jlt live-Wasm proposal into repository",
+      "score": 0.4,
+      "reason": "Low complexity"
+    }
+  ],
   "blockers_to_clear": [],
   "project_health": {
     "counts": {
-      "total": 44,
+      "total": 45,
       "open": 0,
       "closed": 44,
       "blocked": 0,
-      "actionable": 0,
-      "not_closed": 0,
+      "actionable": 1,
+      "not_closed": 1,
       "dependency_blocked": 0,
       "by_status": {
-        "closed": 44
+        "closed": 44,
+        "in_progress": 1
       },
       "by_type": {
         "bug": 4,
         "epic": 2,
         "feature": 7,
-        "task": 31
+        "task": 32
       },
       "by_priority": {
         "1": 36,
-        "2": 8
+        "2": 9
       }
     },
     "graph": {
-      "node_count": 44,
+      "node_count": 45,
       "edge_count": 38,
-      "density": 0.0200845665961945,
+      "density": 0.01919191919191919,
       "has_cycles": false,
       "phase2_ready": true
     },
