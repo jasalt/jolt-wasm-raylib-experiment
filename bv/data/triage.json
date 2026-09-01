@@ -1,88 +1,139 @@
 {
   "meta": {
     "version": "1.0.0",
-    "generated_at": "2026-09-01T04:26:56.534037243Z",
+    "generated_at": "2026-09-01T04:42:35.322918248Z",
     "phase2_ready": true,
-    "issue_count": 48,
+    "issue_count": 49,
     "compute_time_ms": 0
   },
   "status": {
     "PageRank": {
-      "state": "skipped",
-      "reason": "all phase 2 disabled"
+      "state": "computed",
+      "ms": 0.076163
     },
     "Betweenness": {
-      "state": "skipped",
-      "reason": "all phase 2 disabled"
+      "state": "computed",
+      "ms": 0.235359
     },
     "Eigenvector": {
-      "state": "skipped",
-      "reason": "all phase 2 disabled"
+      "state": "computed",
+      "ms": 0.017577
     },
     "HITS": {
-      "state": "skipped",
-      "reason": "all phase 2 disabled"
+      "state": "computed",
+      "ms": 0.052928
     },
     "Critical": {
-      "state": "skipped",
-      "reason": "all phase 2 disabled"
+      "state": "computed",
+      "ms": 0.028332
     },
     "Cycles": {
-      "state": "skipped",
-      "reason": "all phase 2 disabled"
+      "state": "computed",
+      "ms": 0.015923
     },
     "KCore": {
-      "state": "skipped",
-      "reason": "all phase 2 disabled"
+      "state": "computed",
+      "ms": 0.034942
     },
     "Articulation": {
-      "state": "skipped",
-      "reason": "all phase 2 disabled"
+      "state": "computed"
     },
     "Slack": {
-      "state": "skipped",
-      "reason": "all phase 2 disabled"
+      "state": "computed",
+      "ms": 0.007642
     }
   },
   "quick_ref": {
     "open_count": 0,
-    "actionable_count": 0,
+    "actionable_count": 1,
     "blocked_count": 0,
-    "in_progress_count": 0,
-    "not_closed_count": 0,
+    "in_progress_count": 1,
+    "not_closed_count": 1,
     "not_actionable_count": 0,
     "top_picks": []
   },
-  "recommendations": [],
-  "quick_wins": [],
+  "recommendations": [
+    {
+      "id": "jwr-skm",
+      "title": "EXP-016 define interactive Raylib scene in Jolt",
+      "type": "feature",
+      "status": "in_progress",
+      "assignee": "norbot7865",
+      "priority": 1,
+      "labels": null,
+      "score": 0.09568444536663091,
+      "breakdown": {
+        "pagerank": 0.026370983744267138,
+        "betweenness": 0,
+        "blocker_ratio": 0,
+        "staleness": 5.849328365740741e-7,
+        "priority_boost": 0.07500000000000001,
+        "time_to_impact": 0.03325,
+        "urgency": 0.00007049613236900787,
+        "risk": 0.0020000000000000005,
+        "pagerank_norm": 0.119868107928487,
+        "betweenness_norm": 0,
+        "blocker_ratio_norm": 0,
+        "staleness_norm": 0.000011698656731481482,
+        "priority_boost_norm": 0.75,
+        "time_to_impact_norm": 0.3325,
+        "urgency_norm": 0.0007049613236900787,
+        "risk_norm": 0.020000000000000004,
+        "time_to_impact_explanation": "On dependency chain (depth 1), median estimate 60m",
+        "risk_explanation": "Low risk - stable dependency structure",
+        "risk_signals": {
+          "fan_variance": 0,
+          "activity_churn": 0,
+          "cross_repo_risk": 0,
+          "status_risk": 0.1,
+          "composite_risk": 0.020000000000000004,
+          "explanation": "Low risk - stable dependency structure"
+        }
+      },
+      "action": "Contact norbot7865 if you want to help",
+      "reasons": [
+        "👤 Claimed by norbot7865",
+        "🚨 High priority (P1) - prioritize this work"
+      ]
+    }
+  ],
+  "quick_wins": [
+    {
+      "id": "jwr-skm",
+      "title": "EXP-016 define interactive Raylib scene in Jolt",
+      "score": 0.5,
+      "reason": "Low complexity, high priority"
+    }
+  ],
   "blockers_to_clear": [],
   "project_health": {
     "counts": {
-      "total": 48,
+      "total": 49,
       "open": 0,
       "closed": 48,
       "blocked": 0,
-      "actionable": 0,
-      "not_closed": 0,
+      "actionable": 1,
+      "not_closed": 1,
       "dependency_blocked": 0,
       "by_status": {
-        "closed": 48
+        "closed": 48,
+        "in_progress": 1
       },
       "by_type": {
         "bug": 4,
         "epic": 2,
-        "feature": 7,
+        "feature": 8,
         "task": 35
       },
       "by_priority": {
-        "1": 36,
+        "1": 37,
         "2": 12
       }
     },
     "graph": {
-      "node_count": 48,
+      "node_count": 49,
       "edge_count": 38,
-      "density": 0.016843971631205674,
+      "density": 0.016156462585034014,
       "has_cycles": false,
       "phase2_ready": true
     },
