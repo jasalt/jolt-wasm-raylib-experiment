@@ -89,7 +89,7 @@ if (ENVIRONMENT_IS_NODE) {
 
 // --pre-jses are emitted after the Module integration code, so that they can
 // refer to Module (if they choose; they can also define Module)
-// include: /tmp/nix-shell.VsmZ6D/tmps3i3cou3.js
+// include: /tmp/nix-shell.ZZ38pM/tmp3dixmx7v.js
 if (!Module["expectedDataFileDownloads"]) Module["expectedDataFileDownloads"] = 0;
 
 Module["expectedDataFileDownloads"]++;
@@ -206,37 +206,37 @@ Module["expectedDataFileDownloads"]++;
     "files": [ {
       "filename": "/jolt.boot",
       "start": 0,
-      "end": 22283747
+      "end": 23039441
     }, {
       "filename": "/petite.boot",
-      "start": 22283747,
-      "end": 24397364
+      "start": 23039441,
+      "end": 25153058
     }, {
       "filename": "/scheme.boot",
-      "start": 24397364,
-      "end": 25437166
+      "start": 25153058,
+      "end": 26192860
     } ],
-    "remote_package_size": 25437166
+    "remote_package_size": 26192860
   });
 })();
 
-// end include: /tmp/nix-shell.VsmZ6D/tmps3i3cou3.js
-// include: /tmp/nix-shell.VsmZ6D/tmpdtepyq5d.js
+// end include: /tmp/nix-shell.ZZ38pM/tmp3dixmx7v.js
+// include: /tmp/nix-shell.ZZ38pM/tmp_pn95f_j.js
 // All the pre-js content up to here must remain later on, we need to run
 // it.
 if ((typeof ENVIRONMENT_IS_WASM_WORKER != "undefined" && ENVIRONMENT_IS_WASM_WORKER) || (typeof ENVIRONMENT_IS_PTHREAD != "undefined" && ENVIRONMENT_IS_PTHREAD) || (typeof ENVIRONMENT_IS_AUDIO_WORKLET != "undefined" && ENVIRONMENT_IS_AUDIO_WORKLET)) Module["preRun"] = [];
 
 var necessaryPreJSTasks = Module["preRun"].slice();
 
-// end include: /tmp/nix-shell.VsmZ6D/tmpdtepyq5d.js
-// include: /tmp/nix-shell.VsmZ6D/tmpprw9tpbv.js
+// end include: /tmp/nix-shell.ZZ38pM/tmp_pn95f_j.js
+// include: /tmp/nix-shell.ZZ38pM/tmpehnl339f.js
 if (!Module["preRun"]) throw "Module.preRun should exist because file support used it; did a pre-js delete it?";
 
 necessaryPreJSTasks.forEach(task => {
   if (Module["preRun"].indexOf(task) < 0) throw "All preRun tasks that exist before user pre-js code should remain after; did you replace Module or modify Module.preRun?";
 });
 
-// end include: /tmp/nix-shell.VsmZ6D/tmpprw9tpbv.js
+// end include: /tmp/nix-shell.ZZ38pM/tmpehnl339f.js
 var programArgs = [];
 
 var thisProgram = "./this.program";
