@@ -1,0 +1,34 @@
+{
+  "browser": "Chrome/152.0.7977.64",
+  "ready": true,
+  "state": {
+    "isolated": true,
+    "sab": true,
+    "output": "EXP-004-JOLT-PB-OK\n{:unicode \u03bb-\u6771\u4eac, :collection [1 2 3]}\nallocation 40000\nEXP-016-JOLT-SCENE-COMMITTED\n",
+    "status": "Running..."
+  },
+  "mouseDispatch": [
+    500,
+    250
+  ],
+  "keyboardDispatch": "ArrowRight",
+  "sceneAfterInput": "jolt",
+  "joltCommandCount": 4,
+  "pageErrors": [],
+  "requestFailures": [
+    {
+      "requestId": "257046.5",
+      "timestamp": 515165.90695,
+      "type": "Other",
+      "errorText": "net::ERR_ABORTED",
+      "canceled": true
+    }
+  ],
+  "consoleMessages": [
+    "EXP-004-JOLT-PB-OK",
+    "{:unicode \u03bb-\u6771\u4eac, :collection [1 2 3]}",
+    "allocation 40000",
+    "EXP-016-JOLT-SCENE-COMMITTED"
+  ],
+  "screenshot_sha256": "667292a40521c2df3c6ec8d3c5fece0a3423cde73b449db05d286cf3dd2d4648"
+}

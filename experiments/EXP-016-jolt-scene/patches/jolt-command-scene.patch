@@ -3,7 +3,7 @@
 @@ -24,16 +24,24 @@
  #include <emscripten/emscripten.h>
  #include <raylib.h>
- 
+
 -static int32_t project_scene = 1;
 +enum { PROJECT_FIELDS = 10, PROJECT_MAX_COMMANDS = 16 };
 +static int32_t project_commands[PROJECT_MAX_COMMANDS][PROJECT_FIELDS];
@@ -26,7 +26,7 @@
 +  project_command_count = count;
 +  return count;
  }
- 
+
 -EM_JS(void, project_ready, (int scene), {
 +EM_JS(void, project_ready, (int commands), {
    let status = document.getElementById("project-status");
@@ -42,7 +42,7 @@
 +  status.dataset.commands = String(commands);
 +  status.textContent = `ready: Jolt scene (${commands} commands)`;
  });
- 
+
 +static int32_t project_input_value(int32_t base, int32_t mode, int32_t mouse) {
 +  if (mode == 1) return mouse;
 +  if (mode == 2 && IsKeyDown(KEY_RIGHT)) return base + 100;
@@ -78,7 +78,7 @@
 -  if (project_frame == 1) project_ready(project_scene);
 +  if (project_frame == 1) project_ready(project_command_count);
  }
- 
+
  static void project_start_raylib(void) {
    SetTraceLogLevel(LOG_ERROR);
 -  InitWindow(720, 360, "Chez Raylib static facade");
