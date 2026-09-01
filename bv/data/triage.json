@@ -1,9 +1,9 @@
 {
   "meta": {
     "version": "1.0.0",
-    "generated_at": "2026-09-01T04:42:42.874713767Z",
+    "generated_at": "2026-09-01T05:39:22.543036221Z",
     "phase2_ready": true,
-    "issue_count": 49,
+    "issue_count": 50,
     "compute_time_ms": 0
   },
   "status": {
@@ -58,42 +58,42 @@
   "blockers_to_clear": [],
   "project_health": {
     "counts": {
-      "total": 49,
+      "total": 50,
       "open": 0,
-      "closed": 49,
+      "closed": 50,
       "blocked": 0,
       "actionable": 0,
       "not_closed": 0,
       "dependency_blocked": 0,
       "by_status": {
-        "closed": 49
+        "closed": 50
       },
       "by_type": {
         "bug": 4,
         "epic": 2,
-        "feature": 8,
+        "feature": 9,
         "task": 35
       },
       "by_priority": {
-        "1": 37,
+        "1": 38,
         "2": 12
       }
     },
     "graph": {
-      "node_count": 49,
+      "node_count": 50,
       "edge_count": 38,
-      "density": 0.016156462585034014,
+      "density": 0.015510204081632653,
       "has_cycles": false,
       "phase2_ready": true
     },
     "velocity": {
-      "closed_last_7_days": 49,
-      "closed_last_30_days": 49,
-      "avg_days_to_close": 0.10645762471655329,
+      "closed_last_7_days": 50,
+      "closed_last_30_days": 50,
+      "avg_days_to_close": 0.10457337962962963,
       "weekly": [
         {
           "week_start": "2026-08-31T00:00:00Z",
-          "closed": 49
+          "closed": 50
         },
         {
           "week_start": "2026-08-24T00:00:00Z",
