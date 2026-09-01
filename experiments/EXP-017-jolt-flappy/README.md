@@ -16,7 +16,15 @@ generation. C can remain a generic bounded renderer and input primitive.
 
 ## Environment
 
-Pinned EXP-014/016 Jolt, Chez `tpb32l`, Emscripten, libffi, and Raylib lineage.
+Chez `tpb32l`, Emscripten, libffi, and Raylib remain on the pinned EXP-014/016
+lineage. This revision of EXP-017 uses unmodified upstream Jolt
+`6cb7d2ec4c82201fe54f0685f6c6ff433f106ecf` (2026-09-01), which contains
+merged PR [#801](https://github.com/jolt-lang/jolt/pull/801) at
+`b6ea66bf9180ea63c0dbfe22079a613feb8378b1` and PR
+[#802](https://github.com/jolt-lang/jolt/pull/802) at
+`30a2c6a8eddd3fe799074acaa18d3d51b3a617f8`. No project-local Jolt hash patch
+is applied.
+
 Source reference: local `../raylib-jlt` commit
 `1ba04380f48870441ff8eb46b3c25e36764b65a1`, file
 `src/net/b12n/raylib_jlt/flappy_bird.clj`. Browser: Chromium 152.0.7977.64.
@@ -29,9 +37,17 @@ game-over/restart flow, and shape generation. `defonce game` retains model state
 Each owner-thread callback calls the live `frame!` Var, which updates the model
 and uploads a fresh generic command list.
 
-Run `commands.sh` after the exact EXP-014/016 prerequisite build tree exists.
-It appends the small named Scheme callback to Jolt's emitted flat Scheme,
-remints the boot, links Raylib, and runs `browser-smoke`.
+Run `commands.sh` after the exact EXP-014/016 prerequisite build tree and the
+recorded unmodified upstream Jolt archive exist. It sets
+`JOLT_NARROW_HASH=1` during both Jolt emission and target compilation. PR #801
+reads this setting at macro-expansion time; omitting it while a wide `tpb64l`
+host cross-compiles `tpb32l` selected the wide arm and reproduced
+`variable murmur3-seed is not bound`. With the setting, the resulting native
+control advances to the expected independent no-libffi boundary and Chromium
+passes.
+
+The script appends the small named Scheme callback to Jolt's emitted flat
+Scheme, remints the boot, links Raylib, and runs `browser-smoke`.
 
 ## Expected
 
@@ -67,6 +83,16 @@ Vision inspection of `artifacts/screenshots/EXP-017/page.png` shows:
 - circle-versus-pipe and bounds collision;
 - game-over and Space restart semantics; and
 - scene generation from the Jolt model.
+
+### PR #802 breaking-FFI audit
+
+The selected upstream includes #802's arena API and breaking changes. EXP-017
+uses only `ffi/defcfn` with `:int32` scalar arguments/results. It has no
+`ffi/write`, no `ffi/layout`, and no `[:array ...]` descriptor, so neither the
+new write argument order nor fixed-array descriptor order requires an EXP-017
+source change. The rebuild itself confirms these declarations remain valid.
+Any future command-buffer layout must use `[:array element-type count]`, not the
+old count-first order.
 
 ### Evidence-backed divergences
 
@@ -110,6 +136,8 @@ lifetime, error propagation, and update-cost stress tests.
 - `patches/jolt-frame-host.patch` — SHA-256
   `0a28ba07c1c3e46b9370973cd67034fd45e358e1a1951e0e5cd39a73bcca938d`
 - `artifacts/reports/EXP-017-browser.json` — SHA-256
-  `9ab005d89af82b05f4c4cc6ea52c1b96a21e7387f43c9127fc43684de4027ae0`
+  `eeb3f35629098ef83df7c0107410b6b8b7d358bfb2204e938f6cd94187dd75f5`
 - `artifacts/screenshots/EXP-017/page.png` — SHA-256
-  `2a385112610872a8f47fb0881a263f56a810e77d9779ae49933c5132f15bf15a`
+  `ca187bd2dd4084966f446262788870f0d5139219703c74ea0596099ed08807c3`
+- upstream-Jolt `jolt.boot` — SHA-256
+  `69b9a257218aac77bf5277f8b00b750eba867bd7ff23fcc144d49e7053610071`

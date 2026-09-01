@@ -112,6 +112,6 @@ while time.time()<deadline:
  time.sleep(.1)
 if after.get('flaps',0) < 2: raise RuntimeError(f'EXP-017 inputs not consumed: {after}')
 shot.write_bytes(base64.b64decode(cmd('Page.captureScreenshot',{'format':'png','captureBeyondViewport':True})['data']))
-report.write_text(json.dumps({'browser':version['Browser'],'ready':True,'state':state,'keyboardDispatch':'Space','mouseDispatch':'left-click','sceneAfterInput':after,'pageErrors':errors,'requestFailures':failed,'consoleMessages':[' '.join(str(a.get('value',a.get('description',''))) for a in x.get('args',[])) for x in console],'screenshot_sha256':hashlib.sha256(shot.read_bytes()).hexdigest()},indent=2)+'\n')
+report.write_text(json.dumps({'browser':version['Browser'],'joltRevision':'6cb7d2ec4c82201fe54f0685f6c6ff433f106ecf','containsPR801':True,'containsPR802':True,'ffiBreakingChangeAudit':'scalar defcfn only; no write/layout/array descriptors','ready':True,'state':state,'keyboardDispatch':'Space','mouseDispatch':'left-click','sceneAfterInput':after,'pageErrors':errors,'requestFailures':failed,'consoleMessages':[' '.join(str(a.get('value',a.get('description',''))) for a in x.get('args',[])) for x in console],'screenshot_sha256':hashlib.sha256(shot.read_bytes()).hexdigest()},indent=2)+'\n')
 PY
 printf 'EXP-017 Chromium Jolt Flappy Bird: PASS\n'
