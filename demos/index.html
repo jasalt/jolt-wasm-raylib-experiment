@@ -12,7 +12,7 @@
 <main>
   <article class="demo">
     <h2>Interactive input façade</h2>
-    <p>Launch the 26 MB experimental runtime, then move the pointer over its canvas and press <kbd>→</kbd>. The green circle follows pointer position; holding ArrowRight visibly changes keyboard state and shifts the rectangle.</p>
+    <p>Launch the 26 MB experimental runtime, then move the pointer over its canvas and press <kbd>→</kbd>. The accent-colored circle follows pointer position; holding ArrowRight visibly changes keyboard state and shifts the rectangle.</p>
     <div class="actions"><button class="button" id="launch" type="button">Launch live demo</button><span id="status" role="status">Not loaded. Explicit activation avoids starting a pthread worker during page navigation.</span></div>
     <div id="mount"><noscript><p>JavaScript is required for the live runtime. The verified capture is shown below.</p></noscript></div>
   </article>
@@ -41,6 +41,57 @@
   (apply witness/-main args)
   (println "EXP-015-JOLT-RAYLIB-SCENE-SELECTED"))</code></pre>
   <p class="source-note">The invoked <a href="https://github.com/jasalt/jolt-wasm-raylib-experiment/blob/main/src/app/witness.clj"><code>app.witness</code></a> namespace emits the canonical collection, Unicode, and allocation-pressure output shown by the runtime.</p>
+
+  <h3>Actual Raylib scene and frame loop</h3>
+  <p class="source-note">This is the scene implementation linked into the published Wasm module, excerpted from the reproducible <a href="https://github.com/jasalt/jolt-wasm-raylib-experiment/blob/main/experiments/EXP-015-jolt-raylib-static/patches/chez-raylib-input-facade.patch">EXP-015 C façade patch</a>. It is C—not JavaScript—that polls Raylib input and draws each browser frame.</p>
+  <pre aria-label="C and Raylib scene code used by the live demo"><code>static int32_t project_scene = 1;
+static unsigned int project_frame = 0;
+static int32_t project_input_mode = 0;
+
+static int32_t project_set_input_mode(int32_t mode) {
+  project_input_mode = mode;
+  return project_input_mode;
+}
+
+static int32_t project_set_scene(int32_t scene) {
+  project_scene = scene;
+  return project_scene;
+}
+
+static void project_draw_frame(void) {
+  int mouse_x = project_input_mode ? GetMouseX() : 180;
+  int mouse_y = project_input_mode ? GetMouseY() : 150;
+  int key_shift = project_input_mode &amp;&amp; IsKeyDown(KEY_RIGHT) ? 100 : 0;
+  Color accent = project_scene == 2
+    ? (Color){230, 41, 55, 255}
+    : (Color){0, 228, 48, 255};
+
+  BeginDrawing();
+  ClearBackground((Color){20, 24, 41, 255});
+  DrawRectangle(36, 32, 648, 296, (Color){35, 45, 74, 255});
+  DrawCircle(mouse_x, mouse_y, 72, accent);
+  DrawRectangle(320 + key_shift, 88, 300, 124, accent);
+  DrawText("Chez static facade + Raylib", 58, 246, 28, RAYWHITE);
+  DrawText(TextFormat(
+    "Scene: %d frame: %u mouse: %d,%d key-right: %d",
+    project_scene, project_frame, mouse_x, mouse_y, key_shift != 0),
+    58, 286, 20, RAYWHITE);
+  EndDrawing();
+
+  project_frame++;
+  if (project_frame == 1) project_ready(project_scene);
+}
+
+static void project_start_raylib(void) {
+  SetTraceLogLevel(LOG_ERROR);
+  InitWindow(720, 360, "Chez Raylib static facade");
+  emscripten_set_main_loop(project_draw_frame, 0, 1);
+}</code></pre>
+  <div class="grid">
+    <section><h4>Jolt selects</h4><p>The Jolt entry calls the registered signed-<code>int32</code> functions. Mode <code>1</code> enables live input and scene <code>2</code> selects the red accent.</p></section>
+    <section><h4>Raylib updates</h4><p><code>GetMouseX/Y</code> moves the circle. <code>IsKeyDown(KEY_RIGHT)</code> adds 100 pixels to the rectangle position while the key is held.</p></section>
+    <section><h4>Browser schedules</h4><p><code>emscripten_set_main_loop</code> gives browser scheduling to the C/Raylib owner. The first completed frame publishes the readiness marker used by automation.</p></section>
+  </div>
   <h3>Verified browser capture</h3><img class="fallback" src="verified-input.png" width="800" height="600" alt="Verified Chromium capture showing the Raylib canvas with green input-controlled shapes and Jolt runtime output.">
   <p>Sources: <a href="https://github.com/jasalt/jolt-wasm-raylib-experiment/tree/main/experiments/EXP-015-jolt-raylib-static">EXP-015 findings</a> · <a href="https://github.com/jasalt/jolt-wasm-raylib-experiment/blob/main/docs/RAYLIB-JLT-LIVE-WASM.md">raylib-jlt live-Wasm proposal</a> · <a href="SHA256SUMS">published artifact hashes</a>.</p></article>
   <footer>The demo uses a service worker scoped to <code>/demos/</code> to synthesize COOP/COEP on GitHub Pages. A dedicated header-capable origin remains the recommended production architecture for raylib-jlt.</footer>
