@@ -21,7 +21,7 @@
     <section><h3>Ownership boundary</h3><p>Jolt selects scalar scene/input state through <code>jolt.ffi</code>. The C façade and Raylib own drawing, input polling, and browser frame scheduling.</p></section>
     <section><h3>Not claimed</h3><p>This is not the desktop <code>raylib-jlt</code> binding running unchanged, nor per-frame Jolt execution. It is the narrow ABI-proven route documented by EXP-015.</p></section>
   </div><h3>Verified browser capture</h3><img class="fallback" src="verified-input.png" width="800" height="600" alt="Verified Chromium capture showing the Raylib canvas with green input-controlled shapes and Jolt runtime output.">
-  <p>Sources: <a href="https://github.com/jasalt/jolt-wasm-raylib-experiment/tree/main/experiments/EXP-015-jolt-raylib-static">EXP-015 findings</a> · <a href="https://github.com/jlt-commons/raylib-jlt/blob/main/docs/guide/live-wasm.md">raylib-jlt live-Wasm proposal</a> · <a href="SHA256SUMS">published artifact hashes</a>.</p></article>
+  <p>Sources: <a href="https://github.com/jasalt/jolt-wasm-raylib-experiment/tree/main/experiments/EXP-015-jolt-raylib-static">EXP-015 findings</a> · <a href="https://github.com/jasalt/jolt-wasm-raylib-experiment/blob/main/docs/RAYLIB-JLT-LIVE-WASM.md">raylib-jlt live-Wasm proposal</a> · <a href="SHA256SUMS">published artifact hashes</a>.</p></article>
   <footer>The demo uses a service worker scoped to <code>/demos/</code> to synthesize COOP/COEP on GitHub Pages. A dedicated header-capable origin remains the recommended production architecture for raylib-jlt.</footer>
 </main>
 <script>
