@@ -1,0 +1,12 @@
+{
+  "ready": true,
+  "state": {
+    "isolated": true,
+    "sab": true,
+    "output": "EXP-004-JOLT-PB-OK\n{:unicode \u03bb-\u6771\u4eac, :collection [1 2 3]}\nallocation 40000\nEXP-017-JOLT-FLAPPY-READY\n",
+    "status": "ready: Jolt Flappy Bird (9 commands, 0 flaps)"
+  },
+  "pageErrors": [],
+  "requestFailures": [],
+  "screenshot_sha256": "8d8e35bb9e9827c00a9017d41838bc067dffbb94ae0571a0efa2078deec6033c"
+}

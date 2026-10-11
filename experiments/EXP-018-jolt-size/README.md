@@ -166,6 +166,34 @@ long-run GC stress and float/aggregate FFI remain unmeasured, separate experimen
 The pure `tpb64l` launcher failure is a reduced report candidate. Native-host
 cross compilation is a project build choice, not an upstream patch.
 
+## Published demo
+
+[EXP-018 live entry](https://jasalt.github.io/jolt-wasm-raylib-experiment/demos/EXP-018/)
+is a **separate** `gh-pages` demo, published in commit `5439ea1`. The original
+EXP-017 page and runtime remain unchanged. The gallery links both builds.
+GitHub Pages reported the deployment built; downloaded HTML/JS/Wasm/data each
+compare byte-for-byte with the published branch files. The page's scoped service
+worker supplies browser isolation on Pages.
+
+Fresh-profile Chromium automation on the public entry activated Launch EXP-018,
+waited through service-worker isolation/reload, and observed the embedded runtime
+ready. A separate public-runtime browser run consumed Space and click with no
+page/request errors and captured a two-flap scene. See
+[evidence/pages/entry-browser.json](evidence/pages/entry-browser.json) and
+[evidence/pages/remote-browser.json](evidence/pages/remote-browser.json).
+Vision inspection of the committed page screenshots confirms the EXP-018 heading,
+Jolt 0.8.21/5b46858a and reduced-size explanation, the embedded blue field/gold
+bird/green pipes, and the runtime input capture's two-flap status. Hashes:
+[evidence/pages/SHA256SUMS](evidence/pages/SHA256SUMS).
+
+Local copied-runtime gate's first attempt failed only during profile deletion
+(directory-not-empty race); retry exited 0. Temporary remote harness initially
+used a wrong URL (unsafe port) then lost a WebSocket frame during handshake;
+a corrected exact-header read produced the passing public observations. These
+AUTOMATION failures do not count as passing tests. Logs and the exact temporary
+CDP scripts (derived from EXP-017's browser gate) are retained under ignored
+`artifacts/logs/EXP-018-pages/`.
+
 ## Artifacts and hashes
 
 [evidence/sizes.json](evidence/sizes.json) contains every artifact hash and raw/

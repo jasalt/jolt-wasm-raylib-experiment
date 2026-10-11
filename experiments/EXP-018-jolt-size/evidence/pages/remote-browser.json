@@ -1,0 +1,39 @@
+{
+  "browser": "Chrome/152.0.7977.64",
+  "joltRevision": "5b46858a171f30949f5b09eb484bc6c5ff93c6ea",
+  "containsPR801": true,
+  "containsPR802": true,
+  "ffiBreakingChangeAudit": "scalar defcfn only; no write/layout/array descriptors",
+  "ready": true,
+  "state": {
+    "isolated": true,
+    "sab": true,
+    "output": "EXP-004-JOLT-PB-OK\n{:unicode \u03bb-\u6771\u4eac, :collection [1 2 3]}\nallocation 40000\nEXP-017-JOLT-FLAPPY-READY\n",
+    "status": "Running..."
+  },
+  "keyboardDispatch": "Space",
+  "mouseDispatch": "left-click",
+  "sceneAfterInput": {
+    "scene": "flappy-jolt",
+    "commands": 9,
+    "frames": 43,
+    "flaps": 2
+  },
+  "pageErrors": [],
+  "requestFailures": [],
+  "consoleMessages": [
+    "EXP-004-JOLT-PB-OK",
+    "{:unicode \u03bb-\u6771\u4eac, :collection [1 2 3]}",
+    "allocation 40000",
+    "EXP-017-JOLT-FLAPPY-READY"
+  ],
+  "canvas": {
+    "x": 1,
+    "y": 129.71875,
+    "width": 800,
+    "height": 450,
+    "scale": 1
+  },
+  "canvas_sha256": "519f1c6692a039ec51eeee4c28944fad689311a6ee80d85f9598268e3e974903",
+  "screenshot_sha256": "07d2951036bd0d9c0f65cc2f04470ac984a88ce10353762f86bd94b1163d716e"
+}
