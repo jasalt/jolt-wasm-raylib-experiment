@@ -1,96 +1,166 @@
 {
   "meta": {
     "version": "1.0.0",
-    "generated_at": "2026-09-01T06:12:31.395315726Z",
+    "generated_at": "2026-10-11T15:03:47.436647565Z",
     "phase2_ready": true,
-    "issue_count": 52,
+    "issue_count": 53,
     "compute_time_ms": 0
   },
   "status": {
     "PageRank": {
-      "state": "skipped",
-      "reason": "all phase 2 disabled"
+      "state": "computed",
+      "ms": 0.038197
     },
     "Betweenness": {
-      "state": "skipped",
-      "reason": "all phase 2 disabled"
+      "state": "computed",
+      "ms": 0.196956
     },
     "Eigenvector": {
-      "state": "skipped",
-      "reason": "all phase 2 disabled"
+      "state": "computed",
+      "ms": 0.012619
     },
     "HITS": {
-      "state": "skipped",
-      "reason": "all phase 2 disabled"
+      "state": "computed",
+      "ms": 0.039129
     },
     "Critical": {
-      "state": "skipped",
-      "reason": "all phase 2 disabled"
+      "state": "computed",
+      "ms": 0.018518
     },
     "Cycles": {
-      "state": "skipped",
-      "reason": "all phase 2 disabled"
+      "state": "computed",
+      "ms": 0.018779
     },
     "KCore": {
-      "state": "skipped",
-      "reason": "all phase 2 disabled"
+      "state": "computed",
+      "ms": 0.037877
     },
     "Articulation": {
-      "state": "skipped",
-      "reason": "all phase 2 disabled"
+      "state": "computed"
     },
     "Slack": {
-      "state": "skipped",
-      "reason": "all phase 2 disabled"
+      "state": "computed",
+      "ms": 0.005068
     }
   },
   "quick_ref": {
     "open_count": 0,
-    "actionable_count": 0,
+    "actionable_count": 1,
     "blocked_count": 0,
-    "in_progress_count": 0,
-    "not_closed_count": 0,
+    "in_progress_count": 1,
+    "not_closed_count": 1,
     "not_actionable_count": 0,
     "top_picks": []
   },
-  "recommendations": [],
-  "quick_wins": [],
+  "recommendations": [
+    {
+      "id": "jwr-60j",
+      "title": "Benchmark Wasm size and upgrade Jolt to 5b46858",
+      "type": "task",
+      "status": "in_progress",
+      "assignee": "norbot7865",
+      "priority": 2,
+      "labels": null,
+      "score": 0.07826820508942918,
+      "breakdown": {
+        "pagerank": 0.026370994304284877,
+        "betweenness": 0,
+        "blocker_ratio": 0,
+        "staleness": 0.00003600379335580633,
+        "priority_boost": 0.05,
+        "time_to_impact": 0.03325,
+        "urgency": 0.00015472345868670635,
+        "risk": 0.0020000000000000005,
+        "pagerank_norm": 0.11986815592856762,
+        "betweenness_norm": 0,
+        "blocker_ratio_norm": 0,
+        "staleness_norm": 0.0007200758671161265,
+        "priority_boost_norm": 0.5,
+        "time_to_impact_norm": 0.3325,
+        "urgency_norm": 0.0015472345868670634,
+        "risk_norm": 0.020000000000000004,
+        "time_to_impact_explanation": "On dependency chain (depth 1), median estimate 60m",
+        "risk_explanation": "Low risk - stable dependency structure",
+        "risk_signals": {
+          "fan_variance": 0,
+          "activity_churn": 0,
+          "cross_repo_risk": 0,
+          "status_risk": 0.1,
+          "composite_risk": 0.020000000000000004,
+          "explanation": "Low risk - stable dependency structure"
+        }
+      },
+      "action": "Contact norbot7865 if you want to help",
+      "reasons": [
+        "👤 Claimed by norbot7865"
+      ]
+    }
+  ],
+  "quick_wins": [
+    {
+      "id": "jwr-60j",
+      "title": "Benchmark Wasm size and upgrade Jolt to 5b46858",
+      "score": 0.4,
+      "reason": "Low complexity"
+    }
+  ],
   "blockers_to_clear": [],
   "project_health": {
     "counts": {
-      "total": 52,
+      "total": 53,
       "open": 0,
       "closed": 52,
       "blocked": 0,
-      "actionable": 0,
-      "not_closed": 0,
+      "actionable": 1,
+      "not_closed": 1,
       "dependency_blocked": 0,
       "by_status": {
-        "closed": 52
+        "closed": 52,
+        "in_progress": 1
       },
       "by_type": {
         "bug": 4,
         "epic": 2,
         "feature": 9,
-        "task": 37
+        "task": 38
       },
       "by_priority": {
         "1": 39,
-        "2": 13
+        "2": 14
       }
     },
     "graph": {
-      "node_count": 52,
+      "node_count": 53,
       "edge_count": 38,
-      "density": 0.014328808446455505,
+      "density": 0.013788098693759071,
       "has_cycles": false,
       "phase2_ready": true
     },
     "velocity": {
-      "closed_last_7_days": 52,
-      "closed_last_30_days": 52,
+      "closed_last_7_days": 0,
+      "closed_last_30_days": 0,
       "avg_days_to_close": 0.10084980413105413,
       "weekly": [
+        {
+          "week_start": "2026-10-05T00:00:00Z",
+          "closed": 0
+        },
+        {
+          "week_start": "2026-09-28T00:00:00Z",
+          "closed": 0
+        },
+        {
+          "week_start": "2026-09-21T00:00:00Z",
+          "closed": 0
+        },
+        {
+          "week_start": "2026-09-14T00:00:00Z",
+          "closed": 0
+        },
+        {
+          "week_start": "2026-09-07T00:00:00Z",
+          "closed": 0
+        },
         {
           "week_start": "2026-08-31T00:00:00Z",
           "closed": 52
@@ -101,26 +171,6 @@
         },
         {
           "week_start": "2026-08-17T00:00:00Z",
-          "closed": 0
-        },
-        {
-          "week_start": "2026-08-10T00:00:00Z",
-          "closed": 0
-        },
-        {
-          "week_start": "2026-08-03T00:00:00Z",
-          "closed": 0
-        },
-        {
-          "week_start": "2026-07-27T00:00:00Z",
-          "closed": 0
-        },
-        {
-          "week_start": "2026-07-20T00:00:00Z",
-          "closed": 0
-        },
-        {
-          "week_start": "2026-07-13T00:00:00Z",
           "closed": 0
         }
       ]
