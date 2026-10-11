@@ -1,0 +1,5 @@
+bdf592ea73679ff60dea12c2e3ee2ec0598afb88176929e3b6b687d49eb0b05a  demos/EXP-018/runtime/index.html
+6b0a6164ac5d08c0aad6d94c8ac6b15e86ffd50128c98fa6cc6c7a2b9a7968b8  demos/EXP-018/runtime/scheme.js
+3fab14028edf84d2993400a4e2e8b429529cf46530c5fea435f90fba845e2aac  demos/EXP-018/runtime/scheme.wasm
+7cea611e8b8553051cf1a66b051530ab9a2d473e8b4f833133ba3bf39494ad01  demos/EXP-018/runtime/scheme.data
+ccf31605e39acb67216f76d487c0e4bb59572fefb463a60fb143ee5132c9c4c6  demos/EXP-018/verified.png
