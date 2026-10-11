@@ -2,20 +2,13 @@
 
 ## 📊 Executive Summary
 
-**53** total issues | **98%** complete | **1** ready to work | **0** blocked
+**53** total issues | **100%** complete | **0** ready to work | **0** blocked
 
 ## 📈 Graph Analysis
 
 - **Dependency Density:** 0.014 (🟢 Healthy) — Issues are well-isolated and can be parallelized
 - **Graph Size:** 53 issues with 38 dependencies
 - **Cycles:** None detected ✓
-
-## 🏃 Quick Wins
-
-Low-effort items that clear the path forward:
-
-- **jwr-60j**: Benchmark Wasm size and upgrade Jolt to 5b46858
-  - *Low complexity*
 
 ## 📋 Status Summary
 
@@ -25,5 +18,5 @@ Low-effort items that clear the path forward:
 
 ---
 
-*Generated Oct 11, 2026 at 3:03 PM UTC by [bv](https://github.com/Dicklesworthstone/beads_viewer)*
+*Generated Oct 11, 2026 at 3:04 PM UTC by [bv](https://github.com/Dicklesworthstone/beads_viewer)*
 
