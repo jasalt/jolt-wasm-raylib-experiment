@@ -1,0 +1,34 @@
+warning: Git tree '/home/user/dev/jail/jolt/jolt-wasm-raylib' is dirty
+Unhandled exception (RuntimeException): jolt-ffi-native-error-convention-case: unsupported target machine tpb64l
+  at stdlib/jolt/socket/native.clj:185:1
+  trace:
+    chi-macro
+    syntax-type
+    val
+    maplr
+    chi-body
+    val
+    dobody
+    chi-expr
+    val
+    maplr
+    chi-body
+    val
+    chi-expr
+    maplr
+    chi-body
+    chi-lambda-clause
+    val
+    map
+    chi-expr
+    maplr
+    chi-body
+    chi-lambda-clause
+    val
+    maplr
+    chi-body
+    val
+    map (x2)
+    chi-expr
+    chi-top
+    sc-expand

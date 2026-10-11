@@ -64,3 +64,8 @@ A normal native Jolt nREPL remains the primary fast loop for portable code.
   conventions followed by this project
 
 Live task state is tracked in [Beads task tracker (read only)](https://jasalt.github.io/jolt-wasm-raylib-experiment/bv/); the plan remains a research specification.
+
+Current Jolt pin: **0.8.21 (`5b46858a`)**. The unchanged Flappy Bird app passes
+browser input/render validation; Wasm remains 1,097,110 bytes and preloaded data
+falls 40.0% versus `6cb7d2e`. See [EXP-018](experiments/EXP-018-jolt-size/README.md)
+for build-host migration, changelog audit and exact size evidence.

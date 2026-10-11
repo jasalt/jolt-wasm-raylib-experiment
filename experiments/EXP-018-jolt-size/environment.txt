@@ -1,0 +1,15 @@
+warning: Git tree '/home/user/dev/jail/jolt/jolt-wasm-raylib' is dirty
+2026-10-11T15:00:23Z
+Linux lima-default 6.19.10-300.fc44.x86_64 #1 SMP PREEMPT_DYNAMIC Wed Mar 25 18:23:49 UTC 2026 x86_64 GNU/Linux
+emcc (Emscripten gcc/clang-like replacement + linker emulating GNU ld) 6.0.8-git
+Copyright (C) 2026 the Emscripten authors (see AUTHORS.txt)
+This is free and open source software under the MIT license.
+There is NO warranty; not even for MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
+
+v24.19.0
+Python 3.14.7
+Chromium 152.0.7977.64 
+10.5.0-pre-release.1
+88608d6e6fbbc4a7577cfb0891aa52e39a5aa2594f1cf45c680fa49eaa061d23  flake.lock
+fbff3ca87a988c076ce7841bede4a4fc0747098b11eb0ecfa7e4468337234849  build/EXP-018-pack/xpatch
+1ba04380f48870441ff8eb46b3c25e36764b65a1

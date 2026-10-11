@@ -4,7 +4,7 @@
   inputs = {
     nixpkgs.url = "github:NixOS/nixpkgs/nixos-unstable";
     jolt = {
-      url = "git+https://github.com/jolt-lang/jolt.git?rev=447b874d06066d15fee187200fabaf410f4ff5b6&submodules=1";
+      url = "git+https://github.com/jolt-lang/jolt.git?rev=5b46858a171f30949f5b09eb484bc6c5ff93c6ea&submodules=1";
       flake = false;
     };
     chezScheme = {
@@ -28,7 +28,7 @@
       mkJolt = pkgs:
         pkgs.stdenv.mkDerivation {
           pname = "jolt";
-          version = "447b874d";
+          version = "5b46858a";
           src = jolt;
           strictDeps = true;
           nativeBuildInputs = [ pkgs.chez pkgs.makeWrapper pkgs.pkg-config pkgs.xxd ];

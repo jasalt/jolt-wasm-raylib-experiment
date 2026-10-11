@@ -1,0 +1,9 @@
+5b346288157f41369141c8cc1deafee054608a5c6086c4a27ab2fa5173a7c7c1  experiments/EXP-018-jolt-size/evidence/baseline-browser.json
+1eff36786ada66ff8e340e9c5e2942bd043d4c63a0556970c4af056b98cb52fb  experiments/EXP-018-jolt-size/evidence/canvas.png
+6a5fb2929e8ac34d42bcc8050193184fd7baa0349a1e0d4d4a38f83a050c34d1  experiments/EXP-018-jolt-size/evidence/latest-hostlib.log
+ccf31605e39acb67216f76d487c0e4bb59572fefb463a60fb143ee5132c9c4c6  experiments/EXP-018-jolt-size/evidence/page.png
+3322668f685b97aebb1f8ec94ea83fdeaa1a492a26ff4390299d9294b7d533cc  experiments/EXP-018-jolt-size/evidence/sizes.json
+162bfaf2d796d85013320330565ae21f81c32980f29422d6c8733df3b720fd11  experiments/EXP-018-jolt-size/evidence/updated-browser.json
+48ea7a9fb51ef42496e63c66c936708b3565f3a2c6a14ecb53c684cd1d6d77a7  experiments/EXP-018-jolt-size/evidence/upgrade-matched-host.log
+cef1622ce49b1ce92011d9c20ffcb921beb7075006bb8d436872b5a36fb11127  experiments/EXP-018-jolt-size/evidence/upgrade-native-host.log
+6ce1253b373b7a03cd69b8726603d9ec825ad4a7dcc7a39509a40bec17e20b4b  experiments/EXP-018-jolt-size/evidence/upgrade-submodules.log

@@ -1,0 +1,9 @@
+warning: Git tree '/home/user/dev/jail/jolt/jolt-wasm-raylib' is dirty
+warning: Git tree '/home/user/dev/jail/jolt/jolt-wasm-raylib' is dirty
+jolt build: dropping compiler image (no runtime eval)
+jolt build: compiling app.exp017 (release mode)
+Exception: incompatible fasl-object machine-type tpb64l found in /home/user/dev/jail/jolt/jolt-wasm-raylib/build/EXP-014-jolt-tpb32l-emscripten/pack-libffi-raylib-input/xpatch
+Unhandled exception (RuntimeException): jolt-build: command failed (255): /home/user/dev/jail/jolt/jolt-wasm-raylib/build/EXP-018-chez-native/ta6le/bin/ta6le/scheme --script '/home/user/dev/jail/jolt/jolt-wasm-raylib/build/EXP-017-app-upstream.build/compile.ss'
+  at ./src/app/exp017.clj
+  trace:
+    build-with-cc

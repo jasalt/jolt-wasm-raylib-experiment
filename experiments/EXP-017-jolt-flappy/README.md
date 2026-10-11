@@ -1,5 +1,11 @@
 # EXP-017 — raylib-jlt Flappy Bird with Jolt-owned gameplay
 
+The evidence below records the original `6cb7d2e` run. Current build commands
+use Jolt 0.8.21 (`5b46858a`) and a matched native Chez cross host;
+[EXP-018](../EXP-018-jolt-size/README.md) records the upgrade, compatibility
+failures, rebuilt browser evidence and size comparison. Prepare that host with
+`nix develop -c ./experiments/EXP-018-jolt-size/commands.sh prepare` first.
+
 ## Problem
 
 EXP-016 proves a Jolt-authored static command scene. The requested next step is

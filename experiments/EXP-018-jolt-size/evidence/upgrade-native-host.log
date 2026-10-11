@@ -1,0 +1,10 @@
+warning: Git tree '/home/user/dev/jail/jolt/jolt-wasm-raylib' is dirty
+/nix/store/bzqpmy5kmvf0xn4xh5ixzkw00w9srh07-chez-scheme-10.4.1/bin/scheme /nix/store/bzqpmy5kmvf0xn4xh5ixzkw00w9srh07-chez-scheme-10.4.1/lib/csv10.4.1/ta6le
+warning: Git tree '/home/user/dev/jail/jolt/jolt-wasm-raylib' is dirty
+jolt build: dropping compiler image (no runtime eval)
+jolt build: compiling app.exp017 (release mode)
+Exception: incompatible fasl-object version 10.5.0-pre-release.1 found in /home/user/dev/jail/jolt/jolt-wasm-raylib/build/EXP-014-jolt-tpb32l-emscripten/pack-libffi-raylib-input/xpatch
+Unhandled exception (RuntimeException): jolt-build: command failed (255): /nix/store/bzqpmy5kmvf0xn4xh5ixzkw00w9srh07-chez-scheme-10.4.1/bin/scheme --script '/home/user/dev/jail/jolt/jolt-wasm-raylib/build/EXP-017-app-upstream.build/compile.ss'
+  at ./src/app/exp017.clj
+  trace:
+    build-with-cc
